@@ -48,12 +48,6 @@ function niOK(){
 </script>
 
 
-<style>
-   #wrap {
-      margin-left: 0;
-      text-align: center;
-   }
-</style>
 
 </head>
 <body>
@@ -69,7 +63,7 @@ function niOK(){
 							class="glyphicon glyphicon-envelope"></i></span> <input type="text"
 							class="form-control" name="nname" id="nname" placeholder="영문,숫자 10자이내"
 							value=""> 
-						<button type="submit"  onclick="return nnmCheck()"
+						<button type="submit"  class="doubch" onclick="return nnmCheck()"
 							style="margin-left: 30px;">별명 중복확인</button>
 							<span id="nnMessage" class="eMessage"></span>
 					</div>
