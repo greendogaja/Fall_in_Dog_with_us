@@ -146,11 +146,14 @@
 	height : 45px;
 	
 }
-.column_title{
+.column_title input{
 	position : relative;
 	float: left;
-	width : 75%;
+	width : 77%;
 	height : 45px;
+	padding : 9px;
+	border: 1px solid #ebecef;
+    background: #fff;
 }
 
 .column_category{
@@ -159,7 +162,7 @@
 	width : 22%;
 }
 
-select, .column_title textarea {
+.column_category select {
 	height : 45px;
 	
 }
@@ -173,8 +176,18 @@ select, textarea {
 	min-height : 300px;
 }
 
-.map-area,kakaoMap{
+.kakaoMap{
 	width : 90%;
-	height : 400px;
 	margin : auto;
+	height : 550px;
 }
+
+.text-center h2{
+	padding: 10px 15px 0;
+	margin-bottom: 0;
+	font-size: 48px;
+	color: #ffffff;
+	display: inline-block;
+	text-transform: uppercase;
+	line-height: 1;
+	}
