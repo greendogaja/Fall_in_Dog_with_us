@@ -100,7 +100,7 @@ function dupCheck(){
     	else{
     		let url ='dupCheck?id='+$('#id').val()
     		window.open(url,'_blank',
-    				'width=600,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
+    				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		
 }//dupCheck
 
@@ -109,7 +109,7 @@ function dupnCheck(){
     	else{
     		let url ='dupnCheck?nname='+$('#nname').val()
     		window.open(url,'_blank',
-    				'width=600,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
+    				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		
 }//dupCheck
 
