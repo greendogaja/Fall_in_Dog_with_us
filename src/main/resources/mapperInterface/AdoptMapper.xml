@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapperInterface.AdoptMapper">
+
+
+<!-- 동물 목록 S -->
+<select id="selectList_S" resultType="vo.AdoptVO">
+	select dno, title, img
+	from dogs
+	where size = 's'
+	order by dno desc
+</select>
+
+<!-- 동물 목록 M -->
+<select id="selectList_M" resultType="vo.AdoptVO">
+	select dno, title, img
+	from dogs
+	where size = 'm'
+	order by dno desc
+</select>
+
+<!-- 동물 목록 L -->
+<select id="selectList_L" resultType="vo.AdoptVO">
+	select dno, title, img
+	from dogs
+	where size = 'l'
+	order by dno desc
+</select>
+
+<!-- 상세 페이지 -->
+<select id="selectOne" resultType="vo.AdoptVO">
+	select *
+	from dogs
+	where dno= #{dno}
+</select>
+
+<!-- 글쓰기 -->
+<insert id="insert">
+	insert into dogs(*) 
+	values(*)
+</insert>
+
+</mapper> 
