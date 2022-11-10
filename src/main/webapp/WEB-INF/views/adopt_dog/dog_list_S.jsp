@@ -272,7 +272,7 @@
 							<a href="dog_detail?dno=${list.dno}"><img src="${list.img}" class="dog_img_list"><span>${list.title}</span></a>
 						</td>
 							
-						<c:if test="${listv.count%3 == 0 || listv.last}">
+						<c:if test="${listv.count%3== 0 || listv.last}">
 							</tr>
 						</c:if>
 
