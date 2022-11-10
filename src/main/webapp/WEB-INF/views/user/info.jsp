@@ -253,8 +253,10 @@
 						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
 						<span class="photo_edit"></span>
 					</a>
-						<p class="useid">${user.nname}닉네임</p>
-						<p class="usemail">${user.id }아이디</p>
+				</div>
+				<div class="posiab ">
+						<p class="useid">${user.nname}</p>
+						<p class="usemail">${user.id }</p>
 				</div>
 			</div>
 			
@@ -274,25 +276,24 @@
 		</div>
 		<div class="dinfo2">
 			<div class="account_box">
-				<h1 style="position: relative; left: 20%;
-				">내프로필</h1>
-				<ul>
+				<h1 class="title " >내프로필</h1>
+				<ul class="account_row">
 					<li>
 						<div class="row_item ">
 							<span class="item_text">성명:</span>
-							<span class="tcenter2">${user.name}남궁</span>
+							<span class="tcenter2">${user.name}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
 							<span class="item_text">별명:</span>
-							<span class="tcenter2">${user.nname}남궁</span>
+							<span class="tcenter2">${user.nname}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
 							<span class="item_text">핸드폰:</span>
-							<span class="tcenter2">${user.phone}2</span>
+							<span class="tcenter2">${user.phone}</span>
 						</div>
 					</li>
 					<li>
