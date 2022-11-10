@@ -172,3 +172,9 @@ select, textarea {
 .write_content textarea {
 	min-height : 300px;
 }
+
+.map-area,kakaoMap{
+	width : 90%;
+	height : 400px;
+	margin : auto;
+}
