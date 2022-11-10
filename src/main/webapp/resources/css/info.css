@@ -54,8 +54,6 @@ ul {
 ul {
     display: block;
     list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
@@ -81,8 +79,6 @@ ol, ul {
 ul {
     display: block;
     list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
@@ -156,20 +152,18 @@ ul {
 	top:120px;
 	
 }
-.posiab p{
-	font-size:20px;
-	color:black;
-}
+
 
 .allinfo{
 	display:flex;
 	justify-content:center;
 	margin-top:80px;
 	margin-bottom:80px;
+	height:100%;
 }
 
 .dinfo{
-	position: relative;
+	position:relative;
     display: table-cell;
     width: 395px;
     background-color: #fff;
@@ -177,6 +171,12 @@ ul {
     border-left: 1px solid rgba(0,0,0,.08);
     vertical-align: top;
     z-index: 1;
+    left: -270px;
+    left:-530px;
+    height:510;
+}
+.dinfo2{
+	position:absolute;
 }
 .photo img{
 	width:112px;
@@ -220,6 +220,7 @@ ul {
 	padding:10px;
 	font-size:2rem;
 	font-weight:600px;
+	margin-left:30px;
 }
 .left_item{
 	font-size:24px;
@@ -234,7 +235,7 @@ ul {
 	display:block;
 	padding:15px 38px 13px 18px;
 	border-radius: 12px 12px 0 0;
-	background-image:linear-gradient(98deg,#03c75a,#49c6dd);
+	background-image:linear-gradient(98deg,#dbec85,#49c6dd);
 }
 
 .title{
@@ -258,4 +259,14 @@ ul {
     box-sizing: border-box;
     width:500px;
     margin:0;
+    font-size:20px;
+}
+.useid{
+	font-size:20px;
+	margin-bottom:2px;
+	color:black;
+}
+.usemail{
+	font-size:18px;
+	color:#827575fa;
 }

@@ -3,6 +3,7 @@ package com.fallindog.fid;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;import com.google.protobuf.TextFormatParseInfoTree;
 
 import service.UserService;
 import vo.UserVO;
@@ -97,10 +98,10 @@ public class UserController {
 	      vo.setPassword(passwordEncoder.encode(vo.getPassword()));
 	      
 		if(service.insert(vo)>0) {
-			mv.addObject("message","회원가입을 축하드립니다.");
+			mv.addObject("msg","회원가입을 축하드립니다.");
 		}else {
 			//Join 실패
-			mv.addObject("message","회원가입에 실패하셨습니다 다시 시도 해주세요.");
+			mv.addObject("msg","회원가입에 실패하셨습니다 다시 시도 해주세요.");
 			uri = "/user/joinForm";
 		}
 
@@ -117,14 +118,22 @@ public class UserController {
 	
 	//** 로그인
 	@RequestMapping(value="/login")
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response,ModelAndView mv, UserVO vo) {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response,ModelAndView mv, UserVO vo
+										) {
 		
+		String idsave = request.getParameter("idsave");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String uri = "/user/loginForm";
+		response.setCharacterEncoding("UTF-8");
+		Cookie cookie = new Cookie ("useId",id);
+		
 		
 		vo.setId(id);
 		vo = service.selectOne(vo);
+		
+	
+		
 		if ( vo != null ) { 
 			
 			if( passwordEncoder.matches(password, vo.getPassword())) {
@@ -133,13 +142,21 @@ public class UserController {
 				request.getSession().setAttribute("loginName", vo.getName());
 				request.getSession().setAttribute("loginPW", password);
 				
+				Cookie cook = new Cookie("userId",vo.getId());
+				if (idsave != null && idsave.equals("cook")) {
+					response.addCookie(cook);
+				}else {
+					cook.setMaxAge(0);
+					response.addCookie(cook);
+				}
 				
-				uri="home" ;
+				
+				uri="redirect:home" ;
 			}else {
-				mv.addObject("message", "비밀번호가 틀렸습니다.");
+				mv.addObject("msg", "비밀번호가 틀렸습니다.");
 			}
 		}else {	// ID 오류
-			mv.addObject("message", "해당되는 아이디가 없습니다.");
+			mv.addObject("msg", "해당되는 아이디가 없습니다.");
 			
 		} //else
 		mv.setViewName(uri);
@@ -150,7 +167,7 @@ public class UserController {
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
 		HttpSession session = request.getSession(false);
     	if (session!=null) session.invalidate();
-    	mv.addObject("message", "로그아웃 되었습니다 ~~");
+    	mv.addObject("msg", "로그아웃 되었습니다 ~~");
     	mv.setViewName("home");
 		return mv;
 	}
@@ -166,7 +183,7 @@ public class UserController {
 			if(session != null && session.getAttribute("loginID") != null) {
 					vo.setId((String)session.getAttribute("loginID"));
 			}else {
-				request.setAttribute("message", "session이 없습니다.");
+				request.setAttribute("msg", "session이 없습니다.");
 				mv.setViewName("home");
 				return mv;
 			}
@@ -176,21 +193,60 @@ public class UserController {
 		vo = service.selectOne(vo);
 		if(vo != null) {
 			
-			//** Updqte 요청이면 updateForm.jsp로 이동 (내정보수정)
-			//=> PasswordEncoder 사용후에는 
-			//   session에 보관해 놓은 raw_password 를 수정 할 수 있도록 vo에 set해줌 
 			if("U".equals(request.getParameter("want"))) {
 				uri = "/user/updateForm";
 				vo.setPassword((String)session.getAttribute("loginPW"));
+				
 			}
-			
 			mv.addObject("user",vo);
 		}else {
-			//ID가 없음
-			mv.addObject("message","~~ "+request.getParameter("id")+"님의 자료는 존재하지 않습니다 ~~");
+			mv.addObject("msg","~~ "+request.getParameter("id")+"님의 자료는 존재하지 않습니다 ~~");
 		}
 		mv.setViewName(uri);
 		return mv;
 	}
+	
+	
+	// ** 회원정보변경
+	@RequestMapping(value="/infoupdate", method = RequestMethod.POST)
+	public ModelAndView infoupdate(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
+	    
+	  	String uri = "/user/info";
+	  	System.out.println("#######"+vo);
+	  	mv.addObject("user", vo);
+		 String realPath = request.getRealPath("/"); 
+	      if ( realPath.contains(".eclipse.") )  
+	         realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\user\\";
+	      else
+	         realPath += "resources\\img\\uploadImage\\user\\" ;
+	      
+	      File f1 = new File(realPath);
+	      if ( !f1.exists() ) f1.mkdir();
+	      String file1, file2="resources/img/uploadImage/user/basicman4.png"; 
+	      
+	      MultipartFile uploadfilef = vo.getUploadfilef(); 
+	      if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	         
+	         file1 = realPath + uploadfilef.getOriginalFilename();  
+	         uploadfilef.transferTo(new File(file1)); 
+	         
+	         file2="resources/img/uploadImage/user/"+uploadfilef.getOriginalFilename();
+	         vo.setUploadfile(file2);
+	      }
+		vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+	     
+		if(service.update(vo)>0) {
+			mv.addObject("message"," 내정보수정 성공 ");
+		  	mv.addObject("user", vo);
+		}else{
+			System.out.println("수정실패###########################################");
+			mv.addObject("msg", " 내정보수정 실패 ");
+			uri = "/user/updateForm";
+		}
+		mv.setViewName(uri);
+		return mv;
+	}
+	
+	
 	
 }

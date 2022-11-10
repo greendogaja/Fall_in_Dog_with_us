@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -24,6 +25,8 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
 	
+	<script src="resources/mLib/inCheck.js"></script>
+	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -32,11 +35,88 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/info.css">
+	
+	 <style type="text/css">
+    	.eMessage{
+    		color:red;
+    		font-size:small;
+    	}
+    </style>
+    <script>
+    let iCheck =false;
+    let pCheck =false;
+    let ppCheck =false;
+    let nCheck =false;
+    let nnCheck =false;
+    let phCheck=false;
+    
+    $(function(){
+    	
+    	
+    	//## password
+    	$('#password').keydown(function(e){
+    		if(e.which==13){
+    			e.preventDefault();  
+    		}
+    	}).focusout(function(){
+    		pCheck = pwCheck();
+    	});
+    	
+    	
+    	//## cpassoword
+    	$('#cpassword').keydown(function(e){
+    		if(e.which==13){
+    			e.preventDefault();		}
+    	}).focusout(function(){
+    		ppCheck = cpCheck();
+    	});
+    	
+    	//## name
+    	$('#name').keydown(function(e){
+    		if(e.which==13){
+    			e.preventDefault();  
+    			$('#nname').focus();
+    		}
+    	}).focusout(function(){
+    		nCheck = nmCheck();
+    	});
+    	//## nname	
+    	$('#nname').keydown(function(e){
+    		if(e.which==13){
+    			e.preventDefault();  
+    			$('#email').focus();
+    		}
+    	}).focusout(function(){
+    		nnCheck = nnmCheck();
+    	});
 
+    	//## email
+    	$('#email').keydown(function(e){
+    		if(e.which==13){
+    			e.preventDefault();  
+    			$('#phone').focus();
+    		}
+    	});
+
+    	//## phone
+    	$('#phone').keydown(function(e){
+    		if(e.which==13){
+    			e.preventDefault();  
+    			$('#submit').focus();
+    		}
+    	}).focusout(function(){
+    		phCheck = phoCheck();
+    	});
+    	
+    })
+
+
+    
+    </script>
 </head>
 
 <body>
-  <!-- Preloader -->
+   <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -147,11 +227,14 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Guide</a>
+                                    <li><a href="home">Home</a></li>
+                                    <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="aboutUs">About Us</a></li>
-                                            <li><a href="contact">Contact</a></li>
-                                            <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="home">Home</a></li>
+                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="single-post.html">Single Post</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Catagory</a>
@@ -180,12 +263,41 @@
                                         </ul>
                                     </li>
                                     <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">Community</a>
-                                        <ul class="dropdown">
-                                            <li><a href="review">입양후기</a></li>
-                                            <li><a href="free">자유게시판</a></li>
-                                            <li><a href="share">나눔장터</a></li>
-                                        </ul>
+                                    <li><a href="#">가나다라마바</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 1</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 2</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 3</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 4</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                        </div>
                                     </li>
                                     <li><a href="home.jsp">Contact</a></li>
                                 </ul>
@@ -224,7 +336,7 @@
 				</div>
 				<div class="posiab ">
 						<p class="useid">${user.nname}</p>
-						<p class="usemail">${user.id }</p>
+						<p class="usemail" >${user.id }</p>
 				</div>
 			</div>
 			
@@ -245,61 +357,169 @@
 		<div class="dinfo2">
 			<div class="account_box">
 				<h1 class="title " >내프로필</h1>
-				<ul class="account_row">
-					<li>
+				<form action="infoupdate" method="post" enctype="multipart/form-data">
+					<ul class="account_row">
+						<li>
 						<div class="row_item ">
-							<span class="item_text">성명:</span>
-							<span class="tcenter2">${user.name}</span>
+							<span class="item_text">아이디:</span>
+							<input type="text" class="tcenter2" name="id" id="id" value="${user.id }">
 						</div>
 					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">별명:</span>
-							<span class="tcenter2">${user.nname}</span>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">성명:</span>
+								<input type="text" class="tcenter2" name="name" id="name" value="${user.name }">
+								<span id="nMessage" class="eMessage" ></span>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">비밀번호설정:</span>
+								<input type="text" class="tcenter2" name="password" id="password" placeholder="특수문자 반드시 포함" value="${user.password}">
+									<span id="pMessage" class="eMessage" ></span>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">비밀번호확인:</span>
+								<input type="text" class="tcenter2" name="cpassword" id="cpassword" placeholder="특수문자 반드시 포함" value="${user.password}">
+									<span id="ppMessage" class="eMessage"></span>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">별명:</span>
+								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 10자이내" value="${user.nname}">
+									<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px; font-size: 18;">중복확인</button>
+									<span id="nnMessage" class="eMessage"></span>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">생년월일:</span>
+								<select name="yy" id="yy" class="tcenter2">
+										<c:set var="today" value="<%=new java.util.Date() %>"/>
+										<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
+										<option value="${user.yy}">${user.yy}</option>
+										<c:forEach begin="0" end="${start - 1950}" var="result"	step="1">
+											<option value="<c:out value="${start-result}" />"
+												<c:if test="${start-result == detail.YY}"> selected="selected"</c:if>><c:out
+													value="${start-result}" /></option>
+
+										</c:forEach>
+									</select>
+									-
+									<select name="mm" id="mm" class="tcenter2">
+									 <option value="${user.mm}">${user.mm}</option>
+										  <c:forEach var="i" begin="1" end="12">
+										  <c:choose>
+										      <c:when test="${i lt 10 }">
+										          <option value="0${i}">0${i}</option>
+										      </c:when>
+										      <c:otherwise>
+										          <option value="${i}">${i}</option>
+										      </c:otherwise>
+										  </c:choose>
+										  </c:forEach>
+									</select>
+									-
+									<select name="dd" id="dd" class="tcenter2">
+										  <option value="${user.dd}">${user.dd}</option>
+										  <c:forEach var="i" begin="1" end="31">
+										  <c:choose>
+										      <c:when test="${i lt 10 }">
+										          <option value="0${i}">0${i}</option>
+										      </c:when>
+										      <c:otherwise>
+										          <option value="${i}">${i}</option>
+										      </c:otherwise>
+										  </c:choose>
+										  </c:forEach>
+									</select>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">성별:</span>
+								<c:choose>
+									<c:when test="${user.gender == '남자'}">
+										<label> <input name="gender" type="radio" value="남자"
+											checked> 남자
+										</label>     
+										<label> <input name="gender" type="radio" value="여자">
+											여자
+										</label>
+									</c:when>
+									<c:when test="${user.gender == '여자'}">
+										<label> <input name="gender" type="radio" value="남자"
+											> 남자
+										</label>     
+										<label> <input name="gender" type="radio" value="여자" checked>
+											여자
+										</label>
+									</c:when>
+							   </c:choose>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">연락처:</span>
+								<input type="text" class="tcenter2" name="phone" id="phone" placeholder="연락처 번호를(-포함) 입력해주세요" value="${user.phone}">
+									<span id="phMessage" class="eMessage"></span>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">이메일:</span>
+								<c:if test="${!empty user.email }">
+								<input type="email" class="tcenter2" name="email"
+								id="email" 
+								value="${user.email }">
+								</c:if>
+								<c:if test="${empty user.email }">
+								<input type="email" class="tcenter2" name="email"
+								id="email" placeholder="e-mail(있는 경우)"
+								value="">
+								</c:if>
+							</div>
+						</li>
+						<li>
+							<div class="row_item ">
+								<span class="item_text">프로필:</span>
+								<img src="${user.uploadfile}" class="select_img" style="width: 50; height: 50; ">
+									<input type="hidden" name="uploadfile" value="${user.uploadfile}"><br>
+									<input type="file"
+									name="uploadfilef" id="uploadfilef" class="form-control upload" style="width:230;"
+									placeholder=" " value="${user.uploadfile}">
+									
+									<script>
+						            $('#uploadfilef').change(function(){
+						               if(this.files && this.files[0]) {
+						                  var reader = new FileReader;
+						                      reader.onload = function(e) {
+						        	              $(".select_img").attr("src", e.target.result)
+						                		                       .width(50).height(50); 
+						            	          } // onload_function
+						                      reader.readAsDataURL(this.files[0]);
+						                } // if   
+						            }); //change
+						       		</script>
+							</div>
+						</li>
+					</ul>
+					<div class="form-group">
+						<div class="col-xs-offset-3 col-sm-2 mauto" style="max-width: 61%;display: flex;justify-content: space-between;padding: 20;">
+							<input name="submit" id="submit" onclick="return upCheck()"  type="submit" value="가입하기"
+								class="btn btn-primary" >
+							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">생년월일:</span>
-							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">성별:</span>
-							<span class="tcenter2">${user.gender}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">연락처:</span>
-							<span class="tcenter2">
-							<c:forTokens items="${user.phone }" delims="-" var="phonenum">
-							    ${phonenum} 
-							</c:forTokens>
-							</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">이메일:</span>
-							<span class="tcenter2">
-							<c:if test="${!empty user.email }">
-							${user.email}
-							</c:if>
-							<c:if test="${empty user.email }">
-							(없음)
-							</c:if>
-							</span>
-						</div>
-					</li>
-					
-				</ul>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 	<!--######################### Footer -->
-    <footer class="footer-area text-center" style="font-size:1rem;">
+    <footer class="footer-area text-center" style="font-size:1rem; ">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -337,6 +557,7 @@
                             </div>
                         </nav>
                     </div>
+                    
                     
                     
                     
