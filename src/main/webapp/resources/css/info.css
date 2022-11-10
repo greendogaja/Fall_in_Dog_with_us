@@ -1,0 +1,206 @@
+@charset "UTF-8";
+
+.gnb_area {
+    height: 78px;
+    display:flex;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.gnb_area .logo {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    vertical-align: top;
+    background-position: -52px -113px;
+    background-repeat: no-repeat;
+    width: 23px;
+    height: 21px;
+}
+.gnb_area .gnb_title {
+    display: inline-block;
+}
+.profile_area {
+}
+.profile_area {
+    text-align: center;
+    box-sizing: border-box;
+}
+.profile_area .profile_inner {
+    width: 100%;
+}
+.profile_area .profile_inner {
+    width: 300px;
+}
+.profile_area {
+    padding: 2px 20px 8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.header_left {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+}
+.header_left .left_menu {
+    margin-top: 19px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+ol, ul {
+    list-style: none;
+}
+.account_box .account_row {
+    border-radius: 0 0 12px 12px;
+    border-top: 0;
+}
+.account_row {
+    padding: 0 17px;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px 0 rgb(72 75 108 / 8%);
+    border: solid 1px #e3e9ed;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.row_item {
+    position: relative;
+    padding: 10px 0 10px 30px;
+    display:flex;
+    height:70px;
+}
+.row_item.name::before, .row_item.only::before, .row_item.other::before, .row_item.phone::before, .row_item.privacy::before, .row_item.step::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background-position: -164px -138px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+.account_box .title::after, .alarm_area .alarm_more::after, .alarm_area .alarm_text::before, .alarm_login .alarm_close::before, .alarm_login .icon_alarm_chatbot, .btn_exit::before, .btn_link .text::after, .close_popup, .function_item .icon_camera, .function_item .icon_cloud, .function_item .icon_dustbox, .function_item .icon_z, .function_list .nudge_zepeto::after, .header_edit .btn_before::after, .header_other .other_inner .btn_before::after, .icon_connect, .link_info, .link_list .link_info, .link_right::after, .location_select::after, .manage_box .icon_write::before, .manage_box .name_arrow, .popup_row.select::after, .profile_area .photo .photo_edit::before, .profile_check .typical::before, .profile_check input:checked+.typical::before, .profile_edit_popup .close_popup, .profile_nickname .btn_delete::before, .qrend_close::before, .qrend_text::before, .row_item.abroad::before, .row_item.connect::before, .row_item.history::before, .row_item.list::before, .row_item.lock::before, .row_item.loginalarm::before, .row_item.mail::before, .row_item.name::before, .row_item.only::before, .row_item.other::before, .row_item.phone::before, .row_item.privacy::before, .row_item.step::before, .service_item .icon_cert, .service_item .icon_certificate, .service_item .icon_electronic, .service_item .icon_license, .service_item .icon_qrcheckin, .service_item .icon_qrpass, .service_item .icon_student, .service_item .icon_vaccine, .service_item .icon_vaccine_pass, .service_item .service_state::after, .slider_area .minus::before, .slider_area .minus:hover::before, .slider_area .plus::before, .slider_area .plus:hover::before, .subindex_alarm .alarm_box::after, .subindex_alarm .alarm_box::before, .title_link::after {
+    background-image: url(https://ssl.pstatic.net/static/nid/account/m_sp_01_home_849a216f.png);
+    background-size: 264px 230px;
+    background-repeat: no-repeat;
+}
+.row_item .item_text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -.8px;
+    color: #303038;
+    word-break: break-all;
+    width:20%;
+}
+.profile_area .photo .photo_edit {
+    position: absolute;
+    right: -13px;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: #02da78;
+    box-shadow: 2px 6px 8px 0 rgb(30 30 35 / 8%);
+    box-sizing: border-box;
+}
+.profile_area {
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+.profile_area .photo .photo_edit::before {
+    content: '';
+    display: inline-block;
+    margin-top: 6px;
+    vertical-align: top;
+    background-position: -244px -131px;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+}
+.account_box .title::after, .alarm_area .alarm_more::after, .alarm_area .alarm_text::before, .alarm_login .alarm_close::before, .alarm_login .icon_alarm_chatbot, .btn_exit::before, .btn_link .text::after, .close_popup, .function_item .icon_camera, .function_item .icon_cloud, .function_item .icon_dustbox, .function_item .icon_z, .function_list .nudge_zepeto::after, .header_edit .btn_before::after, .header_other .other_inner .btn_before::after, .icon_connect, .link_info, .link_list .link_info, .link_right::after, .location_select::after, .manage_box .icon_write::before, .manage_box .name_arrow, .popup_row.select::after, .profile_area .photo .photo_edit::before, .profile_check .typical::before, .profile_check input:checked+.typical::before, .profile_edit_popup .close_popup, .profile_nickname .btn_delete::before, .qrend_close::before, .qrend_text::before, .row_item.abroad::before, .row_item.connect::before, .row_item.history::before, .row_item.list::before, .row_item.lock::before, .row_item.loginalarm::before, .row_item.mail::before, .row_item.name::before, .row_item.only::before, .row_item.other::before, .row_item.phone::before, .row_item.privacy::before, .row_item.step::before, .service_item .icon_cert, .service_item .icon_certificate, .service_item .icon_electronic, .service_item .icon_license, .service_item .icon_qrcheckin, .service_item .icon_qrpass, .service_item .icon_student, .service_item .icon_vaccine, .service_item .icon_vaccine_pass, .service_item .service_state::after, .slider_area .minus::before, .slider_area .minus:hover::before, .slider_area .plus::before, .slider_area .plus:hover::before, .subindex_alarm .alarm_box::after, .subindex_alarm .alarm_box::before, .title_link::after {
+    background-image: url(https://ssl.pstatic.net/static/nid/account/m_sp_01_home_849a216f.png);
+    background-size: 264px 230px;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+.allinfo{
+	display:flex;
+	justify-content:space-around;
+}
+.dinfo{
+	
+}
+.dinfo2{
+	width: 60%;
+}
+.photo img{
+	width:300px;
+	height:200px;
+	border-radius:30%;
+}
+.profile_area{
+	position:relative;
+}
+.photo_edit{
+	position:absolute;
+	left:250px;
+}
+.profile_inner p{
+	left: 140px;
+    top: 120px;
+    font-weight:600;
+}
+.profile_inner p{
+	position:absolute;
+	font-size:20px;
+    line-height:0.4;
+    color:black
+}
+.profile_inner p:nth-child(2){
+	position:absolute;
+	left: 140px;
+    top: 160px;
+    font-weight:1000;
+}
+.account_box ul li{
+	border-bottom: 0.1px solid rgba(0,0,0,0.1);
+	width: 500;
+}
+.left_menu li{
+	padding:10px;
+	font-size:2rem;
+	font-weight:600px;
+}
+

@@ -1,0 +1,288 @@
+@charset "utf-8";
+
+/* 베이스 */
+
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#content {
+    padding: 40px;
+
+}
+
+.content {
+    display: block;
+    margin: 0 auto;
+}
+
+.content-title-wrap {
+    background-color: #f7f6f5;
+}
+
+
+legend,
+.hd-element {
+    position: absolute;
+    left: -9999px;
+}
+
+fieldset,
+button,
+input {
+    border: 0;
+    vertical-align: middle;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    vertical-align: top;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 상단 입양위탁 글 */
+.content-title-wrap .content-title {
+    position: relative;
+    padding: 40px 0 40px 0;
+    font-family: "nanumsquare";
+    font-weight: bold;
+    font-size: 40px;
+    color: #333333;
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 검색 */
+input[type="text"],
+select {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    font-size: inherit;
+    color: #888;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.bbs-wrap-head {
+    overflow: hidden;
+    margin: 70px auto 20px auto;
+}
+
+
+
+
+.bbs-wrap-head .bbs-search-wrap {
+    float: right;
+}
+
+.bbs-wrap-head .srchKey,
+.bbs-wrap-head .srchText {
+    float: left;
+    border-radius: 5px;
+    margin: 0 8px 0 0;
+    padding: 0 17px;
+    font-size: 14px;
+}
+
+.bbs-wrap-head .srchKey {
+    width: 100px;
+}
+
+.bbs-wrap-head .srchText {
+    width: 200px;
+}
+
+.bbs-wrap-head .btn-search {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    background-image: url("../img/adoption_board/icon-search.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    padding: 0;
+    border-radius: 30%;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 게시판 */
+.bbs-wrap {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.bbs-list-wrap .article {
+    margin-bottom: 3px;
+}
+
+.bbs-list-wrap .bbs-list-head .article {
+    background-color: rgb(188, 188, 188);
+    border-radius: 10px;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+
+.bbs-list-wrap .article>a {
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+.bbs-list-wrap .article>a:hover,
+.bbs-list-wrap .article>a:focus {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bbs-list-wrap .bbs-list-head .article ul,
+.bbs-list-wrap .article ul {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+}
+
+.bbs-list-wrap .bbs-list-head .article ul li,
+.bbs-list-wrap .bbs-list-head .article ul li,
+.bbs-list-wrap .article ul li,
+.bbs-list-wrap .article ul li {
+    display: block;
+    float: left;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.no {
+    width: 10%;
+}
+
+.subject {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 52%;
+}
+
+.name {
+    width: 14%;
+
+}
+
+.date {
+    width: 14%;
+}
+
+.hit {
+    width: 10%;
+}
+
+/* -------------------------------------------s------------------------------------------------------ */
+
+/* 글쓰기 버튼 */
+.btn-go {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    display: inline-block;
+    width: 100px;
+    background-color: rgb(188, 188, 188);
+    border-radius: 5px;
+    line-height: 36px;
+    text-decoration: none;
+}
+
+.btn-go span {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 페이징 */
+.paging-wrap {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+.paging {
+    display: inline-block;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.paging a {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 34px;
+    height: 36px;
+    width: 36px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 30%;
+}
+
+.paging a:hover,
+.paging a:focus,
+.paging a.active {
+    border: 1px solid #000;
+}
+
+.paging a.com {
+    background-size: auto 12px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: 1px solid #ccc;
+}
+
+.paging a.com>span {
+    position: absolute;
+    left: -9999px;
+}
+
+.paging a.com.first {
+    background-image: url("../img/adoption_board/icon-arw-first.png");
+}
+
+.paging a.com.prev {
+    margin: 10px 16px 10px 8px;
+    background-image: url("../img/adoption_board/icon-arw-prev.png");
+}
+
+.paging a.com.next {
+    margin: 10px 8px 10px 16px;
+    background-image: url("../img/adoption_board/icon-arw-next.png");
+}
+
+.paging a.com.last {
+    background-image: url("../img/adoption_board/icon-arw-last.png");
+}
+
+.paging a.com:hover,
+.paging a.com:focus,
+.paging a.com:active {
+    border: 1px solid #000;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
