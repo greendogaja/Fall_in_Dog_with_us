@@ -22,13 +22,13 @@
  function pwCheck(){
  	let password=$('#password').val();
 	if ( password.length<4 ) {
-		$('#pMessage').html(' Password 길이는 4 이상 입니다. !! ');
+		$('#pMessage').html(' 비밀번호 길이는 4 이상 입니다. !! ');
 		return false;
 	}else if ( password.replace(/[!-*.@]/gi ,'').length >= password.length ) {
-		$('#pMessage').html(' Password 에는 특수문자가 반드시 포함 되어야 합니다. !!'  );
+		$('#pMessage').html(' 비밀번호 에는 특수문자가 반드시 포함 되어야 합니다. !!'  );
 		return false;
 	}else if ( password.replace(/[a-z.0-9.!-*.@]/gi,'').length > 0 ) {
-		$('#pMessage').html(' Password 는 영문자, 숫자, 특수문자 로만 입력하세요. !!'  );
+		$('#pMessage').html(' 비밀번호 는 영문자, 숫자, 특수문자 로만 입력하세요. !!'  );
 		return false;
 	}else{
 		$('#pMessage').html('');
@@ -41,7 +41,7 @@
  	let password = $('#password').val();
  	let cpassword= $('#cpassword').val();
 	if ( password != cpassword ) {
-		$('#ppMessage').html(' Password 가 다릅니다. !!'  );
+		$('#ppMessage').html(' 비밀번호 가 다릅니다. !!'  );
 		return false;
 	}else{
 		$('#ppMessage').html('');
@@ -52,10 +52,10 @@
  function nmCheck(){
  	let name = $('#name').val();
 	if ( name.length < 2) {
-		$('#nMessage').html(' Name 길이는 2 이상 입니다. !! ');
+		$('#nMessage').html(' 성명 길이는 2 이상 입니다. !! ');
 		return false;
 	}else if (name.replace(/[a-z.가-힣]/gi,'').length > 0) {
-		$('#nMessage').html('  Name은 영문, 한글만 입력 가능 합니다. !!'  );
+		$('#nMessage').html('  성명은 영문, 한글만 입력 가능 합니다. !!'  );
 		return false;
 	}else{
 		$('#nMessage').html('');
@@ -66,10 +66,10 @@
  function nnmCheck(){
  	let nname = $('#nname').val();
 	if ( nname.length < 2 || nname.legnth>8) {
-		$('#nnMessage').html(' Name 길이는 2 이상 8 이내 입니다. !! ');
+		$('#nnMessage').html(' 별명 길이는 2 이상 8 이내 입니다. !! ');
 		return false;
 	}else if (nname.replace(/[a-z.가-힣]/gi,'').length > 0) {
-		$('#nnMessage').html('  Name은 영문, 한글만 입력 가능 합니다. !!'  );
+		$('#nnMessage').html('  별명은 영문, 한글만 입력 가능 합니다. !!'  );
 		return false;
 	}else{
 		$('#nnMessage').html('');

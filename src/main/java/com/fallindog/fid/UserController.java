@@ -61,9 +61,9 @@ public class UserController {
 		
 		vo=service.selectOne(vo);
 		if ( vo != null ) {
-			mv.addObject("can","F"); 
+			mv.addObject("use","F"); 
 		}else {
-			mv.addObject("nott", "T");
+			mv.addObject("use", "T");
 		}
 		mv.setViewName("user/nickCheck");
 		return mv;

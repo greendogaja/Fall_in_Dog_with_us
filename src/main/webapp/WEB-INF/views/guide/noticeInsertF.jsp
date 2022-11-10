@@ -3,12 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- ##### Footer Area End ##### -->
+
+<meta charset="UTF-8">
+<title>Notice Insert</title>
+<!-- Style CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/guide.css">
+
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	

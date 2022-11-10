@@ -10,6 +10,17 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- ##### Footer Area End ##### -->
 
+    <!-- Title -->
+    <title>Original - Lifestyle Blog Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/guide.css">
+    
+
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
