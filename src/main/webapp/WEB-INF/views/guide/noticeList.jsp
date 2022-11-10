@@ -343,15 +343,15 @@
    <!--  #### 리스트  end ####-->
     
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area text-center">
+    <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                    
                     <!-- Footer Nav Area -->
-                    <div class="classy-nav-container breakpoint-off">
+                    <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
-                        <nav class="classy-navbar justify-content-center">
+                        <nav class="classy-navbar ">
 
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
@@ -382,25 +382,20 @@
                         </nav>
                     </div>
                     
-                    <!-- Footer Social Area -->
-                    <div class="footer-social-area mt-30">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
 
    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+E-mail : fallindogkorea@gmail.com <br>
+Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
     </footer>
-    <!-- ##### Footer Area End ##### -->
+
     
 
 </body>

@@ -285,5 +285,60 @@ ${message}<br>
 </c:if>
 &nbsp;&nbsp;<a href="noticeList">목록</a>
 &nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
+
+ <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center" style="font-size:1rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                    <!-- Footer Nav Area -->
+                    <div class="classy-nav-container breakpoint-off" >
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar ">
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+
+                                <!-- close btn -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Lifestyle</a></li>
+                                        <li><a href="#">travel</a></li>
+                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Nav End -->
+                            </div>
+                        </nav>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+E-mail : fallindogkorea@gmail.com <br>
+Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    </footer>
+
 </body>
 </html>
