@@ -53,12 +53,7 @@ function idOK(){
 </script>
 
 
-<style>
-   #wrap {
-      margin-left: 0;
-      text-align: center;
-   }
-</style>
+
 
 </head>
 <body>
@@ -74,7 +69,7 @@ function idOK(){
 							class="glyphicon glyphicon-envelope"></i></span> <input type="text"
 							class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
 							value=""> 
-						<button type="submit"  onclick="return idCheck()"
+						<button type="submit" class="doubch" onclick="return idCheck()"
 							style="margin-left: 30px;">ID 중복확인</button>
 							<span id="iMessage" class="eMessage"></span>
 					</div>

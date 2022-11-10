@@ -475,7 +475,7 @@ img {
 
 .header-area .top-header .top-social-area a:hover,
 .header-area .top-header .top-social-area a:focus {
-  color: #30336b;
+  color: #000000;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -602,7 +602,7 @@ img {
 }
 
 #breakingNewsTicker.ticker ul li a:hover {
-  color: #30336b;
+  color: #000000;
 }
 
 .modal-backdrop.show {
@@ -861,7 +861,7 @@ img {
 
 .single-blog-area .single-blog-content h4 a:hover,
 .single-blog-area .single-blog-content h4 a:focus {
-  color: #30336b;
+  color: #000000;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1132,9 +1132,9 @@ img {
 
 .sidebar-widget-area .tags a:hover,
 .sidebar-widget-area .tags a:focus {
-  border: 1px solid #30336b;
+  border: 1px solid #000000;
   color: #ffffff;
-  background-color: #30336b;
+  background-color: #000000;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

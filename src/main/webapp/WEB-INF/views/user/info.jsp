@@ -250,7 +250,7 @@
 			<div class="profile_area">
 				<div class="profile_inner">
 					<a href="#" class="photo">
-						<img src="resources/img/blog-img/company.jpg" width="500" height="500" alt="프로필 이미지">
+						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
 						<span class="photo_edit"></span>
 					</a>
 						<p class="useid">${user.nname}닉네임</p>
@@ -280,37 +280,44 @@
 					<li>
 						<div class="row_item ">
 							<span class="item_text">성명:</span>
-							<span class="tcenter2">남궁</span>
+							<span class="tcenter2">${user.name}남궁</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
 							<span class="item_text">별명:</span>
-							<span class="tcenter2">남궁</span>
+							<span class="tcenter2">${user.nname}남궁</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
 							<span class="item_text">핸드폰:</span>
-							<span class="tcenter2">010-2222-2222</span>
+							<span class="tcenter2">${user.phone}2</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">이메일</span>
-							<span class="tcenter2">skwqiwqs@naver.com</span>
+							<span class="item_text">이메일:</span>
+							<span class="tcenter2">
+							<c:if test="${!empty user.email }">
+							${user.email}
+							</c:if>
+							<c:if test="${empty user.email }">
+							(없음)
+							</c:if>
+							</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">성별</span>
-							<span class="tcenter2">남자</span>
+							<span class="item_text">성별:</span>
+							<span class="tcenter2">${user.gender}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">생년월일</span>
-							<span class="tcenter2">0110-22-22</span>
+							<span class="item_text">생년월일:</span>
+							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
 						</div>
 					</li>
 				</ul>
