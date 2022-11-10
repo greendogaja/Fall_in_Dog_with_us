@@ -100,7 +100,7 @@ function dupCheck(){
     	else{
     		let url ='dupCheck?id='+$('#id').val()
     		window.open(url,'_blank',
-    				'width=600,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
+    				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		
 }//dupCheck
 
@@ -109,7 +109,7 @@ function dupnCheck(){
     	else{
     		let url ='dupnCheck?nname='+$('#nname').val()
     		window.open(url,'_blank',
-    				'width=600,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
+    				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		
 }//dupCheck
 
@@ -121,7 +121,6 @@ function inCheck(){
 	if(nCheck==false){$('#nMessage').html('성명을 확인하세요'); }		
 	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요'); }		
 	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
-	
 	
 	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
 		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
