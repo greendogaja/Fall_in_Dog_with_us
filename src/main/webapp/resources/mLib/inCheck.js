@@ -122,7 +122,6 @@ function inCheck(){
 	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요'); }		
 	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
 	
-	
 	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
 		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
 			 alert('~~ 가입이 취소 되었습니다 ~~');
