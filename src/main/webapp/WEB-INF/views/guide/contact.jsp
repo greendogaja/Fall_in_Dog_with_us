@@ -19,6 +19,7 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/guide.css">
     
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script defer="defer" src="resources/js/jquery/jquery-2.2.4.min.js"></script>
