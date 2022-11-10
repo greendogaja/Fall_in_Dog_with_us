@@ -20,7 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.NoticeService;
 import vo.NoticeVO;
 
+<<<<<<< HEAD
 //testtesttesttest
+=======
+// testtest
+>>>>>>> sera
 @Controller 
 public class NoticeController {
   
