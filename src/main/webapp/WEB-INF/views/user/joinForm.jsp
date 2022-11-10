@@ -371,12 +371,17 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3">닉네임<span
+						<label class="control-label col-sm-3">별명<span
 							class="text-danger">*</span></label>
-						<div class="col-md-8 col-sm-9">
-							<input type="text" class="form-control" name="nname"
-								id="nname" placeholder="닉네임을 입력하세요" value="">
-								<span id="nnMessage" class="eMessage"></span>
+						<div class="col-md-8 col-sm-9 ">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-envelope"></i></span> 
+									<input type="text" class="form-control" name="nname" id="nname" placeholder="한글,영문 10자이내" value="">
+									<span id="nnMessage" class="eMessage"></span>
+							<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px;">별명 중복확인</button>
+							</div>
+							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small>
 						</div>
 					</div>
 					<div class="form-group">
