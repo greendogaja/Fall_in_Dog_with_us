@@ -9,7 +9,7 @@ public interface UserService {
 	
 	//** Insert
 	int insert(UserVO vo);
-	
+	int update(UserVO vo);
 	
 
 }

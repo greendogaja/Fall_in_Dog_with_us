@@ -11,6 +11,6 @@ public interface UserMapper {
 	
 	UserVO selectOne(UserVO vo);
 	
-	// Join -> Insert
 	int insert(UserVO vo);
+	int update(UserVO vo);
 }//interface
