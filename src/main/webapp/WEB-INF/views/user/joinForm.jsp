@@ -371,7 +371,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3">아이디<span
+						<label class="control-label col-sm-3">별명<span
 							class="text-danger">*</span></label>
 						<div class="col-md-8 col-sm-9 ">
 							<div class="input-group">
@@ -381,7 +381,7 @@
 									<span id="nnMessage" class="eMessage"></span>
 							<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px;">별명 중복확인</button>
 							</div>
-							<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
+							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small>
 						</div>
 					</div>
 					<div class="form-group">
