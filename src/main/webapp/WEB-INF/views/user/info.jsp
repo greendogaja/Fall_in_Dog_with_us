@@ -12,8 +12,8 @@
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
@@ -250,11 +250,13 @@
 			<div class="profile_area">
 				<div class="profile_inner">
 					<a href="#" class="photo">
-						<img src="resources/img/blog-img/company.jpg" width="500" height="500" alt="프로필 이미지">
+						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
 						<span class="photo_edit"></span>
 					</a>
-						<p class="useid">${user.nname}닉네임</p>
-						<p class="usemail">${user.id }아이디</p>
+				</div>
+				<div class="posiab ">
+						<p class="useid">${user.nname}</p>
+						<p class="usemail">${user.id }</p>
 				</div>
 			</div>
 			
@@ -274,50 +276,55 @@
 		</div>
 		<div class="dinfo2">
 			<div class="account_box">
-				<h1 style="position: relative; left: 20%;
-				">내프로필</h1>
-				<ul>
+				<h1 class="title " >내프로필</h1>
+				<ul class="account_row">
 					<li>
 						<div class="row_item ">
 							<span class="item_text">성명:</span>
-							<span class="tcenter2">남궁</span>
+							<span class="tcenter2">${user.name}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
 							<span class="item_text">별명:</span>
-							<span class="tcenter2">남궁</span>
+							<span class="tcenter2">${user.nname}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
 							<span class="item_text">핸드폰:</span>
-							<span class="tcenter2">010-2222-2222</span>
+							<span class="tcenter2">${user.phone}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">이메일</span>
-							<span class="tcenter2">skwqiwqs@naver.com</span>
+							<span class="item_text">이메일:</span>
+							<span class="tcenter2">
+							<c:if test="${!empty user.email }">
+							${user.email}
+							</c:if>
+							<c:if test="${empty user.email }">
+							(없음)
+							</c:if>
+							</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">성별</span>
-							<span class="tcenter2">남자</span>
+							<span class="item_text">성별:</span>
+							<span class="tcenter2">${user.gender}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">생년월일</span>
-							<span class="tcenter2">0110-22-22</span>
+							<span class="item_text">생년월일:</span>
+							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-
 	<!--######################### Footer -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">

@@ -157,8 +157,39 @@ public class UserController {
 	
 	//** 회원정보
 	@RequestMapping(value="/info")
-	public ModelAndView info(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
-		mv.setViewName("/user/info");
+	public ModelAndView info(HttpServletRequest request, HttpServletResponse response,UserVO vo,ModelAndView mv) {
+		
+		
+		HttpSession session = request.getSession(false);
+		
+		if (vo.getId() == null || vo.getId().length()<1) {
+			if(session != null && session.getAttribute("loginID") != null) {
+					vo.setId((String)session.getAttribute("loginID"));
+			}else {
+				request.setAttribute("message", "session이 없습니다.");
+				mv.setViewName("home");
+				return mv;
+			}
+		}
+		
+		String uri = "/user/info";
+		vo = service.selectOne(vo);
+		if(vo != null) {
+			
+			//** Updqte 요청이면 updateForm.jsp로 이동 (내정보수정)
+			//=> PasswordEncoder 사용후에는 
+			//   session에 보관해 놓은 raw_password 를 수정 할 수 있도록 vo에 set해줌 
+			if("U".equals(request.getParameter("want"))) {
+				uri = "/user/updateForm";
+				vo.setPassword((String)session.getAttribute("loginPW"));
+			}
+			
+			mv.addObject("user",vo);
+		}else {
+			//ID가 없음
+			mv.addObject("message","~~ "+request.getParameter("id")+"님의 자료는 존재하지 않습니다 ~~");
+		}
+		mv.setViewName(uri);
 		return mv;
 	}
 	
