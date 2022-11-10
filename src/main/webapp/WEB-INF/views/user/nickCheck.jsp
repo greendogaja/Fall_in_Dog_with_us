@@ -38,14 +38,13 @@
 <script>
 
 
-function nickOK(){
+function niOK(){
 	opener.$('#nname').val('${newNick}');
 	
-	opener.$('#submit').prop('disabled',false);
 	
 	window.close();
 	
-}//idOK
+}//niOK
 </script>
 
 
@@ -59,32 +58,31 @@ function nickOK(){
 </head>
 <body>
 <div id="wrap" >
-	<form action="dupCheck" method="get">
-	<legend>별명 중복확인</legend>
+<form action="dupnCheck" method="get">
+	<legend>아이디 중복확인</legend>
 			<div class="form-group">
-				<label class="control-label col-sm-3">별명<span
+				<label class="control-label col-sm-3">아이디<span
 					class="text-danger">*</span></label>
 				<div class="col-md-8 col-sm-9 ">
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> <input type="text"
-							class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
-							value=""> <span id="iMessage" class="eMessage"></span>
-						<button type="button" id="nickDup" onclick="dupnCheck()"
+							class="form-control" name="nname" id="nname" placeholder="영문,숫자 10자이내"
+							value=""> 
+						<button type="submit"  onclick="return nnmCheck()"
 							style="margin-left: 30px;">별명 중복확인</button>
+							<span id="nnMessage" class="eMessage"></span>
 					</div>
-					<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
 				</div>
 			</div>
-			<span id="pMessage" class="eMessage"></span> 
-	</form>
+</form>
 	<hr>
     <div id="msgBlock">
-    	<c:if test="${can=='T'}">
+    	<c:if test="${use=='T'}">
     		${newNick}는 사용 가능합니다 &nbsp;&nbsp;
-    		<input type="button" value="사용" onclick="nickOK()">
+    		<input type="button" value="사용" onclick="niOK()">
     	</c:if>
-    	<c:if test="${nott=='F' }">
+    	<c:if test="${use=='F' }">
     		${newId}는 사용중 <br>
     		다시 입력 하세요 
     		<script>
