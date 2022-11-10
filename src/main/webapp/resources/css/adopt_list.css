@@ -3,37 +3,17 @@
 /* 베이스 */
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
+    padding: 0 auto;
     text-align: center;
 }
 
 #content {
-    padding: 40px;
-
-}
-
-.content {
-    display: block;
-    margin: 0 auto;
+    width: 90%;
 }
 
 .content-title-wrap {
     background-color: #f7f6f5;
-}
-
-
-legend,
-.hd-element {
-    position: absolute;
-    left: -9999px;
-}
-
-fieldset,
-button,
-input {
-    border: 0;
-    vertical-align: middle;
 }
 
 ul,
@@ -45,10 +25,6 @@ li {
 a {
     text-decoration: none;
     color: inherit;
-}
-
-button {
-    vertical-align: top;
 }
 
 /* ------------------------------------------------------------------------------------------------- */
@@ -69,28 +45,32 @@ button {
 /* ------------------------------------------------------------------------------------------------- */
 
 
-
 .dog_div,
 .dog_table {
-    width: 90%;
+    width: 70%;
 }
 
 .dog_tr {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding-bottom: 20px;
 }
 
 .dog_td {
     display: inline-block;
-    width: 250px;
-    border: 1px solid black;
+    width: 215px;
 }
 
 .dog_img_list {
     width: 100%;
-    height: 250px;
+    height: 215px;
+    background-color: #f7f6f5;
+    border-radius: 5px;
+}
+
+.dog_img_list span {
+    line-height: 25px;
 }
 
 /* ------------------------------------------------------------------------------------------------- */
@@ -99,7 +79,7 @@ button {
 .btn-go {
     position: absolute;
     top: 30px;
-    right: 0px;
+    right: 100px;
     display: inline-block;
     width: 100px;
     background-color: rgb(188, 188, 188);
@@ -117,15 +97,12 @@ button {
 
 /* 페이징 */
 .paging-wrap {
-    display: block;
     position: relative;
-    text-align: center;
 }
 
 .paging {
     display: inline-block;
     overflow: hidden;
-    margin: 0 auto;
     padding: 20px 0;
 }
 

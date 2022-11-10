@@ -151,6 +151,9 @@
                                             <li><a href="aboutUs">About Us</a></li>
                                             <li><a href="contact">Contact</a></li>
                                             <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="adopt_board">adopt_board</a></li>
+                                            <li><a href="adopt_procedure">adopt_procedure</a></li>
+                                            <li><a href="dog_list_S">dog_list_S</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Catagory</a>
