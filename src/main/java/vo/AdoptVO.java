@@ -18,5 +18,6 @@ public class AdoptVO {
 	private String identity;
 	private String id;
 	private String img;
+	private String weight;
 	
 }
