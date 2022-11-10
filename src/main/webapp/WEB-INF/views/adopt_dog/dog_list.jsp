@@ -252,42 +252,39 @@
 
 
 
-
             <!-- content -->
             <div class="content" id="content">
                 <div class="content-title-wrap">
                     <h3 class="content-title">보호중/입양중 유기견</h3>
                 </div>
-                <tr>
-                    <th>1</th>
-                    <th>1</th>
-                    <th>1</th>
-                </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                </tr>
 
-                <tr>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                </tr>
+                <div>
+                    <ul>
+                        <li><a href="">소형견</a></li>
+                        <li><a href="">중형견</a></li>
+                        <li><a href="">대형견</a></li>
+                    </ul>
 
-                <tr>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                </tr>
+                </div>
 
 
 
 
+                <div id="searchBar">
+                    <form action="bchecklist" method="post">
+
+                        <input type="checkbox" name="check" value="admin">품종1&nbsp;
+                        <input type="checkbox" name="check" value="BMWM340">품종2&nbsp;
+                        <input type="checkbox" name="check" value="summer">품종3&nbsp;
+                        <input type="checkbox" name="check" value="namgu">품종4&nbsp;
+                        <input type="checkbox" name="check" value="apple">품종5&nbsp;
 
 
-
+                        <input type="submit" value="검색">
+                        <input type="reset" value="리셋">
+                    </form>
+                </div>
 
 
 
@@ -295,6 +292,39 @@
 
 
 
+                <div class="dog_div">
+
+                    <table class="dog_table">
+                        <tr class="dog_tr">
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                        </tr>
+
+                        <tr class="dog_tr">
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                        </tr>
+
+                        <tr class="dog_tr">
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
+                                        class="dog_img_list"><span>제목</span></a></td>
+                        </tr>
+
+                    </table>
+
+                </div>
 
 
 
@@ -321,18 +351,6 @@
             </div>
             </div>
             </main><!-- //container -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
