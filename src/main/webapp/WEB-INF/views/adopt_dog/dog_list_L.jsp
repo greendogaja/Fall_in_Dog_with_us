@@ -20,7 +20,7 @@
             <link rel="stylesheet" href="resources/css/style.css">
 
             <!-- Style CSS -->
-            <link rel="stylesheet" href="./adopt_list_detail.css">
+            <link rel="stylesheet" href="resources/css/adopt_list.css">
 
 
             <!-- jQuery (Necessary for All JavaScript Plugins) -->
@@ -252,105 +252,83 @@
 
 
 
-            <!-- content -->
-            <div class="content" id="content">
-                <div class="content-title-wrap">
-                    <h3 class="content-title">보호중/입양중 유기견</h3>
-                </div>
+    <!-- content -->
+    <div class="content" id="content">
+        <div class="content-title-wrap">
+            <h3 class="content-title">보호중/입양중 유기견</h3>
+        </div>
 
 
-                <div>
-                    <ul>
-                        <li><a href="">소형견</a></li>
-                        <li><a href="">중형견</a></li>
-                        <li><a href="">대형견</a></li>
-                    </ul>
+        <div>
+            <ul>
+                <li><a href="dog_list_S">소형견</a></li>
+                <li><a href="dog_list_M">중형견</a></li>
+                <li style="background-color: skyblue"><a href="dog_list_L">대형견</a></li>
+            </ul>
 
-                </div>
-
-
+        </div>
 
 
-                <div id="searchBar">
-                    <form action="bchecklist" method="post">
+        <div id="searchBar">
+            <form action="bchecklist" method="post">
 
-                        <input type="checkbox" name="check" value="admin">품종1&nbsp;
-                        <input type="checkbox" name="check" value="BMWM340">품종2&nbsp;
-                        <input type="checkbox" name="check" value="summer">품종3&nbsp;
-                        <input type="checkbox" name="check" value="namgu">품종4&nbsp;
-                        <input type="checkbox" name="check" value="apple">품종5&nbsp;
-
-
-                        <input type="submit" value="검색">
-                        <input type="reset" value="리셋">
-                    </form>
-                </div>
+                <input type="checkbox" name="check" value="admin">품종1&nbsp;
+                <input type="checkbox" name="check" value="BMWM340">품종2&nbsp;
+                <input type="checkbox" name="check" value="summer">품종3&nbsp;
+                <input type="checkbox" name="check" value="namgu">품종4&nbsp;
+                <input type="checkbox" name="check" value="apple">품종5&nbsp;
 
 
+                <input type="submit" value="검색">
+                <input type="reset" value="리셋">
+            </form>
+        </div>
 
 
+        <div class="dog_div">
+
+            <table class="dog_table">
+            	<c:if test="${not empty Adopt_list}">
+					
+					<c:forEach var="list" varStatus="listv" items="${Adopt_list}">
+						
+						<c:if test="${listv.count%3 == 1}">
+							<tr class="dog_tr">
+						</c:if>
+						
+						<td class="dog_td">
+							<a href="dog_detail?dno=${list.dno}"><img src="${list.img}" class="dog_img_list"><span>${list.title}</span></a>
+						</td>
+							
+						<c:if test="${listv.count%3 == 0 || listv.last}">
+							</tr>
+						</c:if>
+
+					</c:forEach>
+	
+				</c:if>
+            </table>
+            
+        </div>
 
 
-
-                <div class="dog_div">
-
-                    <table class="dog_table">
-                        <tr class="dog_tr">
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                        </tr>
-
-                        <tr class="dog_tr">
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                        </tr>
-
-                        <tr class="dog_tr">
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                            <td class="dog_td"><a href=""><img alt="" src="./dogs/01.jpg"
-                                        class="dog_img_list"><span>제목</span></a></td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-
-
-
-                <!-- paging-wrap -->
-                <div class="paging-wrap">
-                    <div class="paging">
-                        <a href="" title="처음 페이지" class="com first"><span>처음</span></a>
-                        <a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
-                        <a href="" title="2 페이지">1</a>
-                        <a href="" title="2 페이지">2</a>
-                        <a href="" title="2 페이지">3</a>
-                        <a href="" title="다음 페이지" class="com next"><span>다음</span></a>
-                        <a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
-
-                    </div>
-
-                    <a class="btn-go" href=""><span>글쓰기</span></a>
-                </div>
-
-
+        <!-- paging-wrap -->
+        <div class="paging-wrap">
+            <div class="paging">
+                <a href="" title="처음 페이지" class="com first"><span>처음</span></a>
+                <a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
+                <a href="" title=" 페이지">1</a>
+                <a href="" title=" 페이지">2</a>
+                <a href="" title=" 페이지">3</a>
+                <a href="" title="다음 페이지" class="com next"><span>다음</span></a>
+                <a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
 
             </div>
-            </div>
-            </main><!-- //container -->
+
+            <a class="btn-go" href=""><span>글쓰기</span></a>
+        </div>
+
+    </div>
 
 
 
