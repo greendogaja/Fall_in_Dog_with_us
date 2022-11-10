@@ -22,7 +22,7 @@ import vo.UserVO;
 
 
 @Controller
-public class userController {
+public class UserController {
 	@Autowired
 	UserService service;
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -38,14 +38,13 @@ public class userController {
 	
 	//**id 중복확인
 	@RequestMapping(value="/dupCheck")
-	public ModelAndView idDupCheck(HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView dupCheck(HttpServletRequest request, HttpServletResponse response,
 									ModelAndView mv,UserVO vo) {
 	
 		mv.addObject("newId", vo.getId());
 		
 		vo=service.selectOne(vo);
     	if ( vo != null ) {
-    		// -> newID 사용 불가능 
     		mv.addObject("isUse","F"); 
     	}else {
     		mv.addObject("isUse", "T");
@@ -53,25 +52,38 @@ public class userController {
     	mv.setViewName("user/idDupCheck");
     	return mv;
 	}
+	//**별명 중복확인
+	@RequestMapping(value="/dupnCheck")
+	public ModelAndView dupnCheck(HttpServletRequest request, HttpServletResponse response,
+			ModelAndView mv,UserVO vo) {
+		
+		mv.addObject("newNick", vo.getNname());
+		
+		vo=service.selectOne(vo);
+		if ( vo != null ) {
+			mv.addObject("can","F"); 
+		}else {
+			mv.addObject("nott", "T");
+		}
+		mv.setViewName("user/nickCheck");
+		return mv;
+	}
 	
 	//** 회원가입
 	@RequestMapping(value="/join",method = RequestMethod.POST)
 	public ModelAndView join(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
 		  String uri = "home";
-		  System.out.println("#######################"+vo);
 	      String realPath = request.getRealPath("/");
 	      System.out.println("** realPath => "+realPath);
 	     
 	      if ( realPath.contains(".eclipse.") ) 
-	    	 /*이미지파일 경로 컴퓨터마다 해줘야함###################################################*/ 
-	    	 realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\uploadImage\\";
-	    	 /*realPath = "C:\\mTest\\myWork\\fall_in_dog\\src\\main\\webapp\\resources\\uploadImage\\";*/
+	    	 realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\user\\";
 	      else 
-	         realPath += "resources\\uploadImage\\" ;
+	         realPath += "resources\\img\\uploadImage\\user\\" ;
 	      
 	      File f1 = new File(realPath);
 	      if ( !f1.exists() ) f1.mkdir();
-	      String file1, file2="resources/uploadImage/basicman4.png"; 
+	      String file1, file2="resources/img/uploadImage/user/basicman4.png"; 
 	      
 	      MultipartFile uploadfilef = vo.getUploadfilef(); 
 	      if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
@@ -79,7 +91,7 @@ public class userController {
 	         file1 = realPath + uploadfilef.getOriginalFilename(); 
 	         uploadfilef.transferTo(new File(file1)); 
 	         
-	         file2="resources/uploadImage/"+uploadfilef.getOriginalFilename();
+	         file2="resources/img/uploadImage/user/"+uploadfilef.getOriginalFilename();
 	      }
 	      vo.setUploadfile(file2);
 	      vo.setPassword(passwordEncoder.encode(vo.getPassword()));

@@ -38,14 +38,10 @@
 <script>
 
 
-function idOK(){
-	opener.$('#id').val('${newId}');
+function nickOK(){
+	opener.$('#nname').val('${newNick}');
 	
 	opener.$('#submit').prop('disabled',false);
-	opener.$('#idDup').prop('disabled',true);
-	
-	opener.$('#id').prop('readonly',true);
-	opener.$('#password').focus();
 	
 	window.close();
 	
@@ -63,37 +59,37 @@ function idOK(){
 </head>
 <body>
 <div id="wrap" >
-<form action="dupCheck" method="get">
-	<legend>아이디 중복확인</legend>
+	<form action="dupCheck" method="get">
+	<legend>별명 중복확인</legend>
 			<div class="form-group">
-				<label class="control-label col-sm-3">아이디<span
+				<label class="control-label col-sm-3">별명<span
 					class="text-danger">*</span></label>
 				<div class="col-md-8 col-sm-9 ">
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> <input type="text"
 							class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
-							value=""> 
-						<button type="submit"  onclick="return idCheck()"
-							style="margin-left: 30px;">ID 중복확인</button>
-							<span id="iMessage" class="eMessage"></span>
+							value=""> <span id="iMessage" class="eMessage"></span>
+						<button type="button" id="nickDup" onclick="dupnCheck()"
+							style="margin-left: 30px;">별명 중복확인</button>
 					</div>
 					<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
 				</div>
 			</div>
-</form>
+			<span id="pMessage" class="eMessage"></span> 
+	</form>
 	<hr>
     <div id="msgBlock">
-    	<c:if test="${isUse=='T'}">
-    		${newId}는 사용 가능합니다 &nbsp;&nbsp;
-    		<input type="button" value="사용" onclick="idOK()">
+    	<c:if test="${can=='T'}">
+    		${newNick}는 사용 가능합니다 &nbsp;&nbsp;
+    		<input type="button" value="사용" onclick="nickOK()">
     	</c:if>
-    	<c:if test="${isUse=='F' }">
+    	<c:if test="${nott=='F' }">
     		${newId}는 사용중 <br>
     		다시 입력 하세요 
     		<script>
-    			$('#id').focus();
-    			opener.document.getElementById('id').value='';
+    			$('#nname').focus();
+    			opener.document.getElementById('nname').value='';
     		</script>
     	</c:if>
     </div>
