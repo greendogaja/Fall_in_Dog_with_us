@@ -278,7 +278,7 @@
 				">내프로필</h1>
 				<ul>
 					<li>
-						<div class="row_item name">
+						<div class="row_item ">
 							<span class="item_text">성명:</span>
 							<span class="tcenter2">남궁</span>
 						</div>
@@ -290,13 +290,13 @@
 						</div>
 					</li>
 					<li>
-						<div class="row_item phone">
+						<div class="row_item ">
 							<span class="item_text">핸드폰:</span>
 							<span class="tcenter2">010-2222-2222</span>
 						</div>
 					</li>
 					<li>
-						<div class="row_item mail">
+						<div class="row_item ">
 							<span class="item_text">이메일</span>
 							<span class="tcenter2">skwqiwqs@naver.com</span>
 						</div>
@@ -317,14 +317,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
 
 	<!--######################### Footer -->
     <footer class="footer-area text-center" style="font-size:1rem;">
