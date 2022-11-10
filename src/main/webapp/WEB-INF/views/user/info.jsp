@@ -317,7 +317,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!--######################### Footer -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
