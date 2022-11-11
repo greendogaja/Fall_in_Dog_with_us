@@ -15,7 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;import com.google.protobuf.TextFormatParseInfoTree;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.UserService;
 import vo.UserVO;
@@ -247,6 +248,35 @@ public class UserController {
 		return mv;
 	}
 	
+	
+	@RequestMapping(value="/userdelete")
+	public ModelAndView userdelete(HttpServletRequest request, HttpServletResponse response,
+						ModelAndView mv,UserVO vo, RedirectAttributes rttr) {
+		
+		String id = null;
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("loginID") != null) {
+			id =(String)session.getAttribute("loginID");
+			if(!"admin".equals(id)) vo.setId(id);
+			
+			if(service.delete(vo)>0) {
+				rttr.addFlashAttribute("message","ㅇㅅㅇ 회원탈퇴 성공 ");
+				
+				if(!"admin".equals(id)) {
+					session.invalidate();
+					System.out.println("회원이 삭제");
+				}
+			}else{
+				rttr.addFlashAttribute("message", "ㅇㅅㅇ 회원탈퇴 실패 ");
+			}
+		}else {
+			rttr.addFlashAttribute("message", "삭제할 ID가 없습니다.");
+		}
+		
+		mv.setViewName("redirect:home");
+		return mv;
+	}
+
 	
 	
 }
