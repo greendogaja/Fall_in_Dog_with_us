@@ -163,7 +163,7 @@ ul {
 }
 
 .dinfo{
-	position:relative;
+	position:absolute;
     display: table-cell;
     width: 395px;
     background-color: #fff;
@@ -171,8 +171,7 @@ ul {
     border-left: 1px solid rgba(0,0,0,.08);
     vertical-align: top;
     z-index: 1;
-    left: -270px;
-    left:-530px;
+    left: 0;
     height:510;
 }
 .dinfo2{
@@ -218,7 +217,7 @@ ul {
 }
 .left_menu li{
 	padding:10px;
-	font-size:2rem;
+	font-size:1rem;
 	font-weight:600px;
 	margin-left:30px;
 }
@@ -259,7 +258,7 @@ ul {
     box-sizing: border-box;
     width:500px;
     margin:0;
-    font-size:20px;
+    font-size:16px;
 }
 .useid{
 	font-size:20px;
