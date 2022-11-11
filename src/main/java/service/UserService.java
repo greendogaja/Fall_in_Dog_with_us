@@ -9,7 +9,10 @@ public interface UserService {
 	
 	//** Insert
 	int insert(UserVO vo);
+	//** Update
 	int update(UserVO vo);
+	//** Delete
+	int delete(UserVO vo);
 	
 
 }
