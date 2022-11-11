@@ -83,10 +83,10 @@
 
  function phoCheck(){
  	let phone = $('#phone').val();
-	if ( phone.length < 14) {
+	if ( phone.length < 11) {
 		$('#phMessage').html(' 연락처를 입력 해주세요');
 		return false;
-	}else if (phone.replace(/[^0-9]/g,'').length < 11) {
+	}else if (phone.replace(/[^0-9]/g, '').replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`).length != 13) {
 		$('#phMessage').html('  연락처는 숫자만 가능합니다'  );
 		return false;
 	}else{
