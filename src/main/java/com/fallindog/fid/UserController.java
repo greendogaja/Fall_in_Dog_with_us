@@ -248,7 +248,7 @@ public class UserController {
 		return mv;
 	}
 	
-	
+	//**회워탈퇴
 	@RequestMapping(value="/userdelete")
 	public ModelAndView userdelete(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv,UserVO vo, RedirectAttributes rttr) {
@@ -274,6 +274,13 @@ public class UserController {
 		}
 		
 		mv.setViewName("redirect:home");
+		return mv;
+	}
+	
+	//**로그인 양식
+	@RequestMapping(value="/usercontrol")
+	public ModelAndView usercontrol(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
+		mv.setViewName("/user/userControl");
 		return mv;
 	}
 

@@ -100,6 +100,10 @@
 												<li><a href="#" style="color:white;">내가쓴글</a></li>
 												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<c:if test="${'admin' == loginID }">
+												<li><a href="usercontrol" style="color:white;">회원관리</a></li>
+												
+												</c:if>
 		                                    </ul>
 				                      	</li>
 				                      </ul>
