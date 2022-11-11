@@ -36,7 +36,7 @@
 </head>
 
 <body>
-   <!-- Preloader -->
+  <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -147,14 +147,11 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="home">Home</a></li>
-                                    <li><a href="#">Pages</a>
+                                    <li><a href="#">Guide</a>
                                         <ul class="dropdown">
-                                            <li><a href="home">Home</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            <li><a href="aboutUs">About Us</a></li>
+                                            <li><a href="contact">Contact</a></li>
+                                            <li><a href="noticeList">Notice</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Catagory</a>
@@ -183,41 +180,12 @@
                                         </ul>
                                     </li>
                                     <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">가나다라마바</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 1</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 2</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 3</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 4</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                        </div>
+                                    <li><a href="#">Community</a>
+                                        <ul class="dropdown">
+                                            <li><a href="review">입양후기</a></li>
+                                            <li><a href="free">자유게시판</a></li>
+                                            <li><a href="share">나눔장터</a></li>
+                                        </ul>
                                     </li>
                                     <li><a href="home.jsp">Contact</a></li>
                                 </ul>
@@ -249,7 +217,7 @@
 			
 			<div class="profile_area">
 				<div class="profile_inner">
-					<a href="#" class="photo">
+					<a href="info?want=U" class="photo">
 						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
 						<span class="photo_edit"></span>
 					</a>
@@ -263,7 +231,7 @@
 			<div class="header_left">
 				<ul class="left_menu" role="menu">
 					<li>
-						<a href="update" class="left_item" role="menuitem">내정보수정</a>
+						<a href="info?want=U" class="left_item" role="menuitem">내정보수정</a>
 					</li>
 					<li>
 						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
@@ -280,25 +248,41 @@
 				<ul class="account_row">
 					<li>
 						<div class="row_item ">
-							<span class="item_text">성명:</span>
+							<span class="item_text">성명 :</span>
 							<span class="tcenter2">${user.name}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">별명:</span>
+							<span class="item_text">별명 :</span>
 							<span class="tcenter2">${user.nname}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">핸드폰:</span>
-							<span class="tcenter2">${user.phone}</span>
+							<span class="item_text">생년월일 :</span>
+							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">이메일:</span>
+							<span class="item_text">성별 :</span>
+							<span class="tcenter2">${user.gender}</span>
+						</div>
+					</li>
+					<li>
+						<div class="row_item ">
+							<span class="item_text">연락처 :</span>
+							<span class="tcenter2">
+							<c:forTokens items="${user.phone }" delims="-" var="phonenum">
+							    ${phonenum} 
+							</c:forTokens>
+							</span>
+						</div>
+					</li>
+					<li>
+						<div class="row_item ">
+							<span class="item_text">이메일 :</span>
 							<span class="tcenter2">
 							<c:if test="${!empty user.email }">
 							${user.email}
@@ -307,18 +291,6 @@
 							(없음)
 							</c:if>
 							</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">성별:</span>
-							<span class="tcenter2">${user.gender}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">생년월일:</span>
-							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
 						</div>
 					</li>
 				</ul>

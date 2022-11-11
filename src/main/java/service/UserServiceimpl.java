@@ -23,5 +23,16 @@ public class UserServiceimpl implements UserService{
 	public int insert(UserVO vo) {
 		return mapper.insert(vo);
 	}
+	//** Update
+	@Override
+	public int update(UserVO vo) {
+		return mapper.update(vo);
+	}
+	
+	//** Delete
+	@Override
+	public int delete(UserVO vo) {
+		return mapper.delete(vo);
+	}
 	
 }//class

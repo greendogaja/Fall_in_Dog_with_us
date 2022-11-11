@@ -10,7 +10,7 @@
 	
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	
-	<!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
+	<!--  <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script>  -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -62,6 +62,19 @@
 				pCheck=	pwCheck();
 			}); 
 			
+			
+			     
+			    if($("#id").val() != ""){ 
+			        $("#idsave").attr("checked", "checked"); // ID 저장하기를 체크 상태로 두기.
+			    }
+			    
+			
+			    
+			    
+			/* var sid = "<c:out value='${userId}'/>";
+			if(sid != null){ 
+		        $('#idsave').attr("checked","checked"); 
+		    } */
 		}); //ready	
 		
 		function inCheck() {
@@ -75,6 +88,7 @@
 	</script>
 </head>
 <body>
+
  <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -289,20 +303,36 @@
 								<div class="login_section">
 									<div>
 										<div>
-											<input class="inbox" type="text" id="id" name="id" placeholder="아이디를 입력하세요." title="아이디" >
-											<span id="phMessage" class="eMessage"></span>
+										<%	Cookie[] cookies =request.getCookies();
+										String id = "";
+										for(Cookie c : cookies) {
+											if(c.getName().equals("userId")) {
+												id = c.getValue();
+											
+											}
+										} 
+										
+										
+										%>
+										<input class="inbox" type="text" id="id" name="id" placeholder="아이디를 입력하세요." title="아이디" value=<%=id%> ><br>
+										<span id="iMessage" class="eMessage"></span>
+										
 										</div>
 										<div>
-											<input class="inbox" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." title="비밀번호" >
-											<span id="phMessage" class="eMessage"></span>
+											<input class="inbox" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." title="비밀번호" ><br>
+											<span id="pMessage" class="eMessage"></span><br>
+											<c:if test="${!empty msg }">
+											${msg}
+											</c:if>
 										</div>
 									</div>
 				
 									<input type="submit" class="bbtn" id="submit" onclick="return inCheck()" value="로그인">
 									<div class="id_save">
-										<input type="checkbox" id="id_save" name="id_save" value="Y">
-										<label for="id_save">아이디 저장</label>
+										<input type="checkbox" id="idsave" name="idsave" value="cook">
+										<label for="idsave">아이디 저장</label>
 									</div>
+									
 								</div>
 							</fieldset>
 						</form>
