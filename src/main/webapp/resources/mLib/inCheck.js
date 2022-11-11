@@ -83,7 +83,7 @@
 
  function phoCheck(){
  	let phone = $('#phone').val();
-	if ( phone.length < 11) {
+	if ( phone.length < 14) {
 		$('#phMessage').html(' 연락처를 입력 해주세요');
 		return false;
 	}else if (phone.replace(/[^0-9]/g,'').length < 11) {
