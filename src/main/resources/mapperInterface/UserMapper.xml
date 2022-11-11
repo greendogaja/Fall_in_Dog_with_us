@@ -13,6 +13,12 @@
   	<select id="selectOne" resultType="vo.UserVO">
   		select * from user where id=#{id}
   	</select>
+  	
+  	<update id="update">
+  		update user set password=#{password}, name=#{name}, nname=#{nname},
+		yy=#{yy}, mm=#{mm}, dd=#{dd}, phone=#{phone}, email= #{email}, uploadfile=#{uploadfile} where id=#{id}
+  	</update>
+  	
   </mapper>
   
   

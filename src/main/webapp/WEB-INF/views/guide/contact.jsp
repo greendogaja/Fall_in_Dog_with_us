@@ -13,6 +13,10 @@
 
     <!-- Title -->
     <title>Original - Lifestyle Blog Template</title>
+    <!--  kakao map -->
+	<script type="text/javascript" 
+		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
+	</script>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -44,10 +48,7 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
     
-   <!--  kakao map -->
-    <script type="text/javascript" 
-	    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
-	</script>
+   
 
 </head>
 
@@ -224,10 +225,8 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Google Map ##### -->
-    <div class="map-area">
-        <div id="kakaoMap" class="kakaoMap"></div>
-    </div>
+    <!-- ##### Kakao Map ##### -->
+    <div id="kakaoMap" class="kakaoMap"></div>
 	<script>
 		var mapContainer = document.getElementById('kakaoMap'), // 지도를 표시할 div 
 			mapOption = {
@@ -303,15 +302,15 @@
 
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area text-center">
+    <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-
+                   
                     <!-- Footer Nav Area -->
-                    <div class="classy-nav-container breakpoint-off">
+                    <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
-                        <nav class="classy-navbar justify-content-center">
+                        <nav class="classy-navbar ">
 
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
@@ -326,24 +325,35 @@
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
 
-                               
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Lifestyle</a></li>
+                                        <li><a href="#">travel</a></li>
+                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Nav End -->
                             </div>
                         </nav>
                     </div>
-
+                    
+                    
                     
                 </div>
             </div>
         </div>
 
    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+E-mail : fallindogkorea@gmail.com <br>
+Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
     </footer>
-
-
-    <!-- ##### Footer Area End ##### -->
 
 
 

@@ -131,5 +131,22 @@ function inCheck(){
 	}else return false;
 		
 }//inCheck
+function upCheck(){
+	
+	if(pCheck==false){$('#pMessage').html('비밀번호를 확인하세요'); }		
+	if(ppCheck==false){$('#ppMessage').html('비밀번호를 확인하세요'); }		
+	if(nCheck==false){$('#nMessage').html('성명을 확인하세요'); }		
+	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요'); }		
+	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
+	
+	if(pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
+		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
+			 alert('~~ 가입이 취소 되었습니다 ~~');
+			 return false; 
+		}else return true; 
+		
+	}else return false;
+		
+}//inCheck
 
 	
