@@ -54,12 +54,10 @@
 			}); 
 			/* password 체크*/
 			$('#password').keydown(function(e){
-				if ( e.which==13 ) {
-					e.preventDefault();
-					$('#submit').focus();
-				}
-			}).focusout(function(){    
+				if(e.which==13){
 				pCheck=	pwCheck();
+					
+				}
 			}); 
 			
 			
