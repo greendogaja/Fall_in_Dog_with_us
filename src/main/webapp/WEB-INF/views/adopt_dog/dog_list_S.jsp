@@ -244,11 +244,17 @@
         <div id="searchBar">
             <form action="bchecklist" method="post">
 
-                <input type="checkbox" name="check" value="admin">품종1&nbsp;
-                <input type="checkbox" name="check" value="BMWM340">품종2&nbsp;
-                <input type="checkbox" name="check" value="summer">품종3&nbsp;
-                <input type="checkbox" name="check" value="namgu">품종4&nbsp;
-                <input type="checkbox" name="check" value="apple">품종5&nbsp;
+                <input type="checkbox" name="check" value="BMWM340">말티즈
+                <input type="checkbox" name="check" value="summer">믹스견
+                <input type="checkbox" name="check" value="apple">비숑프리제
+                <input type="checkbox" name="check" value="namgu">시바
+                <input type="checkbox" name="check" value="apple">시츄
+                <input type="checkbox" name="check" value="apple">스피츠
+                <input type="checkbox" name="check" value="apple">슈나우저
+                <input type="checkbox" name="check" value="apple">요크셔테리어
+                <input type="checkbox" name="check" value="apple">치와와
+                <input type="checkbox" name="check" value="apple">포메라니안
+                <input type="checkbox" name="check" value="admin">푸들
 
 
                 <input type="submit" value="검색">
