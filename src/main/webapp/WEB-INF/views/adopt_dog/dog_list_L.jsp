@@ -12,8 +12,8 @@
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
-    
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    
     <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
@@ -31,12 +31,14 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/info.css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="resources/css/adopt_list.css">
 
 </head>
 
 <body>
-  <!-- Preloader -->
+        
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -154,6 +156,14 @@
                                             <li><a href="noticeList">Notice</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="#">Adopt</a>
+                                        <ul class="dropdown">
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a href="#">Catagory</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Catagory 1</a></li>
@@ -207,98 +217,97 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-	<hr>
-	<div class="allinfo">
-		<div class="dinfo">
-			<div class="gnb_area">
-				<a href="home"><img src="resources/img/core-img/ficon.ico" width="50" height="50"></a>
-				<h1>폴인독ID</h1>
-			</div>
-			
-			<div class="profile_area">
-				<div class="profile_inner">
-					<a href="#" class="photo">
-						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
-						<span class="photo_edit"></span>
-					</a>
-				</div>
-				<div class="posiab ">
-						<p class="useid">${user.nname}</p>
-						<p class="usemail">${user.id }</p>
-				</div>
-			</div>
-			
-			<div class="header_left">
-				<ul class="left_menu" role="menu">
-					<li>
-						<a href="info?want=U" class="left_item" role="menuitem">내정보수정</a>
-					</li>
-					<li>
-						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
-					</li>
-					<li>
-						<a href="#" class="left_item" role="menuitem">내가단댓글</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="dinfo2">
-			<div class="account_box">
-				<h1 class="title " >내프로필</h1>
-				<ul class="account_row">
-					<li>
-						<div class="row_item ">
-							<span class="item_text">성명:</span>
-							<span class="tcenter2">${user.name}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">별명:</span>
-							<span class="tcenter2">${user.nname}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">생년월일:</span>
-							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">성별:</span>
-							<span class="tcenter2">${user.gender}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">연락처:</span>
-							<span class="tcenter2">
-							<c:forTokens items="${user.phone }" delims="-" var="phonenum">
-							    ${phonenum} 
-							</c:forTokens>
-							</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">이메일:</span>
-							<span class="tcenter2">
-							<c:if test="${!empty user.email }">
-							${user.email}
-							</c:if>
-							<c:if test="${empty user.email }">
-							(없음)
-							</c:if>
-							</span>
-						</div>
-					</li>
+
+
+
+
+
+
+
+    <!-- content -->
+    <div class="content" id="content">
+        <div class="content-title-wrap">
+            <h3 class="content-title">보호중/입양중 유기견</h3>
+        </div>
+
+
+        <div>
+            <ul>
+                <li><a href="dog_list_S">소형견</a></li>
+                <li><a href="dog_list_M">중형견</a></li>
+                <li style="background-color: skyblue"><a href="dog_list_L">대형견</a></li>
+            </ul>
+
+        </div>
+
+
+        <div id="searchBar">
+            <form action="bchecklist" method="post">
+
+                <input type="checkbox" name="check" value="admin">품종1&nbsp;
+                <input type="checkbox" name="check" value="BMWM340">품종2&nbsp;
+                <input type="checkbox" name="check" value="summer">품종3&nbsp;
+                <input type="checkbox" name="check" value="namgu">품종4&nbsp;
+                <input type="checkbox" name="check" value="apple">품종5&nbsp;
+
+
+                <input type="submit" value="검색">
+                <input type="reset" value="리셋">
+            </form>
+        </div>
+
+
+        <div class="dog_div">
+
+            <table class="dog_table">
+            	<c:if test="${not empty Adopt_list}">
 					
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!--######################### Footer -->
+					<c:forEach var="list" varStatus="listv" items="${Adopt_list}">
+						
+						<c:if test="${listv.count%3 == 1}">
+							<tr class="dog_tr">
+						</c:if>
+						
+						<td class="dog_td">
+							<a href="dog_detail?dno=${list.dno}"><img src="${list.img}" class="dog_img_list"><span>${list.title}</span></a>
+						</td>
+							
+						<c:if test="${listv.count%3 == 0 || listv.last}">
+							</tr>
+						</c:if>
+
+					</c:forEach>
+	
+				</c:if>
+            </table>
+            
+        </div>
+
+
+        <!-- paging-wrap -->
+        <div class="paging-wrap">
+            <div class="paging">
+                <a href="" title="처음 페이지" class="com first"><span>처음</span></a>
+                <a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
+                <a href="" title=" 페이지">1</a>
+                <a href="" title=" 페이지">2</a>
+                <a href="" title=" 페이지">3</a>
+                <a href="" title="다음 페이지" class="com next"><span>다음</span></a>
+                <a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
+
+            </div>
+
+            <a class="btn-go" href=""><span>글쓰기</span></a>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
@@ -351,5 +360,8 @@ E-mail : fallindogkorea@gmail.com <br>
 Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
+
+    
+
 </body>
 </html>
