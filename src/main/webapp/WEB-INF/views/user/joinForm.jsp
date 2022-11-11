@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -371,12 +372,17 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3">닉네임<span
+						<label class="control-label col-sm-3">별명<span
 							class="text-danger">*</span></label>
-						<div class="col-md-8 col-sm-9">
-							<input type="text" class="form-control" name="nname"
-								id="nname" placeholder="닉네임을 입력하세요" value="">
-								<span id="nnMessage" class="eMessage"></span>
+						<div class="col-md-8 col-sm-9 ">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-envelope"></i></span> 
+									<input type="text" class="form-control" name="nname" id="nname" placeholder="한글,영문 10자이내" value="">
+									<span id="nnMessage" class="eMessage"></span>
+							<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px;">별명 중복확인</button>
+							</div>
+							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small>
 						</div>
 					</div>
 					<div class="form-group">
@@ -386,16 +392,21 @@
 							<div class="form-inline">
 							<div class="form-group">
 									<select name="yy" id="yy" class="form-control">
-										<option value="">년</option>
-										<c:forEach var="i" begin="1950" end="2030">
-	    								<option value="${i}">${i}</option>
-	  									</c:forEach>
+										<c:set var="today" value="<%=new java.util.Date() %>"/>
+										<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
+										<option value="">선택</option>
+										<c:forEach begin="0" end="${start - 1950}" var="result"	step="1">
+											<option value="<c:out value="${start-result}" />"
+												<c:if test="${start-result == detail.YY}"> selected="selected"</c:if>><c:out
+													value="${start-result}" /></option>
+
+										</c:forEach>
 									</select>
 								</div>
 								
 								<div class="form-group">
 									<select name="mm" id="mm" class="form-control">
-									 <option value="">월</option>
+									 <option value="">선택</option>
 										  <c:forEach var="i" begin="1" end="12">
 										  <c:choose>
 										      <c:when test="${i lt 10 }">
@@ -410,7 +421,7 @@
 								</div>
 								<div class="form-group">
 									<select name="dd" id="dd" class="form-control">
-										  <option value="">일</option>
+										  <option value="">선택</option>
 										  <c:forEach var="i" begin="1" end="31">
 										  <c:choose>
 										      <c:when test="${i lt 10 }">
@@ -455,7 +466,7 @@
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-phone"></i></span> <input type="text"
 									class="form-control" name="phone" id="phone"
-									placeholder="연락처 번호를 (-)없이 입력해주세요 " value="">
+									placeholder="연락처 번호를 (-)포함 입력해주세요 " value="">
 									<span id="phMessage" class="eMessage"></span>
 							</div>
 						</div>

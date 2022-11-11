@@ -100,6 +100,10 @@
 												<li><a href="#" style="color:white;">내가쓴글</a></li>
 												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<c:if test="${'admin' == loginID }">
+												<li><a href="usercontrol" style="color:white;">회원관리</a></li>
+												
+												</c:if>
 		                                    </ul>
 				                      	</li>
 				                      </ul>
@@ -151,6 +155,14 @@
                                             <li><a href="aboutUs">About Us</a></li>
                                             <li><a href="contact">Contact</a></li>
                                             <li><a href="noticeList">Notice</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Adopt</a>
+                                        <ul class="dropdown">
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Catagory</a>

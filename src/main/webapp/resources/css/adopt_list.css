@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+/* 베이스 */
+
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+    text-align: center;
+}
+
+#content {
+    width: 90%;
+}
+
+.content-title-wrap {
+    background-color: #f7f6f5;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 상단 입양위탁 글 */
+.content-title-wrap .content-title {
+    position: relative;
+    padding: 40px 0 40px 0;
+    font-family: "nanumsquare";
+    font-weight: bold;
+    font-size: 40px;
+    color: #333333;
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+#checkL {
+        display: none;
+      }
+      
+#checkL label{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border:3px solid #707070;
+        position: relative;
+      }
+      
+#checkL:checked + label::after{
+        content:'✔';
+        font-size: 25px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top:0;
+      }
+
+/* ------------------------------------------------------------------------------------------------- */
+
+
+.dog_div,
+.dog_table {
+    width: 70%;
+}
+
+.dog_tr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.dog_td {
+    display: inline-block;
+    width: 215px;
+}
+
+.dog_img_list {
+    width: 100%;
+    height: 215px;
+    background-color: #f7f6f5;
+    border-radius: 5px;
+}
+
+.dog_img_list span {
+    line-height: 25px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 글쓰기 버튼 */
+.btn-go {
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    display: inline-block;
+    width: 100px;
+    background-color: rgb(188, 188, 188);
+    border-radius: 5px;
+    line-height: 36px;
+    text-decoration: none;
+}
+
+.btn-go span {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 페이징 */
+.paging-wrap {
+    position: relative;
+}
+
+.paging {
+    display: inline-block;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.paging a {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 34px;
+    height: 36px;
+    width: 36px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 30%;
+}
+
+.paging a:hover,
+.paging a:focus,
+.paging a.active {
+    border: 1px solid #000;
+}
+
+.paging a.com {
+    background-size: auto 12px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: 1px solid #ccc;
+}
+
+.paging a.com>span {
+    position: absolute;
+    left: -9999px;
+}
+
+.paging a.com.first {
+    background-image: url("../img/adoption_board/icon-arw-first.png");
+}
+
+.paging a.com.prev {
+    margin: 10px 16px 10px 8px;
+    background-image: url("../img/adoption_board/icon-arw-prev.png");
+}
+
+.paging a.com.next {
+    margin: 10px 8px 10px 16px;
+    background-image: url("../img/adoption_board/icon-arw-next.png");
+}
+
+.paging a.com.last {
+    background-image: url("../img/adoption_board/icon-arw-last.png");
+}
+
+.paging a.com:hover,
+.paging a.com:focus,
+.paging a.com:active {
+    border: 1px solid #000;
+}
+
+/* ------------------------------------------------------------------------------------------------- */

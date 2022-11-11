@@ -53,17 +53,12 @@ function idOK(){
 </script>
 
 
-<style>
-   #wrap {
-      margin-left: 0;
-      text-align: center;
-   }
-</style>
+
 
 </head>
 <body>
 <div id="wrap" >
-	<form action="dupCheck" method="get">
+<form action="dupCheck" method="get">
 	<legend>아이디 중복확인</legend>
 			<div class="form-group">
 				<label class="control-label col-sm-3">아이디<span
@@ -73,15 +68,15 @@ function idOK(){
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> <input type="text"
 							class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
-							value=""> <span id="iMessage" class="eMessage"></span>
-						<button type="button" id="idDup" onclick="dupCheck()"
+							value=""> 
+						<button type="submit" class="doubch" onclick="return idCheck()"
 							style="margin-left: 30px;">ID 중복확인</button>
+							<span id="iMessage" class="eMessage"></span>
 					</div>
 					<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
 				</div>
 			</div>
-			<span id="pMessage" class="eMessage"></span> 
-	</form>
+</form>
 	<hr>
     <div id="msgBlock">
     	<c:if test="${isUse=='T'}">
