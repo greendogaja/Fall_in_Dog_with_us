@@ -16,4 +16,11 @@ public interface NoticeMapper {
 	
 	// ** Insert: 새글등록 
 	int insert(NoticeVO vo);
+	
+	// ** Update: 글수정
+	int update(NoticeVO vo);
+	
+	// ** Delete
+	int delete(NoticeVO vo);
+	
 }

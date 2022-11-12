@@ -1,8 +1,6 @@
 package com.fallindog.fid;
 
 import java.io.File;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,7 +96,9 @@ public class NoticeController {
 		
 		// 2. Service 처리
 		vo = service.selectOne(vo);
-		if ( vo != null ) {
+		System.out.println("#################################"+vo);
+		
+		if ( vo != null ) { 
 			// 2.1) 조회수 증가
 			String loginID = (String)request.getSession().getAttribute("loginID");
 			if ( !vo.getId().equals(loginID) && !"U".equals(request.getParameter("jCode")) ) {
@@ -108,7 +108,7 @@ public class NoticeController {
 			
 			// 2.2) 수정요청 인지 확인
 			if ( "U".equals(request.getParameter("jCode")))
-				uri = "guide/nupdateForm";
+			uri = "guide/noticeUpdateF";
 			
 			// 2.3)	결과전달		
 			mv.addObject("apple", vo);
@@ -143,6 +143,52 @@ public class NoticeController {
 		mv.setViewName(uri);
 		return mv;
 	} //ninsert	
+	
+	// ** Update : 글수정하기
+	@RequestMapping(value="/nupdate", method=RequestMethod.POST)
+	public ModelAndView nupdate(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, NoticeVO vo) {
+		// 1. 요청분석
+		String uri = "guide/noticeDetail";
+		mv.addObject("apple",vo);
+		// => Update 성공/실패 모두 출력시 필요하므로
+		
+		// 2. Service 처리
+		if ( service.update(vo) > 0 ) {
+			mv.addObject("message", "~~ 글수정 성공 ~~"); 
+		}else {
+			mv.addObject("message", "~~ 글수정 실패, 다시 하세요 ~~");
+			uri = "guide/noticeUpdateF";
+		}
+		
+		// 3. 결과(ModelAndView) 전달 
+		mv.setViewName(uri);
+		System.out.println("###################################"+mv);
+		System.out.println("###################################"+vo);
+		return mv;
+	}
+	
+	// ** Delete : 글 삭제
+	@RequestMapping(value="/ndelete")
+	public ModelAndView bdelete(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) {
+		// 1. 요청분석
+		// => Delete 성공: redirect:blist
+		//           실패: message 표시, redirect:bdetail
+		String uri = "redirect:noticeList";
+		
+		// 2. Service 처리
+		if ( service.delete(vo) > 0 ) {
+			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 
+		}else {
+			rttr.addFlashAttribute("message", "~~ 글삭제 실패, 다시 하세요 ~~");
+			uri = "redirect:ndetail?nno="+vo.getNno();
+		} // Service
+		
+		// 3. 결과(ModelAndView) 전달 
+		mv.setViewName(uri);
+		return mv;
+	} //bdelete
 
 	
 } //NoticeController
