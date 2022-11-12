@@ -217,7 +217,7 @@
 			
 			<div class="profile_area">
 				<div class="profile_inner">
-					<a href="#" class="photo">
+					<a href="info?want=U" class="photo">
 						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
 						<span class="photo_edit"></span>
 					</a>
@@ -248,31 +248,31 @@
 				<ul class="account_row">
 					<li>
 						<div class="row_item ">
-							<span class="item_text">성명:</span>
+							<span class="item_text">성명 :</span>
 							<span class="tcenter2">${user.name}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">별명:</span>
+							<span class="item_text">별명 :</span>
 							<span class="tcenter2">${user.nname}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">생년월일:</span>
+							<span class="item_text">생년월일 :</span>
 							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">성별:</span>
+							<span class="item_text">성별 :</span>
 							<span class="tcenter2">${user.gender}</span>
 						</div>
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">연락처:</span>
+							<span class="item_text">연락처 :</span>
 							<span class="tcenter2">
 							<c:forTokens items="${user.phone }" delims="-" var="phonenum">
 							    ${phonenum} 
@@ -282,7 +282,7 @@
 					</li>
 					<li>
 						<div class="row_item ">
-							<span class="item_text">이메일:</span>
+							<span class="item_text">이메일 :</span>
 							<span class="tcenter2">
 							<c:if test="${!empty user.email }">
 							${user.email}
@@ -293,7 +293,6 @@
 							</span>
 						</div>
 					</li>
-					
 				</ul>
 			</div>
 		</div>

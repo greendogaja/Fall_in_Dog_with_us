@@ -10,7 +10,7 @@
 	
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	
-	<!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
+	<!--  <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script>  -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -54,14 +54,25 @@
 			}); 
 			/* password 체크*/
 			$('#password').keydown(function(e){
-				if ( e.which==13 ) {
-					e.preventDefault();
-					$('#submit').focus();
-				}
-			}).focusout(function(){    
+				if(e.which==13){
 				pCheck=	pwCheck();
+					
+				}
 			}); 
 			
+			
+			     
+			    if($("#id").val() != ""){ 
+			        $("#idsave").attr("checked", "checked"); // ID 저장하기를 체크 상태로 두기.
+			    }
+			    
+			
+			    
+			    
+			/* var sid = "<c:out value='${userId}'/>";
+			if(sid != null){ 
+		        $('#idsave').attr("checked","checked"); 
+		    } */
 		}); //ready	
 		
 		function inCheck() {
@@ -75,6 +86,7 @@
 	</script>
 </head>
 <body>
+
  <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -294,10 +306,15 @@
 										for(Cookie c : cookies) {
 											if(c.getName().equals("userId")) {
 												id = c.getValue();
+											
 											}
-										} %>
-											<input class="inbox" type="text" id="id" name="id" placeholder="아이디를 입력하세요." title="아이디" value=<%=id%> ><br>
-											<span id="iMessage" class="eMessage"></span>
+										} 
+										
+										
+										%>
+										<input class="inbox" type="text" id="id" name="id" placeholder="아이디를 입력하세요." title="아이디" value=<%=id%> ><br>
+										<span id="iMessage" class="eMessage"></span>
+										
 										</div>
 										<div>
 											<input class="inbox" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." title="비밀번호" ><br>
@@ -313,6 +330,7 @@
 										<input type="checkbox" id="idsave" name="idsave" value="cook">
 										<label for="idsave">아이디 저장</label>
 									</div>
+									
 								</div>
 							</fieldset>
 						</form>

@@ -360,43 +360,43 @@
 				<form action="infoupdate" method="post" enctype="multipart/form-data">
 					<ul class="account_row">
 						<li>
-						<div class="row_item ">
-							<span class="item_text">아이디:</span>
+						<div class="row_item " style="display:none;">
+							<span class="item_text">아이디 :</span>
 							<input type="text" class="tcenter2" name="id" id="id" value="${user.id }">
 						</div>
 					</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">성명:</span>
+								<span class="item_text">성명 :</span>
 								<input type="text" class="tcenter2" name="name" id="name" value="${user.name }">
 								<span id="nMessage" class="eMessage" ></span>
 							</div>
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">비밀번호설정:</span>
+								<span class="item_text">비밀번호설정 :</span>
 								<input type="text" class="tcenter2" name="password" id="password" placeholder="특수문자 반드시 포함" value="${user.password}">
 									<span id="pMessage" class="eMessage" ></span>
 							</div>
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">비밀번호확인:</span>
+								<span class="item_text">비밀번호확인 :</span>
 								<input type="text" class="tcenter2" name="cpassword" id="cpassword" placeholder="특수문자 반드시 포함" value="${user.password}">
 									<span id="ppMessage" class="eMessage"></span>
 							</div>
 						</li>
 						<li>
-							<div class="row_item ">
-								<span class="item_text">별명:</span>
+							<div class="row_item " style="flex-wrap: wrap;">
+								<span class="item_text">별명 :</span>
 								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 10자이내" value="${user.nname}">
-									<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px; font-size: 18;">중복확인</button>
-									<span id="nnMessage" class="eMessage"></span>
+									<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;">중복확인</button><br>
+									<span id="nnMessage" class="eMessage" style="margin:auto;"></span>
 							</div>
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">생년월일:</span>
+								<span class="item_text">생년월일 :</span>
 								<select name="yy" id="yy" class="tcenter2">
 										<c:set var="today" value="<%=new java.util.Date() %>"/>
 										<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
@@ -440,7 +440,7 @@
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">성별:</span>
+								<span class="item_text">성별 :</span>
 								<c:choose>
 									<c:when test="${user.gender == '남자'}">
 										<label> <input name="gender" type="radio" value="남자"
@@ -463,14 +463,14 @@
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">연락처:</span>
+								<span class="item_text">연락처 :</span>
 								<input type="text" class="tcenter2" name="phone" id="phone" placeholder="연락처 번호를(-포함) 입력해주세요" value="${user.phone}">
 									<span id="phMessage" class="eMessage"></span>
 							</div>
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">이메일:</span>
+								<span class="item_text">이메일 :</span>
 								<c:if test="${!empty user.email }">
 								<input type="email" class="tcenter2" name="email"
 								id="email" 
@@ -485,7 +485,7 @@
 						</li>
 						<li>
 							<div class="row_item ">
-								<span class="item_text">프로필:</span>
+								<span class="item_text">프로필 :</span>
 								<img src="${user.uploadfile}" class="select_img" style="width: 50; height: 50; ">
 									<input type="hidden" name="uploadfile" value="${user.uploadfile}"><br>
 									<input type="file"
@@ -507,9 +507,10 @@
 							</div>
 						</li>
 					</ul>
-					<div class="form-group">
-						<div class="col-xs-offset-3 col-sm-2 mauto" style="max-width: 61%;display: flex;justify-content: space-between;padding: 20;">
-							<input name="submit" id="submit" onclick="return upCheck()"  type="submit" value="가입하기"
+					<div class="form-group" style="margin-top: 10px;">
+							<a href="userdelete" calss="btn btn-primary">회원탈퇴 ></a>
+							<div style="float:right;">
+							<input name="submit" id="submit" onclick="return upCheck()"  type="submit" value="수정하기"
 								class="btn btn-primary" >
 							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
