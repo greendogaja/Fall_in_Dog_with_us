@@ -13,4 +13,5 @@ public interface UserMapper {
 	
 	int insert(UserVO vo);
 	int update(UserVO vo);
+	int delete(UserVO vo);
 }//interface

@@ -19,6 +19,9 @@
 		yy=#{yy}, mm=#{mm}, dd=#{dd}, phone=#{phone}, email= #{email}, uploadfile=#{uploadfile} where id=#{id}
   	</update>
   	
+  	<delete id="delete">
+  		delete from user where id=#{id}
+  	</delete>
   </mapper>
   
   
