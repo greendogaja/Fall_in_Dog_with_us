@@ -153,6 +153,10 @@ public class NoticeController {
 		mv.addObject("apple",vo);
 		// => Update 성공/실패 모두 출력시 필요하므로
 		
+//	    -> cri.setCurrPage(Integer.parseInt(request.getParameter("currPage")))
+		vo.setNno(Integer.parseInt(request.getParameter("nno")));
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~"+vo);
+		
 		// 2. Service 처리
 		if ( service.update(vo) > 0 ) {
 			mv.addObject("message", "~~ 글수정 성공 ~~"); 

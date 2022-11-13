@@ -226,7 +226,7 @@
 			<div class="WritingHeader">
 				<h2>게시판 글수정</h2>
 				<input type="submit" value="등록">
-						<input name="nno" value="${apple.nno}" readonly>
+					<%-- 	<input name="nno" value="${apple.nno}" readonly> --%>
 				
 				<!-- user info start -->
 				<div class="WriterInfo" >
@@ -236,6 +236,7 @@
 					<div class="profile_info">${loginID}</div>
 					<div class="article_info">
 						<!-- nno 입력. input 태그로 readonly -->
+						<span>${apple.regdate}&nbsp;&nbsp;</span>
 						<span>글번호&nbsp;${apple.nno}</span>
 						<span>조회&nbsp;${apple.cnt}</span>
 						
