@@ -234,9 +234,14 @@
 			<div class="article_info">
 				<span>${apple.regdate}&nbsp;&nbsp;</span>
 				<span>조회&nbsp;${apple.cnt}</span>
+				<c:if test="${loginID=='admin'}">
+					<div class="update_delete">
+						<span><a href="ndetail?jCode=U&nno=${apple.nno}">글수정</a></span>&nbsp;&nbsp;
+						<span><a href="ndelete?nno=${apple.nno}">글삭제</a></span>
+					</div>
+				</c:if>
 			</div>
 			
-			<div class=""></div>
 		
 		
 		</div>
@@ -277,11 +282,11 @@ ${message}<br>
 <hr>
 <c:if test="${loginID==apple.id || loginID=='admin'}">
 	&nbsp;&nbsp;<a href="ndetail?jCode=U&nno=${apple.nno}">[글수정]</a>
-	&nbsp;&nbsp;<a href="ndelete?nno=${apple.nno}&root=${apple.root}">[글삭제]</a>
+<%-- 	&nbsp;&nbsp;<a href="ndelete?nno=${apple.nno}&root=${apple.root}">[글삭제]</a> --%>
 				<!-- root 추가 : 삭제시 원글삭제 or 답글삭제 확인을 위함 -->
 </c:if>
 <c:if test="${not empty loginID}">
-	&nbsp;&nbsp;<a href="ninsertf?root=${apple.root}&step=${apple.step}&indent=${apple.indent}">[답글]</a><br>
+<%-- 	&nbsp;&nbsp;<a href="ninsertf?root=${apple.root}&step=${apple.step}&indent=${apple.indent}">[답글]</a><br> --%>
 </c:if>
 &nbsp;&nbsp;<a href="noticeList">목록</a>
 &nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>

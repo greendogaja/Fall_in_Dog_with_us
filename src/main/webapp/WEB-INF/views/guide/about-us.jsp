@@ -240,13 +240,15 @@
                 <div class="col-12 col-lg-4">
                     <div class="single-blog-area clearfix mb-100">
                         <!-- Blog Content -->
-                        <div class="single-blog-content">
                             <div class="line"></div>
                             <a href="#" class="post-tag">Fall In Dog</a>
-                            <h4 class="post-headline">이 세상 모든 반려동물들의 삶이 행복하기를</a></h4>
-                            <p class="mb-3">Fall In Dog는 개인이 운영하는 보호 시설입니다. PET 분양을 가장한 보호소가 아니며 판매하는 아이들이 없는 진짜 보호소입니다. 
-                            Fall In Dog는 보호 명목으로 수십, 수백만원을 요구하는 일이 없으며 무료로 입소를 할 수 있습니다. 
+                            <h4 class="post-headline">이 세상 모든 반려동물들의 삶이 행복하기를</a></h4><br>
+                        <div class="single-blog-content">
+                            <p class="mb-3 lh40">Fall In Dog는 개인이 운영하는 보호 시설입니다.<br>
+                            PET 분양을 가장한 보호소가 아니며 판매하는 아이들이 없는 진짜 보호소입니다.<br>
+                            Fall In Dog는 보호 명목으로 수십, 수백만원을 요구하는 일이 없으며 무료로 입소를 할 수 있습니다.<br>
                             개인사정 등에 의한 동물들을 보호 및 생활할 수 있도록 따뜻한 보금자리가 되어주고 있습니다.</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -255,9 +257,12 @@
                     <div class="single-blog-area clearfix mb-100">
                         <!-- Blog Content -->
                         <div class="single-blog-content">
-                            <p class="mb-3">반려동물에 대한 인식의 변화가 있다고는 하지만 아직도 여전히 반려동물을 소중한 생명이나 가족으로 대하지 않고 
-                            감정없는 물건이나 개인의 소유물이라고 생각하며 유기하거나, 학대하는 일들이 끊임없이 우리 사회 안에서 벌어지고 있습니다. 
-                            Fall In Dog는 이러한 행위들을 방지하는데 앞장서며 이 세상 모든 반려동물들의 삶이 행복하기를 원합니다.</p>
+                            <p class="mb-3 lh40" >반려동물에 대한 인식의 변화가 있다고는 하지만<br>
+                            아직도 여전히 반려동물을 소중한 생명이나 가족으로 대하지 않고<br>
+                            감정없는 물건이나 개인의 소유물이라고 생각하며 유기하거나,<br>
+                            학대하는 일들이 끊임없이 우리 사회 안에서 벌어지고 있습니다.<br>
+                            Fall In Dog는 이러한 행위들을 방지하는데 앞장서며<br>
+                            이 세상 모든 반려동물들의 삶이 행복하기를 원합니다.</p>
                         </div>
                     </div>
                 </div>
