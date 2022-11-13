@@ -225,20 +225,23 @@
 		    <form action="nupdate" method="post">
 			<div class="WritingHeader">
 				<h2>게시판 글수정</h2>
-				<input type="submit" value="등록">
-					<%-- 	<input name="nno" value="${apple.nno}" readonly> --%>
+				<div class="ip">
+					<input type="submit" value="등록">
+				</div>
 				
 				<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image">
 							<img src="resources/img/notice/summer.PNG" width=40 height=50>
 					</div>
-					<div class="profile_info">${loginID}</div>
-					<div class="article_info">
+					<div class="profile_info">
+						<input name="id" value="${apple.id}" readonly>
+					</div>
+					<div class="article_info_u">
 						<!-- nno 입력. input 태그로 readonly -->
-						<span>${apple.regdate}&nbsp;&nbsp;</span>
-						<span>글번호&nbsp;${apple.nno}</span>
-						<span>조회&nbsp;${apple.cnt}</span>
+						<input name="regdate" value="${apple.regdate}" readonly>
+						<input name="nno" value="${apple.nno}" readonly>
+						<input name="cnt" value="${apple.cnt}" readonly>
 						
 					</div>
 				</div>

@@ -133,7 +133,7 @@
 	
 	position : relative;
 }
-.WritingHeader input {
+.ip input {
 	position : absolute;
 	right : 0;
 	bottom: 0;
@@ -191,3 +191,25 @@ select, textarea {
 	text-transform: uppercase;
 	line-height: 1;
 	}
+	
+.WriterInfo{
+	height : 50px;
+}
+
+.update_delete{
+	float : right;
+}
+
+.profile_info input{
+	float : left;
+	border : none;
+}
+
+.footer-area{
+	margin-top:10%;
+}
+
+.article_info_u input{
+	border : none;
+	
+}
