@@ -57,16 +57,15 @@ public class UserController {
     	return mv;
 	}
 	//**별명 중복확인
-	@RequestMapping(value="/dupnCheck")
-	public ModelAndView dupnCheck(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value="/nickCheck")
+	public ModelAndView nickCheck(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView mv,UserVO vo) {
-		
 		mv.addObject("newNick", vo.getNname());
 		vo=service.selectnickOne(vo);
 		if ( vo != null ) {
-			mv.addObject("use","F"); 
+			mv.addObject("useNick","F"); 
 		}else {
-			mv.addObject("use", "T");
+			mv.addObject("useNick", "T");
 		}
 		mv.setViewName("user/nickCheck");
 		return mv;
