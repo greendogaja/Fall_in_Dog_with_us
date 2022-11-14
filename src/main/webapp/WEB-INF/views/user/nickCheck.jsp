@@ -52,10 +52,10 @@ function niOK(){
 </head>
 <body>
 <div id="wrap" >
-<form action="dupnCheck" method="get">
-	<legend>아이디 중복확인</legend>
+<form action="nickCheck" method="get">
+	<legend>별명 중복확인</legend>
 			<div class="form-group">
-				<label class="control-label col-sm-3">아이디<span
+				<label class="control-label col-sm-3">별명<span
 					class="text-danger">*</span></label>
 				<div class="col-md-8 col-sm-9 ">
 					<div class="input-group">
@@ -70,18 +70,19 @@ function niOK(){
 				</div>
 			</div>
 </form>
+    	console.log(${useNick});
 	<hr>
     <div id="msgBlock">
-    	<c:if test="${use=='T'}">
+    	<c:if test="${useNick =='T'}">
     		${newNick}는 사용 가능합니다 &nbsp;&nbsp;
     		<input type="button" value="사용" onclick="niOK()">
     	</c:if>
-    	<c:if test="${use=='F' }">
-    		${newId}는 사용중 <br>
+    	<c:if test="${useNick =='F' }">
+    		${newNick}는 사용중 <br>
     		다시 입력 하세요 
     		<script>
-    			$('#nname').focus();
-    			opener.document.getElementById('nname').value='';
+    			$('#id').focus();
+    			opener.document.getElementById('id').value='';
     		</script>
     	</c:if>
     </div>

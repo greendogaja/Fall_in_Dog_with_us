@@ -104,10 +104,10 @@ function dupCheck(){
 		}		
 }//dupCheck
 
-function dupnCheck(){
+function nickCheck(){
     	if(nnCheck ==false) nCheck=nnmCheck();
     	else{
-    		let url ='dupnCheck?nname='+$('#nname').val()
+    		let url ='nickCheck?nname='+$('#nname').val()
     		window.open(url,'_blank',
     				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		

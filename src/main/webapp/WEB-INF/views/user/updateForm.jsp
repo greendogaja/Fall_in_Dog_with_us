@@ -393,7 +393,7 @@
 							<div class="row_item " style="flex-wrap: wrap;">
 								<span class="item_text">별명 :</span>
 								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 10자이내" value="${user.nname}">
-									<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;">중복확인</button><br>
+									<button type="button"  id="idDup" onclick="return nickCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;">중복확인</button><br>
 									<span id="nnMessage" class="eMessage" style="margin:auto;"></span>
 							</div>
 						</li>
