@@ -106,59 +106,7 @@ public class AdoptController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
-		/*
-		 * 
-		 * // ** Insert : 새글등록
-		 * 
-		 * @RequestMapping(value="/ninsertf") public ModelAndView
-		 * ninsertf(HttpServletRequest request, HttpServletResponse response,
-		 * ModelAndView mv) { mv.setViewName("guide/noticeInsertF"); return mv; }
-		 * 
-		 * @RequestMapping(value="/ninsert", method=RequestMethod.POST) public
-		 * ModelAndView ninsert(HttpServletRequest request, HttpServletResponse
-		 * response, ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) {
-		 * System.out.println("##########################"+vo); // 1. 요청분석 String uri =
-		 * "redirect:noticeList"; // 2. Service 처리 if ( service.insert(vo)>0 ) {
-		 * rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~"); }else {
-		 * mv.addObject("message", "~~ 새글 등록 실패, 다시 하세요 ~~"); uri =
-		 * "guide/noticeInsertF"; } // 3. 결과(ModelAndView) 전달 mv.setViewName(uri);
-		 * return mv; } //ninsert
-		 * 
-		 * // ** Update : 글수정하기
-		 * 
-		 * @RequestMapping(value="/nupdate", method=RequestMethod.POST) public
-		 * ModelAndView nupdate(HttpServletRequest request, HttpServletResponse
-		 * response, ModelAndView mv, NoticeVO vo) { // 1. 요청분석 String uri =
-		 * "guide/noticeDetail"; mv.addObject("apple",vo); // => Update 성공/실패 모두 출력시
-		 * 필요하므로
-		 * 
-		 * System.out.println("~~~~~~~~~~~~~~~~~~~~~~"+vo);
-		 * 
-		 * // 2. Service 처리 if ( service.update(vo) > 0 ) { mv.addObject("message",
-		 * "~~ 글수정 성공 ~~"); }else { mv.addObject("message", "~~ 글수정 실패, 다시 하세요 ~~"); uri
-		 * = "guide/noticeUpdateF"; }
-		 * 
-		 * // 3. 결과(ModelAndView) 전달 mv.setViewName(uri);
-		 * System.out.println("###################################"+mv);
-		 * System.out.println("###################################"+vo); return mv; }
-		 * 
-		 * // ** Delete : 글 삭제
-		 * 
-		 * @RequestMapping(value="/ndelete") public ModelAndView
-		 * bdelete(HttpServletRequest request, HttpServletResponse response,
-		 * ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) { // 1. 요청분석 // =>
-		 * Delete 성공: redirect:blist // 실패: message 표시, redirect:bdetail String uri =
-		 * "redirect:noticeList";
-		 * 
-		 * // 2. Service 처리 if ( service.delete(vo) > 0 ) {
-		 * rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); }else {
-		 * rttr.addFlashAttribute("message", "~~ 글삭제 실패, 다시 하세요 ~~"); uri =
-		 * "redirect:ndetail?nno="+vo.getNno(); } // Service
-		 * 
-		 * // 3. 결과(ModelAndView) 전달 mv.setViewName(uri); return mv; } //bdelete
-		 */
-	
-	
+
 	
 	
 	
