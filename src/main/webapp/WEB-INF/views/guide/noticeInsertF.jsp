@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,6 @@
     <!-- ##### Footer Area End ##### -->
 
 <meta charset="UTF-8">
-<title>Notice Insert</title>
 <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
@@ -223,7 +222,7 @@
     
     <section class="write_container">
 		<div class="WritingWrap"> 
-			<form action="ninsert" method="post">
+			<form action="ninsert" method="post" enctype="multipart/form-data">
 			<div class="WritingHeader">
 				<h2>게시판 글쓰기</h2>
 				<div class="ip">
@@ -233,8 +232,9 @@
 								<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
-							<img src="resources/img/notice/summer.PNG" >
-							<%-- src ${login.img} 로 수정해야함. --%>
+							<img src="${loginImg}" name="idUploadfile" >
+							<input type="text" class="hidden" name="idUploadfile" value="${loginImg}">
+							
 					</div>
 					<div class="profile_info" >
 						<input name="id" value="${loginID}" readonly>
@@ -299,19 +299,23 @@
 				</div>
 					
 					
-				<!-- 사진첨부 기능 추가 필요 -->
-				<!-- <input type="file" name="img" id="uploadfilef" >
-				<script>
-					$('#uploadfilef').change(function(){
-						if(this.files && this.files[0]) {
-							var reader = new FileReader;
-							reader.onload = function(e) {
-								$(".select_img").attr("src", e.target.result).width(100).height(100); 
-							} // onload_function
-							reader.readAsDataURL(this.files[0]);
-		               } // if   
-		           }); //change
-				</script> -->
+				<!-- 사진첨부 -->
+				<div class="n_u_img">
+					<img src="" class="select_img">
+					<input type="file" name="uploadfilef" id="uploadfilef" >
+					<script>
+						$('#uploadfilef').change(function(){
+							if(this.files && this.files[0]) {
+								var reader = new FileReader;
+								reader.onload = function(e) {
+									$(".select_img").attr("src", e.target.result).width(100).height(100); 
+								} // onload_function
+								reader.readAsDataURL(this.files[0]);
+							} // if   
+			           }); //change
+					</script>
+				</div>
+				
 			</form>
 		</div>
     	
