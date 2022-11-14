@@ -62,8 +62,7 @@ public class UserController {
 			ModelAndView mv,UserVO vo) {
 		
 		mv.addObject("newNick", vo.getNname());
-		
-		vo=service.selectOne(vo);
+		vo=service.selectnickOne(vo);
 		if ( vo != null ) {
 			mv.addObject("use","F"); 
 		}else {
@@ -216,7 +215,6 @@ public class UserController {
 	public ModelAndView infoupdate(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
 	    
 	  	String uri = "/user/info";
-	  	System.out.println("#######"+vo);
 	  	mv.addObject("user", vo);
 		 String realPath = request.getRealPath("/"); 
 	      if ( realPath.contains(".eclipse.") )  
@@ -243,7 +241,6 @@ public class UserController {
 			mv.addObject("message"," 내정보수정 성공 ");
 		  	mv.addObject("user", vo);
 		}else{
-			System.out.println("수정실패###########################################");
 			mv.addObject("msg", " 내정보수정 실패 ");
 			uri = "/user/updateForm";
 		}
@@ -304,7 +301,6 @@ public class UserController {
 		if ( cri.getCheck() !=null && cri.getCheck().length < 1 ) {
 			cri.setCheck(null);
 		}
-		System.out.println("#####################"+cri);
 		mv.addObject("userlist", service.searchList(cri));
 		
 		pageMaker.setCri(cri);

@@ -14,6 +14,7 @@ public interface UserMapper {
 	
 	
 	
+	UserVO selectnickOne(UserVO vo);
 	UserVO selectOne(UserVO vo);
 	int insert(UserVO vo);
 	int update(UserVO vo);

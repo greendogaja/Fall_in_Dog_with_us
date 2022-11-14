@@ -27,12 +27,12 @@
 	
 	<script src="resources/mLib/inCheck.js"></script>
 	<script>
-		function reclear() {
+	 function reclear() {
 			$('#idkey').val('');
 			$('#namekey').val('');
 			$('#phonekey').val('');
 			return false;
-		} 
+	} 
 	</script>
 	
     <!-- Title -->
@@ -326,14 +326,9 @@
 								<td>${user.nname}</td>
 								<td>${user.gender}</td>
 								<td >
-								<span id="phnum"></span>
-								<script>
-								 var num = "${user.phone}";
-								 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-								 $('#phnum').text(data);
-								</script>
+								<span class="tcenter2" id="phnum">${user.phone }
+								</span>
 								</td>
-								<td>${user.email}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
