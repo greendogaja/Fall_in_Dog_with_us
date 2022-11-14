@@ -22,6 +22,9 @@ public class UserServiceimpl implements UserService{
 	@Override 
 	public UserVO selectOne(UserVO vo) { return mapper.selectOne(vo); 
 	}
+	@Override 
+	public UserVO selectnickOne(UserVO vo) { return mapper.selectOne(vo); 
+	}
 	//** Insert
 	@Override
 	public int insert(UserVO vo) {
