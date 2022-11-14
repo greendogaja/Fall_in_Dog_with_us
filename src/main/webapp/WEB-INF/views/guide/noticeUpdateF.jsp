@@ -222,7 +222,7 @@
     <!-- 글쓰기 Start -->
     <section class="write_container">
 		<div class="WritingWrap"> 
-		    <form action="nupdate" method="post"  enctype="multipart/form-data">
+		    <form action="nupdate" method="post">
 			<div class="WritingHeader">
 				<h2>게시판 글수정</h2>
 				<div class="ip">
@@ -237,7 +237,7 @@
 					<div class="profile_info">
 						<input name="id" value="${apple.id}" readonly>
 					</div>
-					<div class="article_info_u dp_h">
+					<div class="article_info_u">
 						<!-- nno 입력. input 태그로 readonly -->
 						<input name="regdate" value="${apple.regdate}" readonly>
 						<input name="nno" value="${apple.nno}" readonly>
@@ -305,23 +305,19 @@
 				</div>
 					
 					
-				<!-- 사진첨부 -->
-				<div class="n_u_img">
-					<img src="${apple.img}" class="select_img" width="100" height="100">
-					<input type="file" name="uploadfilef" id="uploadfilef">
-					<input type="hidden" name="img" value="${apple.img}">
-					<script>
-						$('#uploadfilef').change(function(){
-							if(this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(e) {
-									$(".select_img").attr("src", e.target.result).width(100).height(100); 
-								} // onload_function
-								reader.readAsDataURL(this.files[0]);
-							} // if   
-			           }); //change
-					</script>
-				</div>
+				<!-- 사진첨부 기능 추가 필요 -->
+				<!-- <input type="file" name="img" id="uploadfilef" >
+				<script>
+					$('#uploadfilef').change(function(){
+						if(this.files && this.files[0]) {
+							var reader = new FileReader;
+							reader.onload = function(e) {
+								$(".select_img").attr("src", e.target.result).width(100).height(100); 
+							} // onload_function
+							reader.readAsDataURL(this.files[0]);
+		               } // if   
+		           }); //change
+				</script> -->
 			</form>
 			<c:if test="${not empty message}">
 				<hr>

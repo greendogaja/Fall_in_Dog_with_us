@@ -23,12 +23,12 @@
 	<selectKey keyProperty="nno" resultType="int" order="BEFORE">
 		select IFNULL(max(nno),0)+1 from notice
 	</selectKey>
-	insert into notice(nno, title, id, content, subject, img) 
-	values(#{nno}, #{title}, #{id}, #{content},#{subject}, #{img})
+	insert into notice(nno, title, id, content, subject) 
+	values(#{nno}, #{title}, #{id}, #{content},#{subject})
 </insert>
 
 <update id="update">
-	update notice set title=#{title}, content=#{content}, subject=#{subject}, img=#{img} where nno=#{nno}
+	update notice set title=#{title}, content=#{content}, subject=#{subject} where nno=#{nno}
 </update>	
 	
 <delete id="delete">
