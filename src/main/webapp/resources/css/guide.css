@@ -221,3 +221,7 @@ select, textarea {
 .dp_h{
 	display : none;
 }
+
+.hidden{
+	display : none;
+}

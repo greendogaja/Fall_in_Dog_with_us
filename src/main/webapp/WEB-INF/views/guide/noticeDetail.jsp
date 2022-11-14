@@ -227,8 +227,9 @@
 		</div>
 		<div class="WriterInfo" >
 			<div class="profile_image">
-				<img src="resources/img/notice/summer.PNG" width=40 height=50>
-				<%-- src ${login.img} 로 수정해야함. --%>
+				<img src="${apple.idUploadfile}" width=40 height=50>
+				<!-- 작성자 이미지 저장..어떻게해.. -->
+				
 			</div>
 			<div class="profile_info">${apple.id}</div>
 			<div class="article_info">
@@ -294,7 +295,7 @@
 				</div>
 			</c:if>
 			
-			<script>
+			<!-- <script>
 				document.body.onload = addElement;
 				
 				function addComment(){
@@ -304,7 +305,7 @@
 					newDiv.appendChild(newContent);
 				}
 			
-			</script>
+			</script> -->
 	</div>
 
 

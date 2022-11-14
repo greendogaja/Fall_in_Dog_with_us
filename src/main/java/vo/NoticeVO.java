@@ -15,5 +15,6 @@ public class NoticeVO {
 	private String subject;
 	private String img;
 	private MultipartFile uploadfilef;
+	private String idUploadfile;
 	
 }

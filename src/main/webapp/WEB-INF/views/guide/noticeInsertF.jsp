@@ -232,7 +232,9 @@
 								<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
-							<img src="${loginImg}" >
+							<img src="${loginImg}" name="idUploadfile" >
+							<input type="text" class="hidden" name="idUploadfile" value="${loginImg}">
+							
 					</div>
 					<div class="profile_info" >
 						<input name="id" value="${loginID}" readonly>

@@ -160,6 +160,10 @@ public class NoticeController {
 			vo.setImg(file1);
 		}
 		
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~"+vo);
+		
+		
 		// 2. Service 처리
 		if ( service.insert(vo)>0 ) {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
