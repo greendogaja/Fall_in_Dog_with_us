@@ -32,10 +32,11 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/info.css">
-
+	
 </head>
 
 <body>
+	
   <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -101,6 +102,9 @@
 												<li><a href="#" style="color:white;">내가쓴글</a></li>
 												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<c:if test="${'admin' == loginID }">
+												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
+												</c:if>
 		                                    </ul>
 				                      	</li>
 				                      </ul>
@@ -231,7 +235,7 @@
 			<div class="header_left">
 				<ul class="left_menu" role="menu">
 					<li>
-						<a href="info?want=U" class="left_item" role="menuitem">내정보수정</a>
+						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보수정</a>
 					</li>
 					<li>
 						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
@@ -273,12 +277,15 @@
 					<li>
 						<div class="row_item ">
 							<span class="item_text">연락처 :</span>
-							<span class="tcenter2">
-							<c:forTokens items="${user.phone }" delims="-" var="phonenum">
-							    ${phonenum} 
-							</c:forTokens>
+							<span class="tcenter2" id="phnum">
 							</span>
+							<script>
+							 var num = "${user.phone}";
+							 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+							 $('#phnum').text(data);
+							</script>
 						</div>
+							
 					</li>
 					<li>
 						<div class="row_item ">

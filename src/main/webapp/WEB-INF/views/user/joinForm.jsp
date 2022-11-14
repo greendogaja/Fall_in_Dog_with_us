@@ -461,7 +461,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-3">연락처<span
 							class="text-danger">*</span></label>
-						<div class="col-md-5 col-sm-8">
+						<div class="col-md-5 col-sm-8" style="max-width:50%;">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-phone"></i></span> <input type="text"
