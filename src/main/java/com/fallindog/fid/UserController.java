@@ -144,6 +144,7 @@ public class UserController {
 				request.getSession().setAttribute("loginNick", vo.getNname());
 				request.getSession().setAttribute("loginName", vo.getName());
 				request.getSession().setAttribute("loginPW", password);
+				request.getSession().setAttribute("loginImg", vo.getUploadfile());
 				
 				Cookie cook = new Cookie("userId",vo.getId());
 				if (idsave != null && idsave.equals("cook")) {
