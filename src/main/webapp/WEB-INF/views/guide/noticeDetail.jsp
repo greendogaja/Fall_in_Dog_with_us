@@ -227,8 +227,9 @@
 		</div>
 		<div class="WriterInfo" >
 			<div class="profile_image">
-				<img src="resources/img/notice/summer.PNG" width=40 height=50>
-				<%-- src ${login.img} 로 수정해야함. --%>
+				<img src="${apple.idUploadfile}" width=40 height=50>
+				<!-- 작성자 이미지 저장..어떻게해.. -->
+				
 			</div>
 			<div class="profile_info">${apple.id}</div>
 			<div class="article_info">
@@ -261,12 +262,50 @@
 		</div>
 	</div>
 	<hr>
+	
+	<!-- comment/댓글 -->
 	<div class="CommnetBox">
 		<div class="comment_title">댓글</div>
-		<div class="comment_inbox">
-			<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
-			<a role="button">등록</a>
-		</div>
+			<!-- 댓글리스트 -->
+			<ul class="comment_list">
+				<li class="comment_item">
+					<div class="comment_area">
+						<a href="#"><img src=""></a>
+						<div class="comment_box">
+							<div class="comment_nick"></div>
+							<div class="comment_text_box">
+								<p class="comment_text_view"></p>
+							</div>
+							<div class="comment_info_box">
+								<span class="comment_info_reg"></span>
+								<a>답글쓰기</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!-- 댓글입력창 -->
+			<c:if test="${not empty loginID}">
+				
+				
+				<div class="comment_inbox">
+					
+					<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+					<a role="button">등록</a>
+				</div>
+			</c:if>
+			
+			<!-- <script>
+				document.body.onload = addElement;
+				
+				function addComment(){
+					var newDiv = document.createElement("div");
+					newDiv.className = 'comment_area'
+					
+					newDiv.appendChild(newContent);
+				}
+			
+			</script> -->
 	</div>
 
 
