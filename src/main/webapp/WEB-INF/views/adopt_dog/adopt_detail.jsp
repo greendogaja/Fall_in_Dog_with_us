@@ -32,12 +32,12 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="resources/css/adopt_board.css">
+    <link rel="stylesheet" href="resources/css/adopt_detail.css">
 
 </head>
 
 <body>
-        
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -136,7 +136,7 @@
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span>
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
 
                         <!-- Menu -->
@@ -189,8 +189,6 @@
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
                                     </li>
-                                    
-                                    
                                     <li><a href="home.jsp">About Us</a></li>
                                     <li><a href="#">Community</a>
                                         <ul class="dropdown">
@@ -222,96 +220,78 @@
 
    
    
+
+    <!-- content -->
+    <div class="content" id="content">
+        <div class="content-title-wrap">
+            <h3 class="content-title">입양 위탁 신청</h3>
+        </div>
+
+        <!-- 제목 -->
+        <span class="content-top">(입양 위탁 신청)_${Adopt_detail.title}</span>
+
+        <div class="content-top-wrap">
+            <!-- 이용자 정보 -->
+            <div class="content-id">
+                <a href="" class="user-img"><img src="resources/img/uploadImage/user/Gosegu.webp"></a>
+                <div class="content-user">
+                    <a href="">${Adopt_detail.id}</a>
+                    <p>${Adopt_detail.regdate}</p>
+                </div>
+            </div>
+
+            <!-- 목록 버튼 -->
+            <div class="content-dtn">
+                <a class="btn-go" href=""><span>수정</span></a>
+                <a class="btn-go" href=""><span>삭제</span></a>
+                <a class="btn-go" href=""><span>목록</span></a>
+            </div>
+        </div>
+
+        <div class="content-text">
+            <!-- 본문 내용 -->
+            ${Adopt_detail.content}
+        </div>
+
+        <div>
+            <!-- 댓글 -->
+            <div>
+                <!-- 댓글 창 -->
+                <div>
+                    <span>댓글 작성자 정보</span>
+                    <div>
+                        <a class="btn-go" href=""><span>수정</span></a>
+                        <a class="btn-go" href=""><span>삭제</span></a>
+                    </div>
+                </div>
+
+                <div>
+                    <textarea rows="5" cols="100" readonly>상대방 댓글 내용</textarea>
+                </div>
+            </div>
+
+            <form action="binsert" method="Post">
+                <!-- 댓글 쓰기 -->
+                <div>
+                    <input type="text" name="id" value="${loginID}" size="20" readonly>
+                </div>
+
+                <div>
+                    <textarea rows="5" cols="100" placeholder="댓글 작성" name="content"></textarea>
+                    <input type="submit" value="등록">
+                </div>
+            </form>
+        </div>
+
+        <div class="content-dtn">
+            <!-- 수정_삭제_목록 -->
+            <a class="btn-go" href=""><span>수정</span></a>
+            <a class="btn-go" href=""><span>삭제</span></a>
+            <a class="btn-go" href=""><span>목록</span></a>
+        </div>
+    </div>
    
-   
-	<!-- content -->
-	<div class="content" id="content">
-		<div class="content-title-wrap">
-			<h3 class="content-title">입양 위탁 신청</h3>
-		</div>
-		<!-- bbs-wrap -->
-		<div class="bbs-wrap">
-			<!-- bbs-wrap-head -->
-			<div class="bbs-wrap-head">
-				<!-- search-wrap -->
-				<div class="bbs-search-wrap">
-					<form name="searchFrm" class="form-search" method="post" action="">
-						<fieldset>
-							<legend>검색</legend>
-
-							<label for="srchKey" class="hd-element">검색옵션선택</label>
-							<select name="srchKey" class="srchKey">
-								<option value="" selected="selected">전체</option>
-								<option value="sj">제목</option>
-								<option value="cn">내용</option>
-								<option value="sjcn">제목+내용</option>
-							</select>
-
-							<label for="srchText" class="hd-element">검색어입력</label>
-							<input type="text" name="srchText" id="srchText" class="srchText" placeholder="검색어를 입력하세요.">
-							<a href="" class="btn-search" id="search" class="hd-element"></a>
-						</fieldset>
-					</form>
-				</div><!-- //bbs-search-wrap -->
-			</div><!-- //bbs-wrap-head -->
-			<!-- bbs-list-wrap -->
-			<div class="bbs-list-wrap">
-				<!-- bbs-list-head -->
-				<div class="bbs-list-head">
-					<div class="article">
-						<ul>
-							<li class="no">글번호</li>
-							<li class="subject">제목</li>
-							<li class="name">작성자</li>
-							<li class="date">등록일</li>
-							<li class="hit">조회</li>
-						</ul>
-					</div>
-				</div><!-- //bbs-list-head -->
-				
-				<!-- bbs-list-body -->
-				<div class="article">
-					<c:if test="${not empty Adopt_list}">
-						<c:forEach var="list" items="${Adopt_list}">
-						
-							<a href="adopt_detail?ano=${list.ano}">
-								<ul>
-									<li class="no">${list.ano}</li>
-									<li class="subject">${list.title}</li>
-									<li class="name">${list.id}</li>
-									<li class="date">${list.regdate}</li>
-									<li class="hit">${list.cnt}</li>
-								</ul>
-							</a>
-							
-						</c:forEach>
-					</c:if>
-					
-				</div>
-			</div><!-- //bbs-list-wrap -->
-			<!-- paging-wrap -->
-
-			<div class="paging-wrap">
-			
-				<div class="paging">
-					<a href="" title="처음 페이지" class="com first"><span>처음</span></a>
-					<a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
-					<a href="" title="2 페이지">1</a>
-					<a href="" title="2 페이지">2</a>
-					<a href="" title="2 페이지">3</a>
-					<a href="" title="다음 페이지" class="com next"><span>다음</span></a>
-					<a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
-				</div>
-				
-				<a class="btn-go" href=""><span>글쓰기</span></a>
-			</div>
-
-
-
-		</div>
-	</div>
-	</main><!-- //container -->
-
+  
 
 
 

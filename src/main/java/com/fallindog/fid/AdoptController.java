@@ -14,14 +14,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.AdoptService;
+import service.DogService;
 import vo.AdoptVO;
+import vo.DogVO;
 
 
 @Controller 
 public class AdoptController {
   
 	@Autowired 
-	AdoptService service;
+	DogService Dservice;
+	
+	@Autowired 
+	AdoptService Aservice;
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -47,14 +52,75 @@ public class AdoptController {
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//	입양 신청 게시판(임시)
+//	입양 신청 게시판
 	@RequestMapping(value="/adopt_board")
-	public ModelAndView adopt_board(ModelAndView mv) {
+	public ModelAndView adopt_board(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
 	
-	mv.setViewName("/adopt_dog/adopt_board");
-	return mv;
+		List<AdoptVO> list = new ArrayList<AdoptVO>();
+	  	list = Aservice.selectList();
+	  	
+	  	if (list != null) {
+	  		mv.addObject("Adopt_list", list);
+	  		
+	  	}else {
+	  		mv.addObject("message", "__Adopt_list is Not Found__");
+	  		
+	  	}
+	  	mv.setViewName("/adopt_dog/adopt_board");
+	  	return mv;
 	
 	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+	@RequestMapping(value="/adopt_detail")
+	public ModelAndView adopt_detail(HttpServletRequest request, HttpServletResponse response, 
+									 ModelAndView mv, AdoptVO vo) {
+
+		String uri = "adopt_dog/adopt_detail";
+		vo = Aservice.selectOne(vo);
+
+		if (vo != null) {
+//			조회수 증가
+			String loginID = (String)request.getSession().getAttribute("loginID");
+			if (!vo.getId().equals(loginID) && !"U".equals(request.getParameter("jCode"))) {
+				if (Aservice.countUp(vo) > 0) vo.setCnt(vo.getCnt()+1); 
+					
+			}
+//			수정 시 이동경로
+			if ( "U".equals(request.getParameter("jCode"))) {
+				uri = "adopt_dog/adopt_update_form";
+				
+			}
+			mv.addObject("Adopt_detail", vo);
+			
+			}else {
+				mv.addObject("message", "__Adopt_detail is Not Found__");
+				
+			}
+			mv.setViewName(uri);
+			return mv;
+			
+		}
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -62,8 +128,8 @@ public class AdoptController {
 	@RequestMapping(value="/dog_list_S")
 	public ModelAndView dog_list_S(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
 		
-		List<AdoptVO> list = new ArrayList<AdoptVO>();
-	  	list = service.selectList_S();
+		List<DogVO> list = new ArrayList<DogVO>();
+	  	list = Dservice.selectList_S();
 	  	
 	  	if (list != null) {
 	  		mv.addObject("Adopt_list", list);
@@ -83,8 +149,8 @@ public class AdoptController {
 	@RequestMapping(value="/dog_list_M")
 	public ModelAndView dog_list_M(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
 		
-		List<AdoptVO> list = new ArrayList<AdoptVO>();
-	  	list = service.selectList_M();
+		List<DogVO> list = new ArrayList<DogVO>();
+	  	list = Dservice.selectList_M();
 	  	
 	  	if (list != null) {
 	  		mv.addObject("Adopt_list", list);
@@ -104,8 +170,8 @@ public class AdoptController {
 	@RequestMapping(value="/dog_list_L")
 	public ModelAndView dog_list_L(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
 		
-		List<AdoptVO> list = new ArrayList<AdoptVO>();
-	  	list = service.selectList_L();
+		List<DogVO> list = new ArrayList<DogVO>();
+	  	list = Dservice.selectList_L();
 	  	
 	  	if (list != null) {
 	  		mv.addObject("Adopt_list", list);
@@ -123,15 +189,15 @@ public class AdoptController {
 	
 //	상세 페이지
 	@RequestMapping(value="/dog_detail")
-	public ModelAndView dog_detail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, AdoptVO vo) {
+	public ModelAndView dog_detail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, DogVO vo) {
 		
 		String uri = "/adopt_dog/dog_detail";
-		vo = service.selectOne(vo);
+		vo = Dservice.selectOne(vo);
 		
 		if (vo != null) {
 //			수정 시 이동경로
 			if ("U".equals(request.getParameter("jCode"))) {
-				uri = "/adopt_dog/Adopt_update_form";
+				uri = "/adopt_dog/dog_update_form";
 				
 			}
 			mv.addObject("Adopt_detail", vo);
@@ -160,11 +226,11 @@ public class AdoptController {
 	
 	@RequestMapping(value="/dog_insert", method=RequestMethod.POST)
 	public ModelAndView dog_insert(HttpServletRequest request, HttpServletResponse response,
-								   ModelAndView mv, AdoptVO vo, RedirectAttributes rttr) {
+								   ModelAndView mv, DogVO vo, RedirectAttributes rttr) {
 		
 		String uri = "redirect:dog_list_S";
 		
-		if (service.insert(vo)>0) {
+		if (Dservice.insert(vo)>0) {
 			rttr.addFlashAttribute("message", "__Insert Success__");
 			
 		}else {
