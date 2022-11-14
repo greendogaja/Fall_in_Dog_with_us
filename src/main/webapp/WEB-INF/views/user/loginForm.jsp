@@ -42,7 +42,6 @@
 		
 		$(function(){
 
-			$('#id').focus();
 			
 			/* ID 체크*/
 			$('#id').keydown(function(e){
@@ -57,22 +56,19 @@
 				if(e.which==13){
 				pCheck=	pwCheck();
 					
-				}
-			}); 
+			}
+			$('#password').focusout(function(){
+				pCheck= pwCheck();
+			});
+		}); 
 			
 			
-			     
-			    if($("#id").val() != ""){ 
-			        $("#idsave").attr("checked", "checked"); // ID 저장하기를 체크 상태로 두기.
-			    }
+			if($("#id").val() != ""){$("#idsave").attr("checked", "checked");}
 			    
 			
 			    
 			    
-			/* var sid = "<c:out value='${userId}'/>";
-			if(sid != null){ 
-		        $('#idsave').attr("checked","checked"); 
-		    } */
+			
 		}); //ready	
 		
 		function inCheck() {
