@@ -14,30 +14,40 @@ public class AdoptServiceImpl implements AdoptService{
 	@Autowired
 	AdoptMapper mapper;
 	
-//	동물 목록
+//	게시판
 	@Override
-	public List<AdoptVO> selectList_S(){
-		return mapper.selectList_S();
-	}
-	@Override
-	public List<AdoptVO> selectList_M(){
-		return mapper.selectList_M();
-	}
-	@Override
-	public List<AdoptVO> selectList_L(){
-		return mapper.selectList_L();
+	public List<AdoptVO> selectList(){
+		return mapper.selectList();
 	}
 	
-//	상세 페이지
+//	게시글
 	@Override
 	public AdoptVO selectOne(AdoptVO vo) {
 		return mapper.selectOne(vo);
 	}
-
+	
 //	글쓰기
 	@Override
 	public int insert(AdoptVO vo) {
 		return mapper.insert(vo);
+	}
+	
+//	글수정
+	@Override
+	public int update(AdoptVO vo) {
+		return mapper.update(vo);
+	}
+	
+//	글삭제
+	@Override
+	public int delete(AdoptVO vo) {
+		return mapper.delete(vo);
+	}	
+	
+//	조회수
+	@Override
+	public int countUp(AdoptVO vo) {
+		return mapper.countUp(vo);
 	}
 	
 }

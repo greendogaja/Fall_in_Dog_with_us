@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: alsdn
-=======
-Built-By: User
->>>>>>> b54d8494320e0338e96b1feafcb43aed3f34c77d
 Build-Jdk: 15.0.2
 Created-By: Maven Integration for Eclipse
 

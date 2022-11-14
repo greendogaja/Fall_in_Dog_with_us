@@ -15,7 +15,8 @@
 <title>Notice</title>
 <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/guide.css">
+   <!--  <link rel="stylesheet" href="resources/css/guide.css"> -->
+    <link rel="stylesheet" href="resources/css/adopt_board.css">
 
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->

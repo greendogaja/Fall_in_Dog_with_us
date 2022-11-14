@@ -4,42 +4,66 @@
 
 <mapper namespace="mapperInterface.AdoptMapper">
 
-
-<!-- 동물 목록 S -->
-<select id="selectList_S" resultType="vo.AdoptVO">
-	select dno, title, img
-	from dogs
-	where size = 's'
-	order by dno desc
+<!-- 게시판 -->
+<select id="selectList" resultType="vo.AdoptVO">
+	select ano, title, id, regdate, cnt
+	from adopt 
+	order by ano desc
 </select>
-
-<!-- 동물 목록 M -->
-<select id="selectList_M" resultType="vo.AdoptVO">
-	select dno, title, img
-	from dogs
-	where size = 'm'
-	order by dno desc
-</select>
-
-<!-- 동물 목록 L -->
-<select id="selectList_L" resultType="vo.AdoptVO">
-	select dno, title, img
-	from dogs
-	where size = 'l'
-	order by dno desc
-</select>
-
-<!-- 상세 페이지 -->
+	
+<!-- 게시글 -->
 <select id="selectOne" resultType="vo.AdoptVO">
 	select *
-	from dogs
-	where dno= #{dno}
+	from adopt
+	where ano=#{ano}
 </select>
 
 <!-- 글쓰기 -->
 <insert id="insert">
-	insert into dogs(*) 
-	values(*)
+	<selectKey keyProperty="ano" resultType="int" order="BEFORE">
+		select IFNULL(max(ano),0)+1 from adopt
+	</selectKey>
+	insert into adopt(ano, title, id, content) 
+	values(#{nno}, #{title}, #{id}, #{content})
 </insert>
 
+<!-- 글수정 -->
+<update id="update">
+	update adopt set title=#{title}, content=#{content}
+	where ano=#{ano}
+</update>
+
+<!-- 글삭제 -->
+<delete id="delete">
+	delete *
+	from adopt where ano=#{ano}
+</delete>	
+	
+<!-- 조회수 -->
+<update id="countUp">
+	update adopt set cnt=cnt+1
+	where ano=#{ano}
+</update>
+
 </mapper> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
