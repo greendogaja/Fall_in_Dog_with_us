@@ -1,5 +1,10 @@
 package service;
 
+
+
+import java.util.List;
+
+import usercontrol.SearchCriteria;
 import vo.UserVO;
 
 public interface UserService {
@@ -14,5 +19,7 @@ public interface UserService {
 	//** Delete
 	int delete(UserVO vo);
 	
-
+	List<UserVO> selectList();
+	List<UserVO> searchList(SearchCriteria cri);
+	int searchCount(SearchCriteria cri);
 }

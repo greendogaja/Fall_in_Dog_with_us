@@ -226,7 +226,22 @@
 			<form action="ninsert" method="post">
 			<div class="WritingHeader">
 				<h2>게시판 글쓰기</h2>
-				<input type="submit" value="등록">
+				<div class="ip">
+					<input type="submit" value="등록">
+				</div>
+				
+								<!-- user info start -->
+				<div class="WriterInfo" >
+					<div class="profile_image m_b">
+							<img src="resources/img/notice/summer.PNG" >
+							<%-- src ${login.img} 로 수정해야함. --%>
+					</div>
+					<div class="profile_info" >
+						<input name="id" value="${loginID}" readonly>
+					</div>
+				</div>
+			<!-- user info end -->
+			
 			</div>
 			<hr>
 				<div class="WritingContent">

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +11,17 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- ##### Footer Area End ##### -->
 
+<meta charset="UTF-8">
+<title>Notice Update</title>
+<!-- Style CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/guide.css">
+
+
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
-    
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    
     <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
@@ -23,6 +31,9 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    <!-- NAVER Smart Editor 
+    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>-->
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -31,13 +42,12 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/info.css">
-	
-</head>
+    <link rel="stylesheet" href="resources/css/guide.css">
 
+</head>
+<!-- 글쓰기 성공/실패 후 noticeList 로 화면 변경, alert 으로 결과 알림 -->
 <body>
-	
-  <!-- Preloader -->
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -102,9 +112,6 @@
 												<li><a href="#" style="color:white;">내가쓴글</a></li>
 												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
-												<c:if test="${'admin' == loginID }">
-												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
-												</c:if>
 		                                    </ul>
 				                      	</li>
 				                      </ul>
@@ -211,100 +218,122 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-	<hr>
-	<div class="allinfo">
-		<div class="dinfo">
-			<div class="gnb_area">
-				<a href="home"><img src="resources/img/core-img/ficon.ico" width="50" height="50"></a>
-				<h1>폴인독ID</h1>
-			</div>
-			
-			<div class="profile_area">
-				<div class="profile_inner">
-					<a href="info?want=U" class="photo">
-						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
-						<span class="photo_edit"></span>
-					</a>
+    
+    <!-- 글쓰기 Start -->
+    <section class="write_container">
+		<div class="WritingWrap"> 
+		    <form action="nupdate" method="post">
+			<div class="WritingHeader">
+				<h2>게시판 글수정</h2>
+				<div class="ip">
+					<input type="submit" value="등록">
 				</div>
-				<div class="posiab ">
-						<p class="useid">${user.nname}</p>
-						<p class="usemail">${user.id }</p>
+				
+				<!-- user info start -->
+				<div class="WriterInfo" >
+					<div class="profile_image">
+							<img src="resources/img/notice/summer.PNG" width=40 height=50>
+					</div>
+					<div class="profile_info">
+						<input name="id" value="${apple.id}" readonly>
+					</div>
+					<div class="article_info_u">
+						<!-- nno 입력. input 태그로 readonly -->
+						<input name="regdate" value="${apple.regdate}" readonly>
+						<input name="nno" value="${apple.nno}" readonly>
+						<input name="cnt" value="${apple.cnt}" readonly>
+						
+					</div>
 				</div>
+			<!-- user info end -->
+		
+		
 			</div>
-			
-			<div class="header_left">
-				<ul class="left_menu" role="menu">
-					<li>
-						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보수정</a>
-					</li>
-					<li>
-						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
-					</li>
-					<li>
-						<a href="#" class="left_item" role="menuitem">내가단댓글</a>
-					</li>
-				</ul>
-			</div>
+			<hr>
+				<div class="WritingContent">
+					<div class="write_row">
+						<div class="column_title">
+							<input name="title" value="${apple.title}" >
+						</div>
+					
+						<div class="column_category" >
+							<select name="subject" >
+								<option value="[공지]" >[공지]</option>
+								<option value="[입양]" >[입양]</option>
+							</select>
+						</div>
+					</div>
+					<div class="write_content">
+						<textarea name="content">${apple.content}</textarea>
+						<!-- NAVER Smart Editor start -->
+						<!-- <textarea class="form-control" name="content" id="content"
+								style="width: 100%; height: 500px;"></textarea>	
+					
+						
+						<script>
+							editorLoding : function (title, content){
+								nhn.husky.EZCreator.createInIFrame({
+								 oAppRef: oEditors,
+								 elPlaceHolder: document.getElementById('content'), // html editor가 들어갈 textarea id 입니다.
+								 sSkinURI: "resources/smartEditor2/SmartEditor2Skin.html",  // html editor가 skin url 입니다.
+								 htParams : {
+						          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+						          bUseToolbar : true,             
+						          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+						          bUseVerticalResizer : true,     
+						          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+						          bUseModeChanger : true,         
+						          fOnBeforeUnload : function(){
+						               
+						          }
+							 }, 
+						
+							/**
+							 * 수정 시 에디터에 데이터 저장
+							 */
+								fOnAppLoad: function () {
+						   		 //수정모드를 구현할 때 사용할 부분입니다. 로딩이 끝난 후 값이 체워지게 하는 구현을 합니다.
+						    	 oEditors.getById["content"].exec("PASTE_HTML", [content]); //로딩이 끝나면 contents를 txtContent에 넣습니다.
+								 },
+								 
+							 fCreator: "createSEditor2",
+							});
+						}
+					</script> -->
+					<!-- NAVER Smart Editor end -->
+					</div>
+				</div>
+					
+					
+				<!-- 사진첨부 기능 추가 필요 -->
+				<!-- <input type="file" name="img" id="uploadfilef" >
+				<script>
+					$('#uploadfilef').change(function(){
+						if(this.files && this.files[0]) {
+							var reader = new FileReader;
+							reader.onload = function(e) {
+								$(".select_img").attr("src", e.target.result).width(100).height(100); 
+							} // onload_function
+							reader.readAsDataURL(this.files[0]);
+		               } // if   
+		           }); //change
+				</script> -->
+			</form>
+			<c:if test="${not empty message}">
+				<hr>
+				${message}<br>
+			</c:if>
 		</div>
-		<div class="dinfo2">
-			<div class="account_box">
-				<h1 class="title " >내프로필</h1>
-				<ul class="account_row">
-					<li>
-						<div class="row_item ">
-							<span class="item_text">성명 :</span>
-							<span class="tcenter2">${user.name}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">별명 :</span>
-							<span class="tcenter2">${user.nname}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">생년월일 :</span>
-							<span class="tcenter2">${user.yy}-${user.mm }-${user.dd}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">성별 :</span>
-							<span class="tcenter2">${user.gender}</span>
-						</div>
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">연락처 :</span>
-							<span class="tcenter2" id="phnum">
-							</span>
-							<script>
-							 var num = "${user.phone}";
-							 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-							 $('#phnum').text(data);
-							</script>
-						</div>
-							
-					</li>
-					<li>
-						<div class="row_item ">
-							<span class="item_text">이메일 :</span>
-							<span class="tcenter2">
-							<c:if test="${!empty user.email }">
-							${user.email}
-							</c:if>
-							<c:if test="${empty user.email }">
-							(없음)
-							</c:if>
-							</span>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!--######################### Footer -->
+    	
+    
+    </section>
+    
+
+<hr>
+&nbsp;&nbsp;<a href="noticeList">목록으로</a>
+&nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
+
+   <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
@@ -357,5 +386,6 @@ E-mail : fallindogkorea@gmail.com <br>
 Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
+
 </body>
 </html>

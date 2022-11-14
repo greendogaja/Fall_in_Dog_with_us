@@ -35,4 +35,15 @@ public class NoticeServiceImpl implements NoticeService{
 		return mapper.insert(vo);
 	}
 	
+	// ** Update: 글수정
+	@Override
+	public int update(NoticeVO vo) {
+		return mapper.update(vo);
+	}
+	
+	// ** Delete
+	@Override
+	public int delete(NoticeVO vo) {
+		return mapper.delete(vo);
+	}	
 }

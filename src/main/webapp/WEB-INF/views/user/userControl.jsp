@@ -26,6 +26,14 @@
     <script defer="defer" src="resources/js/active.js"></script>
 	
 	<script src="resources/mLib/inCheck.js"></script>
+	<script>
+		function reclear() {
+			$('#idkey').val('');
+			$('#namekey').val('');
+			$('#phonekey').val('');
+			return false;
+		} 
+	</script>
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -230,36 +238,62 @@
 		</div>
 	</header>
 	<!-- ##### Header Area End ##### -->
+	
+	
 	<div class="container">
 		<h2>
 			회원 관리
 		</h2>
-
+	
+	
+		<!--조건이 있을때  -->
+		<!--입력값이 있을때 유지  -->
 		<div class="panel panel-default">
-			<div class="panel-heading">회원 정보 입력</div>
+			<div class="panel-heading">회원 정보 입력 (이름 or 별명, 아이디, 연락처 중 한 항목검색)</div>
 			<div class="panel-body">
-				<!-- action="확장자 방식의 서블릿요청주소 -->
-				<form action="memberinsert.it" method="post">
-					<div class="form-group">
-						<!-- name="" 속성은 JSP 프로그램 진행시 필수 속성 -->
-						<!-- 식별자는 자료형 클래스의 멤버명으로 작성할 것 -->
-						<!-- 동일 자료 동일 식별자 원칙 -->
-						<label for="name">이름:</label> <input type="text"
-							class="form-control" id="name" name="name" >
-					</div>
-					<div class="form-group">
-						<label for="phone">연락처:</label> <input type="text"
-							class="form-control" id="phone" name="phone" >
-					</div>
-					<div class="form-group">
-						<label for="nname">별명:</label> <input type="text"
-							class="form-control" id="nname" name="nname" >
-					</div>
+				<form action="usearchlist" method="get">
+				
+					<!--이름 or 별명 검색  -->
+					<c:set var="searchinput" value="false"/>
+					<c:if test="${!empty pageMaker.cri.namekey}">
+						<div class="form-group">
+							<label for="name">이름 or 별명:</label> <input type="text"
+							class="form-control" id="namekey" name="namekey" value="${pageMaker.cri.namekey}" class="clear">
+						</div>
+						<c:set var="searchinput" value="true"/>					
+					</c:if>
+					<c:if test="${empty pageMaker.cri.namekey}">
+						<label for="namekey">이름 or 별명:</label> <input type="text"
+						class="form-control" id="namekey" name="namekey" >
+					</c:if>
+					
+					<!--아이디검색  -->
+					<c:if test="${!empty pageMaker.cri.idkey}">
+						<div class="form-group">
+							<label for="idkey">ID :</label> <input type="text" 
+							class="form-control" id="idkey" name="idkey" value="${pageMaker.cri.idkey}" class="clear">
+						</div>
+						<c:set var="searchinput" value="true"/>					
+					</c:if>
+					<c:if test="${empty pageMaker.cri.idkey}">
+						<label for="idkey">ID:</label> <input type="text"
+						class="form-control" id="idkey" name="idkey" >
+					</c:if>
 
-					<!-- submit 버튼은 JSP 프로그램 진행시 필수 요소 -->
-					<!-- 폼 태그 범위 안에 위치해야 한다. -->
-					<button type="submit" class="btn btn-default">Submit</button>
-
+					<!--연락처검색  -->
+					<c:if test="${!empty pageMaker.cri.phonekey}">
+						<div class="form-group">
+							<label for="phonekey">연락처:</label> <input type="text" 
+							class="form-control" id="phonekey" name="phonekey" value="${pageMaker.cri.phonekey}" class="clear">
+						</div>
+						<c:set var="searchinput" value="true"/>					
+					</c:if>
+					<c:if test="${empty pageMaker.cri.phonekey}">
+						<label for="phonekey">연락처:</label> <input type="text"
+						class="form-control" id="phonekey" name="phonekey" >
+					</c:if>
+					<button type="submit" class="btn btn-default">검색</button>
+					<input type="reset" value="초기화" onclick="return reclear()">
 				</form>
 			</div>
 		</div>
@@ -267,37 +301,39 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">회원 명단 출력</div>
 			<div class="panel-body">
-				<%--테이블 태그 --%>
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>프로필</th>
+							<th>아이디</th>
 							<th>이름</th>
-							<th>전화번호</th>
+							<th>생년월일</th>
+							<th>별명</th>
+							<th>성별</th>
+							<th>연락처</th>
 							<th>이메일</th>
 						</tr>
 					</thead>
 					<tbody>
 
-						<!-- <tr>
-							<td>1</td>
-							<td>John</td>
-							<td>Doe</td>
-							<td>john@example.com</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Mary</td>
-							<td>Moe</td>
-							<td>mary@example.com</td>
-						</tr> -->
-						<%-- JSTL, EL을 이용한 동적 데이터 출력 --%>
-						<c:forEach var="m" items="${list}">
+					
+						<c:forEach var="user" items="${userlist}">
 							<tr>
-								<td>${m.mid}</td>
-								<td>${m.name}</td>
-								<td>${m.phone}</td>
-								<td>${m.email}</td>
+								<td><img src="${user.uploadfile}"></td>
+								<td><a href="info?id=${user.id}">${user.id}</a></td>
+								<td>${user.name}</td>
+								<td>${user.yy}-${user.mm}-${user.dd}</td>
+								<td>${user.nname}</td>
+								<td>${user.gender}</td>
+								<td >
+								<span id="phnum"></span>
+								<script>
+								 var num = "${user.phone}";
+								 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+								 $('#phnum').text(data);
+								</script>
+								</td>
+								<td>${user.email}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -309,7 +345,7 @@
 						<button type="button" class="btn btn-default">
 
 							<%-- 문제) EL를 이용한 동적 데이터 출력 --%>
-							Count <span class="badge">${count}</span>
+							검색결과 <span class="badge">${pageMaker.totalRowsCount}건</span>
 						</button>
 					</div>
 
@@ -331,6 +367,38 @@
 			</div>
 		</div>
 	</div>
+	<div align="center">
+	<!-- First, Prev -->
+	<c:choose>
+		<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+			<a href="usearchlist${pageMaker.searchQuery(1)}">처음</a>&nbsp;
+			<a href="usearchlist${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
+			
+		</c:when>
+		<c:otherwise>
+			<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>   
+		</c:otherwise>
+	</c:choose>	
+	<!-- Displag PageNo -->
+	<c:forEach  var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
+		<c:if test="${i==pageMaker.cri.currPage}">
+			<font size="5" color="Orange">${i}</font>&nbsp;
+		</c:if>
+		<c:if test="${i!=pageMaker.cri.currPage}">
+			<a href="usearchlist${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+		</c:if>
+	</c:forEach>
+	<!-- Next, Last -->
+	<c:choose>
+		<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
+			<a href="usearchlist${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>  
+			<a href="usearchlist${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a> 
+		</c:when>
+		<c:otherwise>
+			<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>   
+		</c:otherwise>
+	</c:choose>
+</div>
 	
 	
 	<!--######################### Footer -->
