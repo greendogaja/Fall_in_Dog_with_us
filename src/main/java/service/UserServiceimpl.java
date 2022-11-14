@@ -1,9 +1,14 @@
 package service;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mapperInterface.UserMapper;
+import usercontrol.SearchCriteria;
 import vo.UserVO;
 
 
@@ -15,9 +20,11 @@ public class UserServiceimpl implements UserService{
 	
 	//** selectOne
 	@Override 
-	public UserVO selectOne(UserVO vo) { return mapper.selectOne(vo); }
-	 
-	
+	public UserVO selectOne(UserVO vo) { return mapper.selectOne(vo); 
+	}
+	@Override 
+	public UserVO selectnickOne(UserVO vo) { return mapper.selectnickOne(vo); 
+	}
 	//** Insert
 	@Override
 	public int insert(UserVO vo) {
@@ -34,5 +41,18 @@ public class UserServiceimpl implements UserService{
 	public int delete(UserVO vo) {
 		return mapper.delete(vo);
 	}
+	
+	@Override
+	public List<UserVO> searchList(SearchCriteria cri){
+		return mapper.searchList(cri);
+	}
+	@Override
+	public int searchCount(SearchCriteria cri){
+		return mapper.searchCount(cri);
+	}
+	@Override
+	public List<UserVO> selectList(){
+ 		return mapper.selectList();
+ 	}
 	
 }//class

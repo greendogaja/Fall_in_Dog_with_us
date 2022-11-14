@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.UserService;
+import usercontrol.PageMaker;
+import usercontrol.SearchCriteria;
 import vo.UserVO;
 
 
@@ -55,17 +57,15 @@ public class UserController {
     	return mv;
 	}
 	//**별명 중복확인
-	@RequestMapping(value="/dupnCheck")
-	public ModelAndView dupnCheck(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value="/nickCheck")
+	public ModelAndView nickCheck(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView mv,UserVO vo) {
-		
 		mv.addObject("newNick", vo.getNname());
-		
-		vo=service.selectOne(vo);
+		vo=service.selectnickOne(vo);
 		if ( vo != null ) {
-			mv.addObject("use","F"); 
+			mv.addObject("useNick","F"); 
 		}else {
-			mv.addObject("use", "T");
+			mv.addObject("useNick", "T");
 		}
 		mv.setViewName("user/nickCheck");
 		return mv;
@@ -214,7 +214,6 @@ public class UserController {
 	public ModelAndView infoupdate(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
 	    
 	  	String uri = "/user/info";
-	  	System.out.println("#######"+vo);
 	  	mv.addObject("user", vo);
 		 String realPath = request.getRealPath("/"); 
 	      if ( realPath.contains(".eclipse.") )  
@@ -241,7 +240,6 @@ public class UserController {
 			mv.addObject("message"," 내정보수정 성공 ");
 		  	mv.addObject("user", vo);
 		}else{
-			System.out.println("수정실패###########################################");
 			mv.addObject("msg", " 내정보수정 실패 ");
 			uri = "/user/updateForm";
 		}
@@ -278,13 +276,39 @@ public class UserController {
 		return mv;
 	}
 	
-	//**로그인 양식
-	@RequestMapping(value="/usercontrol")
-	public ModelAndView usercontrol(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
-		mv.setViewName("/user/userControl");
-		return mv;
-	}
+
 
 	
+	//**회원검색
+	@RequestMapping(value="/usearchlist")
+	public ModelAndView usearchlist(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
+		
+		cri.setSnoEno();
+		String namekey  = request.getParameter("namekey");
+		String phonekey = request.getParameter("phonekey");
+		String idkey = request.getParameter("idkey");
+		
+		cri.setRowsPerPage(5);
+		 if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
+		 else cri.setNamekey(namekey);
+		 if( phonekey == null || phonekey.length()<1 ) cri.setPhonekey(null); 
+		 else cri.setPhonekey(phonekey);
+		 if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
+		 else cri.setIdkey(idkey);
+		 
+		
+		if ( cri.getCheck() !=null && cri.getCheck().length < 1 ) {
+			cri.setCheck(null);
+		}
+		mv.addObject("userlist", service.searchList(cri));
+		
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRowsCount(service.searchCount(cri));   
+		
+    	mv.addObject("pageMaker", pageMaker);
+		
+		mv.setViewName("user/userControl");
+    	return mv;
+	} //bchecklist
 	
 }
