@@ -12,7 +12,7 @@
     <!-- ##### Footer Area End ##### -->
 
 <meta charset="UTF-8">
-<title>Notice Insert</title>
+<title>Notice Update</title>
 <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
@@ -32,8 +32,8 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <!-- NAVER Smart Editor -->
-    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <!-- NAVER Smart Editor 
+    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>-->
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -220,34 +220,40 @@
     <!-- ##### Header Area End ##### -->
     
     <!-- 글쓰기 Start -->
-    
     <section class="write_container">
 		<div class="WritingWrap"> 
-			<form action="ninsert" method="post">
+		    <form action="nupdate" method="post">
 			<div class="WritingHeader">
-				<h2>게시판 글쓰기</h2>
+				<h2>게시판 글수정</h2>
 				<div class="ip">
 					<input type="submit" value="등록">
 				</div>
 				
-								<!-- user info start -->
+				<!-- user info start -->
 				<div class="WriterInfo" >
-					<div class="profile_image m_b">
-							<img src="resources/img/notice/summer.PNG" >
-							<%-- src ${login.img} 로 수정해야함. --%>
+					<div class="profile_image">
+							<img src="resources/img/notice/summer.PNG" width=40 height=50>
 					</div>
-					<div class="profile_info" >
-						<input name="id" value="${loginID}" readonly>
+					<div class="profile_info">
+						<input name="id" value="${apple.id}" readonly>
+					</div>
+					<div class="article_info_u">
+						<!-- nno 입력. input 태그로 readonly -->
+						<input name="regdate" value="${apple.regdate}" readonly>
+						<input name="nno" value="${apple.nno}" readonly>
+						<input name="cnt" value="${apple.cnt}" readonly>
+						
 					</div>
 				</div>
 			<!-- user info end -->
-			
+		
+		
 			</div>
 			<hr>
 				<div class="WritingContent">
 					<div class="write_row">
 						<div class="column_title">
-							<input name="title" placeholder="제목을 입력하세요.">
+							<input name="title" value="${apple.title}" >
 						</div>
 					
 						<div class="column_category" >
@@ -258,7 +264,7 @@
 						</div>
 					</div>
 					<div class="write_content">
-						<textarea name="content" placeholder="내용을 입력하세요."></textarea>
+						<textarea name="content">${apple.content}</textarea>
 						<!-- NAVER Smart Editor start -->
 						<!-- <textarea class="form-control" name="content" id="content"
 								style="width: 100%; height: 500px;"></textarea>	
@@ -313,6 +319,10 @@
 		           }); //change
 				</script> -->
 			</form>
+			<c:if test="${not empty message}">
+				<hr>
+				${message}<br>
+			</c:if>
 		</div>
     	
     

@@ -18,4 +18,9 @@ public interface NoticeService {
 	// ** 새글 등록
 	int insert(NoticeVO vo);
 	
+	// ** Update: 글수정
+	int update(NoticeVO vo);
+	
+	// ** Delete
+	int delete(NoticeVO vo);
 }

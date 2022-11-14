@@ -466,7 +466,7 @@
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-phone"></i></span> <input type="text"
 									class="form-control" name="phone" id="phone"
-									placeholder="연락처 번호를 (-)포함 입력해주세요 " value="">
+									placeholder="연락처 번호를 입력해주세요. (-)미포함  " value="">
 									<span id="phMessage" class="eMessage"></span>
 							</div>
 						</div>

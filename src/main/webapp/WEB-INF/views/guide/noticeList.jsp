@@ -217,26 +217,27 @@
     <!-- ##### Header Area End ##### -->
     
    <!--  #### 리스트  start ####-->
-	<c:if test="${not empty message}">
-		${message}<br>
-	</c:if>
+
 	<hr>
+	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<div><h4>Notice</h4></div>
+		<h4>Notice</h4>
 		
 			<!-- 세로 가운데 정렬 필요 -->
 			<div class="search_write">
-				<div id="search-wrapper" >
+				<!-- <div id="search-wrapper" >
 					<form action="#">
 						<input type="text" id="search" placeholder="Title or Content or ID">
 						<div id="close-icon"></div>
 						<input class="d-none" type="submit" value="">
 					</form>
-				</div>
-				<div class="rinsert">
+				</div> -->
+				<div >
 					<!-- admin 만 보이게 -->
-					<a href="ninsertf">글쓰기</a>
+					<c:if test="${loginID=='admin'}">
+						<a href="ninsertf">글쓰기</a>
+					</c:if>
 				</div>
 			</div>
 		<div>
@@ -255,7 +256,6 @@
 				<td>${notice.subject}</td>
 				<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
 				<%-- <td>
-								
 					<!-- 로그인 한 경우에만 title을 클릭하면 content를 볼 수 있도록 함
 							=> bdetail 을 실행함 -->
 					<c:if test="${not empty loginID}">
@@ -266,22 +266,19 @@
 					</c:if>      
 				</td> --%>
 				<td>${notice.id}</td>
-				
-				<%-- <td>
-					<c:if test="${loginID=='admin'}">
-						<a href="ndetail?id=${notice.id}">${notice.id}</a>
-					</c:if> 
-					<c:if test="${loginID!='admin'}">
-					    ${notice.id}
-					</c:if>
-				</td>  --%>
-				
 				<td>${notice.regdate}</td><td>${notice.cnt}</td>
 			</tr>	
 			</c:forEach>
 		</c:if>
 	</table>
+	</div>
 	<hr>
+	
+	<c:if test="${not empty message}">
+		${message}<br>
+	</c:if>
+	
+	
 	<!-- Cri_Page -->
 	<div align="center">
 		<!-- First, Prev -->
