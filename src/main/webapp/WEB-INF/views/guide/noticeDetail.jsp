@@ -252,7 +252,9 @@
 	<div class="article_container">
 		<div class="article_viewer">
 			${apple.content}
-			<img src="${apple.img}"> 
+			<c:if test="${not empty apple.img}">
+				<img src="${apple.img}"> 
+			</c:if>
 		</div>
 		<div class="article_writer">
 		<a href="#">
@@ -264,35 +266,47 @@
 	<hr>
 	
 	<!-- comment/댓글 -->
-	<div class="CommnetBox">
+	<div class="CommentBox">
 		<div class="comment_title">댓글</div>
-			<!-- 댓글리스트 -->
-			<ul class="comment_list">
+			<!-- 댓글 리스트 -->
+			<ul class="comment_list comment_list${tmp.cno}">
+				<!-- 댓글이 들어가는 곳 -->
 				<li class="comment_item">
 					<div class="comment_area">
-						<a href="#"><img src=""></a>
+						<img src="resources/img/notice/dog0.jfif" >
+						<!-- 작성자Img 저장 -->
 						<div class="comment_box">
-							<div class="comment_nick"></div>
+							<div class="comment_nick">작성자닉네임</div>
 							<div class="comment_text_box">
-								<p class="comment_text_view"></p>
+								<p class="comment_text_view">
+									댓글내용입니다 123456~~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~
+									댓글내용입니다 123456~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~
+									댓글내용입니다 123456~~~~~~~~~~~~~~~~
+								</p>
 							</div>
 							<div class="comment_info_box">
-								<span class="comment_info_reg"></span>
+								<span class="comment_info_reg">
+									댓글작성 reg
+								</span>
 								<a>답글쓰기</a>
 							</div>
 						</div>
 					</div>
 				</li>
 			</ul>
-			<!-- 댓글입력창 -->
+			<!-- 댓글입력 -->
 			<c:if test="${not empty loginID}">
-				
-				
-				<div class="comment_inbox">
-					
-					<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
-					<a role="button">등록</a>
-				</div>
+				<form action="cinsert">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+							<div class="mg_b_10">${loginNick}</div>
+								<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<a role="button">등록</a>
+							</div>
+						</div>
+					</div>
+				</form>
 			</c:if>
 			
 			<!-- <script>
