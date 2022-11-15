@@ -70,7 +70,6 @@ function niOK(){
 				</div>
 			</div>
 </form>
-    	console.log(${useNick});
 	<hr>
     <div id="msgBlock">
     	<c:if test="${useNick =='T'}">

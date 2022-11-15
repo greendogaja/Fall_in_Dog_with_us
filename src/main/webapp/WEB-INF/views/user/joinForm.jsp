@@ -45,9 +45,9 @@
     let nCheck =false;
     let nnCheck =false;
     let phCheck=false;
+    let bCheck=false;
     
     $(function(){
-    	
     	//## ID
     	$('#id').keydown(function(e){
     		if(e.which==13){
@@ -94,6 +94,26 @@
     	}).focusout(function(){
     		nnCheck = nnmCheck();
     	});
+    	//## 생년월일
+    	$('#yy').change(function(){
+    		bCheck = bryCheck();
+    		if(bCheck == true) 
+    		$('#mm').prop('disabled',false);
+    	});
+    	$('#mm').change(function(){
+    		if(bCheck = brmCheck() == false) return false;
+    		else {
+    			$('#dd').prop('disabled',false);
+    			return true;
+    		}
+    	});
+    	$('#dd').change(function(){
+    		
+    		if(bCheck = bryCheck() == false) return false;
+    		else if(bCheck = brmCheck() == false) return false;
+    		else if(bCheck = brdCheck() == false) return false;
+    		else return true;
+    	});
 
     	//## email
     	$('#email').keydown(function(e){
@@ -114,6 +134,7 @@
     	});
     	
     })
+    
 
 
     
@@ -326,13 +347,11 @@
 							class="text-danger">*</span></label>
 						<div class="col-md-8 col-sm-9 ">
 							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-envelope"></i></span> 
 									<input type="text" class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내" value="">
-									<span id="iMessage" class="eMessage"></span>
 							<button type="button"  id="idDup" onclick="dupCheck()" style="margin-left:30px;">ID 중복확인</button>
 							</div>
-							<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
+							<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small><br>
+							<span id="iMessage" class="eMessage"></span>
 						</div>
 					</div>
 
@@ -340,26 +359,20 @@
 						<label class="control-label col-sm-3">비밀번호 설정<span
 							class="text-danger">*</span></label>
 						<div class="col-md-5 col-sm-8">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-lock"></i></span> <input type="password"
+								 <input type="password"
 									class="form-control" name="password" id="password"
 									placeholder="특수문자 반드시 포함" value="">
 									<span id="pMessage" class="eMessage"></span>
-							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="password" class="control-label col-sm-3">비밀번호 확인<span
 							class="text-danger">*</span></label>
 						<div class="col-md-5 col-sm-8">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-lock"></i></span> <input type="password"
+								 <input type="password"
 									class="form-control" name="cpassword" id="cpassword"
 									placeholder="암호를 확인" value="">
 									<span id="ppMessage" class="eMessage"></span>
-							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -376,13 +389,11 @@
 							class="text-danger">*</span></label>
 						<div class="col-md-8 col-sm-9 ">
 							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-envelope"></i></span> 
 									<input type="text" class="form-control" name="nname" id="nname" placeholder="한글,영문 10자이내" value="">
-									<span id="nnMessage" class="eMessage"></span>
 							<button type="button"  id="idDup" onclick="nickCheck()" style="margin-left:30px;">별명 중복확인</button>
 							</div>
-							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small>
+							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small><br>
+							<span id="nnMessage" class="eMessage"></span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -390,7 +401,7 @@
 							class="text-danger">*</span></label>
 						<div class="col-sm-8">
 							<div class="form-inline">
-							<div class="form-group">
+								<div class="form-group">
 									<select name="yy" id="yy" class="form-control">
 										<c:set var="today" value="<%=new java.util.Date() %>"/>
 										<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
@@ -399,13 +410,12 @@
 											<option value="<c:out value="${start-result}" />"
 												<c:if test="${start-result == detail.YY}"> selected="selected"</c:if>><c:out
 													value="${start-result}" /></option>
-
 										</c:forEach>
 									</select>
 								</div>
 								
 								<div class="form-group">
-									<select name="mm" id="mm" class="form-control">
+									<select name="mm" id="mm" class="form-control" disabled>
 									 <option value="">선택</option>
 										  <c:forEach var="i" begin="1" end="12">
 										  <c:choose>
@@ -420,7 +430,7 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<select name="dd" id="dd" class="form-control">
+									<select name="dd" id="dd" class="form-control" disabled>
 										  <option value="">선택</option>
 										  <c:forEach var="i" begin="1" end="31">
 										  <c:choose>
@@ -434,6 +444,7 @@
 										  </c:forEach>
 									</select>
 								</div>
+								<span id="brMessage" class="eMessage"></span>
 							</div>
 						</div>
 					</div>
@@ -462,13 +473,9 @@
 						<label class="control-label col-sm-3">연락처<span
 							class="text-danger">*</span></label>
 						<div class="col-md-5 col-sm-8" style="max-width:50%;">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-phone"></i></span> <input type="text"
-									class="form-control" name="phone" id="phone"
-									placeholder="연락처 번호를 입력해주세요. (-)미포함  " value="">
-									<span id="phMessage" class="eMessage"></span>
-							</div>
+							<input type="text" class="form-control" name="phone" id="phone"
+							placeholder="연락처 번호를 입력해주세요. (-)미포함  " value="">
+							<span id="phMessage" class="eMessage"></span>
 						</div>
 					</div>
 					<div class="form-group">

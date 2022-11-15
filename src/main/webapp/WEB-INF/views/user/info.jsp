@@ -221,7 +221,7 @@
 			
 			<div class="profile_area">
 				<div class="profile_inner">
-					<a href="info?want=U" class="photo">
+					<a href="info?want=U&id=${user.id}" class="photo">
 						<img src="${user.uploadfile}" width="500" height="500" alt="프로필 이미지">
 						<span class="photo_edit"></span>
 					</a>
