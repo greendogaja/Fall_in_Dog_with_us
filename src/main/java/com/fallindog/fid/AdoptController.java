@@ -1,5 +1,7 @@
 package com.fallindog.fid;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,6 +20,7 @@ import service.AdoptService;
 import service.DogService;
 import vo.AdoptVO;
 import vo.DogVO;
+import vo.NoticeVO;
 
 
 @Controller 
@@ -72,7 +76,8 @@ public class AdoptController {
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+
+//	입양 신청 상세
 	@RequestMapping(value="/adopt_detail")
 	public ModelAndView adopt_detail(HttpServletRequest request, HttpServletResponse response, 
 									 ModelAndView mv, AdoptVO vo) {
@@ -104,23 +109,79 @@ public class AdoptController {
 		}
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		
 
+//	글쓰기
+	@RequestMapping(value="/adopt_insert_form")
+	public ModelAndView adopt_insert_form(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
+		
+		mv.setViewName("adopt_dog/adopt_insert_form");
+		return mv;
+		
+	}
 	
+	@RequestMapping(value="/adopt_insert", method=RequestMethod.POST)
+	public ModelAndView adopt_insert(HttpServletRequest request, HttpServletResponse response,
+									 ModelAndView mv, AdoptVO vo, RedirectAttributes rttr) throws IOException  {
+
+		String uri = "redirect:adopt_board";
+		
+		if (Aservice.insert(vo)>0) {
+			rttr.addFlashAttribute("message", "__Insert Success__");
+			
+		}else {
+			mv.addObject("message", "__Insert Fail__");
+			uri = "adopt_dog/adopt_insert_form";
+			
+		}
+		mv.setViewName(uri);
+		return mv;
+		
+	}
 	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+//	글수정
+	@RequestMapping(value="/adopt_update_form", method=RequestMethod.POST)
+	public ModelAndView adopt_update_form(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, AdoptVO vo)  throws IOException {
+
+		String uri = "adopt_dog/adopt_detail";
+		mv.addObject("Adopt_detail",vo);
+
+		if (Aservice.update(vo) > 0) {
+			mv.addObject("message", "__Update Success__");
+			
+		}else {
+			mv.addObject("message", "__Update Fail__");
+			uri = "adopt_dog/adopt_update_form";
+			
+		}
+		mv.setViewName(uri);
+		return mv;
+		
+	}
 	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+//	글삭제
+	@RequestMapping(value="/adopt_delete")
+	public ModelAndView adopt_delete(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, AdoptVO vo, RedirectAttributes rttr) {
+	 
+		String uri = "redirect:adopt_board";
+
+		if (Aservice.delete(vo) > 0) {
+			rttr.addFlashAttribute("message", "__Delete Success__");
+			
+		}else {
+			rttr.addFlashAttribute("message", "__Delete Fail__");
+			uri = "redirect:adopt_detail?ano="+vo.getAno();
+			
+		}
+		mv.setViewName(uri);
+		return mv;
+		
+	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -223,7 +284,6 @@ public class AdoptController {
 		
 	}
 	
-	
 	@RequestMapping(value="/dog_insert", method=RequestMethod.POST)
 	public ModelAndView dog_insert(HttpServletRequest request, HttpServletResponse response,
 								   ModelAndView mv, DogVO vo, RedirectAttributes rttr) {
@@ -241,6 +301,51 @@ public class AdoptController {
 		mv.setViewName(uri);
 		return mv;
 		
+	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+//	글수정
+	@RequestMapping(value="/dog_update_form", method=RequestMethod.POST)
+	public ModelAndView dog_update_form(HttpServletRequest request, HttpServletResponse response,
+										  ModelAndView mv, DogVO vo)  throws IOException {
+	
+		String uri = "adopt_dog/dog_detail";
+		mv.addObject("Adopt_detail",vo);
+	
+		if (Dservice.update(vo) > 0) {
+			mv.addObject("message", "__Update Success__");
+	
+		}else {
+			mv.addObject("message", "__Update Fail__");
+			uri = "adopt_dog/dog_update_form";
+	
+		}
+		mv.setViewName(uri);
+		return mv;
+	
+	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//	글삭제
+	@RequestMapping(value="/dog_delete")
+	public ModelAndView dog_delete(HttpServletRequest request, HttpServletResponse response,
+									 ModelAndView mv, DogVO vo, RedirectAttributes rttr) {
+
+		String uri = "redirect:dog_list_S";
+
+		if (Dservice.delete(vo) > 0) {
+			rttr.addFlashAttribute("message", "__Delete Success__");
+
+		}else {
+			rttr.addFlashAttribute("message", "__Delete Fail__");
+			uri = "redirect:dog_detail?ano="+vo.getDno();
+
+		}
+		mv.setViewName(uri);
+		return mv;
+
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

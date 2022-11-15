@@ -24,7 +24,7 @@
 		select IFNULL(max(ano),0)+1 from adopt
 	</selectKey>
 	insert into adopt(ano, title, id, content) 
-	values(#{nno}, #{title}, #{id}, #{content})
+	values(#{ano}, #{title}, #{id}, #{content})
 </insert>
 
 <!-- 글수정 -->
@@ -35,8 +35,7 @@
 
 <!-- 글삭제 -->
 <delete id="delete">
-	delete *
-	from adopt where ano=#{ano}
+	delete from adopt where ano=#{ano}
 </delete>	
 	
 <!-- 조회수 -->

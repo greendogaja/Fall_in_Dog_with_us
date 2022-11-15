@@ -17,4 +17,10 @@ public interface DogMapper {
 //	글쓰기
 	int insert(DogVO vo);
 	
+//	글수정
+	int update(DogVO vo);
+	
+//	글삭제
+	int delete(DogVO vo);
+	
 }
