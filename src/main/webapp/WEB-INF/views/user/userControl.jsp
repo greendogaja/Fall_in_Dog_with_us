@@ -25,8 +25,29 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
 	
-	<script src="resources/mLib/inCheck.js"></script>
 	<script>
+	$(function(){
+		$('#searchType').change(function(){
+			if($(this).val()=='n') $('#keyword').val('');
+		});
+		
+		$('#searchBtn').click(function(){
+			self.location="usearchlist"
+			+"${pageMaker.makeQuery(1)}"
+			+"&searchType="
+			+$('#searchType').val()
+			+"&keyword="
+			+$('#keyword').val()
+		});
+	});
+	
+	
+	$("#tbody tr").on('click', 'tbody td', function () {
+	    var row = $("#tbody tr").DataTable().row($(this)).data();
+	});
+
+	
+	
 	 function reclear() {
 			$('#idkey').val('');
 			$('#namekey').val('');
@@ -42,7 +63,7 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/info.css">
+    <link rel="stylesheet" href="resources/css/usearch.css">
 	
 </head>
 <body>
@@ -241,65 +262,65 @@
 	
 	
 	<div class="container">
-		<h2>
+		<h2 class="headertext">
 			회원 관리
 		</h2>
 	
 	
 		<!--조건이 있을때  -->
 		<!--입력값이 있을때 유지  -->
-		<div class="panel panel-default">
-			<div class="panel-heading">회원 정보 입력 (이름 or 별명, 아이디, 연락처 중 한 항목검색)</div>
+		<div class="panel panel-default box1">
+			<div class="panel-heading"><h3 style="display: inline-block;">회원정보 검색</h3>
+			<small>(한 항목씩 검색)</small> 
+			</div>
 			<div class="panel-body">
 				<form action="usearchlist" method="get">
 					<!--아이디검색  -->
-					<c:if test="${!empty pageMaker.cri.idkey}">
-						<div class="form-group">
-							<label for="idkey">ID :</label> <input type="text" 
-							class="form-control" id="idkey" name="idkey" value="${pageMaker.cri.idkey}" class="clear">
+						<div class="form-group fominput">
+							<c:if test="${!empty pageMaker.cri.idkey}">
+								<label for="idkey">아이디 :</label> <input type="text" 
+								class="form-controls" id="idkey" name="idkey" value="${pageMaker.cri.idkey}" class="clear">
+							</c:if>
+							<c:if test="${empty pageMaker.cri.idkey}">
+								<label for="idkey">아이디:</label> <input type="text"
+								class="form-controls" id="idkey" name="idkey" >
+							</c:if>
 						</div>
-						<c:set var="searchinput" value="true"/>					
-					</c:if>
-					<c:if test="${empty pageMaker.cri.idkey}">
-						<label for="idkey">ID:</label> <input type="text"
-						class="form-control" id="idkey" name="idkey" >
-					</c:if>
 				
 					<!--이름 or 별명 검색  -->
-					<c:set var="searchinput" value="false"/>
-					<c:if test="${!empty pageMaker.cri.namekey}">
-						<div class="form-group">
-							<label for="name">이름 or 별명:</label> <input type="text"
-							class="form-control" id="namekey" name="namekey" value="${pageMaker.cri.namekey}" class="clear">
+						<div class="form-group fominput">
+							<c:if test="${!empty pageMaker.cri.namekey}">
+								<label for="name">이름 or 별명:</label> <input type="text"
+								class="form-controls" id="namekey" name="namekey" value="${pageMaker.cri.namekey}" class="clear">
+							</c:if>
+							<c:if test="${empty pageMaker.cri.namekey}">
+								<label for="namekey">이름 or 별명:</label> <input type="text"
+								class="form-controls" id="namekey" name="namekey" >
+							</c:if>
 						</div>
-						<c:set var="searchinput" value="true"/>					
-					</c:if>
-					<c:if test="${empty pageMaker.cri.namekey}">
-						<label for="namekey">이름 or 별명:</label> <input type="text"
-						class="form-control" id="namekey" name="namekey" >
-					</c:if>
 					
 
 					<!--연락처검색  -->
-					<c:if test="${!empty pageMaker.cri.phonekey}">
-						<div class="form-group">
-							<label for="phonekey">연락처:</label> <input type="text" 
-							class="form-control" id="phonekey" name="phonekey" value="${pageMaker.cri.phonekey}" class="clear">
+						<div class="form-group fominput">
+							<c:if test="${!empty pageMaker.cri.phonekey}">
+									<label for="phonekey">연락처:</label> <input type="text" 
+									class="form-controls" id="phonekey" name="phonekey" value="${pageMaker.cri.phonekey}" class="clear">
+							</c:if>
+							<c:if test="${empty pageMaker.cri.phonekey}">
+								<label for="phonekey">연락처:</label> <input type="text"
+								class="form-controls" id="phonekey" name="phonekey" >
+							</c:if>
 						</div>
-						<c:set var="searchinput" value="true"/>					
-					</c:if>
-					<c:if test="${empty pageMaker.cri.phonekey}">
-						<label for="phonekey">연락처:</label> <input type="text"
-						class="form-control" id="phonekey" name="phonekey" >
-					</c:if>
+					<div class="sebtn" >
 					<button type="submit" class="btn btn-default">검색</button>
-					<input type="reset" value="초기화" onclick="return reclear()">
+					<button type="reset"  class="btn btn-default" onclick="return reclear()">초기화</button>
+					</div>
 				</form>
 			</div>
 		</div>
 
-		<div class="panel panel-default">
-			<div class="panel-heading">회원 명단 출력</div>
+		<div class="panel panel-default box2">
+			<div class="panel-heading"><h3>회원명단 출력</h3></div>
 			<div class="panel-body">
 				<table class="table table-striped">
 					<thead>
@@ -314,64 +335,61 @@
 							<th>이메일</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="find">
 
 					
 						<c:forEach var="user" items="${userlist}">
-							<tr>
+							<tr onClick="location.href='info?id=${user.id}'">
 								<td><img src="${user.uploadfile}"></td>
-								<td><a href="info?id=${user.id}">${user.id}</a></td>
+								<td style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
 								<td>${user.name}</td>
 								<td>${user.yy}-${user.mm}-${user.dd}</td>
 								<td>${user.nname}</td>
 								<td>${user.gender}</td>
 								<td >
-								<span class="tcenter2" id="phnum">${user.phone}
+								<span class="tcenter2" id="${user.id}">${user.phone}
 								</span>
-								
-								<!-- <script>
-								 var num = "${user.phone}";
-								 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-								 $('#phnum').text(data);
+								<script>
+									 var num = "${user.phone}";
+									 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+									 $('#${user.id}').text(data);
 								</script>
-								 -->
-								
-								
 								</td>
+								<td>${user.email}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-
-				<form method="post" class="form-inline">
-
-					<div class="form-group">
-						<button type="button" class="btn btn-default">
-
-							<%-- 문제) EL를 이용한 동적 데이터 출력 --%>
+							
+				<div class="form-group searchresult" >
+						<span  class="btnn btn-default" >
 							검색결과 <span class="badge">${pageMaker.totalRowsCount}건</span>
-						</button>
-					</div>
-
+						</span>
+				</div>
+				<div id="searchbar">
+					
 					<div class="form-group">
-						<select class="form-control" name="skey" id="skey">
-							<option value="all">전체</option>
-							<option value="name">이름</option>
-							<option value="phone">별명</option>
+						<select class="form-control" name="searchType" id="searchType">
+							<option value="n" ${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
+							<option value="sid" ${pageMaker.cri.searchType=='sid' ? 'selected' : ''}>ID</option>
+							<option value="sname" ${pageMaker.cri.searchType=='sname' ? 'selected' : ''}>성명</option>
+							<option value="semail" ${pageMaker.cri.searchType=='semail' ? 'selected' : ''}>이메일</option>
 						</select>
 					</div>
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="svalue" name="svalue">
+					
+					<div>
+						<input type="text" class="form-control" id="keyword" name="keyword" value="${pageMaker.cri.keyword}">
 					</div>
-
-					<button type="submit" class="btn btn-default">Search</button>
-
-				</form>
+					
+					<button id="searchBtn" class="btn btn-default">Search</button>
+					
+				</div>
+					
+					
 			</div>
 		</div>
 	</div>
-	<div align="center">
+	<div align="center" class="pagecs">
 	<!-- First, Prev -->
 	<c:choose>
 		<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
@@ -386,7 +404,7 @@
 	<!-- Displag PageNo -->
 	<c:forEach  var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
 		<c:if test="${i==pageMaker.cri.currPage}">
-			<font size="5" color="Orange">${i}</font>&nbsp;
+			<font size="6" color="Orange">${i}</font>&nbsp;
 		</c:if>
 		<c:if test="${i!=pageMaker.cri.currPage}">
 			<a href="usearchlist${pageMaker.searchQuery(i)}">${i}</a>&nbsp;

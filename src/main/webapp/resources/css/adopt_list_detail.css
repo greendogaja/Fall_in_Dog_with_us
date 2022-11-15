@@ -82,13 +82,11 @@ a {
 .dog_Detail .first {
     text-align: center;
     font-weight: bold;
-    color: black;
     background-color: #f7f6f5;
 }
 
 .dog_Detail .last {
     text-align: left;
-    color: #99999a;
     border-bottom: 1px solid #e6e7e8;
 }
 

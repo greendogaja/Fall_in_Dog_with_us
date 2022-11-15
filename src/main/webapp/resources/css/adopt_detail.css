@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+/* 베이스 */
+
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+#content {
+    width: 90%;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 상단 입양위탁 신청 */
+.content-title {
+    padding: 40px 0 40px 0;
+    font-family: "nanumsquare";
+    font-weight: bold;
+    font-size: 40px;
+    color: #333333;
+    text-align: center;
+}
+
+.content-title-wrap {
+    background-color: #f7f6f5;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 상단 작성자 정보, 제목 */
+.content-top {
+    margin-top: 40px;
+    display: inline-block;
+    text-align: left;
+    width: 90%;
+    line-height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.content-top-wrap {
+    margin-bottom: 10px;
+    width: 90%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid gray;
+}
+
+.content-id {
+    padding: 0;
+    display: flex;
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 50px;
+    text-align: left;
+    align-items: center;
+}
+
+.user-img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.user-img img {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.content-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.id-font {
+	font-size: 14px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 수정,삭제,목록 버튼 */
+.content-dtn {
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 210px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.btn-go {
+    padding: 5px;
+    width: 50px;
+    background-color: rgb(188, 188, 188);
+    border-radius: 5px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 본문 내용 */
+.content-text {
+    margin: 10px;
+    display: inline-block;
+    width: 90%;
+    min-height: 500px;
+    border-bottom: 1px solid gray;
+}

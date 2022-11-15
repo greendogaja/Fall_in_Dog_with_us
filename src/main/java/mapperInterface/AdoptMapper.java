@@ -6,15 +6,22 @@ import vo.AdoptVO;
 
 public interface AdoptMapper {
 	
-//	동물 목록
-	List<AdoptVO> selectList_S();
-	List<AdoptVO> selectList_M();
-	List<AdoptVO> selectList_L();
+//	게시판
+	List<AdoptVO> selectList();
 	
-//	상세 페이지
+//	게시글
 	AdoptVO selectOne(AdoptVO vo);
 
 //	글쓰기
 	int insert(AdoptVO vo);
+	
+//	글수정
+	int update(AdoptVO vo);
+	
+//	글삭제
+	int delete(AdoptVO vo);
+	
+//	조회수
+	int countUp(AdoptVO vo);
 	
 }
