@@ -393,7 +393,7 @@
 							<div class="row_item " style="flex-wrap: wrap;">
 								<span class="item_text">별명 :</span>
 								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 10자이내" value="${user.nname}">
-									<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;">중복확인</button><br>
+									<button type="button"  id="idDup" onclick="return nickCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;">중복확인</button><br>
 									<span id="nnMessage" class="eMessage" style="margin:auto;"></span>
 							</div>
 						</li>
@@ -511,10 +511,11 @@
 						</li>
 					</ul>
 					<div class="form-group" style="margin-top: 10px;">
-							<a href="userdelete" calss="btn btn-primary">회원탈퇴 ></a>
+							<a href="userdelete?id=${user.id}" >회원탈퇴 ></a>
+							<%-- <a href="userdelete?id=${user.id}" >회원탈퇴 ></a> --%>
 							<div style="float:right;">
 							<input name="submit" id="submit" onclick="return upCheck()"  type="submit" value="수정하기"
-								class="btn btn-primary" >
+								class="btn btn-primary" disabled >
 							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
 					</div>

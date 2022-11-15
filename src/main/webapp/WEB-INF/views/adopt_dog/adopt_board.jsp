@@ -37,6 +37,7 @@
 </head>
 
 <body>
+        
     <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -135,7 +136,7 @@
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            <span class="navbarToggler"><span>
                         </div>
 
                         <!-- Menu -->
@@ -188,6 +189,8 @@
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
                                     </li>
+                                    
+                                    
                                     <li><a href="home.jsp">About Us</a></li>
                                     <li><a href="#">Community</a>
                                         <ul class="dropdown">
@@ -236,7 +239,6 @@
 						<fieldset>
 							<legend>검색</legend>
 
-
 							<label for="srchKey" class="hd-element">검색옵션선택</label>
 							<select name="srchKey" class="srchKey">
 								<option value="" selected="selected">전체</option>
@@ -266,121 +268,31 @@
 						</ul>
 					</div>
 				</div><!-- //bbs-list-head -->
+				
 				<!-- bbs-list-body -->
 				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">510</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">509</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">508</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">507</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">506</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">505</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">504</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">503</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">502</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
-				</div>
-				<div class="article">
-					<a href="">
-						<ul>
-							<li class="no">501</li>
-							<li class="subject">제목제목제목제목제목</li>
-							<li class="name">작성자</li>
-							<li class="date">2022-11-02</li>
-							<li class="hit">9999</li>
-						</ul>
-					</a>
+					<c:if test="${not empty Adopt_list}">
+						<c:forEach var="list" items="${Adopt_list}">
+						
+							<a href="adopt_detail?ano=${list.ano}">
+								<ul>
+									<li class="no">${list.ano}</li>
+									<li class="subject">${list.title}</li>
+									<li class="name">${list.id}</li>
+									<li class="date">${list.regdate}</li>
+									<li class="hit">${list.cnt}</li>
+								</ul>
+							</a>
+							
+						</c:forEach>
+					</c:if>
+					
 				</div>
 			</div><!-- //bbs-list-wrap -->
 			<!-- paging-wrap -->
 
 			<div class="paging-wrap">
+			
 				<div class="paging">
 					<a href="" title="처음 페이지" class="com first"><span>처음</span></a>
 					<a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
@@ -389,7 +301,6 @@
 					<a href="" title="2 페이지">3</a>
 					<a href="" title="다음 페이지" class="com next"><span>다음</span></a>
 					<a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
-
 				</div>
 				
 				<a class="btn-go" href=""><span>글쓰기</span></a>

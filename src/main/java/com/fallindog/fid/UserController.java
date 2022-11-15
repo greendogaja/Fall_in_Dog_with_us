@@ -57,17 +57,15 @@ public class UserController {
     	return mv;
 	}
 	//**별명 중복확인
-	@RequestMapping(value="/dupnCheck")
-	public ModelAndView dupnCheck(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value="/nickCheck")
+	public ModelAndView nickCheck(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView mv,UserVO vo) {
-		
 		mv.addObject("newNick", vo.getNname());
-		
-		vo=service.selectOne(vo);
+		vo=service.selectnickOne(vo);
 		if ( vo != null ) {
-			mv.addObject("use","F"); 
+			mv.addObject("useNick","F"); 
 		}else {
-			mv.addObject("use", "T");
+			mv.addObject("useNick", "T");
 		}
 		mv.setViewName("user/nickCheck");
 		return mv;
@@ -144,6 +142,7 @@ public class UserController {
 				request.getSession().setAttribute("loginNick", vo.getNname());
 				request.getSession().setAttribute("loginName", vo.getName());
 				request.getSession().setAttribute("loginPW", password);
+				request.getSession().setAttribute("loginImg", vo.getUploadfile());
 				
 				Cookie cook = new Cookie("userId",vo.getId());
 				if (idsave != null && idsave.equals("cook")) {
@@ -215,7 +214,6 @@ public class UserController {
 	public ModelAndView infoupdate(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
 	    
 	  	String uri = "/user/info";
-	  	System.out.println("#######"+vo);
 	  	mv.addObject("user", vo);
 		 String realPath = request.getRealPath("/"); 
 	      if ( realPath.contains(".eclipse.") )  
@@ -242,7 +240,6 @@ public class UserController {
 			mv.addObject("message"," 내정보수정 성공 ");
 		  	mv.addObject("user", vo);
 		}else{
-			System.out.println("수정실패###########################################");
 			mv.addObject("msg", " 내정보수정 실패 ");
 			uri = "/user/updateForm";
 		}
@@ -290,7 +287,7 @@ public class UserController {
 		String namekey  = request.getParameter("namekey");
 		String phonekey = request.getParameter("phonekey");
 		String idkey = request.getParameter("idkey");
-		
+		System.out.println("#######"+cri);
 		cri.setRowsPerPage(5);
 		 if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
 		 else cri.setNamekey(namekey);
@@ -303,7 +300,6 @@ public class UserController {
 		if ( cri.getCheck() !=null && cri.getCheck().length < 1 ) {
 			cri.setCheck(null);
 		}
-		System.out.println("#####################"+cri);
 		mv.addObject("userlist", service.searchList(cri));
 		
 		pageMaker.setCri(cri);

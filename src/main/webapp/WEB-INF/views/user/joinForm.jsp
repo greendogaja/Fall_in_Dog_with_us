@@ -380,7 +380,7 @@
 									class="glyphicon glyphicon-envelope"></i></span> 
 									<input type="text" class="form-control" name="nname" id="nname" placeholder="한글,영문 10자이내" value="">
 									<span id="nnMessage" class="eMessage"></span>
-							<button type="button"  id="idDup" onclick="dupnCheck()" style="margin-left:30px;">별명 중복확인</button>
+							<button type="button"  id="idDup" onclick="nickCheck()" style="margin-left:30px;">별명 중복확인</button>
 							</div>
 							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small>
 						</div>

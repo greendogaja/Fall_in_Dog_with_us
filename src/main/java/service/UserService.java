@@ -11,6 +11,7 @@ public interface UserService {
 
 	//** SelectOne
 	UserVO selectOne(UserVO vo);
+	UserVO selectnickOne(UserVO vo);
 	
 	//** Insert
 	int insert(UserVO vo);

@@ -27,12 +27,12 @@
 	
 	<script src="resources/mLib/inCheck.js"></script>
 	<script>
-		function reclear() {
+	 function reclear() {
 			$('#idkey').val('');
 			$('#namekey').val('');
 			$('#phonekey').val('');
 			return false;
-		} 
+	} 
 	</script>
 	
     <!-- Title -->
@@ -252,6 +252,18 @@
 			<div class="panel-heading">회원 정보 입력 (이름 or 별명, 아이디, 연락처 중 한 항목검색)</div>
 			<div class="panel-body">
 				<form action="usearchlist" method="get">
+					<!--아이디검색  -->
+					<c:if test="${!empty pageMaker.cri.idkey}">
+						<div class="form-group">
+							<label for="idkey">ID :</label> <input type="text" 
+							class="form-control" id="idkey" name="idkey" value="${pageMaker.cri.idkey}" class="clear">
+						</div>
+						<c:set var="searchinput" value="true"/>					
+					</c:if>
+					<c:if test="${empty pageMaker.cri.idkey}">
+						<label for="idkey">ID:</label> <input type="text"
+						class="form-control" id="idkey" name="idkey" >
+					</c:if>
 				
 					<!--이름 or 별명 검색  -->
 					<c:set var="searchinput" value="false"/>
@@ -267,18 +279,6 @@
 						class="form-control" id="namekey" name="namekey" >
 					</c:if>
 					
-					<!--아이디검색  -->
-					<c:if test="${!empty pageMaker.cri.idkey}">
-						<div class="form-group">
-							<label for="idkey">ID :</label> <input type="text" 
-							class="form-control" id="idkey" name="idkey" value="${pageMaker.cri.idkey}" class="clear">
-						</div>
-						<c:set var="searchinput" value="true"/>					
-					</c:if>
-					<c:if test="${empty pageMaker.cri.idkey}">
-						<label for="idkey">ID:</label> <input type="text"
-						class="form-control" id="idkey" name="idkey" >
-					</c:if>
 
 					<!--연락처검색  -->
 					<c:if test="${!empty pageMaker.cri.phonekey}">
@@ -326,14 +326,18 @@
 								<td>${user.nname}</td>
 								<td>${user.gender}</td>
 								<td >
-								<span id="phnum"></span>
-								<script>
+								<span class="tcenter2" id="phnum">${user.phone}
+								</span>
+								
+								<!-- <script>
 								 var num = "${user.phone}";
 								 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
 								 $('#phnum').text(data);
 								</script>
+								 -->
+								
+								
 								</td>
-								<td>${user.email}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

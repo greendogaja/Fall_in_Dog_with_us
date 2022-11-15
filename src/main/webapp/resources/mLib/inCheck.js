@@ -86,7 +86,7 @@
 	if ( phone.length < 11) {
 		$('#phMessage').html(' 연락처를 입력 해주세요');
 		return false;
-	}else if (phone.replace(/[^0-9]/g, '').length<11) {
+	}else if (phone.replace(/[^0-9]/g, '').length<1) {
 		$('#phMessage').html('  연락처는 숫자만 가능합니다'  );
 		return false;
 	}else{
@@ -104,10 +104,10 @@ function dupCheck(){
 		}		
 }//dupCheck
 
-function dupnCheck(){
+function nickCheck(){
     	if(nnCheck ==false) nCheck=nnmCheck();
     	else{
-    		let url ='dupnCheck?nname='+$('#nname').val()
+    		let url ='nickCheck?nname='+$('#nname').val()
     		window.open(url,'_blank',
     				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		
@@ -140,7 +140,7 @@ function upCheck(){
 	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
 	
 	if(pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
-		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
+		if ( confirm("~~ 정말 수정 하십니까 ? (Yes:확인 / No:취소)")==false ) {
 			 alert('~~ 가입이 취소 되었습니다 ~~');
 			 return false; 
 		}else return true; 

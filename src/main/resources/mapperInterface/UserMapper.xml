@@ -13,6 +13,9 @@
   	<select id="selectOne" resultType="vo.UserVO">
   		select * from user where id=#{id}
   	</select>
+  	<select id="selectnickOne" resultType="vo.UserVO">
+  		select * from user where nname=#{nname}
+  	</select>
   	
   	<update id="update">
   		update user set password=#{password}, name=#{name}, nname=#{nname},
