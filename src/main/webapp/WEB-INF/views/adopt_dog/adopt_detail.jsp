@@ -233,18 +233,18 @@
         <div class="content-top-wrap">
             <!-- 이용자 정보 -->
             <div class="content-id">
-                <a href="" class="user-img"><img src="resources/img/uploadImage/user/Gosegu.webp"></a>
+                <a href="" class="user-img"><img src="${loginImg}"></a>
                 <div class="content-user">
-                    <a href="">${Adopt_detail.id}</a>
-                    <p>${Adopt_detail.regdate}</p>
+                    <a href="" class="id-font">${Adopt_detail.id}</a>
+                    <p class="id-font">${Adopt_detail.regdate}</p>
                 </div>
             </div>
 
             <!-- 목록 버튼 -->
             <div class="content-dtn">
-                <a class="btn-go" href=""><span>수정</span></a>
-                <a class="btn-go" href=""><span>삭제</span></a>
-                <a class="btn-go" href=""><span>목록</span></a>
+                <a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
+                <a class="btn-go" href="adopt_delete"><span>삭제</span></a>
+                <a class="btn-go" href="adopt_board"><span>목록</span></a>
             </div>
         </div>
 
@@ -285,9 +285,9 @@
 
         <div class="content-dtn">
             <!-- 수정_삭제_목록 -->
-            <a class="btn-go" href=""><span>수정</span></a>
-            <a class="btn-go" href=""><span>삭제</span></a>
-            <a class="btn-go" href=""><span>목록</span></a>
+            <a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
+            <a class="btn-go" href=adopt_delete><span>삭제</span></a>
+            <a class="btn-go" href="adopt_board"><span>목록</span></a>
         </div>
     </div>
    

@@ -5,7 +5,7 @@ import java.util.List;
 import vo.DogVO;
 
 public interface DogService {
-
+	
 //	동물 목록
 	List<DogVO> selectList_S();
 	List<DogVO> selectList_M();
@@ -16,5 +16,11 @@ public interface DogService {
 
 //	글쓰기
 	int insert(DogVO vo);
+	
+//	글수정
+	int update(DogVO vo);
+	
+//	글삭제
+	int delete(DogVO vo);
 	
 }

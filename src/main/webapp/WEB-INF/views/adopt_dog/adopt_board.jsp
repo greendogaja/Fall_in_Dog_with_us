@@ -303,7 +303,7 @@
 					<a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
 				</div>
 				
-				<a class="btn-go" href=""><span>글쓰기</span></a>
+				<a class="btn-go" href="adopt_insert_form"><span>글쓰기</span></a>
 			</div>
 
 
