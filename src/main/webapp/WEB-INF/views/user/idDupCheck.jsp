@@ -59,7 +59,7 @@ function idOK(){
 <body>
 <div id="wrap" >
 <form action="dupCheck" method="get">
-	<legend>별명 중복확인</legend>
+	<legend>아이디 중복확인</legend>
 			<div class="form-group">
 				<label class="control-label col-sm-3">별명<span
 					class="text-danger">*</span></label>
@@ -70,7 +70,7 @@ function idOK(){
 							class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
 							value=""> 
 						<button type="submit" class="doubch" onclick="return idCheck()"
-							style="margin-left: 30px;">별명 중복확인</button>
+							style="margin-left: 30px;">ID 중복확인</button>
 							<span id="iMessage" class="eMessage"></span>
 					</div>
 					<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>

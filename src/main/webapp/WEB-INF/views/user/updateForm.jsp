@@ -43,68 +43,45 @@
     	}
     </style>
     <script>
-    let iCheck =false;
-    let pCheck =false;
-    let ppCheck =false;
-    let nCheck =false;
-    let nnCheck =false;
-    let phCheck=false;
+    let pCheck =true;
+    let ppCheck =true;
+    let nCheck =true;
+    let nnCheck =true;
+    let phCheck=true;
     
     $(function(){
     	
     	
     	//## password
-    	$('#password').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    		}
-    	}).focusout(function(){
+    	$('#password').on("keyup change", function(e){
+    		pCheck=false;
+   			e.preventDefault();  
     		pCheck = pwCheck();
     	});
-    	
-    	
     	//## cpassoword
-    	$('#cpassword').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();		}
-    	}).focusout(function(){
+       	$('#cpassword').on("keyup change", function(e){
+    		ppCheck=false;
+   			e.preventDefault();  
     		ppCheck = cpCheck();
     	});
-    	
-    	//## name
-    	$('#name').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#nname').focus();
-    		}
-    	}).focusout(function(){
+     	 //## name
+    	$('#name').on("keyup change", function(e){
+    		nCheck=false;
+   			e.preventDefault();  
     		nCheck = nmCheck();
     	});
-    	//## nname	
-    	$('#nname').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#email').focus();
-    		}
-    	}).focusout(function(){
+    	//## nname
+    	$('#nname').on("keyup change", function(e){
+    		nnCheck=false;
+    		$('#submit').attr('disabled','disabled');
+    		$('#idDupn').prop('disabled',false);
+   			e.preventDefault();  
     		nnCheck = nnmCheck();
     	});
-
-    	//## email
-    	$('#email').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#phone').focus();
-    		}
-    	});
-
     	//## phone
-    	$('#phone').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#submit').focus();
-    		}
-    	}).focusout(function(){
+    	$('#phone').on("keyup change", function(e){
+    		phCheck=false;
+   			e.preventDefault();  
     		phCheck = phoCheck();
     	});
     	
@@ -393,7 +370,7 @@
 							<div class="row_item " style="flex-wrap: wrap;">
 								<span class="item_text">별명 :</span>
 								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 10자이내" value="${user.nname}">
-									<button type="button"  id="idDup" onclick="return nickCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;">중복확인</button><br>
+									<button type="button"  id="idDupn" onclick="return nickCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;" disabled>중복확인</button><br>
 									<span id="nnMessage" class="eMessage" style="margin:auto;"></span>
 							</div>
 						</li>
@@ -515,7 +492,7 @@
 							<%-- <a href="userdelete?id=${user.id}" >회원탈퇴 ></a> --%>
 							<div style="float:right;">
 							<input name="submit" id="submit" onclick="return upCheck()"  type="submit" value="수정하기"
-								class="btn btn-primary" disabled >
+								class="btn btn-primary"  >
 							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
 					</div>

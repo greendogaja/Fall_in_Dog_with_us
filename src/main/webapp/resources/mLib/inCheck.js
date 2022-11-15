@@ -83,17 +83,52 @@
 
  function phoCheck(){
  	let phone = $('#phone').val();
-	if ( phone.length < 11) {
-		$('#phMessage').html(' 연락처를 입력 해주세요');
+	if ( phone.length != 11) {
+		$('#phMessage').html(' 연락처를 입력 해주세요.');
 		return false;
 	}else if (phone.replace(/[^0-9]/g, '').length<1) {
-		$('#phMessage').html('  연락처는 숫자만 가능합니다'  );
+		$('#phMessage').html('  연락처는 숫자만 가능합니다.'  );
 		return false;
 	}else{
 		$('#phMessage').html('');
 		return true;
 	}
  }//nmCheck
+ 
+ 
+ function bryCheck(){
+	
+	let yy = $("#yy option:selected").text(); 
+ 	if( yy == '선택'){
+ 		$('#brMessage').html('생년월일을 선택 해주세요.');
+ 		return false;
+ 	}else{
+ 		$('#brMessage').html('');
+ 		return true;
+ 	}
+ }
+ function brmCheck(){
+	
+	let mm = $("#mm option:selected").text(); 
+ 	if( mm == '선택'){
+ 		$('#brMessage').html('생년월일을 선택 해주세요.');
+ 		return false;
+ 	}else{
+ 		$('#brMessage').html('');
+ 		return true;
+ 	}
+ }
+ function brdCheck(){
+	
+	let dd = $("#dd option:selected").text(); 
+ 	if( dd == '선택'){
+ 		$('#brMessage').html('생년월일을 선택 해주세요.');
+ 		return false;
+ 	}else{
+ 		$('#brMessage').html('');
+ 		return true;
+ 	}
+ }
 
 function dupCheck(){
     	if(iCheck ==false) iCheck=idCheck();
@@ -121,8 +156,9 @@ function inCheck(){
 	if(nCheck==false){$('#nMessage').html('성명을 확인하세요'); }		
 	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요'); }		
 	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
+	if(bCheck==false){$('#brMessage').html('생년월일을 확인하세요'); }		
 	
-	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
+	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck && bCheck ){
 		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
 			 alert('~~ 가입이 취소 되었습니다 ~~');
 			 return false; 
