@@ -32,6 +32,7 @@ public class CustomerController {
 	public ModelAndView joinf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
 								, SearchCriteria cri, PageMaker pageMaker) {
 		response.setContentType("text/html; charset=UTF-8;");
+		System.out.println("#####"+cri);
 		cri.setSnoEno();
 	    mv.addObject("faqlist", service.searchList(cri));  //ver2
 	    pageMaker.setCri(cri);
