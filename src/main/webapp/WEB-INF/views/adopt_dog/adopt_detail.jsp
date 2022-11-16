@@ -253,44 +253,41 @@
             ${Adopt_detail.content}
         </div>
 
-        <div>
-            <!-- 댓글 -->
+        <!-- 댓글 -->
+        <div class="comment">
+            <!-- 댓글 창 -->
             <div>
-                <!-- 댓글 창 -->
-                <div>
-                    <span>댓글 작성자 정보</span>
-                    <div>
-                        <a class="btn-go" href=""><span>수정</span></a>
-                        <a class="btn-go" href=""><span>삭제</span></a>
-                    </div>
-                </div>
 
-                <div>
-                    <textarea rows="5" cols="100" readonly>상대방 댓글 내용</textarea>
-                </div>
             </div>
 
-            <form action="binsert" method="Post">
+            <form action="binsert" method="Post" class="comment-form">
                 <!-- 댓글 쓰기 -->
-                <div>
-                    <input type="text" name="id" value="${loginID}" size="20" readonly>
+                <div class="comment-text">
+                    <textarea rows="5" cols="100" placeholder="댓글 작성" name="content"></textarea>
                 </div>
 
-                <div>
-                    <textarea rows="5" cols="100" placeholder="댓글 작성" name="content"></textarea>
+                <div class="comment-submit">
+                    <input type="text" name="id" value="${loginID}" size="20" readonly>
                     <input type="submit" value="등록">
                 </div>
             </form>
         </div>
-
-        <div class="content-dtn">
-            <!-- 수정_삭제_목록 -->
-            <a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
-            <a class="btn-go" href=adopt_delete><span>삭제</span></a>
-            <a class="btn-go" href="adopt_board"><span>목록</span></a>
-        </div>
     </div>
    
+  
+  
+  
+  
+  
+
+
+
+  
+  
+  
+  
+  
+  
   
 
 

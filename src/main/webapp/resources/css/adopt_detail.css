@@ -116,4 +116,40 @@ a {
     width: 90%;
     min-height: 500px;
     border-bottom: 1px solid gray;
+    text-align: left;
 }
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 댓글 */
+.comment {
+    width: 90%;
+    border-top: 1px solid gray;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding-top: 20px;
+    position: relative;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
