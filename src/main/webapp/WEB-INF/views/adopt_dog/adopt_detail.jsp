@@ -23,6 +23,11 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    
+    <!-- 댓글 Ajax -->
+	<script src="resources/myLib/adopt_reply.js"></script>
+    
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -33,6 +38,11 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/adopt_detail.css">
+    
+    
+    
+    
+    
 
 </head>
 
@@ -256,11 +266,11 @@
         <!-- 댓글 -->
         <div class="comment">
             <!-- 댓글 창 -->
-            <div>
-
-            </div>
-
-            <form action="binsert" method="Post" class="comment-form">
+			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+				<div id="replyList"></div>
+				<div id="showReplyList"></div>
+			</div> 
+            <form action="binsert" method="Post" class="comment-form" name="form" id="form" role="form" modelAttribute="replyVO" method="post">
                 <!-- 댓글 쓰기 -->
                 <div class="comment-text">
                     <textarea rows="5" cols="100" placeholder="댓글 작성" name="content"></textarea>
@@ -268,27 +278,12 @@
 
                 <div class="comment-submit">
                     <input type="text" name="id" value="${loginID}" size="20" readonly>
-                    <input type="submit" value="등록">
                 </div>
             </form>
+                    <button type="button" class="btn btn-sm btn-primary" id="btnReplySave" >등록</button>
         </div>
     </div>
    
-  
-  
-  
-  
-  
-
-
-
-  
-  
-  
-  
-  
-  
-  
 
 
 
