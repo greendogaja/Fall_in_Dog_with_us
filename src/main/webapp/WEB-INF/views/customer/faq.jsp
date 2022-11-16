@@ -26,7 +26,6 @@
 		$('#searchType').change(function(){
 			if($(this).val()=='n') $('#keyword').val('');
 		});
-		
 		$('#searchBtn').click(function(){
 			self.location="customerhome"
 			+"${pageMaker.makeQuery(1)}"
