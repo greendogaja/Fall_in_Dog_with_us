@@ -24,7 +24,9 @@ const CommentList = function(cno){
 				let reg = data[i].reg;
 				
 				console.log(grpl); // 모댓글일땐 0, 답글일땐 1
-                listHtml += "<div class='
+				
+				listHtml += "<div class='
+				
 	
 	});
 

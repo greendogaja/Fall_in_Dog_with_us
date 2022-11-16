@@ -7,45 +7,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mapperInterface.UserMapper;
+import mapperInterface.CustomerMapper;
 import usercontrol.SearchCriteria;
-import vo.UserVO;
+import vo.CustomerVO;
 
 
 
 @Service
-public class UserServiceimpl implements UserService{
+public class CustomerServiceImpl implements CustomerService{
 	@Autowired
-	UserMapper mapper;
+	CustomerMapper mapper;
 	
 	//** selectOne
 	@Override 
-	public UserVO selectOne(UserVO vo) { return mapper.selectOne(vo); 
+	public CustomerVO selectOne(CustomerVO vo) { return mapper.selectOne(vo); 
 	}
 	@Override 
-	public UserVO selectnickOne(UserVO vo) { return mapper.selectnickOne(vo); 
+	public CustomerVO selectnickOne(CustomerVO vo) { return mapper.selectnickOne(vo); 
 	}
-	
 	//** Insert
 	@Override
-	public int insert(UserVO vo) {
+	public int insert(CustomerVO vo) {
 		return mapper.insert(vo);
 	}
 	//** Update
 	@Override
-	public int update(UserVO vo) {
+	public int update(CustomerVO vo) {
 		return mapper.update(vo);
 	}
 	
 	//** Delete
 	@Override
-	public int delete(UserVO vo) {
+	public int delete(CustomerVO vo) {
 		return mapper.delete(vo);
 	}
 	
-	//** List
 	@Override
-	public List<UserVO> searchList(SearchCriteria cri){
+	public List<CustomerVO> searchList(SearchCriteria cri){
 		return mapper.searchList(cri);
 	}
 	@Override
@@ -53,7 +51,7 @@ public class UserServiceimpl implements UserService{
 		return mapper.searchCount(cri);
 	}
 	@Override
-	public List<UserVO> selectList(){
+	public List<CustomerVO> selectList(){
  		return mapper.selectList();
  	}
 	
