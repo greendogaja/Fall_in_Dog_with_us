@@ -20,6 +20,7 @@ public interface UserService {
 	//** Delete
 	int delete(UserVO vo);
 	
+	//** List
 	List<UserVO> selectList();
 	List<UserVO> searchList(SearchCriteria cri);
 	int searchCount(SearchCriteria cri);
