@@ -148,6 +148,7 @@ function nickCheck(){
 		}		
 }//dupCheck
 
+
 function inCheck(){
 	if(iCheck==false){$('#iMessage').html('아이디를 확인하세요.'); }		
 	if(pCheck==false){$('#pMessage').html('비밀번호를 확인하세요.'); }		

@@ -14,8 +14,7 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -24,44 +23,17 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    <script src="resources/mLib/customer.js"></script>
         <!-- Title -->
-    <title>Fall IN Dog - 폴인독</title>
-
-  
-	
-	<script>
-	$(function(){
-		$('#searchType').change(function(){
-			if($(this).val()=='n') $('#keyword').val('');
-		});
-		
-		$('#searchBtn').click(function(){
-			self.location="usearchlist"
-			+"${pageMaker.makeQuery(1)}"
-			+"&searchType="
-			+$('#searchType').val()
-			+"&keyword="
-			+$('#keyword').val()
-		});
-	});
-	
-	 function reclear() {
-			$('#idkey').val('');
-			$('#namekey').val('');
-			$('#phonekey').val('');
-			return false;
-	} 
-	</script>
-	
-    <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
     <!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/usearch.css">
-	
+    
+    
+  
 </head>
 <body>
 	<!-- Preloader -->
@@ -142,7 +114,7 @@
 												<li><a href="#" style="color: white;">내가단댓글</a></li>
 												<li><a href="info" style="color: white;">회원정보</a></li>
 												<c:if test="${'admin' == loginID }">
-													<li><a href="#" style="color: white;">회원관리</a></li>
+													<li><a href="usearchlist" style="color: white;">회원관리</a></li>
 
 												</c:if>
 											</ul></li>
@@ -258,167 +230,41 @@
 	<!-- ##### Header Area End ##### -->
 	
 	
-	<div class="container">
-		<h2 class="headertext">
-			회원 관리
-		</h2>
 	
-	
-		<!--조건이 있을때  -->
-		<!--입력값이 있을때 유지  -->
-		<div class="panel panel-default box1">
-			<div class="panel-heading"><h3 style="display: inline-block;">회원정보 검색</h3>
-			<small>(한 항목씩 검색)</small> 
-			</div>
-			<div class="panel-body">
-				<form action="usearchlist" method="get">
-					<!--아이디검색  -->
-						<div class="form-group fominput">
-							<c:if test="${!empty pageMaker.cri.idkey}">
-								<label for="idkey">아이디 :</label> <input type="text" 
-								class="form-controls" id="idkey" name="idkey" value="${pageMaker.cri.idkey}" class="clear">
-							</c:if>
-							<c:if test="${empty pageMaker.cri.idkey}">
-								<label for="idkey">아이디:</label> <input type="text"
-								class="form-controls" id="idkey" name="idkey" >
-							</c:if>
-						</div>
-				
-					<!--이름 or 별명 검색  -->
-						<div class="form-group fominput">
-							<c:if test="${!empty pageMaker.cri.namekey}">
-								<label for="name">이름 or 별명:</label> <input type="text"
-								class="form-controls" id="namekey" name="namekey" value="${pageMaker.cri.namekey}" class="clear">
-							</c:if>
-							<c:if test="${empty pageMaker.cri.namekey}">
-								<label for="namekey">이름 or 별명:</label> <input type="text"
-								class="form-controls" id="namekey" name="namekey" >
-							</c:if>
-						</div>
-					
-
-					<!--연락처검색  -->
-						<div class="form-group fominput">
-							<c:if test="${!empty pageMaker.cri.phonekey}">
-									<label for="phonekey">연락처:</label> <input type="text" 
-									class="form-controls" id="phonekey" name="phonekey" value="${pageMaker.cri.phonekey}" class="clear">
-							</c:if>
-							<c:if test="${empty pageMaker.cri.phonekey}">
-								<label for="phonekey">연락처:</label> <input type="text"
-								class="form-controls" id="phonekey" name="phonekey" >
-							</c:if>
-						</div>
-					<div class="sebtn" >
-					<button type="submit" class="btn btn-default">검색</button>
-					<button type="reset"  class="btn btn-default" onclick="return reclear()">초기화</button>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<div class="panel panel-default box2">
-			<div class="panel-heading"><h3>회원명단 출력</h3></div>
-			<div class="panel-body">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>프로필</th>
-							<th>아이디</th>
-							<th>이름</th>
-							<th>생년월일</th>
-							<th>별명</th>
-							<th>성별</th>
-							<th>연락처</th>
-							<th>이메일</th>
-						</tr>
-					</thead>
-					<tbody id="find">
-
-					
-						<c:forEach var="user" items="${userlist}">
-							<tr onClick="location.href='info?id=${user.id}'">
-								<td><img src="${user.uploadfile}"></td>
-								<td style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
-								<td>${user.name}</td>
-								<td>${user.yy}-${user.mm}-${user.dd}</td>
-								<td>${user.nname}</td>
-								<td>${user.gender}</td>
-								<td >
-								<span class="tcenter2" id="${user.id}">${user.phone}
-								</span>
-								<script>
-									 var num = "${user.phone}";
-									 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-									 $('#${user.id}').text(data);
-								</script>
-								</td>
-								<td>${user.email}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-							
-				<div class="form-group searchresult" >
-						<span  class="btnn btn-default" >
-							검색결과 <span class="badge">${pageMaker.totalRowsCount}건</span>
-						</span>
+	<div id="contentbox" class="site_content">
+		<div id="primary" class="content-area lw_common_container">
+			<div id="mf_sideWrap" class="w2wframe sideWrap">
+				<h2 id="mf_sideWrap_wq_uuid_431" class="w2textbox">고객센터</h2>
+				<div id="mf_sideWrap_accordian" class="w2group">
+					<ul id="mf_sideWrap_wq_uuid_433"class="w2group">
+						<li id="mf_sideWrap_grp_useInf" class="w2group">
+							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
+							<ul id="mf_sideWrap_ul_useInf" class="w2group" aria-hidden="false" style="display:block;">
+								<li>
+									<a href="#">입양안내 및 절차</a>
+								</li>
+								<li>
+									<a href="#">공지사항</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">자주묻는질문(FAQ)</a>
+						</li>
+						<li>
+							<a href="#">1:1문의하기(Q&amp;A)</a>
+						</li>
+						<li>
+							<a href="#">위치안내</a>
+						</li>
+					</ul>
 				</div>
-				<div id="searchbar">
-					
-					<div class="form-group">
-						<select class="form-control" name="searchType" id="searchType">
-							<option value="n" ${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
-							<option value="sid" ${pageMaker.cri.searchType=='sid' ? 'selected' : ''}>ID</option>
-							<option value="sname" ${pageMaker.cri.searchType=='sname' ? 'selected' : ''}>성명</option>
-							<option value="semail" ${pageMaker.cri.searchType=='semail' ? 'selected' : ''}>이메일</option>
-						</select>
-					</div>
-					
-					<div>
-						<input type="text" class="form-control" id="keyword" name="keyword" value="${pageMaker.cri.keyword}">
-					</div>
-					
-					<button id="searchBtn" class="btn btn-default">Search</button>
-					
-				</div>
-					
-					
 			</div>
 		</div>
 	</div>
-	<div align="center" class="pagecs">
-	<!-- First, Prev -->
-	<c:choose>
-		<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-			<a href="usearchlist${pageMaker.searchQuery(1)}">처음</a>&nbsp;
-			<a href="usearchlist${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
-			
-		</c:when>
-		<c:otherwise>
-			<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>   
-		</c:otherwise>
-	</c:choose>	
-	<!-- Displag PageNo -->
-	<c:forEach  var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
-		<c:if test="${i==pageMaker.cri.currPage}">
-			<font size="6" color="Orange">${i}</font>&nbsp;
-		</c:if>
-		<c:if test="${i!=pageMaker.cri.currPage}">
-			<a href="usearchlist${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
-		</c:if>
-	</c:forEach>
-	<!-- Next, Last -->
-	<c:choose>
-		<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-			<a href="usearchlist${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>  
-			<a href="usearchlist${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a> 
-		</c:when>
-		<c:otherwise>
-			<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>   
-		</c:otherwise>
-	</c:choose>
-</div>
-	
+
+
+	<div id="resultarea"></div><!--area  -->
 	
 	<!--######################### Footer -->
     <footer class="footer-area text-center" style="font-size:1rem;">
