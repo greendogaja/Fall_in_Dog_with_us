@@ -31,7 +31,6 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/usearch.css">
 </head>
 <body>
 	<!-- Preloader -->
@@ -112,7 +111,7 @@
 												<li><a href="#" style="color: white;">내가단댓글</a></li>
 												<li><a href="info" style="color: white;">회원정보</a></li>
 												<c:if test="${'admin' == loginID }">
-													<li><a href="#" style="color: white;">회원관리</a></li>
+													<li><a href="usearchlist" style="color: white;">회원관리</a></li>
 
 												</c:if>
 											</ul></li>
@@ -226,5 +225,96 @@
 		</div>
 	</header>
 	<!-- ##### Header Area End ##### -->
+	
+	
+	
+	<div id="contentbox" class="site_content">
+		<div id="primary" class="content-area lw_common_container">
+			<div id="mf_sideWrap" class="w2wframe sideWrap">
+				<h2 id="mf_sideWrap_wq_uuid_431" class="w2textbox">고객센터</h2>
+				<div id="mf_sideWrap_accordian" class="w2group">
+					<ul id="mf_sideWrap_wq_uuid_433"class="w2group">
+						<li id="mf_sideWrap_grp_useInf" class="w2group">
+							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
+							<ul id="mf_sideWrap_ul_useInf" class="w2group" aria-hidden="false" style="display:block;">
+								<li>
+									<a href="#">입양안내 및 절차</a>
+								</li>
+								<li>
+									<a href="#">공지사항</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">자주묻는질문(FAQ)</a>
+						</li>
+						<li>
+							<a href="#">1:1문의하기(Q&amp;A)</a>
+						</li>
+						<li>
+							<a href="#">위치안내</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="resultarea"></div><!--area  -->
+	
+	<!--######################### Footer -->
+    <footer class="footer-area text-center" style="font-size:1rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                    <!-- Footer Nav Area -->
+                    <div class="classy-nav-container breakpoint-off" >
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar ">
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+
+                                <!-- close btn -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Lifestyle</a></li>
+                                        <li><a href="#">travel</a></li>
+                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Nav End -->
+                            </div>
+                        </nav>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+E-mail : fallindogkorea@gmail.com <br>
+Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    </footer>
 </body>
 </html>

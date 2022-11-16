@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper용 xml 설정 mybatis MemberMapper  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="mapperInterface.CustomerMapper">
+	
+	
+  	<sql id="customers">
+  		<if test="keyword != null">
+  			<bind name="keyVal" value="'%' + keyword + '%'"/>
+  		</if>
+  		<choose>
+  			<when test="searchType=='st'.toString()">
+  				 and title like #{keyVal} ) 
+  			</when>
+  			<when test="searchType=='sc'.toString()">
+  				 and content like #{keyVal} ) 
+  			</when>
+  			<otherwise>)</otherwise>
+  		</choose>
+  	</sql>
+ 
+  	
+  	<select id="searchList" resultType="vo.CustomerVO"> 
+  		select * from faq  
+  		where ( fno > 0 <include refid="customers"></include>   
+  		order by fno desc limit #{sno}, #{rowsPerPage} 
+  	</select>
+  	
+  	<select id="searchCount" resultType="int"> 
+	select count(*) from faq 
+	</select>
+  	
+
+  
+  	
+  </mapper>
+  
+  
