@@ -1,42 +1,46 @@
 package com.fallindog.fid;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import service.UserService;
+import service.CustomerService;
 import usercontrol.PageMaker;
 import usercontrol.SearchCriteria;
-import vo.UserVO;
 
 
 
 @Controller
 public class CustomerController {
 	@Autowired
-	UserService service;
+	CustomerService service;
 	
+	
+	@RequestMapping(value="/customerhome")
+	public ModelAndView loginf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
+		mv.setViewName("/customer/customerHome");
+		return mv;
+	}
 	
 	
 	// 자주하는 질문 
 	@RequestMapping(value="/faq")
-	public ModelAndView joinf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
-		mv.setViewName("/customer/faq");
-		return mv;
+	public ModelAndView joinf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
+								, SearchCriteria cri, PageMaker pageMaker) {
+		response.setContentType("text/html; charset=UTF-8;");
+		cri.setSnoEno();
+	    mv.addObject("faqlist", service.searchList(cri));  //ver2
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalRowsCount(service.searchCount(cri));   //ver2 : 조건과 일치하는 Rows 갯수 
+	      
+	    mv.addObject("pageMaker", pageMaker);
+	     
+	    mv.setViewName("/customer/faq");
+	    return mv;
 	}
 	
 }
