@@ -20,14 +20,16 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
     
-    <script>
+	<script>
 	$(function(){
 		$('#searchType').change(function(){
 			if($(this).val()=='n') $('#keyword').val('');
 		});
+		
 		$('#searchBtn').click(function(){
-			self.location="customerhome"
+			location="faq"
 			+"${pageMaker.makeQuery(1)}"
 			+"&searchType="
 			+$('#searchType').val()
@@ -35,7 +37,7 @@
 			+$('#keyword').val()
 		});
 	});
-	 
+	
 	</script>
     
     
@@ -46,12 +48,12 @@
 			<h2 class="detail">자주묻는질문(FAQ)</h2>
 		</div>
 		<div>
-			<ul>
-				<li><a href="#"></a>전체</li>
-				<li><a href="#"></a>회원</li>
-				<li><a href="#"></a>입양</li>
-				<li><a href="#"></a>방문</li>
-				<li><a href="#"></a>커뮤니티</li>
+			<ul class="menu-line">
+				<li><a href="#">전체</a></li>
+				<li><a href="#">회원</a></li>
+				<li><a href="#">입양</a></li>
+				<li><a href="#">방문</a></li>
+				<li><a href="#">커뮤니티</a></li>
 			</ul>
 		</div>
 		<div id="searchbar">

@@ -31,7 +31,7 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    
+    <link rel="stylesheet" href="resources/css/customer.css">
     
   
 </head>
@@ -230,16 +230,17 @@
 	<!-- ##### Header Area End ##### -->
 	
 	
+	<div class="allbox">
 	
-	<div id="contentbox" class="site_content">
-		<div id="primary" class="content-area lw_common_container">
-			<div id="mf_sideWrap" class="w2wframe sideWrap">
-				<h2 id="mf_sideWrap_wq_uuid_431" class="w2textbox">고객센터</h2>
-				<div id="mf_sideWrap_accordian" class="w2group">
-					<ul id="mf_sideWrap_wq_uuid_433"class="w2group">
-						<li id="mf_sideWrap_grp_useInf" class="w2group">
+	<div id="box" class="dbox1">
+		<div  class="content-area lw_common_container">
+			<div  class="w2wframe sideWrap">
+				<h2  class="big_title">고객센터</h2>
+				<div class="w2group">
+					<ul class="w2group">
+						<li  class="w2group">
 							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
-							<ul id="mf_sideWrap_ul_useInf" class="w2group" aria-hidden="false" style="display:block;">
+							<ul id="hidebox" class="hidex" aria-hidden="false" style="display:block;">
 								<li>
 									<a href="#">입양안내 및 절차</a>
 								</li>
@@ -264,7 +265,9 @@
 	</div>
 
 
-	<div id="resultarea"></div><!--area  -->
+	<div id="resultarea" class="dbox2"></div><!--area  -->
+	
+	</div>
 	
 	<!--######################### Footer -->
     <footer class="footer-area text-center" style="font-size:1rem;">
