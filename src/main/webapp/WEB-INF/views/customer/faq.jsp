@@ -12,11 +12,16 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
+<<<<<<< HEAD
 	
+=======
+	<script src="resources/mLib/customer.js"></script>
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
     <!-- Favicon -->
+<<<<<<< HEAD
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
@@ -38,6 +43,13 @@
 	});
 	 
 	</script>
+=======
+    
+    <link rel="icon" href="resources/img/core-img/ficon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
     
     
 </head>
@@ -47,12 +59,21 @@
 			<h2 class="detail">자주묻는질문(FAQ)</h2>
 		</div>
 		<div>
+<<<<<<< HEAD
 			<ul>
 				<li><a href="#"></a>전체</li>
 				<li><a href="#"></a>회원</li>
 				<li><a href="#"></a>입양</li>
 				<li><a href="#"></a>방문</li>
 				<li><a href="#"></a>커뮤니티</li>
+=======
+			<ul class="menu-line">
+				<li><a href="#">전체</a></li>
+				<li><a href="#">회원</a></li>
+				<li><a href="#">입양</a></li>
+				<li><a href="#">방문</a></li>
+				<li><a href="#">커뮤니티</a></li>
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
 			</ul>
 		</div>
 		<div id="searchbar">
@@ -93,8 +114,13 @@
 			<!-- First, Prev -->
 			<c:choose>
 				<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+<<<<<<< HEAD
 					<a href="faq${pageMaker.searchQuery(1)}">처음</a>&nbsp;
 			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
+=======
+					<a href="faq${pageMaker.searchQuery(1)}" class="pmove">처음</a>&nbsp;
+			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}" class="pmove">&lt;</a>&nbsp;&nbsp; 
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
 			
 		</c:when>
 				<c:otherwise>
@@ -108,14 +134,23 @@
 					<font size="6" color="Orange">${i}</font>&nbsp;
 		</c:if>
 				<c:if test="${i!=pageMaker.cri.currPage}">
+<<<<<<< HEAD
 					<a href="faq${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+=======
+					<a href="faq${pageMaker.searchQuery(i)}" class="pmove">${i}</a>&nbsp;
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
 		</c:if>
 			</c:forEach>
 			<!-- Next, Last -->
 			<c:choose>
 				<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
+<<<<<<< HEAD
 					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>
 					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a>
+=======
+					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}" class="pmove" >&nbsp;&gt;</a>
+					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}" class="pmove">&nbsp;마지막</a>
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
 				</c:when>
 				<c:otherwise>
 					<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>

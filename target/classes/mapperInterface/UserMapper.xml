@@ -72,6 +72,11 @@
   			<when test="searchType=='semail'.toString()">
   				and ( email like #{keyVal} ) 
   			</when>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
   		</choose>
   	</sql>
   </mapper>
