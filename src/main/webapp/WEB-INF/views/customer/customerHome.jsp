@@ -238,30 +238,33 @@
 	<div class="allbox">
 	
 	<div id="box" class="dbox1">
-		<div  class="content-area lw_common_container">
-			<div  class="w2wframe sideWrap">
+		<div >
+			<div  >
 				<h2  class="big_title">고객센터</h2>
-				<div class="w2group">
-					<ul class="w2group">
-						<li  class="w2group">
-							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
-							<ul id="hidebox" class="hidex" aria-hidden="false" style="display:block;">
-								<li>
-									<a href="#">입양안내 및 절차</a>
+				<div >
+					<ul >
+						<li id="guidemenu" class="hoverli">
+							<span >이용안내</span>
+						</li>
+						<li>
+							<ul id="hidebox" class="hidex" aria-hidden="false" >
+								<li class="hoverli">
+									<a href="#"  >입양안내 및 절차</a>
 								</li>
-								<li>
-									<a href="#">공지사항</a>
+								<li class="hoverli">
+									<a href="#"  >공지사항</a>
 								</li>
 							</ul>
 						</li>
-						<li>
-							<a href="#">자주묻는질문(FAQ)</a>
+						<li class="hoverli">
+							<a href="customerhome">자주묻는질문(FAQ)</a>
 						</li>
-						<li>
+						<li class="hoverli">
 							<a href="#">1:1문의하기(Q&amp;A)</a>
-						</li>
-						<li>
-							<span id="roadmove">위치안내</span>
+						</li >
+						<li id="roadmove" class="hoverli">
+							<span >위치안내</span>
+							
 						</li>
 					</ul>
 				</div>
@@ -285,6 +288,10 @@
 			</ul>
 		</div>
 		<div id="searchbar">
+			<div class="form-group searchresult">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
+			</div>
 			<div class="form-group">
 				<select class="form-control" name="searchType" id="searchType">
 					<option value="n"
@@ -303,10 +310,6 @@
 		</div>
 
 
-		<div class="form-group searchresult">
-			<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
-			</span>
-		</div>
 
 		<table>
 			<tbody>

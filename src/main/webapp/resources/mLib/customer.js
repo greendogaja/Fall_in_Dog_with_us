@@ -65,6 +65,14 @@ $(function() {
 	}); //roadmove
 	
 	
+    $('#guidemenu').click(function(){
+       if($('#hidebox').hasClass("hidex")){
+           $("#hidebox").removeClass("hidex");
+       } else{
+           $("#hidebox").addClass("hidex");
+       }
+    });//hidex
+	
 });//ready
 	
 	

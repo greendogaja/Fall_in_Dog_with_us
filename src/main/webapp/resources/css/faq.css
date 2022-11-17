@@ -4,11 +4,20 @@
 button{
 	color: #fff;
     background-color: #0069d9;
+    height:38px;
 }
 #searchbar{
 	display:flex;
+	justify-content: end;
+}
+.menu-line{
+	text-align:center;
+	line-height: 110px;
 }
 .menu-line li{
 	display:inline-block;
 }
-
+.menu-line a{
+	font-size:20px;
+	padding: 0px 40px;
+}
