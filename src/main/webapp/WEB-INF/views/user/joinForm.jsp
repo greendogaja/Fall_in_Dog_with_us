@@ -97,22 +97,37 @@
     	//## 생년월일
     	$('#yy').change(function(){
     		bCheck = bryCheck();
-    		if(bCheck == true) 
+    		if(bCheck == false)
+        	$('#mm').prop('disabled',true);
+        	$('#dd').prop('disabled',true);
+    		if(bCheck == true) {
     		$('#mm').prop('disabled',false);
+    			return true;
+    		}
+    		
     	});
     	$('#mm').change(function(){
-    		if(bCheck = brmCheck() == false) return false;
-    		else {
+    		bCheck = bryCheck();
+    		bCheck = false;
+    		bCheck = brmCheck(); 
+    		if(bCheck == false)
+    		$('#yy').prop('disabled',true);
+    		$('#dd').prop('disabled',true);
+    		if(bCheck == true){
+    			$('#yy').prop('disabled',false);
     			$('#dd').prop('disabled',false);
     			return true;
     		}
     	});
     	$('#dd').change(function(){
-    		
-    		if(bCheck = bryCheck() == false) return false;
-    		else if(bCheck = brmCheck() == false) return false;
-    		else if(bCheck = brdCheck() == false) return false;
-    		else return true;
+    		bCheck = brdCheck();
+    		if(bCheck == false)
+        		$('#yy').prop('disabled',true);
+        		$('#mm').prop('disabled',true);
+    		if(bCheck == true){ 
+    			$('#mm').prop('disabled',false);
+    			return true;
+    		}
     	});
 
     	//## email

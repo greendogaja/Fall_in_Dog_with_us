@@ -148,15 +148,15 @@ function nickCheck(){
 		}		
 }//dupCheck
 
+
 function inCheck(){
-	
-	if(iCheck==false){$('#iMessage').html('아이디를 확인하세요'); }		
-	if(pCheck==false){$('#pMessage').html('비밀번호를 확인하세요'); }		
-	if(ppCheck==false){$('#ppMessage').html('비밀번호를 확인하세요'); }		
+	if(iCheck==false){$('#iMessage').html('아이디를 확인하세요.'); }		
+	if(pCheck==false){$('#pMessage').html('비밀번호를 확인하세요.'); }		
+	if(ppCheck==false){$('#ppMessage').html('비밀번호를 확인하세요.'); }		
 	if(nCheck==false){$('#nMessage').html('성명을 확인하세요'); }		
-	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요'); }		
-	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
-	if(bCheck==false){$('#brMessage').html('생년월일을 확인하세요'); }		
+	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요.'); }		
+	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요.'); }		
+	if(bCheck==false){$('#brMessage').html('생년월일을 확인하세요.'); }		
 	
 	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck && bCheck ){
 		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {

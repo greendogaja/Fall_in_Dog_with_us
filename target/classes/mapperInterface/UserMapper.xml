@@ -49,14 +49,11 @@
   		<if test="idkey != null">
   			<bind name="idVal" value="'%'+idkey+'%'"/>
   		</if>
-<<<<<<< HEAD
-=======
 
   		<if test="keyword != null">
   			<bind name="keyVal" value="'%' + keyword + '%'"/>
   		</if>
 
->>>>>>> c85be980ca54201f72657906a188b42f183fc8c4
   		<choose>
   			<when test="namekey != null">
   				and (name like #{nameVal} 
@@ -68,8 +65,6 @@
   			<when test="idkey != null">
   				and (id like #{idVal} ) 
   			</when>
-<<<<<<< HEAD
-=======
 
   			<when test="searchType=='sid'.toString()">
   				and ( id like #{keyVal} ) 
@@ -81,7 +76,7 @@
   				and ( email like #{keyVal} ) 
   			</when>
 
->>>>>>> c85be980ca54201f72657906a188b42f183fc8c4
+
   		</choose>
   	</sql>
   </mapper>

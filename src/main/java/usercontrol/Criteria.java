@@ -26,7 +26,7 @@ public class Criteria {
 	}
 	public void setSnoEno() {
 		if ( this.sno<1 ) this.sno=1;
-		this.sno=(this.currPage-1)*this.rowsPerPage; 
+		this.sno=((this.currPage-1)*this.rowsPerPage); 
 		this.eno=this.sno + this.rowsPerPage - 1 ;   
 	}
 }//class
