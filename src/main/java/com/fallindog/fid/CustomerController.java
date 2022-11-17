@@ -2,6 +2,7 @@ package com.fallindog.fid;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,6 @@ public class CustomerController {
 	CustomerService service;
 	
 	
-<<<<<<< HEAD
-	@RequestMapping(value="/customerhome")
-	public ModelAndView loginf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
-=======
 	@RequestMapping(value="/roadmove")
 	public ModelAndView roadmove(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
 		response.setContentType("text/html; charset=UTF-8;");
@@ -60,7 +57,6 @@ public class CustomerController {
 	    pageMaker.setTotalRowsCount(service.searchCount(cri));   //ver2 : 조건과 일치하는 Rows 갯수 
 	      
 	    mv.addObject("pageMaker", pageMaker);
->>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
 		mv.setViewName("/customer/customerHome");
 		return mv;
 	}
@@ -71,8 +67,6 @@ public class CustomerController {
 	public ModelAndView joinf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
 								, SearchCriteria cri, PageMaker pageMaker) {
 		response.setContentType("text/html; charset=UTF-8;");
-<<<<<<< HEAD
-=======
 		
 		String searchType  = request.getParameter("searchType");
 		String keyword  = request.getParameter("keyword");
@@ -93,7 +87,6 @@ public class CustomerController {
 		
 		
 		System.out.println("#####"+cri);
->>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
 		cri.setSnoEno();
 	    mv.addObject("faqlist", service.searchList(cri));  //ver2
 	    pageMaker.setCri(cri);

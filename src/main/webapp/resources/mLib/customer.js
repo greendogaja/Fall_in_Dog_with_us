@@ -1,20 +1,6 @@
 
 
 $(function() {
-<<<<<<< HEAD
-	$.ajax({
-		type: 'Get',
-		url: 'faq',
-		success: function(resultPage) {
-			$('#resultarea').html(resultPage);
-		},
-		error: function() {
-			$('#resultarea').html('~~ AjaxLogin 요청 Error 발생');
-
-		}
-	});//ajax
-});
-=======
 		
 	
 	$('.pmove').click(function(){
@@ -85,4 +71,3 @@ $(function() {
 	
 	
 	
->>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f

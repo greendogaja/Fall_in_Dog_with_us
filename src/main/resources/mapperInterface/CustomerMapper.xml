@@ -29,10 +29,9 @@
   	
   	<select id="searchCount" resultType="int"> 
 	select count(*) from faq 
-<<<<<<< HEAD
-=======
+
 	where ( fno > 0 <include refid="customers"></include> 
->>>>>>> f829b8eeb9643296b21941862be638f65ee88e7f
+
 	</select>
   	
 
