@@ -232,8 +232,8 @@
 								<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
-							<img src="${loginImg}" name="idUploadfile" >
-							<input type="text" class="hidden" name="idUploadfile" value="${loginImg}">
+							<img src="${loginImg}" >
+							<%-- <input type="hidden" name="idUploadfile" value="${loginImg}"> --%>
 							
 					</div>
 					<div class="profile_info" >
