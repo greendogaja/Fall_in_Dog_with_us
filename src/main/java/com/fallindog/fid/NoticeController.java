@@ -17,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import service.NcommentService;
 import service.NoticeService;
+import vo.NcommentVO;
 import vo.NoticeVO;
 
 
@@ -27,7 +29,8 @@ public class NoticeController {
   
 	@Autowired 
 	NoticeService service;
-	
+	@Autowired
+	NcommentService cservice;
 
 	 	
 	@RequestMapping(value="/aboutUs")
@@ -92,7 +95,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="/ndetail")
 	public ModelAndView ndetail(HttpServletRequest request, HttpServletResponse response, 
-								ModelAndView mv, NoticeVO vo) {
+								ModelAndView mv, NoticeVO vo, NcommentVO cvo) {
 		// 1. 요청분석
 		String uri = "guide/noticeDetail";
 		
@@ -116,9 +119,30 @@ public class NoticeController {
 			mv.addObject("apple", vo);
 		}else mv.addObject("message", "~~ 글번호에 해당하는 자료가 없습니다. ~~");
 		
+		// 3. 댓글리스트
+		int nno = Integer.parseInt((String)request.getParameter("nno"));
+		cvo.setNno(nno);
+		System.out.println("!!!!!!!!!!!!!!!!!!!! "+nno);
+		
+		
+		List<NcommentVO> list = new ArrayList<NcommentVO>();
+    	list = cservice.selectList(cvo);
+    	if ( list!=null ) {
+    		mv.addObject("orange", list); 
+    		System.out.println("!!!!!!!!!!!!!!!!!!!! TTT");
+    		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~list"+list);
+    	}else {
+    		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
+    		System.out.println("!!!!!!!!!!!!!!!!!!!! FFF");
+    	}
+		
+		
+		
+		// 화면 출력
 		mv.setViewName(uri);
 		return mv;
-	} //ndetail
+	} //ndetail 
+	
 	
 	// ** Insert : 새글등록
 	@RequestMapping(value="/ninsertf")

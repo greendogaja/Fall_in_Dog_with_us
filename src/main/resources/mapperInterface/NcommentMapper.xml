@@ -6,12 +6,25 @@
 
 <!-- 댓글입력 -->
 <insert id="ncinsert">
-	<selectKey keyProperty="nno" resultType="int" order="BEFORE"> 
-		select IFNULL(max(nno),0)+1 from ncomment
+	<selectKey keyProperty="cno" resultType="int" order="BEFORE"> 
+		select IFNULL(max(cno),0)+1 from ncomment
 	</selectKey>
-	insert into ncomment(cno, nno, grp,  nname, content) 
-	values(#{cno}, #{nno}, #{grp},  #{nname}, #{content})
+	insert into ncomment(cno, nno, grp, id, content) 
+	values(#{cno}, #{nno}, #{grp}, #{id}, #{content})
 </insert>
+
+<!-- 댓글리스트 가져오기 -->
+<select id="selectList" resultType="vo.NcommentVO">
+<!-- 	select n.cno, n.nno, n.grp, n.grps, n.grpl, n.nname, n.content, n.reg, n.wimg, u.uploadfile
+	from ncomment n left outer join user u
+	on n.nname = u.nname
+	where n.cno = #{cno}
+	order by grp asc, grps desc -->
+	select  content, reg, nname, uploadfile
+	from ncomment n, user u
+	where n.id = u.id and n.nno = #{nno}
+<!-- 	order by grp asc, grps desc -->
+</select>
 
 <!-- 모댓글인 경우 cno, grp 일치 -->
 <update id="nc_check">
@@ -37,14 +50,6 @@
 	where cno=#{cno}
 </update>
 
-<!-- 댓글리스트 가져오기 -->
-<select id="selectList" resultType="vo.NcommentVO">
-	select cno, nno, grp, grps, grpl, nname, content, reg, wimg, u.uploadfile
-	from ncomment left outer join user u
-	on nname = u.nname
-	where cno = #{cno}
-	order by grp asc, grps desc
-</select>
 
 <!-- 댓글 추가/삭제시 댓글 갯수 가져오기 -->
 <select id="nc_count" resultType="vo.NcommentVO">
