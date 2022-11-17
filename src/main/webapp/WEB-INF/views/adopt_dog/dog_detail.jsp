@@ -313,7 +313,7 @@
         </div>
 
         <div class="listbtn">
-            <a href="" class="btn_Detail">입양신청</a>
+            <a href="adopt_board" class="btn_Detail">입양신청</a>
             <a href="dog_list_S" class="btn_Detail">목록</a>
         </div>
 

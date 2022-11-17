@@ -227,16 +227,22 @@
 		</div>
 		<div class="WriterInfo" >
 			<div class="profile_image">
-				<img src="resources/img/notice/summer.PNG" width=40 height=50>
-				<%-- src ${login.img} 로 수정해야함. --%>
+				<img src="${apple.idUploadfile}" width=40 height=50>
+				<!-- 작성자 이미지 저장..어떻게해.. -->
+				
 			</div>
 			<div class="profile_info">${apple.id}</div>
 			<div class="article_info">
 				<span>${apple.regdate}&nbsp;&nbsp;</span>
 				<span>조회&nbsp;${apple.cnt}</span>
+				<c:if test="${loginID=='admin'}">
+					<div class="update_delete">
+						<span><a href="ndetail?jCode=U&nno=${apple.nno}">글수정</a></span>&nbsp;&nbsp;
+						<span><a href="ndelete?nno=${apple.nno}">글삭제</a></span>
+					</div>
+				</c:if>
 			</div>
 			
-			<div class=""></div>
 		
 		
 		</div>
@@ -246,7 +252,9 @@
 	<div class="article_container">
 		<div class="article_viewer">
 			${apple.content}
-			<img src="${apple.img}"> 
+			<c:if test="${not empty apple.img}">
+				<img src="${apple.img}"> 
+			</c:if>
 		</div>
 		<div class="article_writer">
 		<a href="#">
@@ -256,12 +264,62 @@
 		</div>
 	</div>
 	<hr>
-	<div class="CommnetBox">
+	
+	<!-- comment/댓글 -->
+	<div class="CommentBox">
 		<div class="comment_title">댓글</div>
-		<div class="comment_inbox">
-			<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
-			<a role="button">등록</a>
-		</div>
+			<!-- 댓글 리스트 -->
+			<ul class="comment_list comment_list${tmp.cno}">
+				<!-- 댓글이 들어가는 곳 -->
+				<li class="comment_item">
+					<div class="comment_area">
+						<img src="resources/img/notice/dog0.jfif" >
+						<!-- 작성자Img 저장 -->
+						<div class="comment_box">
+							<div class="comment_nick">작성자닉네임</div>
+							<div class="comment_text_box">
+								<p class="comment_text_view">
+									댓글내용입니다 123456~~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~
+									댓글내용입니다 123456~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~
+									댓글내용입니다 123456~~~~~~~~~~~~~~~~
+								</p>
+							</div>
+							<div class="comment_info_box">
+								<span class="comment_info_reg">
+									댓글작성 reg
+								</span>
+								<a>답글쓰기</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!-- 댓글입력 -->
+			<c:if test="${not empty loginID}">
+				<form action="cinsert">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+							<div class="mg_b_10">${loginNick}</div>
+								<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<a role="button">등록</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</c:if>
+			
+			<!-- <script>
+				document.body.onload = addElement;
+				
+				function addComment(){
+					var newDiv = document.createElement("div");
+					newDiv.className = 'comment_area'
+					
+					newDiv.appendChild(newContent);
+				}
+			
+			</script> -->
 	</div>
 
 
@@ -277,11 +335,11 @@ ${message}<br>
 <hr>
 <c:if test="${loginID==apple.id || loginID=='admin'}">
 	&nbsp;&nbsp;<a href="ndetail?jCode=U&nno=${apple.nno}">[글수정]</a>
-	&nbsp;&nbsp;<a href="ndelete?nno=${apple.nno}&root=${apple.root}">[글삭제]</a>
+<%-- 	&nbsp;&nbsp;<a href="ndelete?nno=${apple.nno}&root=${apple.root}">[글삭제]</a> --%>
 				<!-- root 추가 : 삭제시 원글삭제 or 답글삭제 확인을 위함 -->
 </c:if>
 <c:if test="${not empty loginID}">
-	&nbsp;&nbsp;<a href="ninsertf?root=${apple.root}&step=${apple.step}&indent=${apple.indent}">[답글]</a><br>
+<%-- 	&nbsp;&nbsp;<a href="ninsertf?root=${apple.root}&step=${apple.step}&indent=${apple.indent}">[답글]</a><br> --%>
 </c:if>
 &nbsp;&nbsp;<a href="noticeList">목록</a>
 &nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>

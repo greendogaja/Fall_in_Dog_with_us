@@ -1,8 +1,7 @@
 package com.fallindog.fid;
 
 import java.io.File;
-
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -59,10 +59,10 @@ public class NoticeController {
 		// => 개발중인지, 배포했는지 에 따라 결정
 		// => 해당화일 File 찾기
 		if ( realPath.contains(".eclipse.") )  // eslipse 개발환경 (배포전)
-			realPath = "C:\\MTest\\dogproject\\fall_in_dog\\src\\main\\webapp\\resources\\img\\uploadImage\\" 
+			realPath = "C:\\MTest\\project\\fall_in_dog\\src\\main\\webapp\\resources\\img\\uploadImage\\notice" 
 						+ fileName;
 		else  // 톰캣서버에 배포 후 : 서버내에서의 위치
-			realPath += "resources\\uploadImage\\" + fileName ;
+			realPath += "resources\\img\\uploadImage\\notice\\" + fileName ;
 		
 		// 2) 해당 화일 객체화
 		File file = new File(realPath);
@@ -98,7 +98,9 @@ public class NoticeController {
 		
 		// 2. Service 처리
 		vo = service.selectOne(vo);
-		if ( vo != null ) {
+		System.out.println("#################################"+vo);
+		
+		if ( vo != null ) { 
 			// 2.1) 조회수 증가
 			String loginID = (String)request.getSession().getAttribute("loginID");
 			if ( !vo.getId().equals(loginID) && !"U".equals(request.getParameter("jCode")) ) {
@@ -108,7 +110,7 @@ public class NoticeController {
 			
 			// 2.2) 수정요청 인지 확인
 			if ( "U".equals(request.getParameter("jCode")))
-				uri = "guide/nupdateForm";
+			uri = "guide/noticeUpdateF";
 			
 			// 2.3)	결과전달		
 			mv.addObject("apple", vo);
@@ -128,10 +130,40 @@ public class NoticeController {
 	
 	@RequestMapping(value="/ninsert", method=RequestMethod.POST)
 	public ModelAndView ninsert(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) {
+			HttpServletResponse response, ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) throws IOException  {
 		System.out.println("##########################"+vo);
 		// 1. 요청분석
 		String uri = "redirect:noticeList";
+		
+		
+		//image upload
+		String realPath = request.getRealPath("/"); // deprecated Method
+		System.out.println("** realPath => "+realPath);
+		
+		if ( realPath.contains(".eclipse.") )  // eclipse 개발환경 (배포전)
+			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\notice\\";
+		else  // 톰캣서버에 배포 후 : 서버내에서의 위치
+			realPath += "resources\\img\\uploadImage\\notice\\" ;
+		
+		File f1 = new File(realPath);
+		if ( !f1.exists() ) f1.mkdir();
+		
+		String file1 = null;
+		
+		MultipartFile uploadfilef = vo.getUploadfilef(); // file 의 내용 및 화일명 등 전송된 정보들이 들어있음
+		if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	         
+			file1 = realPath + uploadfilef.getOriginalFilename(); // 경로완성
+			uploadfilef.transferTo(new File(file1)); // Image저장
+			
+			file1="resources/img/uploadImage/notice/"+uploadfilef.getOriginalFilename();
+			vo.setImg(file1);
+		}
+		
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~"+vo);
+		
+		
 		// 2. Service 처리
 		if ( service.insert(vo)>0 ) {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
@@ -143,6 +175,79 @@ public class NoticeController {
 		mv.setViewName(uri);
 		return mv;
 	} //ninsert	
+	
+	// ** Update : 글수정하기
+	@RequestMapping(value="/nupdate", method=RequestMethod.POST)
+	public ModelAndView nupdate(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, NoticeVO vo)  throws IOException {
+		// 1. 요청분석
+		String uri = "guide/noticeDetail";
+		mv.addObject("apple",vo);
+		// => Update 성공/실패 모두 출력시 필요하므로
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~"+vo);
+		
+		// image upload
+		String realPath = request.getRealPath("/"); // deprecated Method
+		System.out.println("** realPath => " + realPath);
+
+		if (realPath.contains(".eclipse.")) // eclipse 개발환경 (배포전)
+			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\notice\\";
+		else // 톰캣서버에 배포 후 : 서버내에서의 위치
+			realPath += "resources\\img\\uploadImage\\notice\\";
+
+		File f1 = new File(realPath);
+		if (!f1.exists())
+			f1.mkdir();
+
+		String file1 = null;
+		
+		MultipartFile uploadfilef = vo.getUploadfilef(); // file 의 내용 및 화일명 등 전송된 정보들이 들어있음
+		if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	         
+			file1 = realPath + uploadfilef.getOriginalFilename(); // 경로완성
+			uploadfilef.transferTo(new File(file1)); // Image저장
+			
+			file1="resources/img/uploadImage/notice/"+uploadfilef.getOriginalFilename();
+			vo.setImg(file1);
+		}
+		
+		// 2. Service 처리
+		if ( service.update(vo) > 0 ) {
+			mv.addObject("message", "~~ 글수정 성공 ~~"); 
+		}else {
+			mv.addObject("message", "~~ 글수정 실패, 다시 하세요 ~~");
+			uri = "guide/noticeUpdateF";
+		}
+		
+		// 3. 결과(ModelAndView) 전달 
+		mv.setViewName(uri);
+		System.out.println("###################################"+mv);
+		System.out.println("###################################"+vo);
+		return mv;
+	}
+	
+	// ** Delete : 글 삭제
+	@RequestMapping(value="/ndelete")
+	public ModelAndView bdelete(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) {
+		// 1. 요청분석
+		// => Delete 성공: redirect:blist
+		//           실패: message 표시, redirect:bdetail
+		String uri = "redirect:noticeList";
+		
+		// 2. Service 처리
+		if ( service.delete(vo) > 0 ) {
+			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 
+		}else {
+			rttr.addFlashAttribute("message", "~~ 글삭제 실패, 다시 하세요 ~~");
+			uri = "redirect:ndetail?nno="+vo.getNno();
+		} // Service
+		
+		// 3. 결과(ModelAndView) 전달 
+		mv.setViewName(uri);
+		return mv;
+	} //bdelete
 
 	
 } //NoticeController

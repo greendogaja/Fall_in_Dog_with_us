@@ -71,6 +71,16 @@
 .comment_textarea{
 	border:none;
 	width:90%;
+	padding: 0;
+	overflow: hidden;
+    overflow-wrap: break-word;
+    width: 100%;
+    border: 0;
+}
+
+textarea{
+    outline: 0;
+    resize: none;
 }
 
 .ArticleContentBox{
@@ -110,6 +120,7 @@
     font-weight: 700;
     text-align: center;
     vertical-align: top;
+    float : right;
 }
 
 .title_search_write{
@@ -133,7 +144,7 @@
 	
 	position : relative;
 }
-.WritingHeader input {
+.ip input {
 	position : absolute;
 	right : 0;
 	bottom: 0;
@@ -191,3 +202,139 @@ select, textarea {
 	text-transform: uppercase;
 	line-height: 1;
 	}
+	
+.WriterInfo{
+	height : 50px;
+}
+
+.update_delete{
+	float : right;
+}
+
+.profile_info input{
+	float : left;
+	border : none;
+}
+
+.footer-area{
+	margin-top:10%;
+}
+
+.article_info_u input{
+	border : none;
+	
+}
+
+.n_u_img{
+	margin-top: 10px;
+}
+
+.dp_h{
+	display : none;
+}
+
+.hidden{
+	display : none;
+}
+
+
+/* noticeDetail comment 댓글 =====================================================*/
+.CommentBox .comment_list .comment_nick {
+    margin-bottom: 4px;
+}
+.CommentBox .comment_list .comment_nick  {
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.CommentBox .comment_list .comment_text_box .comment_text_view {
+    overflow: hidden;
+}
+
+.CommentBox .comment_list .comment_text_box {
+    position: relative;
+    font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.CommentBox .comment_list .comment_text_box .text_comment {
+    line-height: 17px;
+    word-break: break-all;
+    word-wrap: break-word;
+    vertical-align: top;
+}
+
+.CommentBox .comment_list .comment_info_box {
+    margin-top: 7px;
+    font-size: 12px;
+    color: var(--skinText979797);
+}
+
+.CommentBox .comment_list .comment_info_box .comment_info_reg {
+    margin-right: 8px;
+}
+
+.CommentBox a {
+    color: inherit;
+}
+
+a{
+	cursor: pointer;
+}
+
+.CommentBox .comment_list .comment_area {
+    position: relative;
+    padding: 12px 23px 10px 0;
+}
+
+.CommentBox .comment_list .comment_thumb {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 36px;
+    height: 36px;
+}
+
+.CommentBox .comment_list .comment_box {
+    padding-left: 55px;
+}
+
+.comment_area img{
+	height : 45px;
+	width : 43px;
+	border-radius:50%;
+	position : absolute;
+}
+
+.mg_b_10{
+	margin-bottom:10px;
+}
+
+.CommentWriter .comment_attach {
+    position: relative;
+}
+
+.CommentWriter {
+    margin: 12px 0 29px;
+    border: 2px solid var(--skinCommentWriterBorder);
+    border-radius: 6px;
+    box-sizing: border-box;
+    background: var(--skinCommentWriterBg);
+}
+
+.CommentBox {
+    margin-top: 10px;
+}
+
+.CommentWriter .comment_inbox {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.comment_attach{
+	width : 100%;
+	height : 30px;
+}

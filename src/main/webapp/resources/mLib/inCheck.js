@@ -83,17 +83,52 @@
 
  function phoCheck(){
  	let phone = $('#phone').val();
-	if ( phone.length < 11) {
-		$('#phMessage').html(' 연락처를 입력 해주세요');
+	if ( phone.length != 11) {
+		$('#phMessage').html(' 연락처를 입력 해주세요.');
 		return false;
-	}else if (phone.replace(/[^0-9]/g, '').replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`).length != 13) {
-		$('#phMessage').html('  연락처는 숫자만 가능합니다'  );
+	}else if (phone.replace(/[^0-9]/g, '').length<1) {
+		$('#phMessage').html('  연락처는 숫자만 가능합니다.'  );
 		return false;
 	}else{
 		$('#phMessage').html('');
 		return true;
 	}
  }//nmCheck
+ 
+ 
+ function bryCheck(){
+	
+	let yy = $("#yy option:selected").text(); 
+ 	if( yy == '선택'){
+ 		$('#brMessage').html('생년월일을 선택 해주세요.');
+ 		return false;
+ 	}else{
+ 		$('#brMessage').html('');
+ 		return true;
+ 	}
+ }
+ function brmCheck(){
+	
+	let mm = $("#mm option:selected").text(); 
+ 	if( mm == '선택'){
+ 		$('#brMessage').html('생년월일을 선택 해주세요.');
+ 		return false;
+ 	}else{
+ 		$('#brMessage').html('');
+ 		return true;
+ 	}
+ }
+ function brdCheck(){
+	
+	let dd = $("#dd option:selected").text(); 
+ 	if( dd == '선택'){
+ 		$('#brMessage').html('생년월일을 선택 해주세요.');
+ 		return false;
+ 	}else{
+ 		$('#brMessage').html('');
+ 		return true;
+ 	}
+ }
 
 function dupCheck(){
     	if(iCheck ==false) iCheck=idCheck();
@@ -104,25 +139,26 @@ function dupCheck(){
 		}		
 }//dupCheck
 
-function dupnCheck(){
+function nickCheck(){
     	if(nnCheck ==false) nCheck=nnmCheck();
     	else{
-    		let url ='dupnCheck?nname='+$('#nname').val()
+    		let url ='nickCheck?nname='+$('#nname').val()
     		window.open(url,'_blank',
     				'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 		}		
 }//dupCheck
 
+
 function inCheck(){
-	
-	if(iCheck==false){$('#iMessage').html('아이디를 확인하세요'); }		
-	if(pCheck==false){$('#pMessage').html('비밀번호를 확인하세요'); }		
-	if(ppCheck==false){$('#ppMessage').html('비밀번호를 확인하세요'); }		
+	if(iCheck==false){$('#iMessage').html('아이디를 확인하세요.'); }		
+	if(pCheck==false){$('#pMessage').html('비밀번호를 확인하세요.'); }		
+	if(ppCheck==false){$('#ppMessage').html('비밀번호를 확인하세요.'); }		
 	if(nCheck==false){$('#nMessage').html('성명을 확인하세요'); }		
-	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요'); }		
-	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
+	if(nnCheck==false){$('#nnMessage').html('닉네임을 확인하세요.'); }		
+	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요.'); }		
+	if(bCheck==false){$('#brMessage').html('생년월일을 확인하세요.'); }		
 	
-	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
+	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck && bCheck ){
 		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
 			 alert('~~ 가입이 취소 되었습니다 ~~');
 			 return false; 
@@ -140,7 +176,7 @@ function upCheck(){
 	if(phCheck==false){$('#phMessage').html('연락처를 확인하세요'); }		
 	
 	if(pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
-		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
+		if ( confirm("~~ 정말 수정 하십니까 ? (Yes:확인 / No:취소)")==false ) {
 			 alert('~~ 가입이 취소 되었습니다 ~~');
 			 return false; 
 		}else return true; 
@@ -148,5 +184,6 @@ function upCheck(){
 	}else return false;
 		
 }//inCheck
+
 
 	

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapperInterface.AdoptReplyMapper">
+
+<!-- 게시판 -->
+<select id="getReplyList" resultType="vo.AdoptReplyVO">
+	select rid, bid, content, reg_id, reg_dt, edit_dt
+	from adopt_reply 
+	order by reg_dt desc
+</select>
+
+<!-- 글쓰기 -->
+<insert id="saveReply">
+	insert into adopt_reply(bid, content, reg_id, reg_dt, edit_dt) 
+	values(#{bid}, #{content}, #{reg_id}, now(), now())
+</insert>
+
+<!-- 글수정 -->
+<update id="updateReply">
+	update adopt_reply set content=#{content}, edit_dt=now()
+	where rid = #{rid}
+</update>
+
+<!-- 글삭제 -->
+<delete id="deleteReply">
+	delete from adopt_reply
+	where rid = #{rid}
+</delete>	
+
+</mapper> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

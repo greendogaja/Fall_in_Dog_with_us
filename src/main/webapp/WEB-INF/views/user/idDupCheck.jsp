@@ -41,7 +41,7 @@
 function idOK(){
 	opener.$('#id').val('${newId}');
 	
-	opener.$('#submit').prop('disabled',false);
+	
 	opener.$('#idDup').prop('disabled',true);
 	
 	opener.$('#id').prop('readonly',true);
@@ -61,7 +61,7 @@ function idOK(){
 <form action="dupCheck" method="get">
 	<legend>아이디 중복확인</legend>
 			<div class="form-group">
-				<label class="control-label col-sm-3">아이디<span
+				<label class="control-label col-sm-3">별명<span
 					class="text-danger">*</span></label>
 				<div class="col-md-8 col-sm-9 ">
 					<div class="input-group">

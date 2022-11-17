@@ -101,7 +101,7 @@
 												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
 												<c:if test="${'admin' == loginID }">
-												<li><a href="usercontrol" style="color:white;">회원관리</a></li>
+												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												
 												</c:if>
 		                                    </ul>
@@ -198,7 +198,13 @@
                                             <li><a href="share">나눔장터</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="customerhome">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
