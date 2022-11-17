@@ -36,6 +36,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
     
   
 </head>
