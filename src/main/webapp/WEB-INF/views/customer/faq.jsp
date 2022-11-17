@@ -40,6 +40,10 @@
 			</ul>
 		</div>
 		<div id="searchbar">
+			<div class="form-group searchresult">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
+			</div>
 			<div class="form-group">
 				<select class="form-control" name="searchType" id="searchType">
 					<option value="n"
@@ -58,10 +62,7 @@
 		</div>
 
 
-		<div class="form-group searchresult">
-			<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
-			</span>
-		</div>
+		
 
 		<table>
 			<tbody>
