@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
 
-
+	<!-- ajax 댓글리스트 js 
+	<script src="resources/myLib/ax_ncomment.js"></script> -->
+	
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -216,7 +218,8 @@
     </header>
     <!-- ##### Header Area End ##### -->
     
-<!-- Notice Detail Start -->
+<!-- Notice Detail Start 
+	================================== 본문 ==================================-->
 <hr>
 
 <div class="ArticleContentBox">
@@ -228,7 +231,6 @@
 		<div class="WriterInfo" >
 			<div class="profile_image">
 				<img src="${apple.idUploadfile}" width=40 height=50>
-				<!-- 작성자 이미지 저장..어떻게해.. -->
 				
 			</div>
 			<div class="profile_info">${apple.id}</div>
@@ -265,49 +267,54 @@
 	</div>
 	<hr>
 	
-	<!-- comment/댓글 -->
+	<!-- =========================== comment/댓글 ================================== -->
 	<div class="CommentBox">
 		<div class="comment_title">댓글</div>
-			<!-- 댓글 리스트 -->
-			<ul class="comment_list comment_list${tmp.cno}">
-				<!-- 댓글이 들어가는 곳 -->
-				<li class="comment_item">
-					<div class="comment_area">
-						<img src="resources/img/notice/dog0.jfif" >
-						<!-- 작성자Img 저장 -->
-						<div class="comment_box">
-							<div class="comment_nick">작성자닉네임</div>
-							<div class="comment_text_box">
-								<p class="comment_text_view">
-									댓글내용입니다 123456~~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~
-									댓글내용입니다 123456~~~~~~~~~~~~~~~~댓글내용입니다 123456~~~~~~~~~~~~~~~~
-									댓글내용입니다 123456~~~~~~~~~~~~~~~~
-								</p>
+			<!-- 댓글 리스트 AJAX-->
+			<ul class="comment_list comment_list${cno}">
+				<!-- 댓글 리스트 AJAX -->
+				<!-- <div id="resultArea"></div> -->
+				<c:if test="${not empty orange}">
+					<c:forEach var="ncomment" items="${orange}">
+						<li class="comment_item">
+							<div class="comment_area">
+								<!-- 작성자Img 저장 -->
+								<img src="${ncomment.uploadfile}">
+								<div class="comment_box">
+									<!-- 작성자 닉네임 -->
+									<div class="comment_nick">${ncomment.nname}</div>
+									<div class="comment_text_box">
+										<p class="comment_text_view">${ncomment.content}</p>
+									</div>
+									<div class="comment_info_box">
+										<span class="comment_info_reg">${ncomment.reg}</span> <a>답글쓰기</a>
+										<!-- 답글쓰기 기능은 ajax로,, -->
+									</div>
+								</div>
 							</div>
-							<div class="comment_info_box">
-								<span class="comment_info_reg">
-									댓글작성 reg
-								</span>
-								<a>답글쓰기</a>
-							</div>
-						</div>
-					</div>
-				</li>
+						</li>
+					</c:forEach>
+				</c:if>
 			</ul>
-			<!-- 댓글입력 -->
+			<!-- ============================== 댓글입력 ============================= -->
 			<c:if test="${not empty loginID}">
-				<form action="cinsert">
+				<form action="ncinsert" method="post">
 					<div class="CommentWriter">
 						<div class="comment_inbox">
+							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+							apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+							<input type="hidden" name="nno" value="${apple.nno}" id="nno">
+							<input type="hidden" name="id" value="${loginID}">
 							<div class="mg_b_10">${loginNick}</div>
-								<textarea placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<a role="button">등록</a>
+								<input type="submit" name="commentData" id="commentData" value="등록">
 							</div>
 						</div>
 					</div>
 				</form>
 			</c:if>
+			<a href="selectList?nno=${apple.nno}">댓글리스트생성</a>
 			
 			<!-- <script>
 				document.body.onload = addElement;
