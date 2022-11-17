@@ -29,6 +29,7 @@
   	
   	<select id="searchCount" resultType="int"> 
 	select count(*) from faq 
+	where ( fno > 0 <include refid="customers"></include> 
 	</select>
   	
 
