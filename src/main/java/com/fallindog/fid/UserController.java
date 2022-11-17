@@ -287,7 +287,6 @@ public class UserController {
 		String namekey  = request.getParameter("namekey");
 		String phonekey = request.getParameter("phonekey");
 		String idkey = request.getParameter("idkey");
-		System.out.println("#######"+cri);
 		cri.setRowsPerPage(5);
 		 if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
 		 else cri.setNamekey(namekey);

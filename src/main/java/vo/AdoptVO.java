@@ -5,19 +5,14 @@ import lombok.Data;
 @Data
 public class AdoptVO {
 	
-	private int dno;
+	private int ano;
 	private String title;
-	private String protect;
-	private String size;
-	private String bread;
-	private String gender;
-	private int age;
-	private String character;
-	private String neutering;
-	private String dateofdis;
-	private String identity;
+	private String content;
 	private String id;
-	private String img;
-	private String weight;
+	private String regdate;
+	private int cnt;
+	private int root;
+	private int step;
+	private int indent;
 	
 }
