@@ -23,6 +23,10 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    <script type="text/javascript" 
+		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
+	</script>
     <script src="resources/mLib/customer.js"></script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -32,6 +36,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
     
   
 </head>
@@ -233,30 +238,33 @@
 	<div class="allbox">
 	
 	<div id="box" class="dbox1">
-		<div  class="content-area lw_common_container">
-			<div  class="w2wframe sideWrap">
+		<div >
+			<div  >
 				<h2  class="big_title">고객센터</h2>
-				<div class="w2group">
-					<ul class="w2group">
-						<li  class="w2group">
-							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
-							<ul id="hidebox" class="hidex" aria-hidden="false" style="display:block;">
-								<li>
-									<a href="#">입양안내 및 절차</a>
+				<div >
+					<ul >
+						<li id="guidemenu" class="hoverli">
+							<span >이용안내</span>
+						</li>
+						<li>
+							<ul id="hidebox" class="hidex" aria-hidden="false" >
+								<li class="hoverli">
+									<a href="#"  >입양안내 및 절차</a>
 								</li>
-								<li>
-									<a href="#">공지사항</a>
+								<li class="hoverli">
+									<a href="#"  >공지사항</a>
 								</li>
 							</ul>
 						</li>
-						<li>
-							<a href="#">자주묻는질문(FAQ)</a>
+						<li class="hoverli">
+							<a href="customerhome">자주묻는질문(FAQ)</a>
 						</li>
-						<li>
+						<li class="hoverli">
 							<a href="#">1:1문의하기(Q&amp;A)</a>
-						</li>
-						<li>
-							<a href="#">위치안내</a>
+						</li >
+						<li id="roadmove" class="hoverli">
+							<span >위치안내</span>
+							
 						</li>
 					</ul>
 				</div>
@@ -265,7 +273,89 @@
 	</div>
 
 
-	<div id="resultarea" class="dbox2"></div><!--area  -->
+	<div id="resultarea" class="dbox2">
+		<div id="area">
+		<div class="title">
+			<h2 class="detail">자주묻는질문(FAQ)</h2>
+		</div>
+		<div>
+			<ul class="menu-line">
+				<li><a href="#">전체</a></li>
+				<li><a href="#">회원</a></li>
+				<li><a href="#">입양</a></li>
+				<li><a href="#">방문</a></li>
+				<li><a href="#">커뮤니티</a></li>
+			</ul>
+		</div>
+		<div id="searchbar">
+			<div class="form-group searchresult">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
+			</div>
+			<div class="form-group">
+				<select class="form-control" name="searchType" id="searchType">
+					<option value="n"
+						${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
+					<option value="st"
+						${pageMaker.cri.searchType=='st' ? 'selected' : ''}>제목</option>
+					<option value="sc"
+						${pageMaker.cri.searchType=='sc' ? 'selected' : ''}>내용</option>
+				</select>
+			</div>
+			<div>
+				<input type="text" class="form-control" id="keyword" name="keyword"
+					value="${pageMaker.cri.keyword}">
+			</div>
+			<button id="searchBtn" class="btn btn-default">Search</button>
+		</div>
+
+
+
+		<table>
+			<tbody>
+				<c:forEach var="faq" items="${faqlist}">
+					<tr>
+						<td><a href="#">${faq.title }</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<div align="center" class="pagecs">
+			<!-- First, Prev -->
+			<c:choose>
+				<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+					<a href="faq${pageMaker.searchQuery(1)}" class="pmove">처음</a>&nbsp;
+			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}" class="pmove">&lt;</a>&nbsp;&nbsp; 
+			
+		</c:when>
+				<c:otherwise>
+					<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>
+				</c:otherwise>
+			</c:choose>
+			<!-- Displag PageNo -->
+			<c:forEach var="i" begin="${pageMaker.spageNo}"
+				end="${pageMaker.epageNo}">
+				<c:if test="${i==pageMaker.cri.currPage}">
+					<font size="6" color="Orange">${i}</font>&nbsp;
+		</c:if>
+				<c:if test="${i!=pageMaker.cri.currPage}">
+					<a href="faq${pageMaker.searchQuery(i)}" class="pmove">${i}</a>&nbsp;
+		</c:if>
+			</c:forEach>
+			<!-- Next, Last -->
+			<c:choose>
+				<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
+					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}" class="pmove" >&nbsp;&gt;</a>
+					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}" class="pmove">&nbsp;마지막</a>
+				</c:when>
+				<c:otherwise>
+					<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
+	</div><!--area  -->
 	
 	</div>
 	

@@ -12,33 +12,16 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	
+	<script src="resources/mLib/customer.js"></script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
     <!-- Favicon -->
+    
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/faq.css">
-    
-	<script>
-	$(function(){
-		$('#searchType').change(function(){
-			if($(this).val()=='n') $('#keyword').val('');
-		});
-		
-		$('#searchBtn').click(function(){
-			location="faq"
-			+"${pageMaker.makeQuery(1)}"
-			+"&searchType="
-			+$('#searchType').val()
-			+"&keyword="
-			+$('#keyword').val()
-		});
-	});
-	
-	</script>
     
     
 </head>
@@ -57,6 +40,10 @@
 			</ul>
 		</div>
 		<div id="searchbar">
+			<div class="form-group searchresult">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
+			</div>
 			<div class="form-group">
 				<select class="form-control" name="searchType" id="searchType">
 					<option value="n"
@@ -75,10 +62,7 @@
 		</div>
 
 
-		<div class="form-group searchresult">
-			<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
-			</span>
-		</div>
+		
 
 		<table>
 			<tbody>
@@ -94,8 +78,8 @@
 			<!-- First, Prev -->
 			<c:choose>
 				<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-					<a href="faq${pageMaker.searchQuery(1)}">처음</a>&nbsp;
-			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
+					<a href="faq${pageMaker.searchQuery(1)}" class="pmove">처음</a>&nbsp;
+			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}" class="pmove">&lt;</a>&nbsp;&nbsp; 
 			
 		</c:when>
 				<c:otherwise>
@@ -109,14 +93,14 @@
 					<font size="6" color="Orange">${i}</font>&nbsp;
 		</c:if>
 				<c:if test="${i!=pageMaker.cri.currPage}">
-					<a href="faq${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+					<a href="faq${pageMaker.searchQuery(i)}" class="pmove">${i}</a>&nbsp;
 		</c:if>
 			</c:forEach>
 			<!-- Next, Last -->
 			<c:choose>
 				<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>
-					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a>
+					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}" class="pmove" >&nbsp;&gt;</a>
+					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}" class="pmove">&nbsp;마지막</a>
 				</c:when>
 				<c:otherwise>
 					<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>

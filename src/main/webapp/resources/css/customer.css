@@ -10,24 +10,47 @@
 	min-width: 1000px;
 	
 }
+.big_title{
+	border-bottom:5px solid;
+	background-color:darkorange;
+	line-height: 77px;
+}
+
 
 .dbox1{
 	position:absolute;
     display: table-cell;
-    
+    text-align:center;
     background-color: #fff;
     box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
     border-left: 1px solid rgba(0,0,0,.08);
     vertical-align: top;
     z-index: 1;
     left: 0;
-    height:510;
+    line-height:45px;
     width: 30%;
-    min-width: 208px;
+    min-width: 200px;
     margin-right: 10px;
-    max-width: 423px;
+    width: 200px;
+}
+
+.dbox1 li{
+	cursor:pointer;
+}
+.hoverli:hover{
+	background-color:darkorange;
 }
 .dbox2{
+	min-width:830px;
 	position:absolute;
-	    z-index: 1;
+	left:20%;
+	width:60%;
+	z-index: 1;
 }
+.title h2{
+	text-align:center;
+}
+.hidex{
+	display:none;
+}
+

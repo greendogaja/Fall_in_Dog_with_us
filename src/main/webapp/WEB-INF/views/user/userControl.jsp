@@ -25,9 +25,6 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
         <!-- Title -->
-    <title>Fall IN Dog - 폴인독</title>
-
-  
 	
 	<script>
 	$(function(){
