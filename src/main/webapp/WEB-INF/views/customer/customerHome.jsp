@@ -36,6 +36,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
     
   
 </head>
@@ -237,30 +238,34 @@
 	<div class="allbox">
 	
 	<div id="box" class="dbox1">
-		<div  class="content-area lw_common_container">
-			<div  class="w2wframe sideWrap">
+		<div >
+			<div  >
 				<h2  class="big_title">고객센터</h2>
-				<div class="w2group">
-					<ul class="w2group">
-						<li  class="w2group">
-							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
-							<ul id="hidebox" class="hidex" aria-hidden="false" style="display:block;">
-								<li>
-									<a href="#">입양안내 및 절차</a>
+				<div >
+					<ul class="left-bar">
+						<li id="guidemenu" class="hoverli ">
+							<span >이용안내 </span>
+							<span class="doarrow"></span>
+						</li>
+						<li>
+							<ul id="hidebox" class="hidex " aria-hidden="false" >
+								<li class="hoverli cho">
+									<span >입양안내 및 절차</span>
 								</li>
-								<li>
-									<a href="#">공지사항</a>
+								<li class="hoverli cho">
+									<span >공지사항</span>
 								</li>
 							</ul>
 						</li>
-						<li>
-							<a href="#">자주묻는질문(FAQ)</a>
+						<li class="hoverli cho">
+							<span onClick="location.href='customerhome'" class="clicked">자주묻는질문(FAQ)</span>
 						</li>
-						<li>
-							<a href="#">1:1문의하기(Q&amp;A)</a>
-						</li>
-						<li>
-							<span id="roadmove">위치안내</span>
+						<li class="hoverli cho">
+							<span>1:1문의하기(Q&amp;A)</span>
+						</li >
+						<li id="roadmove" class="hoverli cho">
+							<span  >위치안내</span>
+							
 						</li>
 					</ul>
 				</div>
@@ -276,15 +281,16 @@
 		</div>
 		<div>
 			<ul class="menu-line">
-				<li><a href="#">전체</a></li>
-				<li><a href="#">회원</a></li>
-				<li><a href="#">입양</a></li>
-				<li><a href="#">방문</a></li>
-				<li><a href="#">커뮤니티</a></li>
+				<li class="bcho" ><span class="base bobo">전체</span></li>
+				<li class="bcho"><span class="bobo">회원</span></li>
+				<li class="bcho"><span class="bobo">입양</span></li>
+				<li class="bcho"><span class="bobo">방문</span></li>
+				<li class="bcho"><span class="bobo">기타</span></li>
 			</ul>
 		</div>
 		<div id="searchbar">
-			<div class="form-group">
+			
+			<div class="form-group" style="margin-bottom:0;">
 				<select class="form-control" name="searchType" id="searchType">
 					<option value="n"
 						${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
@@ -300,15 +306,14 @@
 			</div>
 			<button id="searchBtn" class="btn btn-default">Search</button>
 		</div>
-
-
-		<div class="form-group searchresult">
-			<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
-			</span>
+		<div class="form-group searchresult" style="margin:0;">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
 		</div>
 
-		<table>
-			<tbody>
+
+		<table class="tablecon">
+			<tbody class="tconten">
 				<c:forEach var="faq" items="${faqlist}">
 					<tr>
 						<td><a href="#">${faq.title }</a></td>
