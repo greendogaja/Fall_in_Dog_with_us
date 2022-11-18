@@ -12,51 +12,38 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	
+	<script src="resources/mLib/customer.js"></script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
     <!-- Favicon -->
+    
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
-    
-    <script>
-	$(function(){
-		$('#searchType').change(function(){
-			if($(this).val()=='n') $('#keyword').val('');
-		});
-		
-		$('#searchBtn').click(function(){
-			self.location="customerhome"
-			+"${pageMaker.makeQuery(1)}"
-			+"&searchType="
-			+$('#searchType').val()
-			+"&keyword="
-			+$('#keyword').val()
-		});
-	});
-	 
-	</script>
+   <link rel="stylesheet" href="resources/css/customer.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
     
     
 </head>
 <body>
-	<div id="area">
+	<div id="resultarea" class="dbox3">
+		<div id="area">
 		<div class="title">
 			<h2 class="detail">자주묻는질문(FAQ)</h2>
 		</div>
 		<div>
-			<ul>
-				<li><a href="#"></a>전체</li>
-				<li><a href="#"></a>회원</li>
-				<li><a href="#"></a>입양</li>
-				<li><a href="#"></a>방문</li>
-				<li><a href="#"></a>커뮤니티</li>
+			<ul class="menu-line">
+				<li class="bcho" ><span class="base bobo">전체</span></li>
+				<li class="bcho"><span class="bobo">회원</span></li>
+				<li class="bcho"><span class="bobo">입양</span></li>
+				<li class="bcho"><span class="bobo">방문</span></li>
+				<li class="bcho"><span class="bobo">기타</span></li>
 			</ul>
 		</div>
 		<div id="searchbar">
-			<div class="form-group">
+			
+			<div class="form-group" style="margin-bottom:0;">
 				<select class="form-control" name="searchType" id="searchType">
 					<option value="n"
 						${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
@@ -72,15 +59,14 @@
 			</div>
 			<button id="searchBtn" class="btn btn-default">Search</button>
 		</div>
-
-
-		<div class="form-group searchresult">
-			<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
-			</span>
+		<div class="form-group searchresult" style="margin:0;">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
 		</div>
 
-		<table>
-			<tbody>
+
+		<table class="tablecon">
+			<tbody class="tconten">
 				<c:forEach var="faq" items="${faqlist}">
 					<tr>
 						<td><a href="#">${faq.title }</a></td>
@@ -93,8 +79,8 @@
 			<!-- First, Prev -->
 			<c:choose>
 				<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-					<a href="faq${pageMaker.searchQuery(1)}">처음</a>&nbsp;
-			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
+					<a href="faq${pageMaker.searchQuery(1)}" class="pmove">처음</a>&nbsp;
+			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}" class="pmove">&lt;</a>&nbsp;&nbsp; 
 			
 		</c:when>
 				<c:otherwise>
@@ -108,14 +94,14 @@
 					<font size="6" color="Orange">${i}</font>&nbsp;
 		</c:if>
 				<c:if test="${i!=pageMaker.cri.currPage}">
-					<a href="faq${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+					<a href="faq${pageMaker.searchQuery(i)}" class="pmove">${i}</a>&nbsp;
 		</c:if>
 			</c:forEach>
 			<!-- Next, Last -->
 			<c:choose>
 				<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>
-					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a>
+					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}" class="pmove" >&nbsp;&gt;</a>
+					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}" class="pmove">&nbsp;마지막</a>
 				</c:when>
 				<c:otherwise>
 					<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>
@@ -123,6 +109,6 @@
 			</c:choose>
 		</div>
 	</div>
-	<!--area  -->
+	</div><!--area  -->
 </body>
 </html>
