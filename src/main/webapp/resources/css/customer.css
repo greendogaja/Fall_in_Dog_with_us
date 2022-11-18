@@ -11,9 +11,11 @@
 	
 }
 .big_title{
-	border-bottom:5px solid;
 	background-color:darkorange;
 	line-height: 77px;
+	color:white;
+	    margin: 0;
+    border-bottom: 4px solid black;
 }
 
 
@@ -27,6 +29,7 @@
     vertical-align: top;
     z-index: 1;
     left: 0;
+    top:570px;
     line-height:45px;
     width: 30%;
     min-width: 200px;
@@ -37,8 +40,8 @@
 .dbox1 li{
 	cursor:pointer;
 }
-.hoverli:hover{
-	background-color:darkorange;
+.hoverli:hover span{
+	color:darkorange;
 }
 .dbox2{
 	min-width:830px;
@@ -50,7 +53,26 @@
 .title h2{
 	text-align:center;
 }
+.left-bar li{
+	border: 1px solid #e3e3e3;
+}
 .hidex{
 	display:none;
 }
+.clicked{
+	color:darkorange;
+}
+
+.doarrow:before{
+  content: '';
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  left: 149px;
+  top: 103px;
+  border-left: 2px solid #000;
+  border-top: 2px solid #000;
+  transform: translate(-50%,-50%) rotate(225deg);
+}
+
 
