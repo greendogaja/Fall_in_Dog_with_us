@@ -228,8 +228,7 @@
 				<div class="ip">
 					<input type="submit" value="등록">
 				</div>
-				
-								<!-- user info start -->
+				<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
 							<img src="${loginImg}" >
@@ -237,7 +236,8 @@
 							
 					</div>
 					<div class="profile_info" >
-						<input name="id" value="${loginID}" readonly>
+						<input value="${loginNick}" readonly>
+						<input type="hidden" name="id" value="${loginID}">
 					</div>
 				</div>
 			<!-- user info end -->
@@ -258,7 +258,21 @@
 						</div>
 					</div>
 					<div class="write_content">
-						<textarea name="content" placeholder="내용을 입력하세요."></textarea>
+						<textarea id="content" name="content" placeholder="내용을 입력하세요."></textarea>
+						
+						<!-- CKEditor -->
+						<!-- <script
+							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+						<script
+							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/translations/ko.js"></script>
+						<script>
+							ClassicEditor.create(document
+									.querySelector('#content'), {
+								language : "ko"
+							});
+						</script> -->
+						
+						
 						<!-- NAVER Smart Editor start -->
 						<!-- <textarea class="form-control" name="content" id="content"
 								style="width: 100%; height: 500px;"></textarea>	

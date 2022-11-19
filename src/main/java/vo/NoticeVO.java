@@ -15,6 +15,8 @@ public class NoticeVO {
 	private String subject;
 	private String img;
 	private MultipartFile uploadfilef;
-	private String idUploadfile;
+	
+	// user 테이블에서 가져올 uploadfile 담는 vo
+	private String uploadfile;
 	
 }

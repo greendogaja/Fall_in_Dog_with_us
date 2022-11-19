@@ -10,7 +10,11 @@
 </select>
 
 <select id="selectOne" resultType="vo.NoticeVO">
-	select * from notice where nno=#{nno}
+	<!-- select * from notice where nno=#{nno} -->
+	
+	select title, uploadfile, n.id, nname, regdate, cnt, content, img
+	from notice n, user u
+	where n.id = u.id and nno=#{nno}
 </select>
 
 <!-- ** 조회수 증가	 -->

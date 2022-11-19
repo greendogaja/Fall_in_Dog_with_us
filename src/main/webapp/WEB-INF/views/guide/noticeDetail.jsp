@@ -230,7 +230,8 @@
 		</div>
 		<div class="WriterInfo" >
 			<div class="profile_image">
-				<img src="${apple.idUploadfile}" width=40 height=50>
+				<!-- 프로필이미지 : user 테이블에서 uploadfile 가져와야함 -->
+				<img src="${apple.uploadfile}" width=40 height=50>
 				
 			</div>
 			<div class="profile_info">${apple.id}</div>
@@ -285,10 +286,30 @@
 									<div class="comment_nick">${ncomment.nname}</div>
 									<div class="comment_text_box">
 										<p class="comment_text_view">${ncomment.content}</p>
+										
+										<!-- 답글쓰기 누르면 textarea 나오게 javascript -->
+										<%-- <div class="comment_inbox">
+											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+												apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+											<input type="hidden" name="nno" value="${apple.nno}" id="nno">
+											<input type="hidden" name="id" value="${loginID}">
+											<div class="mg_b_10">${loginNick}</div>
+											<textarea name="content" id="content"
+												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData"
+													value="등록">
+											</div>
+										</div> --%>
+										
 									</div>
 									<div class="comment_info_box">
 										<span class="comment_info_reg">${ncomment.reg}</span> <a>답글쓰기</a>
 										<!-- 답글쓰기 기능은 ajax로,, -->
+									</div>
+									<!-- 수정,삭제 버튼 -->
+									<div class="comment_tool">
+										<a>더보기</a>
 									</div>
 								</div>
 							</div>
@@ -314,7 +335,6 @@
 					</div>
 				</form>
 			</c:if>
-			<a href="selectList?nno=${apple.nno}">댓글리스트생성</a>
 			
 			<!-- <script>
 				document.body.onload = addElement;
