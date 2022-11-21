@@ -1,11 +1,7 @@
 @charset "UTF-8";
 
 .dbox3{
-	min-width:950px;
-	position:absolute;
-	left:7px;
-	width:963px;
-	z-index: 1;
+	width:100%;
 }
 
 button{
@@ -49,12 +45,15 @@ button{
 .base{
 	background-color:darkorange;
 	border-bottom:3px solid darkorange;
+	color:white;
 }
 .bobo{
 	border-bottom:3px solid #e3e3e3;
 }
 .bobo:hover{
 	border-bottom:3px solid darkorange;
+	font-size:1.5em;
+	font-weight:bold;
 }
 .tablecon{
 	width: 100%;
@@ -64,10 +63,26 @@ button{
 	height: 65px;
     border-bottom: 1px solid #e3e3e3;
 }
-
-.tconten a{
+.tconten tr{
+	max-height:73.9px;
+	}
+.tconten td:hover{
+	cursor:pointer;
+	background-color:rgb(255 118 0 / 70%);
+}
+.tconten td{
 	font-size:21px;
 }
+
 .pagecs{
 	margin-top: 45px;
+}
+.foradmin a{
+	float: right;
+    line-height: 32px;
+    width: 60px;
+    background: #0069d9;
+    text-align: center;
+    color:white;
+    margin-top:10px;
 }

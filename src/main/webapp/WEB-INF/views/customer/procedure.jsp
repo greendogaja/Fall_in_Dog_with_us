@@ -36,8 +36,9 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
-    <link rel="stylesheet" href="resources/css/guide.css">
-  	
+    <link rel="stylesheet" href="resources/css/faqinsert.css">
+    <link rel="stylesheet" href="resources/css/adopt_procedure.css">
+    
 </head>
 <body>
 	<!-- Preloader -->
@@ -234,7 +235,7 @@
 	<!-- ##### Header Area End ##### -->
 	
 	
-	<div class="allbox">
+	<div class="outbox" style="width:55%; margin:80px auto;">
 	
 	<div id="box" class="dbox1">
 		<div >
@@ -248,23 +249,22 @@
 						</li>
 						<li>
 							<ul id="hidebox" class="hidex " aria-hidden="false" >
+								<li class="hoverli cho">
+									<span >공지사항</span>
+								</li>
 								<li class="hoverli cho" onClick="location.href='procedure'">
 									<span >입양절차</span>
-								</li>
-								<li class="hoverli cho" onClick="lcation.href='notice'">
-									<span >공지사항</span>
 								</li>
 							</ul>
 						</li>
 						<li class="hoverli cho" onClick="location.href='customerhome'">
-							<span >자주묻는질문(FAQ)</span>
+							<span  >자주묻는질문(FAQ)</span>
 						</li>
 						<li class="hoverli cho">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
-							<span  >위치안내</span>
-							
+							<span >위치안내</span>
 						</li>
 					</ul>
 				</div>
@@ -273,85 +273,132 @@
 	</div>
 
 
-	<div id="resultarea" class="dbox2">
-		 <!-- ##### Kakao Map ##### -->
-    <div id="kakaoMap" class="kakaoMap"></div>
-	<script>
-		var mapContainer = document.getElementById('kakaoMap'), // 지도를 표시할 div 
-			mapOption = {
-		    	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		    	level: 3 
-				};  
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		var geocoder = new kakao.maps.services.Geocoder();
-		var address = '경기 성남시 분당구 돌마로 46' ;
-		var description = '폴인독 , FallInDog' ; // description: 설명,묘사
-		 
-		geocoder.addressSearch(address, function(result, status) { 
-			if (status === daum.maps.services.Status.OK) { 
-				
-				var coords = new daum.maps.LatLng(result[0].y, result[0].x);  
-				var marker = new daum.maps.Marker({ map: map, position: coords }); 
-				var infowindow = new daum.maps.InfoWindow({ 
-					content: '<div style="width:150px;text-align:center;padding:6px 0;">'+description+'</div>' }); 
-				infowindow.open(map, marker); 
-				map.setCenter(coords); 
-			} // if
-			}); // addressSearch
-	</script>
- 	
- 	<br>
-        <!-- 오시는길, 대중교통 이용시 -->
-        <div class="con_box">
-        <h5>오시는길</h5>
-        <table class="ctable">
-        <tbody>
-        	<tr>
-        		<th>주소</th>
-        		<td>경기도 성남시 분당구 돌마로 46</td>
-        	</tr>
-        	<tr>
-        		<th>전화</th>
-        		<td>031-777-7777</td>
-        	</tr>
-        	<tr>
-        		<th>이메일</th>
-        		<td>fallindog@fallindog.com</td>
-        	</tr>
-        </tbody>
-        </table>
-        </div>
-        <br>
-        <div class="con_box">
-        <h5>대중교통 이용시</h5>
-        <table class="ctable">
-        <tbody>
-        	<tr>
-        		<th>지하철</th>
-        		<td>신분당선 미금역 6번 출구 (도보 1분 소요)</td>
-        	</tr>
-        	<tr>
-        		<th>버스</th>
-        		<td>
-        			① 일반버스 : 250, 310, 380, 700-2, 720-1 <br>
-        			② 마을버스 : 5, 7, 11, 14, 15, 16, 17, 32, 37<br>
-					③ 광역버스 : 1241, 9409
-        		</td>
-        	</tr>
-        	<tr>
-        		<th>자동차</th>
-        		<td>경기도 성남시 분당구 돌마로 46</td>
-        	</tr>
-        </tbody>
-        </table>
-        </div>
- 	
- 
+		<div id="resultarea" class="dbox">
+			<div id="area">
+				<!-- content -->
+				<div class="content" id="content">
+					<div class="content-title-wrap">
+						<h3 class="content-title">입양 절차</h3>
+					</div>
+					<!-- cms-wrap -->
+					<div class="cms-wrap ">
+						<div class="section">
+							<h4 class="h4">입양 전 체크리스트</h4>
+							<ol class="adopt-pet-process-list check">
+								<li>
+									<div>
+										<span> 강아지의 수명은 약 15년 정도입니다. 살아가면서 질병도 걸릴 수 있고요.<br
+											class="m-hidden"> 생활패턴이나 환경이 바뀌더라도 오랜 기간 동안 책임지고 잘 돌보아 줄
+											수 있나요?
+										</span>
+									</div>
+								</li>
 
-	</div>
+								<li>
+									<div>
+										<span> 매일 산책을 시켜주거나 함께 있어줄 수 있는 시간이 충분한가요?<br
+											class="m-hidden"> 강아지도 혼자 있으면 외로워하는 사회적 동물입니다.
+										</span>
+									</div>
+								</li>
+
+								<li>
+									<div>
+										<span> 입양 이후 모니터링 관련 정보 제공에 협조를 해 주실 수 있나요?<br
+											class="m-hidden"> 센터에서는 입양 인식개선을 위해서 보호자분의 적극적인 입양후기 공유를
+											권장 드립니다.<br class="m-hidden">
+										</span>
+									</div>
+								</li>
+							</ol>
+						</div>
+						<!-- section -->
+
+						<div class="section">
+							<h4 class="h4">입양절차 안내</h4>
+							<div class="adopt-pet-process">
+								<ol class="adopt-pet-process-list">
+									<li class="step01">
+										<div>
+											<h5>1. 입양 전 확인</h5>
+											<p>
+												Fall in dog 홈페이지내에서 '보호중인 동물'을 확인합니다.<br> 입양대기동물의 사제한
+												정보를 알 수 있어요.<br>
+											</p>
+										</div> <a class="btn-go" href="dog_list_S"><span>동물 목록</span></a>
+
+									</li>
+
+									<li class="step02">
+										<div>
+											<h5>2. 입양 전 교육</h5>
+											<p>
+												입양을 희망하시는 분은 서울시 평생학습포털의 "반려동물 입양교육"을 이수해 주세요.<br> <a
+													href="https://sll.seoul.go.kr/lms/requestCourse/doDetailInfo.do?course_id=ASP00001S995220220000001&class_no=01&course_gubun=1&ocw_yn=N">(교육
+													신청 안내 바로가기)</a>
+											</p>
+										</div>
+									</li>
+
+									<li class="step02">
+										<div>
+											<h5>3. 입양상담 예약</h5>
+											<p>
+												센터 방문 전 입양신청 글을 먼저 작성하여 예약을 해주세요.<br> <a href="">(입양신청
+													게시판 바로가기)</a>
+											</p>
+										</div>
+									</li>
+
+									<li class="step03">
+										<div>
+											<h5>4. 입양 진행</h5>
+											<p>
+												입양은 1~2회 입양상담 및 개체만남을 통해 진행됩니다.<br> (입양 후 파양은 불가합니다.
+												만남을 통해 신중하게 결정해 주세요)
+											</p>
+										</div>
+									</li>
+
+									<li class="step04">
+										<div>
+											<h5>5. 입양 후기 공유</h5>
+											<p>
+												보호자님과 입양된 반려견, 반려묘의 행복한 일상을 입양후기 게시판에 주기적으로 올려주세요.<br>
+												입양 대기 중인 아이들의 입양과 인식 개선에 많은 도움이 됩니다.<br>
+											</p>
+										</div> <a class="btn-go" href=""><span>후기 게시판</span></a>
+
+									</li>
+								</ol>
+
+								<div class="boxType02">
+									<h5>유의사항 안내</h5>
+									<div class="boxType03">
+										<p>
+											1. 한 마리에게 여러 명의 입양희망자가 생길 경우 센터 관리자들이 회의를 거쳐 선정하게 됩니다.<br>
+											선택이 안 되더라도 양해해 주시기 바랍니다.
+										</p>
+										<p>2. 입양을 진행하면서 각 가정에서 필요한 필수 용품을 권해드립니다. 필요 물품들을 준비하여 편안한
+											가정환경을 만들어 주시기 바랍니다. (안전문, 방묘창, 리드줄, 하네스, 사료, 식기, 패드 등등)</p>
+										<p>3. 입양 후 파양은 불가합니다. 가족구성원 모두가 신중하게 생각하시고 입양을 결정해주세요.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- section -->
+
+					</div>
+					<!-- cms-wrap -->
+				</div>
+				<!-- content -->
+			</div>
+			<!--area  -->
+
+		</div>
 </div>
 		<!--######################### Footer -->
-    <footer class="footer-area text-center" style="font-size:1rem; margin-top:30%;">
+    <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">

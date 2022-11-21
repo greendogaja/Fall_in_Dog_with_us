@@ -38,7 +38,6 @@
     <link rel="stylesheet" href="resources/css/customer.css">
     <link rel="stylesheet" href="resources/css/faq.css">
     
-  
 </head>
 <body>
 	<!-- Preloader -->
@@ -243,29 +242,28 @@
 				<h2  class="big_title">고객센터</h2>
 				<div >
 					<ul class="left-bar">
-						<li id="guidemenu" class="hoverli ">
+						<li id="guidemenu">
 							<span >이용안내 </span>
 							<span class="doarrow"></span>
 						</li>
 						<li>
 							<ul id="hidebox" class="hidex " aria-hidden="false" >
 								<li class="hoverli cho">
-									<span >입양안내 및 절차</span>
-								</li>
-								<li class="hoverli cho">
 									<span >공지사항</span>
+								</li>
+								<li class="hoverli cho" onClick="location.href='procedure'">
+									<span >입양절차</span>
 								</li>
 							</ul>
 						</li>
-						<li class="hoverli cho">
-							<span onClick="location.href='customerhome'" class="clicked">자주묻는질문(FAQ)</span>
+						<li class="hoverli cho" onClick="location.href='customerhome'">
+							<span  >자주묻는질문(FAQ)</span>
 						</li>
 						<li class="hoverli cho">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
-						<li id="roadmove" class="hoverli cho">
-							<span  >위치안내</span>
-							
+						<li  class="hoverli cho" onClick="location.href='roadmove'">
+							<span >위치안내</span>
 						</li>
 					</ul>
 				</div>
@@ -281,11 +279,11 @@
 		</div>
 		<div>
 			<ul class="menu-line">
-				<li class="bcho" ><span class="base bobo">전체</span></li>
-				<li class="bcho"><span class="bobo">회원</span></li>
-				<li class="bcho"><span class="bobo">입양</span></li>
-				<li class="bcho"><span class="bobo">방문</span></li>
-				<li class="bcho"><span class="bobo">기타</span></li>
+				<li id="meall" class="bcho" ><span class="bobo">전체</span></li>
+				<li id="meuser" class="bcho"><span class="bobo">회원</span></li>
+				<li id="meadopt" class="bcho"><span class="bobo">입양</span></li>
+				<li id="mevisit" class="bcho"><span class="bobo">방문</span></li>
+				<li id="meother"class="bcho"><span class="bobo">기타</span></li>
 			</ul>
 		</div>
 		<div id="searchbar">
@@ -293,7 +291,7 @@
 			<div class="form-group" style="margin-bottom:0;">
 				<select class="form-control" name="searchType" id="searchType">
 					<option value="n"
-						${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
+						${pageMaker.cri.searchType=='n' ? 'selected' : ''}>전체</option>
 					<option value="st"
 						${pageMaker.cri.searchType=='st' ? 'selected' : ''}>제목</option>
 					<option value="sc"
@@ -310,24 +308,34 @@
 				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
 				</span>
 		</div>
+		
+		
 
 
 		<table class="tablecon">
 			<tbody class="tconten">
 				<c:forEach var="faq" items="${faqlist}">
-					<tr>
-						<td><a href="#">${faq.title }</a></td>
+					<tr onClick="location.href='faqdetail?fno=${faq.fno}'">
+						<td>${faq.title}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		
+		<c:if test="${'admin' == loginID }">
+		<div class="foradmin">
+			<a href="faqinsertf">글쓰기</a>
+		</div>
+		</c:if>
+		
 
 		<div align="center" class="pagecs">
 			<!-- First, Prev -->
 			<c:choose>
 				<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-					<a href="faq${pageMaker.searchQuery(1)}" class="pmove">처음</a>&nbsp;
-			<a href="faq${pageMaker.searchQuery(pageMaker.spageNo-1)}" class="pmove">&lt;</a>&nbsp;&nbsp; 
+					<a href="customerhome${pageMaker.searchQuery(1)}" >처음</a>&nbsp;
+			<a href="customerhome${pageMaker.searchQuery(pageMaker.spageNo-1)}" >&lt;</a>&nbsp;&nbsp; 
 			
 		</c:when>
 				<c:otherwise>
@@ -341,14 +349,14 @@
 					<font size="6" color="Orange">${i}</font>&nbsp;
 		</c:if>
 				<c:if test="${i!=pageMaker.cri.currPage}">
-					<a href="faq${pageMaker.searchQuery(i)}" class="pmove">${i}</a>&nbsp;
+					<a href="customerhome${pageMaker.searchQuery(i)}" >${i}</a>&nbsp;
 		</c:if>
 			</c:forEach>
 			<!-- Next, Last -->
 			<c:choose>
 				<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-					<a href="faq${pageMaker.searchQuery(pageMaker.epageNo+1)}" class="pmove" >&nbsp;&gt;</a>
-					<a href="faq${pageMaker.searchQuery(pageMaker.lastPageNo)}" class="pmove">&nbsp;마지막</a>
+					<a href="customerhome${pageMaker.searchQuery(pageMaker.epageNo+1)}"  >&nbsp;&gt;</a>
+					<a href="customerhome${pageMaker.searchQuery(pageMaker.lastPageNo)}" >&nbsp;마지막</a>
 				</c:when>
 				<c:otherwise>
 					<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>

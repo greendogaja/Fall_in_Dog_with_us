@@ -23,8 +23,12 @@ public class CustomerServiceImpl implements CustomerService{
 	public CustomerVO selectOne(CustomerVO vo) { return mapper.selectOne(vo); 
 	}
 	@Override 
-	public CustomerVO selectnickOne(CustomerVO vo) { return mapper.selectnickOne(vo); 
+	public CustomerVO selectMax(CustomerVO vo) { return mapper.selectMax(vo); 
 	}
+	@Override 
+	public CustomerVO selectMin(CustomerVO vo) { return mapper.selectMin(vo); 
+	}
+
 	//** Insert
 	@Override
 	public int insert(CustomerVO vo) {

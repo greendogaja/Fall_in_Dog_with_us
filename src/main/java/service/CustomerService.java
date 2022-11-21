@@ -11,7 +11,8 @@ public interface CustomerService {
 
 	//** SelectOne
 	CustomerVO selectOne(CustomerVO vo);
-	CustomerVO selectnickOne(CustomerVO vo);
+	CustomerVO selectMax(CustomerVO vo);
+	CustomerVO selectMin(CustomerVO vo);
 	
 	//** Insert
 	int insert(CustomerVO vo);
