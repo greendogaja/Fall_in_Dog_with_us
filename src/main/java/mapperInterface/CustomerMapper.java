@@ -14,8 +14,9 @@ public interface CustomerMapper {
 	
 	
 	//** SelectOne
-	CustomerVO selectnickOne(CustomerVO vo);
 	CustomerVO selectOne(CustomerVO vo);
+	CustomerVO selectMax(CustomerVO vo);
+	CustomerVO selectMin(CustomerVO vo);
 	
 	//Insert
 	int insert(CustomerVO vo);

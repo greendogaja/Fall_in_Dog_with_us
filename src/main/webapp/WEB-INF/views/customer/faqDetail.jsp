@@ -24,9 +24,6 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <script type="text/javascript" 
-		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
-	</script>
     <script src="resources/mLib/customer.js"></script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -36,8 +33,38 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
-    <link rel="stylesheet" href="resources/css/guide.css">
+    <link rel="stylesheet" href="resources/css/faqdetail.css">
+    
+  	<script>
+  	$(function(){
+  	 	$('#advicet').click(function(){
+  	 		$.ajax({
+  	 			type:'Get',
+  	 			url:'advicet',
+  	 			success:function(resultPage){
+  	 				$('#result').html(resultPage);
+  	 			},
+  	 			error: function(){
+  	 				$('#result').html('error');
+  	 			} 
+  	 		 }); //ajax
+  	 	}); //advicet
+ 
+  	 	$('#advicef').click(function(){
+  	 		$.ajax({
+  	 			type:'Get',
+  	 			url:'advicef',
+  	 			success:function(resultPage){
+  	 				$('#result').html(resultPage);
+  	 			},
+  	 			error: function(){
+  	 				$('#result').html('error');
+  	 			} 
+  	 		 }); //ajax
+  	 	}); //click
+  	});
   	
+  	</script>
 </head>
 <body>
 	<!-- Preloader -->
@@ -119,7 +146,6 @@
 												<li><a href="info" style="color: white;">회원정보</a></li>
 												<c:if test="${'admin' == loginID }">
 													<li><a href="usearchlist" style="color: white;">회원관리</a></li>
-
 												</c:if>
 											</ul></li>
 									</ul>
@@ -234,7 +260,7 @@
 	<!-- ##### Header Area End ##### -->
 	
 	
-	<div class="allbox">
+	<div class="outbox">
 	
 	<div id="box" class="dbox1">
 		<div >
@@ -248,16 +274,16 @@
 						</li>
 						<li>
 							<ul id="hidebox" class="hidex " aria-hidden="false" >
-								<li class="hoverli cho" onClick="location.href='procedure'">
-									<span >입양절차</span>
+								<li class="hoverli cho">
+									<span >입양안내 및 절차</span>
 								</li>
-								<li class="hoverli cho" onClick="lcation.href='notice'">
+								<li class="hoverli cho">
 									<span >공지사항</span>
 								</li>
 							</ul>
 						</li>
 						<li class="hoverli cho" onClick="location.href='customerhome'">
-							<span >자주묻는질문(FAQ)</span>
+							<span  class="clicked">자주묻는질문(FAQ)</span>
 						</li>
 						<li class="hoverli cho">
 							<span>1:1문의하기(Q&amp;A)</span>
@@ -273,85 +299,44 @@
 	</div>
 
 
-	<div id="resultarea" class="dbox2">
-		 <!-- ##### Kakao Map ##### -->
-    <div id="kakaoMap" class="kakaoMap"></div>
-	<script>
-		var mapContainer = document.getElementById('kakaoMap'), // 지도를 표시할 div 
-			mapOption = {
-		    	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		    	level: 3 
-				};  
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		var geocoder = new kakao.maps.services.Geocoder();
-		var address = '경기 성남시 분당구 돌마로 46' ;
-		var description = '폴인독 , FallInDog' ; // description: 설명,묘사
-		 
-		geocoder.addressSearch(address, function(result, status) { 
-			if (status === daum.maps.services.Status.OK) { 
-				
-				var coords = new daum.maps.LatLng(result[0].y, result[0].x);  
-				var marker = new daum.maps.Marker({ map: map, position: coords }); 
-				var infowindow = new daum.maps.InfoWindow({ 
-					content: '<div style="width:150px;text-align:center;padding:6px 0;">'+description+'</div>' }); 
-				infowindow.open(map, marker); 
-				map.setCenter(coords); 
-			} // if
-			}); // addressSearch
-	</script>
- 	
- 	<br>
-        <!-- 오시는길, 대중교통 이용시 -->
-        <div class="con_box">
-        <h5>오시는길</h5>
-        <table class="ctable">
-        <tbody>
-        	<tr>
-        		<th>주소</th>
-        		<td>경기도 성남시 분당구 돌마로 46</td>
-        	</tr>
-        	<tr>
-        		<th>전화</th>
-        		<td>031-777-7777</td>
-        	</tr>
-        	<tr>
-        		<th>이메일</th>
-        		<td>fallindog@fallindog.com</td>
-        	</tr>
-        </tbody>
-        </table>
-        </div>
-        <br>
-        <div class="con_box">
-        <h5>대중교통 이용시</h5>
-        <table class="ctable">
-        <tbody>
-        	<tr>
-        		<th>지하철</th>
-        		<td>신분당선 미금역 6번 출구 (도보 1분 소요)</td>
-        	</tr>
-        	<tr>
-        		<th>버스</th>
-        		<td>
-        			① 일반버스 : 250, 310, 380, 700-2, 720-1 <br>
-        			② 마을버스 : 5, 7, 11, 14, 15, 16, 17, 32, 37<br>
-					③ 광역버스 : 1241, 9409
-        		</td>
-        	</tr>
-        	<tr>
-        		<th>자동차</th>
-        		<td>경기도 성남시 분당구 돌마로 46</td>
-        	</tr>
-        </tbody>
-        </table>
-        </div>
- 	
- 
+	<div id="resultarea" class="bbox">
+		<div class="title">
+			<h2 class="htitle">자주묻는질문(FAQ)</h2>
+		</div>
+		<c:if test="${'admin' == loginID }">
+		<div class="buttonss" style="text-align:end;">
+		<button onClick="location.href='faqdetail?want=U&fno=${faqone.fno}'" class="btns">[글수정]</button>
+		<button onClick="location.href='faqdelete?fno=${faqone.fno}'" class="btns">[글삭제]</button>
+		</div>	
+		</c:if>
+		<h2 style="	font-size:2rem;	margin: 50px 0;" >${faqone.title}</h2>
+		<div>${faqone.content}</div>
+		<hr class="bhr">
+
+		<div id="result">
+			<span>이 글이 도움이 되었나요?</span>
+			<div class="yesno">
+				<p id="advicet" class="good">네</p>
+				<p id="advicef" class="bad">아니오</p>
+			</div>
+		</div>
+		<hr>
+
+		<div>
+		<span>이전글 </span>
+		<a href="faqdetail?fno=${min.fno}">${min.title}</a>
+		</div>
+		<div>
+		 <span>다음글 </span>
+		<a href="faqdetail?fno=${max.fno}">${max.title}</a>
+		</div>
+		
+		 <a href="customerhome">목록으로</a>
 
 	</div>
 </div>
 		<!--######################### Footer -->
-    <footer class="footer-area text-center" style="font-size:1rem; margin-top:30%;">
+    <footer class="footer-area text-center" style="font-size:1rem; ">
         <div class="container">
             <div class="row">
                 <div class="col-12">

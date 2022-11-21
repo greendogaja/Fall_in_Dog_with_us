@@ -24,9 +24,14 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <script type="text/javascript" 
-		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
-	</script>
+		<!-- include libraries(jQuery, bootstrap) -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<!-- include summernote css/js-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<!-- include summernote-ko-KR -->
+   <script src="resources/smartEditor2/js/lang/summernote-ko-KR.min.js"></script>    
+    
     <script src="resources/mLib/customer.js"></script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -36,8 +41,48 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
-    <link rel="stylesheet" href="resources/css/guide.css">
-  	
+    <link rel="stylesheet" href="resources/css/faq.css">
+    <link rel="stylesheet" href="resources/css/faqinsert.css">
+    
+    
+    <script>
+$(document).ready(function() {
+  $('#summernote').summernote({
+	  // 에디터 높이
+	  height: 700,
+	  // 에디터 한글 설정
+	  lang: "ko-KR",
+	  // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
+	  focus : true,
+	  toolbar: [
+		    // 글꼴 설정
+		    ['fontname', ['fontNames']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 표만들기
+		    ['table', ['table']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 그림첨부, 링크만들기, 동영상첨부
+		    ['insert',['picture','link','video']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ],
+		  // 추가한 글꼴
+		fontNames: ['dalseomedium','score','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+		 // 추가한 폰트사이즈
+		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+			
+  });
+});
+</script>
+    
 </head>
 <body>
 	<!-- Preloader -->
@@ -234,7 +279,7 @@
 	<!-- ##### Header Area End ##### -->
 	
 	
-	<div class="allbox">
+	<div class="outbox" style="width:55%; margin:80px auto;">
 	
 	<div id="box" class="dbox1">
 		<div >
@@ -248,110 +293,56 @@
 						</li>
 						<li>
 							<ul id="hidebox" class="hidex " aria-hidden="false" >
-								<li class="hoverli cho" onClick="location.href='procedure'">
-									<span >입양절차</span>
+								<li class="hoverli cho">
+									<span >입양안내 및 절차</span>
 								</li>
-								<li class="hoverli cho" onClick="lcation.href='notice'">
+								<li class="hoverli cho">
 									<span >공지사항</span>
 								</li>
 							</ul>
 						</li>
 						<li class="hoverli cho" onClick="location.href='customerhome'">
-							<span >자주묻는질문(FAQ)</span>
+							<span  >자주묻는질문(FAQ)</span>
 						</li>
 						<li class="hoverli cho">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
-							<span  >위치안내</span>
-							
+							<span >위치안내</span>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-	<div id="resultarea" class="dbox2">
-		 <!-- ##### Kakao Map ##### -->
-    <div id="kakaoMap" class="kakaoMap"></div>
-	<script>
-		var mapContainer = document.getElementById('kakaoMap'), // 지도를 표시할 div 
-			mapOption = {
-		    	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		    	level: 3 
-				};  
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		var geocoder = new kakao.maps.services.Geocoder();
-		var address = '경기 성남시 분당구 돌마로 46' ;
-		var description = '폴인독 , FallInDog' ; // description: 설명,묘사
-		 
-		geocoder.addressSearch(address, function(result, status) { 
-			if (status === daum.maps.services.Status.OK) { 
-				
-				var coords = new daum.maps.LatLng(result[0].y, result[0].x);  
-				var marker = new daum.maps.Marker({ map: map, position: coords }); 
-				var infowindow = new daum.maps.InfoWindow({ 
-					content: '<div style="width:150px;text-align:center;padding:6px 0;">'+description+'</div>' }); 
-				infowindow.open(map, marker); 
-				map.setCenter(coords); 
-			} // if
-			}); // addressSearch
-	</script>
- 	
- 	<br>
-        <!-- 오시는길, 대중교통 이용시 -->
-        <div class="con_box">
-        <h5>오시는길</h5>
-        <table class="ctable">
-        <tbody>
-        	<tr>
-        		<th>주소</th>
-        		<td>경기도 성남시 분당구 돌마로 46</td>
-        	</tr>
-        	<tr>
-        		<th>전화</th>
-        		<td>031-777-7777</td>
-        	</tr>
-        	<tr>
-        		<th>이메일</th>
-        		<td>fallindog@fallindog.com</td>
-        	</tr>
-        </tbody>
-        </table>
-        </div>
-        <br>
-        <div class="con_box">
-        <h5>대중교통 이용시</h5>
-        <table class="ctable">
-        <tbody>
-        	<tr>
-        		<th>지하철</th>
-        		<td>신분당선 미금역 6번 출구 (도보 1분 소요)</td>
-        	</tr>
-        	<tr>
-        		<th>버스</th>
-        		<td>
-        			① 일반버스 : 250, 310, 380, 700-2, 720-1 <br>
-        			② 마을버스 : 5, 7, 11, 14, 15, 16, 17, 32, 37<br>
-					③ 광역버스 : 1241, 9409
-        		</td>
-        	</tr>
-        	<tr>
-        		<th>자동차</th>
-        		<td>경기도 성남시 분당구 돌마로 46</td>
-        	</tr>
-        </tbody>
-        </table>
-        </div>
- 	
- 
-
+	
+	
+	<div id="resultarea" class="bbox">
+		<div class="title">
+			<h2 class="detail">자주묻는질문(FAQ)</h2>
+		</div>
+		
+	<div class="write" style="width: 100%; margin: auto;">
+	<form method="post" action="faqinsert">
+		<div>
+		<span  style="font-size:2rem; margin: 50px 0;"></span>
+		<input type="text" name="title" class="write-title" placeholder=" 제목을 입력하세요."/>
+		</div>
+		<br>
+		<textarea id="summernote" name="content" class="write-content" placeholder="내용을 입력하세요."></textarea>
+		<button type="reset"  class="writebtn ">취소</button>
+		<button type="submit"  class="writebtn" style="margin-right:8px;">글등록</button>
+	</form>
 	</div>
+
+
+	
+	</div>
+
 </div>
-		<!--######################### Footer -->
-    <footer class="footer-area text-center" style="font-size:1rem; margin-top:30%;">
+	
+	<!--######################### Footer -->
+    <footer class="footer-area text-center" style="font-size:1rem; margin-top:300px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">

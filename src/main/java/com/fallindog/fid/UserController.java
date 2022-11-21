@@ -284,7 +284,7 @@ public class UserController {
 	public ModelAndView usearchlist(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
 		
 		cri.setSnoEno();
-		cri.setRowsPerPage(5);
+		cri.setRowsPerPage(10);
 		String namekey  = request.getParameter("namekey");
 		String phonekey = request.getParameter("phonekey");
 		String idkey = request.getParameter("idkey");
@@ -308,6 +308,6 @@ public class UserController {
 		
 		mv.setViewName("user/userControl");
     	return mv;
-	} //bchecklist
+	} //usearchLlist
 	
 }
