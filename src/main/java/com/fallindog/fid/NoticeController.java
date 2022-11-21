@@ -100,6 +100,8 @@ public class NoticeController {
 		String uri = "guide/noticeDetail";
 		
 		// 2. Service 처리
+		int nno = Integer.parseInt((String)request.getParameter("nno"));
+		vo.setNno(nno);
 		vo = service.selectOne(vo);
 		System.out.println("#################################"+vo);
 		
@@ -120,7 +122,6 @@ public class NoticeController {
 		}else mv.addObject("message", "~~ 글번호에 해당하는 자료가 없습니다. ~~");
 		
 		// 3. 댓글리스트
-		int nno = Integer.parseInt((String)request.getParameter("nno"));
 		cvo.setNno(nno);
 		System.out.println("!!!!!!!!!!!!!!!!!!!! "+nno);
 		
