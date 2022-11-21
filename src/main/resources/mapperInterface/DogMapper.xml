@@ -5,29 +5,64 @@
 <mapper namespace="mapperInterface.DogMapper">
 
 
-<!-- 동물 목록 S -->
-<select id="selectList_S" resultType="vo.DogVO">
+<select id="checkList" resultType="vo.DogVO">
+	select * from dogs
+	
+	where breed in
+	<foreach collection="check" item="it" open="(" close=")" separator=",">
+		#{it}
+	</foreach>
+		
+	order by dno desc
+</select>
+
+
+
+<select id="dog_list_S" resultType="vo.DogVO">
 	select dno, title, img
-	from dogs
+	from dogs 
 	where size = 's'
 	order by dno desc
+	limit #{sno}, #{rowsPerPage}
 </select>
 
-<!-- 동물 목록 M -->
-<select id="selectList_M" resultType="vo.DogVO">
+<select id="dog_list_M" resultType="vo.DogVO">
 	select dno, title, img
-	from dogs
+	from dogs 
 	where size = 'm'
 	order by dno desc
+	limit #{sno}, #{rowsPerPage}
 </select>
 
-<!-- 동물 목록 L -->
-<select id="selectList_L" resultType="vo.DogVO">
+<select id="dog_list_L" resultType="vo.DogVO">
 	select dno, title, img
-	from dogs
+	from dogs 
 	where size = 'l'
 	order by dno desc
+	limit #{sno}, #{rowsPerPage}
 </select>
+
+
+
+<select id="dog_count_S" resultType="int">
+	select count(*)
+	from dogs
+	where size = 's'
+</select>
+
+<select id="dog_count_M" resultType="int">
+	select count(*)
+	from dogs
+	where size = 'm'
+</select>
+
+<select id="dog_count_L" resultType="int">
+	select count(*)
+	from dogs
+	where size = 'l'
+</select>
+
+
 
 <!-- 상세 페이지 -->
 <select id="selectOne" resultType="vo.DogVO">

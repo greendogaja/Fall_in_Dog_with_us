@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import adoptcontrol.AdoptSearchCriteria;
 import mapperInterface.AdoptMapper;
 import vo.AdoptVO;
 
@@ -14,13 +15,7 @@ public class AdoptServiceImpl implements AdoptService{
 	@Autowired
 	AdoptMapper mapper;
 	
-//	게시판
-	@Override
-	public List<AdoptVO> selectList(){
-		return mapper.selectList();
-	}
-	
-//	게시글
+//	게시글ss
 	@Override
 	public AdoptVO selectOne(AdoptVO vo) {
 		return mapper.selectOne(vo);
@@ -50,4 +45,31 @@ public class AdoptServiceImpl implements AdoptService{
 		return mapper.countUp(vo);
 	}
 	
+//	게시판
+	@Override
+	public List<AdoptVO> searchList(AdoptSearchCriteria cri) {
+		return mapper.searchList(cri);
+	}
+	public int searchCount(AdoptSearchCriteria cri) {
+		return mapper.searchCount(cri);
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

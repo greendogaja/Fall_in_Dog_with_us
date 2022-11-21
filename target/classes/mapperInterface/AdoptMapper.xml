@@ -4,13 +4,39 @@
 
 <mapper namespace="mapperInterface.AdoptMapper">
 
-<!-- 게시판 -->
-<select id="selectList" resultType="vo.AdoptVO">
+
+<sql id="search">
+	<if test="keyword!=null">
+		<bind name="keyVal" value="'%'+keyword+'%'"/>
+	</if>
+	<choose>
+		<when test="searchType=='t'.toString()">
+			and title like #{keyVal} )
+		</when>
+		<when test="searchType=='c'.toString()">
+			and content like #{keyVal} )
+		</when>
+		<when test="searchType=='i'.toString()">
+			and id like #{keyVal} )
+		</when>
+		<otherwise> )</otherwise>
+	</choose>
+</sql>
+
+<select id="searchList" resultType="vo.AdoptVO">
 	select ano, title, id, regdate, cnt
 	from adopt 
+	where ( ano>0 <include refid="search"></include>  
 	order by ano desc
+	limit #{sno}, #{rowsPerPage}
 </select>
-	
+
+<select id="searchCount" resultType="int">
+	select count(*)
+	from adopt
+	where ( ano>0 <include refid="search"></include>
+</select>
+
 <!-- 게시글 -->
 <select id="selectOne" resultType="vo.AdoptVO">
 	select *
@@ -29,8 +55,7 @@
 
 <!-- 글수정 -->
 <update id="update">
-	update adopt set title=#{title}, content=#{content}
-	where ano=#{ano}
+	update adopt set title=#{title}, content=#{content} where ano=#{ano}
 </update>
 
 <!-- 글삭제 -->
