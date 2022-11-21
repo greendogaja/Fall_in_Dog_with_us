@@ -1,6 +1,5 @@
 package com.fallindog.fid;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,21 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import adoptcontrol.AdoptPageMaker;
+import adoptcontrol.AdoptSearchCriteria;
+import dogcontrol.DogPageMaker;
+import dogcontrol.DogSearchCriteria;
 import service.AdoptReplyService;
 import service.AdoptService;
 import service.DogService;
 import vo.AdoptReplyVO;
 import vo.AdoptVO;
 import vo.DogVO;
-import vo.NoticeVO;
 
 
 @Controller 
@@ -62,24 +61,23 @@ public class AdoptController {
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 //	입양 신청 게시판
 	@RequestMapping(value="/adopt_board")
-	public ModelAndView adopt_board(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-	
-		List<AdoptVO> list = new ArrayList<AdoptVO>();
-	  	list = Aservice.selectList();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/adopt_board");
-	  	return mv;
-	
+	public ModelAndView adopt_board(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, AdoptSearchCriteria cri, AdoptPageMaker pageMaker) {
+
+		cri.setSnoEno();
+
+		mv.addObject("Adopt_list", Aservice.searchList(cri));
+
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRowsCount(Aservice.searchCount(cri));
+		mv.addObject("AdoptPageMaker", pageMaker);
+
+
+		mv.setViewName("/adopt_dog/adopt_board");
+		return mv;
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,12 +144,12 @@ public class AdoptController {
 		
 	}
 	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 //	글수정
-	@RequestMapping(value="/adopt_update_form", method=RequestMethod.POST)
-	public ModelAndView adopt_update_form(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv, AdoptVO vo)  throws IOException {
+	@RequestMapping(value="/adopt_update", method=RequestMethod.POST)
+	public ModelAndView adopt_update(HttpServletRequest request, HttpServletResponse response,
+									 ModelAndView mv, AdoptVO vo) {
 
 		String uri = "adopt_dog/adopt_detail";
 		mv.addObject("Adopt_detail",vo);
@@ -192,66 +190,57 @@ public class AdoptController {
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 //	보호/입양중 목록
 	@RequestMapping(value="/dog_list_S")
-	public ModelAndView dog_list_S(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		
-		List<DogVO> list = new ArrayList<DogVO>();
-	  	list = Dservice.selectList_S();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/dog_list_S");
-	  	return mv;
-	  	
+	public ModelAndView dog_list_S(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, DogSearchCriteria cri, DogPageMaker pageMaker) {
+
+		cri.setSnoEno();
+		mv.addObject("Adopt_list", Dservice.dog_list_S(cri));
+
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRowsCount(Dservice.dog_count_S(cri));
+		mv.addObject("AdoptPageMaker", pageMaker);
+
+		mv.setViewName("/adopt_dog/dog_list_S");
+		return mv;
 	}
-	
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 //	보호/입양중 목록
 	@RequestMapping(value="/dog_list_M")
-	public ModelAndView dog_list_M(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		
-		List<DogVO> list = new ArrayList<DogVO>();
-	  	list = Dservice.selectList_M();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/dog_list_M");
-	  	return mv;
-	  	
+	public ModelAndView dog_list_M(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, DogSearchCriteria cri, DogPageMaker pageMaker) {
+
+		cri.setSnoEno();
+		mv.addObject("Adopt_list", Dservice.dog_list_M(cri));
+
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRowsCount(Dservice.dog_count_M(cri));
+		mv.addObject("AdoptPageMaker", pageMaker);
+
+		mv.setViewName("/adopt_dog/dog_list_M");
+		return mv;
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 //	보호/입양중 목록
 	@RequestMapping(value="/dog_list_L")
-	public ModelAndView dog_list_L(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		
-		List<DogVO> list = new ArrayList<DogVO>();
-	  	list = Dservice.selectList_L();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/dog_list_L");
-	  	return mv;
-	  	
+	public ModelAndView dog_list_L(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, DogSearchCriteria cri, DogPageMaker pageMaker) {
+
+		cri.setSnoEno();
+		mv.addObject("Adopt_list", Dservice.dog_list_L(cri));
+
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRowsCount(Dservice.dog_count_L(cri));
+		mv.addObject("AdoptPageMaker", pageMaker);
+
+		mv.setViewName("/adopt_dog/dog_list_L");
+		return mv;
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

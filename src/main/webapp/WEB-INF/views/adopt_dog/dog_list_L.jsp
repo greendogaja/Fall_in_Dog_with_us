@@ -23,6 +23,25 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+   	<script>
+
+	$(function() {
+		$('#searchType').change(function(){
+			if ( $(this).val()=='n' ) $('#keyword').val('');
+		}); //change
+
+		$('#searchBtn').click(function(){
+			self.location="dog_list_L"
+				+"${AdoptPageMaker.makeQuery(1)}"
+				+"&searchType="
+				+$('#searchType').val()
+				+"&keyword="
+				+$('#keyword').val()
+		}); //click
+	});
+	
+	</script>
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -231,13 +250,12 @@
         </div>
 
 
-        <div>
-            <ul>
-                <li><a href="dog_list_S">소형견</a></li>
-                <li><a href="dog_list_M">중형견</a></li>
-                <li style="background-color: skyblue"><a href="dog_list_L">대형견</a></li>
+		<div class="dog-size">
+            <ul class="dog-size-u">
+				<li><a href="dog_list_S" class="dog-size-l">소형견</a></li>
+                <li><a href="dog_list_M" class="dog-size-l">중형견</a></li>
+                <li><a href="dog_list_L" class="dog-size-l" style="background-color: skyblue">대형견</a></li>
             </ul>
-
         </div>
 
 
@@ -291,23 +309,53 @@
         </div>
 
 
-        <!-- paging-wrap -->
-        <div class="paging-wrap">
-            <div class="paging">
-                <a href="" title="처음 페이지" class="com first"><span>처음</span></a>
-                <a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
-                <a href="" title=" 페이지">1</a>
-                <a href="" title=" 페이지">2</a>
-                <a href="" title=" 페이지">3</a>
-                <a href="" title="다음 페이지" class="com next"><span>다음</span></a>
-                <a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
+		<!-- paging-wrap -->
 
-            </div>
+		<div class="paging-wrap">
+			
+			<div class="paging">
+				
+			<c:choose>
+				<c:when test="${AdoptPageMaker.prev && AdoptPageMaker.spageNo>1}">
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(1)}" title="처음 페이지" class="com first"><span>처음</span></a>
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(AdoptPageMaker.spageNo-1)}" title="이전 페이지" class="com prev"><span>이전</span></a>
+				</c:when>
+				
+				<c:otherwise>
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(1)}" title="처음 페이지" class="com first"><span>처음</span></a>
+				</c:otherwise>
+			</c:choose>
 
-            <a class="btn-go" href="dog_insert_form"><span>글쓰기</span></a>
-        </div>
+					
+			<c:forEach  var="i" begin="${AdoptPageMaker.spageNo}" end="${AdoptPageMaker.epageNo}">
+				<c:if test="${i==AdoptPageMaker.cri.currPage}">
+					<font color="gray" class="com">${i}</font>
+				</c:if>
+						
+				<c:if test="${i!=AdoptPageMaker.cri.currPage}">
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(i)}" class="com">${i}</a>
+				</c:if>
+			</c:forEach>
 
-    </div>
+
+			<c:choose>
+				<c:when test="${AdoptPageMaker.next && AdoptPageMaker.epageNo>0}">
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(AdoptPageMaker.epageNo+1)}" title="다음 페이지" class="com next"><span>다음</span></a>
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(AdoptPageMaker.lastPageNo)}" title="마지막 페이지" class="com last"><span>마지막</span></a>
+				</c:when>
+				
+				<c:otherwise>
+					<a href="dog_list_L${AdoptPageMaker.searchQuery(AdoptPageMaker.lastPageNo)}" title="마지막 페이지" class="com last"><span>마지막</span></a>
+				</c:otherwise>
+			</c:choose>
+
+			</div>
+				
+			<c:if test="${loginID == 'admin'}">
+				<a class="btn-go" href="dog_insert_form"><span>동물 등록</span></a>
+            </c:if>
+				
+		</div>
 
 
 
