@@ -1,8 +1,7 @@
 package com.fallindog.fid;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,7 +46,7 @@ public class AdoptController {
 		
 		mv.setViewName("adopt_dog/adopt_guide");
 		return mv;
-		
+
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -283,10 +283,38 @@ public class AdoptController {
 	
 	@RequestMapping(value="/dog_insert", method=RequestMethod.POST)
 	public ModelAndView dog_insert(HttpServletRequest request, HttpServletResponse response,
-								   ModelAndView mv, DogVO vo, RedirectAttributes rttr) {
+								   ModelAndView mv, DogVO vo, RedirectAttributes rttr) throws IllegalStateException, IOException {
 		
 		String uri = "redirect:dog_list_S";
+
+		String realPath = request.getRealPath("/");
+	     
+		if (realPath.contains(".eclipse.")) {
+			realPath = "C:/MTest/project/Fall_in_Dog/src/main/webapp/resources/img/dogs/";
+			
+		}else {
+			realPath += "resources/img/dogs/";
+			
+		}
+		File f1 = new File(realPath);
 		
+		if (!f1.exists()) {
+			f1.mkdir();
+			
+		}
+		String file1, file2="resources/img/dogs/default.png";
+		MultipartFile uploadfilef = vo.getUploadfilef();
+		
+		if (uploadfilef !=null && !uploadfilef.isEmpty()) {
+			
+			file1 = realPath + uploadfilef.getOriginalFilename(); 
+			uploadfilef.transferTo(new File(file1)); 
+	         
+			file2="resources/img/dogs/"+uploadfilef.getOriginalFilename();
+				
+		}
+		vo.setImg(file2);
+
 		if (Dservice.insert(vo)>0) {
 			rttr.addFlashAttribute("message", "__Insert Success__");
 			
@@ -303,11 +331,40 @@ public class AdoptController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 //	글수정
-	@RequestMapping(value="/dog_update_form", method=RequestMethod.POST)
-	public ModelAndView dog_update_form(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value="/dog_update", method=RequestMethod.POST)
+	public ModelAndView dog_update(HttpServletRequest request, HttpServletResponse response,
 										  ModelAndView mv, DogVO vo)  throws IOException {
 	
 		String uri = "adopt_dog/dog_detail";
+		
+		String realPath = request.getRealPath("/");
+	     
+		if (realPath.contains(".eclipse.")) {
+			realPath = "C:/MTest/project/Fall_in_Dog/src/main/webapp/resources/img/dogs/";
+			
+		}else {
+			realPath += "resources/img/dogs/";
+			
+		}
+		File f1 = new File(realPath);
+		
+		if (!f1.exists()) {
+			f1.mkdir();
+			
+		}
+		String file1, file2="resources/img/dogs/default.png";
+		MultipartFile uploadfilef = vo.getUploadfilef();
+		
+		if (uploadfilef !=null && !uploadfilef.isEmpty()) {
+			
+			file1 = realPath + uploadfilef.getOriginalFilename(); 
+			uploadfilef.transferTo(new File(file1)); 
+	         
+			file2="resources/img/dogs/"+uploadfilef.getOriginalFilename();
+				
+		}
+		vo.setImg(file2);
+
 		mv.addObject("Adopt_detail",vo);
 	
 		if (Dservice.update(vo) > 0) {
@@ -337,7 +394,7 @@ public class AdoptController {
 
 		}else {
 			rttr.addFlashAttribute("message", "__Delete Fail__");
-			uri = "redirect:dog_detail?ano="+vo.getDno();
+			uri = "redirect:dog_detail?dno="+vo.getDno();
 
 		}
 		mv.setViewName(uri);
