@@ -73,8 +73,43 @@
 
 <!-- 글쓰기 -->
 <insert id="insert">
-	insert into dogs(*) 
-	values(*)
+	insert into dogs(title, protect, size, breed, gender, age, chrcter, neutering, dateofdis, identity, id, img, weight)
+	values(#{title}, #{protect}, #{size}, #{breed}, #{gender}, #{age}, #{chrcter}, #{neutering}, #{dateofdis}, #{identity}, #{id}, #{img}, #{weight})
 </insert>
 
+<!-- 글수정 -->
+<update id="update">
+	update dogs set
+	title=#{title}, protect=#{protect}, size=#{size}, breed=#{breed}, gender=#{gender}, age=#{age}, chrcter=#{chrcter}, neutering=#{neutering}, dateofdis=#{dateofdis}, identity=#{identity}, img=#{img}, weight=#{weight}
+	where dno=#{dno}
+</update>
+
+<!-- 글삭제 -->
+<delete id="delete">
+	delete from dogs where dno=#{dno}
+</delete>	
+
+
+
+
 </mapper> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

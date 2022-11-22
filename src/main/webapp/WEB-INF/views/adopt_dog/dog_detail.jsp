@@ -259,7 +259,7 @@
 
                     <tr>
                         <th class="first">품종</th>
-                        <td colspan="3" class="last">${Adopt_detail.title}</td>
+                        <td colspan="3" class="last">${Adopt_detail.breed}</td>
                     </tr>
 
                     <tr>
@@ -282,7 +282,7 @@
 
                     <tr>
                         <th class="first">특징</th>
-                        <td colspan="3" class="last">${Adopt_detail.character}</td>
+                        <td colspan="3" class="last">${Adopt_detail.chrcter}</td>
                     </tr>
 
                     <tr>
@@ -315,6 +315,10 @@
         <div class="listbtn">
             <a href="adopt_board" class="btn_Detail">입양신청</a>
             <a href="dog_list_S" class="btn_Detail">목록</a>
+            <c:if test="${loginID=='admin'}">
+            	<a href="dog_detail?jCode=U&dno=${Adopt_detail.dno}" class="btn_Detail">수정</a>
+            	<a href="dog_delete?dno=${Adopt_detail.dno}" class="btn_Detail">삭제</a>
+            </c:if>
         </div>
 
     </div>

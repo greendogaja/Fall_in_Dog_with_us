@@ -58,13 +58,13 @@ public class DogServiceImpl implements DogService{
 //	글수정
 	@Override
 	public int update(DogVO vo) {
-		return mapper.insert(vo);
+		return mapper.update(vo);
 	}
 	
 //	글삭제
 	@Override
 	public int delete(DogVO vo) {
-		return mapper.insert(vo);
+		return mapper.delete(vo);
 	}
 	
 }

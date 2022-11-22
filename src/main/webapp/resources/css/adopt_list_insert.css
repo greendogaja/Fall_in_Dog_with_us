@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+/* 베이스 */
+
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#content {
+    padding: 40px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 이미지 */
+.dog_Detail_Img {
+    display: inline-block;
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
+    border: 2px solid grey;
+}
+
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 테이블 */
+.dog_Detail table {
+    width: 100%;
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+}
+
+.dog_Detail tr {
+    height: 40px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.dog_Detail .first {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f7f6f5;
+}
+
+.dog_Detail .last {
+    text-align: left;
+    border-bottom: 1px solid #e6e7e8;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* 버튼 */
+.listbtn {
+    margin-top: 30px;
+}
+
+.btn_Detail {
+    display: inline-block;
+    width: 100px;
+    line-height: 40px;
+    border-radius: 5px;
+    background-color: #cdcdcd;
+    border: 1px solid grey;
+}
+
+.btn_Detail:hover {
+    cursor: pointer;
+}
