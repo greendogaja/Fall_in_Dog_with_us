@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapperInterface.NoticeReplyMapper">
+
+<!-- 댓글입력 -->
+<insert id="ncinsert">
+	<selectKey keyProperty="grp" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grp),0)+1 
+		from ncomment
+		where nno = #{nno}
+	</selectKey>
+	
+	insert into ncomment(cno, nno, grp, grpl, id, content) 
+	values(#{cno}, #{nno}, #{grp}, #{grpl}, #{id}, #{content})
+</insert>
+
+<update id="ncupdate">
+	update ncomment
+	set content = #{content}
+	where cno = #{cno}
+</update>
+
+<!-- 댓글리스트 가져오기 -->
+<select id="selectList" resultType="vo.NoticeReplyVO">
+	<!-- selectList 에 담겨야 하는 모든 vo 를 select 해야함! -->
+	select nno, cno, content, regdate, nname, uploadfile, grp, grps, grpl
+	from ncomment n, user u
+	where n.id = u.id and n.nno = #{nno} 
+	order by grp desc, grps asc	
+</select>
+
+<!-- 대댓글 입력 -->
+<insert id="ncreply">
+<!-- 	insert into ncomment(cno, nno, grp, grps, grpl, id, content)
+	values(#{cno}, #{nno}, #{grp}, #{grps}, #{grpl}, #{id}, #{content}) -->
+
+	<selectKey keyProperty="grps" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grps),0)+1
+		from ncomment 
+		where nno = #{nno} and grp = #{grp}
+	</selectKey>
+	insert into ncomment(cno, nno, grp, grps, grpl, id, content)
+	values(#{cno}, #{nno},  #{grp}, #{grps}, #{grpl}, #{id}, #{content})
+</insert>
+
+<!-- 댓글 삭제 -->
+ <delete id="ncdelete">
+	delete from ncomment
+	<choose>
+		<when test="grps == 0">
+			where grp = #{grp} and nno = #{nno}
+		</when>
+		<when test="grps != 0">
+			where cno = #{cno}
+		</when>
+	</choose>
+</delete>
+
+
+</mapper> 
