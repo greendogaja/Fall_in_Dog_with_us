@@ -2,12 +2,14 @@ package mapperInterface;
 
 import java.util.List;
 
+import adoptcontrol.AdoptSearchCriteria;
 import vo.AdoptVO;
 
 public interface AdoptMapper {
 	
 //	게시판
-	List<AdoptVO> selectList();
+	List<AdoptVO> searchList(AdoptSearchCriteria cri);
+	int searchCount(AdoptSearchCriteria cri);
 	
 //	게시글
 	AdoptVO selectOne(AdoptVO vo);
@@ -23,5 +25,7 @@ public interface AdoptMapper {
 	
 //	조회수
 	int countUp(AdoptVO vo);
+	
+
 	
 }
