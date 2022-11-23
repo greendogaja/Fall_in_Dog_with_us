@@ -232,7 +232,7 @@
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
 							<img src="${loginImg}" >
-							<%-- <input type="hidden" name="idUploadfile" value="${loginImg}"> --%>
+							<%-- <input type="hidden" name="loginImg" value="${loginImg}"> --%>
 							
 					</div>
 					<div class="profile_info" >
