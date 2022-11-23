@@ -43,13 +43,32 @@ public class NcommentServiceImpl implements NcommentService{
 	public int ncreply_up(NcommentVO cvo){
 		return mapper.ncreply_up(cvo);
 	}
+	
+	@Override
+	public int ncupdate(NcommentVO cvo) {
+		return mapper.ncupdate(cvo);
+	}
 
 	// 댓글리스트 가져오기
 	@Override
 	public List<NcommentVO> selectList(NcommentVO cvo){
 		return mapper.selectList(cvo);
 	}
+	@Override
+	public List<NcommentVO> re_selectList(NcommentVO cvo){
+		return mapper.re_selectList(cvo);
+	}
+	
+	@Override
+	public int ncdelete(NcommentVO cvo) {
+		return mapper.ncdelete(cvo);
+	}
 
+	@Override
+	public int ncdelete_grp(NcommentVO cvo) {
+		return mapper.ncdelete_grp(cvo);
+	}
+	
 	// 댓글 추가/삭제시 댓글 갯수 가져오기
 	@Override
 	public int nc_count(NcommentVO cvo){

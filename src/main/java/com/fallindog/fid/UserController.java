@@ -277,7 +277,11 @@ public class UserController {
 	public ModelAndView usearchlist(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
 		
 		cri.setSnoEno();
+<<<<<<< .merge_file_a13668
+		cri.setRowsPerPage(5);
+=======
 		cri.setRowsPerPage(10);
+>>>>>>> .merge_file_a00844
 		String namekey  = request.getParameter("namekey");
 		String phonekey = request.getParameter("phonekey");
 		String idkey = request.getParameter("idkey");
@@ -301,6 +305,10 @@ public class UserController {
 		
 		mv.setViewName("user/userControl");
     	return mv;
+<<<<<<< .merge_file_a13668
+	} //bchecklist
+=======
 	} //usearchLlist
+>>>>>>> .merge_file_a00844
 	
 }

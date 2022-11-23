@@ -93,6 +93,7 @@ public class NoticeController {
 	  	return mv;
 	}
 	
+	// 글내용, 댓글리스트, 대댓글리스트
 	@RequestMapping(value="/ndetail")
 	public ModelAndView ndetail(HttpServletRequest request, HttpServletResponse response, 
 								ModelAndView mv, NoticeVO vo, NcommentVO cvo) {
@@ -121,23 +122,22 @@ public class NoticeController {
 			mv.addObject("apple", vo);
 		}else mv.addObject("message", "~~ 글번호에 해당하는 자료가 없습니다. ~~");
 		
-		// 3. 댓글리스트
+		// 3. 댓글리스트 Ncomment selectList
 		cvo.setNno(nno);
-		System.out.println("!!!!!!!!!!!!!!!!!!!! "+nno);
+		System.out.println("nno => "+nno);
 		
-		
+		// 댓글리스트
 		List<NcommentVO> list = new ArrayList<NcommentVO>();
     	list = cservice.selectList(cvo);
+    	
     	if ( list!=null ) {
     		mv.addObject("orange", list); 
-    		System.out.println("!!!!!!!!!!!!!!!!!!!! TTT");
-    		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~list"+list);
+    		System.out.println("댓글리스트 불러오기 성공! TTT");
+    		System.out.println("~~~댓글list"+list);
     	}else {
     		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-    		System.out.println("!!!!!!!!!!!!!!!!!!!! FFF");
+    		System.out.println("댓글리스트 불러오기 실패 FFF");
     	}
-		
-		
 		
 		// 화면 출력
 		mv.setViewName(uri);
@@ -156,7 +156,7 @@ public class NoticeController {
 	@RequestMapping(value="/ninsert", method=RequestMethod.POST)
 	public ModelAndView ninsert(HttpServletRequest request, 
 			HttpServletResponse response, ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) throws IOException  {
-		System.out.println("##########################"+vo);
+		System.out.println("새글등록 vo =>"+vo);
 		// 1. 요청분석
 		String uri = "redirect:noticeList";
 		
@@ -186,10 +186,11 @@ public class NoticeController {
 		}
 		
 		
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~"+vo);
+		System.out.println("새글등록 vo img 담겻는지 => "+vo);
 		
 		
 		// 2. Service 처리
+		
 		if ( service.insert(vo)>0 ) {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
 		}else {
@@ -206,11 +207,17 @@ public class NoticeController {
 	public ModelAndView nupdate(HttpServletRequest request, HttpServletResponse response,
 								ModelAndView mv, NoticeVO vo)  throws IOException {
 		// 1. 요청분석
-		String uri = "guide/noticeDetail";
+
+		
+		int nno = Integer.parseInt((String)request.getParameter("nno"));
+		vo.setNno(nno);
+		String uri = "redirect:ndetail?nno="+nno;
+		
+		
 		mv.addObject("apple",vo);
 		// => Update 성공/실패 모두 출력시 필요하므로
 		
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~"+vo);
+		System.out.println("글수정 vo =>"+vo);
 		
 		// image upload
 		String realPath = request.getRealPath("/"); // deprecated Method
@@ -247,8 +254,8 @@ public class NoticeController {
 		
 		// 3. 결과(ModelAndView) 전달 
 		mv.setViewName(uri);
-		System.out.println("###################################"+mv);
-		System.out.println("###################################"+vo);
+		System.out.println("글수정"+mv);
+		System.out.println("##글수정"+vo);
 		return mv;
 	}
 	
@@ -274,6 +281,112 @@ public class NoticeController {
 		return mv;
 	} //bdelete
 
+	// 대댓글입력
+	@RequestMapping(value="/ncreply")
+	public ModelAndView ncreply(HttpServletRequest request, 
+			HttpServletResponse response, ModelAndView mv, NcommentVO cvo, 
+			RedirectAttributes rttr) {
 	
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		cvo.setNno(nno); 
+    	
+		// 대댓글의 grpl = 1, 모댓글 = 0(default)
+		cvo.setGrpl(1);
+		
+		System.out.println("대댓vo => "+cvo);
+		
+		String uri = "redirect:ndetail?nno="+nno;
+		
+		if(cservice.ncreply(cvo)>0) {
+			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
+		}else {
+			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
+		}
+		
+		System.out.println("대댓vo2 => "+cvo);
+		mv.setViewName(uri);
+		return mv;
+		
+	}
+	
+	
+	// 댓글입력
+	@RequestMapping(value="/ncinsert")
+	public ModelAndView ncinsert(HttpServletRequest request, 
+			HttpServletResponse response, ModelAndView mv, NcommentVO cvo, 
+			RedirectAttributes rttr) {
+	
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		cvo.setNno(nno); 
+		
+		String uri = "redirect:ndetail?nno="+nno;
+		
+		if(cservice.ncinsert(cvo)>0) {
+			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
+		}else {
+			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
+		}
+		
+		System.out.println("~ncinsert cvo"+cvo);
+		mv.setViewName(uri);
+		return mv;
+		
+	}	
+	
+	// ncdelete 댓글 삭제
+	@RequestMapping(value="/ncdelete")
+	public ModelAndView ncdelete(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, NcommentVO cvo, RedirectAttributes rttr) {
+
+		String uri = "redirect:ndetail?nno="+cvo.getNno();
+		
+		// 2. Service 처리
+		if ( cservice.ncdelete(cvo) > 0 ) {
+			rttr.addFlashAttribute("message", "~~ 댓글삭제 성공 ~~"); 
+		}else {
+			rttr.addFlashAttribute("message", "~~ 댓글삭제 실패, 다시 하세요 ~~");
+//			uri = "redirect:ndetail?nno="+cvo.getNno();
+		} // Service
+		
+//		cservice.ncdelete_grp(cvo);
+		
+		// 3. 결과(ModelAndView) 전달 
+		mv.setViewName(uri);
+		return mv;
+	} //bdelete
+	
+	
+	// **ncupdate 댓글수정
+	@RequestMapping(value="/ncupdate")
+	public ModelAndView ncupdate(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, NcommentVO cvo) {
+		// 1. 요청분석
+
+		
+		int nno = Integer.parseInt((String)request.getParameter("nno"));
+		cvo.setNno(nno);
+		String uri = "redirect:ndetail?nno="+nno;
+		
+		
+		mv.addObject("apple",cvo);
+		// => Update 성공/실패 모두 출력시 필요하므로
+		
+		System.out.println("댓글수정 vo =>"+cvo);
+		
+		
+		// 2. Service 처리
+		if ( cservice.ncupdate(cvo) > 0 ) {
+			mv.addObject("message", "~~ 댓글수정 성공 ~~"); 
+		}else {
+			mv.addObject("message", "~~ 댓글수정 실패, 다시 하세요 ~~");
+//			uri = "guide/noticeUpdateF";
+		}
+		
+		// 3. 결과(ModelAndView) 전달 
+		mv.setViewName(uri);
+		System.out.println("댓글수정"+mv);
+		System.out.println("##댓글수정"+cvo);
+		return mv;
+	}
 } //NoticeController
  

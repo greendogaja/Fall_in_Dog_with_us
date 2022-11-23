@@ -232,7 +232,7 @@
 				<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image">
-							<img src="resources/img/notice/summer.PNG" width=40 height=50>
+							<img src="${apple.uploadfile}" width=40 height=50>
 					</div>
 					<div class="profile_info">
 						<input name="id" value="${apple.id}" readonly>

@@ -21,9 +21,14 @@ public interface NcommentService {
 	// ncomment 에 댓글수 증가
 	int ncreply_up(NcommentVO cvo);
 	
+	int ncupdate(NcommentVO cvo);
+	
 	//댓글리스트 가져오기
 	// sql 에서 #{} 로 조회 하려면 매개변수 값이 전달되게 넣어줘야함 NcommentVO cvo !!!!!!!!!!!!!
 	List<NcommentVO> selectList(NcommentVO cvo);
+	
+	List<NcommentVO> re_selectList(NcommentVO cvo);
+	
 	
 	//댓글 추가/삭제시 댓글 갯수 가져오기
 	int nc_count(NcommentVO cvo);
@@ -33,6 +38,9 @@ public interface NcommentService {
 	
 	//대댓글 카운트
 	int ncreply_count_rere(NcommentVO cvo);
+	
+	int ncdelete(NcommentVO cvo);
+	int ncdelete_grp(NcommentVO cvo);
 	
 	// 모댓글 삭제, 답글없음
 	int ncdelete_no_re(NcommentVO cvo);

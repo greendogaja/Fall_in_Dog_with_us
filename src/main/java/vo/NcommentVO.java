@@ -12,7 +12,7 @@ public class NcommentVO {
 	private int grpl;
 	private String id;
 	private String content;
-	private String reg;
+	private String regdate;
 	private String wimg;
 	private String nname;
 	

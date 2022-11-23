@@ -12,7 +12,7 @@
 <select id="selectOne" resultType="vo.NoticeVO">
 	<!-- select * from notice where nno=#{nno} -->
 	
-	select title, uploadfile, n.id, nname, regdate, cnt, content, img
+	select title, uploadfile, n.id, nname, regdate, cnt, content, img, nno
 	from notice n, user u
 	where n.id = u.id and nno=#{nno}
 </select>
@@ -27,12 +27,15 @@
 	<selectKey keyProperty="nno" resultType="int" order="BEFORE">
 		select IFNULL(max(nno),0)+1 from notice
 	</selectKey>
-	insert into notice(nno, title, id, content, subject, img, idUploadfile) 
-	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img}, #{idUploadfile})
+	insert into notice(nno, title, id, content, subject, img) 
+	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img})
+
 </insert>
 
 <update id="update">
-	update notice set title=#{title}, content=#{content}, subject=#{subject}, img=#{img} where nno=#{nno}
+	update notice 
+	set title=#{title}, content=#{content}, subject=#{subject}, img=#{img} 
+	where nno=#{nno}
 </update>	
 	
 <delete id="delete">
