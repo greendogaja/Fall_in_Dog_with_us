@@ -107,7 +107,7 @@ select {
     width: 200px;
 }
 
-.bbs-wrap-head .btn-search {
+.btn-search {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -231,7 +231,7 @@ select {
     padding: 20px 0;
 }
 
-.paging a {
+.com {
     display: inline-block;
     font-size: 15px;
     line-height: 34px;
@@ -241,48 +241,37 @@ select {
     text-align: center;
     border: 1px solid #fff;
     border-radius: 30%;
-}
-
-.paging a:hover,
-.paging a:focus,
-.paging a.active {
-    border: 1px solid #000;
-}
-
-.paging a.com {
+	margin-top: 10px;
     background-size: auto 12px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    border: 1px solid #ccc;
 }
 
-.paging a.com>span {
+.paging .com:hover,
+.paging .com:focus,
+.paging .com:active {
+    border: 1px solid #000;
+}
+
+.paging .com>span {
     position: absolute;
     left: -9999px;
 }
 
-.paging a.com.first {
+.com.first {
     background-image: url("../img/adoption_board/icon-arw-first.png");
 }
 
-.paging a.com.prev {
-    margin: 10px 16px 10px 8px;
+.com.prev {
     background-image: url("../img/adoption_board/icon-arw-prev.png");
 }
 
-.paging a.com.next {
-    margin: 10px 8px 10px 16px;
+.com.next {
     background-image: url("../img/adoption_board/icon-arw-next.png");
 }
 
-.paging a.com.last {
+.com.last {
     background-image: url("../img/adoption_board/icon-arw-last.png");
-}
-
-.paging a.com:hover,
-.paging a.com:focus,
-.paging a.com:active {
-    border: 1px solid #000;
 }
 
 /* ------------------------------------------------------------------------------------------------- */

@@ -14,7 +14,6 @@
 	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     
-    <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -33,6 +32,27 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/adopt_board.css">
+    
+    
+	<script>
+
+	$(function() {
+		$('#searchType').change(function(){
+			if ( $(this).val()=='n' ) $('#keyword').val('');
+		}); //change
+
+		$('#searchBtn').click(function(){
+			self.location="adopt_board"
+				+"${AdoptPageMaker.makeQuery(1)}"
+				+"&searchType="
+				+$('#searchType').val()
+				+"&keyword="
+				+$('#keyword').val()
+		}); //click
+	});
+	
+	</script>
+   
 
 </head>
 
@@ -235,24 +255,22 @@
 			<div class="bbs-wrap-head">
 				<!-- search-wrap -->
 				<div class="bbs-search-wrap">
-					<form name="searchFrm" class="form-search" method="post" action="">
-						<fieldset>
-							<legend>검색</legend>
 
-							<label for="srchKey" class="hd-element">검색옵션선택</label>
-							<select name="srchKey" class="srchKey">
-								<option value="" selected="selected">전체</option>
-								<option value="sj">제목</option>
-								<option value="cn">내용</option>
-								<option value="sjcn">제목+내용</option>
-							</select>
+					<label for="searchType" class="hd-element">검색옵션선택</label>
+					<select name="searchType" id="searchType" class="srchKey">
+						<option value="n" ${AdoptPageMaker.cri.searchType==null ? 'selected' : ''}>전체</option>
+						<option value="t" ${AdoptPageMaker.cri.searchType=='t' ? 'selected' : ''}>제목</option>
+						<option value="c" ${AdoptPageMaker.cri.searchType=='c' ? 'selected' : ''}>내용</option>
+						<option value="i" ${AdoptPageMaker.cri.searchType=='i' ? 'selected' : ''}>작성자</option>
+					</select>
+						
+					<label for="keyword" class="hd-element">검색어입력</label>
+					<input type="text" name="keyword" id="keyword" class="srchText"
+						   value="${AdoptPageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
+					<button class="btn-search" id="searchBtn" ></button>
 
-							<label for="srchText" class="hd-element">검색어입력</label>
-							<input type="text" name="srchText" id="srchText" class="srchText" placeholder="검색어를 입력하세요.">
-							<a href="" class="btn-search" id="search" class="hd-element"></a>
-						</fieldset>
-					</form>
 				</div><!-- //bbs-search-wrap -->
+				
 			</div><!-- //bbs-wrap-head -->
 			<!-- bbs-list-wrap -->
 			<div class="bbs-list-wrap">
@@ -289,23 +307,54 @@
 					
 				</div>
 			</div><!-- //bbs-list-wrap -->
+			
+			
+			
 			<!-- paging-wrap -->
 
 			<div class="paging-wrap">
 			
 				<div class="paging">
-					<a href="" title="처음 페이지" class="com first"><span>처음</span></a>
-					<a href="" title="이전 페이지" class="com prev"><span>이전</span></a>
-					<a href="" title="2 페이지">1</a>
-					<a href="" title="2 페이지">2</a>
-					<a href="" title="2 페이지">3</a>
-					<a href="" title="다음 페이지" class="com next"><span>다음</span></a>
-					<a href="" title="마지막 페이지" class="com last"><span>마지막</span></a>
+				
+				<c:choose>
+					<c:when test="${AdoptPageMaker.prev && AdoptPageMaker.spageNo>1}">
+						<a href="adopt_board${AdoptPageMaker.searchQuery(1)}" title="처음 페이지" class="com first"><span>처음</span></a>
+						<a href="adopt_board${AdoptPageMaker.searchQuery(AdoptPageMaker.spageNo-1)}" title="이전 페이지" class="com prev"><span>이전</span></a>
+					</c:when>
+					<c:otherwise>
+						<a href="adopt_board${AdoptPageMaker.searchQuery(1)}" title="처음 페이지" class="com first"><span>처음</span></a>
+					</c:otherwise>
+				</c:choose>
+
+					
+				<c:forEach  var="i" begin="${AdoptPageMaker.spageNo}" end="${AdoptPageMaker.epageNo}">
+					<c:if test="${i==AdoptPageMaker.cri.currPage}">
+						<font color="gray" class="com">${i}</font>
+					</c:if>
+						
+					<c:if test="${i!=AdoptPageMaker.cri.currPage}">
+						<a href="adopt_board${AdoptPageMaker.searchQuery(i)}" class="com">${i}</a>
+					</c:if>
+				</c:forEach>
+
+
+				<c:choose>
+					<c:when test="${AdoptPageMaker.next && AdoptPageMaker.epageNo>0}">
+						<a href="adopt_board${AdoptPageMaker.searchQuery(AdoptPageMaker.epageNo+1)}" title="다음 페이지" class="com next"><span>다음</span></a>
+						<a href="adopt_board${AdoptPageMaker.searchQuery(AdoptPageMaker.lastPageNo)}" title="마지막 페이지" class="com last"><span>마지막</span></a>
+					</c:when>
+					<c:otherwise>
+						<a href="adopt_board${AdoptPageMaker.searchQuery(AdoptPageMaker.lastPageNo)}" title="마지막 페이지" class="com last"><span>마지막</span></a>
+					</c:otherwise>
+				</c:choose>
+
 				</div>
 				
-				<a class="btn-go" href="adopt_insert_form"><span>글쓰기</span></a>
+				<c:if test="${not empty loginID}">
+					<a class="btn-go" href="adopt_insert_form"><span>글쓰기</span></a>
+            	</c:if>
+				
 			</div>
-
 
 
 		</div>

@@ -27,8 +27,8 @@
     
 </head>
 <body>
-	<div id="resultarea" class="dbox3">
-		<div id="area">
+	<div id="resultarea" >
+		<div id="area" class="dbox3">
 		<div class="title">
 			<h2 class="detail">자주묻는질문(FAQ)</h2>
 		</div>
@@ -68,13 +68,18 @@
 		<table class="tablecon">
 			<tbody class="tconten">
 				<c:forEach var="faq" items="${faqlist}">
-					<tr>
-						<td><a href="#">${faq.title }</a></td>
+					<tr onclick="faqDetail(${faq.fno})">
+						<td><span>${faq.title}</span></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-
+		
+		<div class="foradmin">
+			<a href="#">글쓰기</a>
+		</div>
+		
+		
 		<div align="center" class="pagecs">
 			<!-- First, Prev -->
 			<c:choose>

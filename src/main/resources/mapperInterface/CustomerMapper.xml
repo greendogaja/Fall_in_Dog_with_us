@@ -10,6 +10,10 @@
   			<bind name="keyVal" value="'%' + keyword + '%'"/>
   		</if>
   		<choose>
+  			<when test="searchType=='n'.toString()">
+  				 and title like #{keyVal} 
+  				 or content like #{keyVal} ) 
+  			</when>
   			<when test="searchType=='st'.toString()">
   				 and title like #{keyVal} ) 
   			</when>
@@ -34,9 +38,39 @@
 
 	</select>
   	
+  	<select id="selectOne" resultType="vo.CustomerVO">
+		select * from faq where fno=#{fno}
+	</select>
 
+	<insert id="insert">
+		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
+			select IFNULL(max(fno),0)+1 from faq
+		</selectKey>
+		insert into faq(fno,title,content) 
+		values(#{fno},#{title},#{content})
+	</insert>
   
-  	
+	<update id="update">
+		update faq set title=#{title}, content=#{content} where fno=#{fno}
+	</update>	
+	<delete id="delete">
+		delete from faq	where fno=#{fno}
+	</delete>	
+
+
+	<select id="selectMax"  resultType="vo.CustomerVO">
+	<![CDATA[
+	select * from faq where fno=(select max(fno) from faq where fno < #{fno}) 
+	]]>
+	</select>
+	
+	<select id="selectMin"  resultType="vo.CustomerVO">
+	select * from faq where fno=(select min(fno) from faq where fno > #{fno}) 
+	</select>
+	 
+
+	
+	  	
   </mapper>
   
   

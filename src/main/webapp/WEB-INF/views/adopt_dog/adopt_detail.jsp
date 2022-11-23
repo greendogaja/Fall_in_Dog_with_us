@@ -238,7 +238,7 @@
         </div>
 
         <!-- 제목 -->
-        <span class="content-top">(입양 위탁 신청)_${Adopt_detail.title}</span>
+        <span class="content-top">(no.${Adopt_detail.ano}-입양 위탁 신청)_${Adopt_detail.title}</span>
 
         <div class="content-top-wrap">
             <!-- 이용자 정보 -->
@@ -251,11 +251,14 @@
             </div>
 
             <!-- 목록 버튼 -->
-            <div class="content-dtn">
-                <a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
-                <a class="btn-go" href="adopt_delete"><span>삭제</span></a>
-                <a class="btn-go" href="adopt_board"><span>목록</span></a>
-            </div>
+            	<div class="content-dtn">
+            <c:if test="${loginID==Adopt_detail.id || loginID=='admin'}">
+                	<a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
+                	<a class="btn-go" href="adopt_delete?ano=${Adopt_detail.ano}&root=${Adopt_detail.root}"><span>삭제</span></a>
+            </c:if>
+                	<a class="btn-go" href="adopt_board"><span>목록</span></a>
+            	</div>
+            
         </div>
 
         <div class="content-text">

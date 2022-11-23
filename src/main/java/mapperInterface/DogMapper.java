@@ -2,14 +2,19 @@ package mapperInterface;
 
 import java.util.List;
 
+import dogcontrol.DogSearchCriteria;
 import vo.DogVO;
 
 public interface DogMapper {
 	
-//	동물 목록
-	List<DogVO> selectList_S();
-	List<DogVO> selectList_M();
-	List<DogVO> selectList_L();
+//	게시판
+	List<DogVO> dog_list_S(DogSearchCriteria cri);
+	List<DogVO> dog_list_M(DogSearchCriteria cri);
+	List<DogVO> dog_list_L(DogSearchCriteria cri);
+	int dog_count_S(DogSearchCriteria cri);
+	int dog_count_M(DogSearchCriteria cri);
+	int dog_count_L(DogSearchCriteria cri);
+
 	
 //	상세 페이지
 	DogVO selectOne(DogVO vo);
