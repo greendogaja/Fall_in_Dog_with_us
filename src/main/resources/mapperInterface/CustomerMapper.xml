@@ -28,7 +28,7 @@
   	<select id="searchList" resultType="vo.CustomerVO"> 
   		select * from faq  
   		where ( fno > 0 <include refid="customers"></include>   
-  		order by fno desc limit #{sno}, #{rowsPerPage} 
+  		 limit #{sno}, #{rowsPerPage} 
   	</select>
   	
   	<select id="searchCount" resultType="int"> 

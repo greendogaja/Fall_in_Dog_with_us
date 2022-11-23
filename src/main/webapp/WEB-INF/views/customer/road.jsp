@@ -38,8 +38,40 @@
     <link rel="stylesheet" href="resources/css/customer.css">
     <link rel="stylesheet" href="resources/css/guide.css">
   	
+  	<style>
+  	.con_boxx{
+  	    width: 80%;
+	    text-align: left;
+	    font-size: 1em;
+	    color: #888;
+	    vertical-align: top;
+	    padding: 10px 0 10px 15px;
+	    font-size: 14px;
+	    color: #333;
+	    line-height: 1.6em;
+	    font-family: dalseomedium;
+	    font-weight: 400;
+	    letter-spacing: -0.02em;
+  	}
+  	.con_boxx h5{
+  		width:90%;
+  		margin:auto;
+  		border-bottom: 1px solid #000;
+  	}
+  	.ctablee{
+  	    margin: 20px auto 0;
+	    display: table;
+	    border-collapse: separate;
+	    box-sizing: border-box;
+	    text-indent: initial;
+	    border-spacing: 2px;
+	    border-color: grey;
+	    width: 90%;
+  	}
+  	</style>
+  	
 </head>
-<body>
+<body style="font-family:dalseomedium;">
 	<!-- Preloader -->
 	<div id="preloader">
 		<div class="preload-content">
@@ -302,9 +334,9 @@
  	
  	<br>
         <!-- 오시는길, 대중교통 이용시 -->
-        <div class="con_box">
+        <div class="con_boxx">
         <h5>오시는길</h5>
-        <table class="ctable">
+        <table class="ctablee">
         <tbody>
         	<tr>
         		<th>주소</th>
@@ -322,9 +354,9 @@
         </table>
         </div>
         <br>
-        <div class="con_box">
+        <div class="con_boxx">
         <h5>대중교통 이용시</h5>
-        <table class="ctable">
+        <table class="ctablee">
         <tbody>
         	<tr>
         		<th>지하철</th>

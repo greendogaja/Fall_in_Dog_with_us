@@ -39,12 +39,12 @@
    <!-- ** Image DownLoad 
       => 다운로드를 처리할 ViewResolver 클래스 등록  ( Java Code 작성 )
       => id="downloadView" 와  컨트롤러의 매핑메서드에서 리턴된 view name 과 같아야 한다. -->   
-   <!-- <beans:bean id="downloadView" class="downTest.DownloadView" /> -->
+   <beans:bean id="downloadView" class="downView.DownloadView" /> 
    
    
 	<!-- ** BeanNameViewResolver
    => id 에 해당하는 Bean이 View 를 처리하도록 해주는 ViewResolver 
-      컨트롤러에서  mv.setViewName("downloadView") 하게되면  
+      컨트롤러에서  mv.setViewName("loadView") 하게되면  
       일반적인 경우 InternalResourceViewResolver 에 의해  views/downloadView.jsp 를 찾음,
       그러나  jsp 가 아닌 형태의  response 를 처리하는 경우에는 한 이 경우에는 "downloadView" 와
       동일한  id 로 생성된 Bean 을 찾아 response 를 처리함

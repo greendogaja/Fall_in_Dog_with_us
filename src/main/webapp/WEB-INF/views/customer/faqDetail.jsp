@@ -285,7 +285,7 @@
 						<li class="hoverli cho" onClick="location.href='customerhome'">
 							<span  class="clicked">자주묻는질문(FAQ)</span>
 						</li>
-						<li class="hoverli cho">
+						<li class="hoverli cho" onClick="location.href='qna'">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
@@ -305,8 +305,8 @@
 		</div>
 		<c:if test="${'admin' == loginID }">
 		<div class="buttonss" style="text-align:end;">
-		<button onClick="location.href='faqdetail?want=U&fno=${faqone.fno}'" class="btns">[글수정]</button>
-		<button onClick="location.href='faqdelete?fno=${faqone.fno}'" class="btns">[글삭제]</button>
+		<button onClick="location.href='faqdetail?want=U&fno=${faqone.fno}'" class="btns">글수정</button>
+		<button onClick="location.href='faqdelete?fno=${faqone.fno}'" class="btns">글삭제</button>
 		</div>	
 		</c:if>
 		<h2 style="	font-size:2rem;	margin: 50px 0;" >${faqone.title}</h2>
@@ -322,16 +322,20 @@
 		</div>
 		<hr>
 
-		<div>
-		<span>이전글 </span>
-		<a href="faqdetail?fno=${min.fno}">${min.title}</a>
+		<div class="footerbox">
+		<div class="beaf">
+			<span>이전글 </span>
+			<a href="faqdetail?fno=${min.fno}">${min.title}</a>
 		</div>
-		<div>
-		 <span>다음글 </span>
-		<a href="faqdetail?fno=${max.fno}">${max.title}</a>
+		<div class="beaf">
+			<span>다음글 </span>
+			<a href="faqdetail?fno=${max.fno}">${max.title}</a>
 		</div>
 		
-		 <a href="customerhome">목록으로</a>
+		<div class="beaf">
+		 <a href="customerhome" >목록으로</a>
+		</div>
+		</div>
 
 	</div>
 </div>

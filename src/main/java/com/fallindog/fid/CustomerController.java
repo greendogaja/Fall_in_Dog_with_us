@@ -2,29 +2,18 @@ package com.fallindog.fid;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< .merge_file_a12964
-import javax.servlet.http.HttpSession;
-=======
->>>>>>> .merge_file_a13668
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< .merge_file_a12964
-import org.springframework.web.servlet.ModelAndView;
-=======
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
->>>>>>> .merge_file_a13668
 
 import service.CustomerService;
 import usercontrol.PageMaker;
 import usercontrol.SearchCriteria;
-<<<<<<< .merge_file_a12964
-=======
 import vo.CustomerVO;
->>>>>>> .merge_file_a13668
 
 
 
@@ -36,19 +25,6 @@ public class CustomerController {
 	
 	@RequestMapping(value="/roadmove")
 	public ModelAndView roadmove(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
-<<<<<<< .merge_file_a12964
-		response.setContentType("text/html; charset=UTF-8;");
-		mv.setViewName("customer/road");
-		return mv;
-	} //contact
-	
-	
-	@RequestMapping(value="/customerhome")
-	public ModelAndView loginf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,
-			SearchCriteria cri,PageMaker pageMaker) {
-		response.setContentType("text/html; charset=UTF-8;");
-		
-=======
 		mv.setViewName("customer/road");
 		return mv;
 	} //contact
@@ -62,7 +38,6 @@ public class CustomerController {
 	@RequestMapping(value="/customerhome")
 	public ModelAndView customerhome(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,
 			SearchCriteria cri,PageMaker pageMaker) {
->>>>>>> .merge_file_a13668
 		String searchType  = request.getParameter("searchType");
 		String keyword  = request.getParameter("keyword");
 		String namekey  = request.getParameter("namekey");
@@ -93,11 +68,7 @@ public class CustomerController {
 	
 	// 자주하는 질문 
 	@RequestMapping(value="/faq")
-<<<<<<< .merge_file_a12964
-	public ModelAndView joinf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
-=======
 	public ModelAndView faq(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
->>>>>>> .merge_file_a13668
 								, SearchCriteria cri, PageMaker pageMaker) {
 		response.setContentType("text/html; charset=UTF-8;");
 		
@@ -131,8 +102,6 @@ public class CustomerController {
 	    return mv;
 	}
 	
-<<<<<<< .merge_file_a12964
-=======
 	@RequestMapping(value="/faqdetail")
 	public ModelAndView faqdetail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, CustomerVO vo) {
 		String uri = "/customer/faqDetail";
@@ -220,5 +189,8 @@ public class CustomerController {
 		mv.setViewName(uri);
 		return mv;
 	} //bdelete
->>>>>>> .merge_file_a13668
+	
+	
+
+	
 }

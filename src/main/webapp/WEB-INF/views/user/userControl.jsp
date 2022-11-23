@@ -330,8 +330,6 @@
 						</tr>
 					</thead>
 					<tbody id="find">
-
-					
 						<c:forEach var="user" items="${userlist}">
 							<tr onClick="location.href='info?id=${user.id}'">
 								<td><img src="${user.uploadfile}"></td>

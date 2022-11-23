@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/info.css">
 	
+	
+	
+	
 </head>
 
 <body>
@@ -99,9 +102,9 @@
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<li><a href="#" style="color:white;">내가쓴글</a></li>
-												<li><a href="#" style="color:white;">내가단댓글</a></li>
-												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><span class="goqnaone" >내가쓴글</span></li>
+												<li><span >내가단댓글</span></li>
+												<li><span >회원정보</span></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
@@ -238,10 +241,10 @@
 						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보수정</a>
 					</li>
 					<li>
-						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
+						<span class="left_item goqnaone" role="menuitem">내가쓴글</span>
 					</li>
 					<li>
-						<a href="#" class="left_item" role="menuitem">내가단댓글</a>
+						<span class="left_item" role="menuitem">내가단댓글</span>
 					</li>
 				</ul>
 			</div>
