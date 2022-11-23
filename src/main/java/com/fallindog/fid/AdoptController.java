@@ -2,47 +2,28 @@ package com.fallindog.fid;
 
 import java.io.File;
 import java.io.IOException;
-<<<<<<< .merge_file_a07532
-import java.util.ArrayList;
-import java.util.List;
-=======
->>>>>>> .merge_file_a13128
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< .merge_file_a07532
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-=======
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
->>>>>>> .merge_file_a13128
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< .merge_file_a07532
-=======
 import adoptcontrol.AdoptPageMaker;
 import adoptcontrol.AdoptSearchCriteria;
 import dogcontrol.DogPageMaker;
 import dogcontrol.DogSearchCriteria;
->>>>>>> .merge_file_a13128
 import service.AdoptReplyService;
 import service.AdoptService;
 import service.DogService;
 import vo.AdoptReplyVO;
 import vo.AdoptVO;
 import vo.DogVO;
-<<<<<<< .merge_file_a07532
-import vo.NoticeVO;
-=======
->>>>>>> .merge_file_a13128
 
 
 @Controller 
@@ -65,11 +46,7 @@ public class AdoptController {
 		
 		mv.setViewName("adopt_dog/adopt_guide");
 		return mv;
-<<<<<<< .merge_file_a07532
-		
-=======
 
->>>>>>> .merge_file_a13128
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,26 +61,6 @@ public class AdoptController {
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<<<<<<< .merge_file_a07532
-
-//	입양 신청 게시판
-	@RequestMapping(value="/adopt_board")
-	public ModelAndView adopt_board(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-	
-		List<AdoptVO> list = new ArrayList<AdoptVO>();
-	  	list = Aservice.selectList();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/adopt_board");
-	  	return mv;
-	
-=======
 	
 //	입양 신청 게시판
 	@RequestMapping(value="/adopt_board")
@@ -121,7 +78,6 @@ public class AdoptController {
 
 		mv.setViewName("/adopt_dog/adopt_board");
 		return mv;
->>>>>>> .merge_file_a13128
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,21 +144,12 @@ public class AdoptController {
 		
 	}
 	
-<<<<<<< .merge_file_a07532
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-//	글수정
-	@RequestMapping(value="/adopt_update_form", method=RequestMethod.POST)
-	public ModelAndView adopt_update_form(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv, AdoptVO vo)  throws IOException {
-=======
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 //	글수정
 	@RequestMapping(value="/adopt_update", method=RequestMethod.POST)
 	public ModelAndView adopt_update(HttpServletRequest request, HttpServletResponse response,
 									 ModelAndView mv, AdoptVO vo) {
->>>>>>> .merge_file_a13128
 
 		String uri = "adopt_dog/adopt_detail";
 		mv.addObject("Adopt_detail",vo);
@@ -243,68 +190,6 @@ public class AdoptController {
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<<<<<<< .merge_file_a07532
-	
-//	보호/입양중 목록
-	@RequestMapping(value="/dog_list_S")
-	public ModelAndView dog_list_S(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		
-		List<DogVO> list = new ArrayList<DogVO>();
-	  	list = Dservice.selectList_S();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/dog_list_S");
-	  	return mv;
-	  	
-	}
-	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-//	보호/입양중 목록
-	@RequestMapping(value="/dog_list_M")
-	public ModelAndView dog_list_M(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		
-		List<DogVO> list = new ArrayList<DogVO>();
-	  	list = Dservice.selectList_M();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/dog_list_M");
-	  	return mv;
-	  	
-	}
-	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-//	보호/입양중 목록
-	@RequestMapping(value="/dog_list_L")
-	public ModelAndView dog_list_L(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		
-		List<DogVO> list = new ArrayList<DogVO>();
-	  	list = Dservice.selectList_L();
-	  	
-	  	if (list != null) {
-	  		mv.addObject("Adopt_list", list);
-	  		
-	  	}else {
-	  		mv.addObject("message", "__Adopt_list is Not Found__");
-	  		
-	  	}
-	  	mv.setViewName("/adopt_dog/dog_list_L");
-	  	return mv;
-	  	
-=======
 
 //	보호/입양중 목록
 	@RequestMapping(value="/dog_list_S")
@@ -356,7 +241,6 @@ public class AdoptController {
 
 		mv.setViewName("/adopt_dog/dog_list_L");
 		return mv;
->>>>>>> .merge_file_a13128
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -399,12 +283,6 @@ public class AdoptController {
 	
 	@RequestMapping(value="/dog_insert", method=RequestMethod.POST)
 	public ModelAndView dog_insert(HttpServletRequest request, HttpServletResponse response,
-<<<<<<< .merge_file_a07532
-								   ModelAndView mv, DogVO vo, RedirectAttributes rttr) {
-		
-		String uri = "redirect:dog_list_S";
-		
-=======
 								   ModelAndView mv, DogVO vo, RedirectAttributes rttr) throws IllegalStateException, IOException {
 		
 		String uri = "redirect:dog_list_S";
@@ -437,7 +315,6 @@ public class AdoptController {
 		}
 		vo.setImg(file2);
 
->>>>>>> .merge_file_a13128
 		if (Dservice.insert(vo)>0) {
 			rttr.addFlashAttribute("message", "__Insert Success__");
 			
@@ -454,13 +331,6 @@ public class AdoptController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 //	글수정
-<<<<<<< .merge_file_a07532
-	@RequestMapping(value="/dog_update_form", method=RequestMethod.POST)
-	public ModelAndView dog_update_form(HttpServletRequest request, HttpServletResponse response,
-										  ModelAndView mv, DogVO vo)  throws IOException {
-	
-		String uri = "adopt_dog/dog_detail";
-=======
 	@RequestMapping(value="/dog_update", method=RequestMethod.POST)
 	public ModelAndView dog_update(HttpServletRequest request, HttpServletResponse response,
 										  ModelAndView mv, DogVO vo)  throws IOException {
@@ -495,7 +365,6 @@ public class AdoptController {
 		}
 		vo.setImg(file2);
 
->>>>>>> .merge_file_a13128
 		mv.addObject("Adopt_detail",vo);
 	
 		if (Dservice.update(vo) > 0) {
@@ -525,11 +394,7 @@ public class AdoptController {
 
 		}else {
 			rttr.addFlashAttribute("message", "__Delete Fail__");
-<<<<<<< .merge_file_a07532
-			uri = "redirect:dog_detail?ano="+vo.getDno();
-=======
 			uri = "redirect:dog_detail?dno="+vo.getDno();
->>>>>>> .merge_file_a13128
 
 		}
 		mv.setViewName(uri);
@@ -540,25 +405,3 @@ public class AdoptController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }	// AdoptController
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

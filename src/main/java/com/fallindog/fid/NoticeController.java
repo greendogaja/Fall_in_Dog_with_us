@@ -17,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import service.NcommentService;
+import service.NoticeReplyService;
 import service.NoticeService;
-import vo.NcommentVO;
+import vo.NoticeReplyVO;
 import vo.NoticeVO;
 
 
@@ -30,7 +30,7 @@ public class NoticeController {
 	@Autowired 
 	NoticeService service;
 	@Autowired
-	NcommentService cservice;
+	NoticeReplyService cservice;
 
 	 	
 	@RequestMapping(value="/aboutUs")
@@ -96,7 +96,7 @@ public class NoticeController {
 	// 글내용, 댓글리스트, 대댓글리스트
 	@RequestMapping(value="/ndetail")
 	public ModelAndView ndetail(HttpServletRequest request, HttpServletResponse response, 
-								ModelAndView mv, NoticeVO vo, NcommentVO cvo) {
+								ModelAndView mv, NoticeVO vo, NoticeReplyVO cvo) {
 		// 1. 요청분석
 		String uri = "guide/noticeDetail";
 		
@@ -127,7 +127,7 @@ public class NoticeController {
 		System.out.println("nno => "+nno);
 		
 		// 댓글리스트
-		List<NcommentVO> list = new ArrayList<NcommentVO>();
+		List<NoticeReplyVO> list = new ArrayList<NoticeReplyVO>();
     	list = cservice.selectList(cvo);
     	
     	if ( list!=null ) {
@@ -284,7 +284,7 @@ public class NoticeController {
 	// 대댓글입력
 	@RequestMapping(value="/ncreply")
 	public ModelAndView ncreply(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NcommentVO cvo, 
+			HttpServletResponse response, ModelAndView mv, NoticeReplyVO cvo, 
 			RedirectAttributes rttr) {
 	
 		int nno = Integer.parseInt(request.getParameter("nno"));
@@ -313,7 +313,7 @@ public class NoticeController {
 	// 댓글입력
 	@RequestMapping(value="/ncinsert")
 	public ModelAndView ncinsert(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NcommentVO cvo, 
+			HttpServletResponse response, ModelAndView mv, NoticeReplyVO cvo, 
 			RedirectAttributes rttr) {
 	
 		int nno = Integer.parseInt(request.getParameter("nno"));
@@ -336,7 +336,7 @@ public class NoticeController {
 	// ncdelete 댓글 삭제
 	@RequestMapping(value="/ncdelete")
 	public ModelAndView ncdelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, NcommentVO cvo, RedirectAttributes rttr) {
+									ModelAndView mv, NoticeReplyVO cvo, RedirectAttributes rttr) {
 
 		String uri = "redirect:ndetail?nno="+cvo.getNno();
 		
@@ -359,7 +359,7 @@ public class NoticeController {
 	// **ncupdate 댓글수정
 	@RequestMapping(value="/ncupdate")
 	public ModelAndView ncupdate(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv, NcommentVO cvo) {
+								ModelAndView mv, NoticeReplyVO cvo) {
 		// 1. 요청분석
 
 		

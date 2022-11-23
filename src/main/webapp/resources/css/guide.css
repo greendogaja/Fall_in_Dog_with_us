@@ -365,7 +365,7 @@ a{
 .comment_tool img{
 	position: absolute;
     top: 12px;
-    right: 0;
+    right: 10px;
 	height : 16px;
 	width : 16px;
 }
@@ -378,4 +378,11 @@ a{
 	width : 70px;
 	z-index : 1;
 }
-/* border-bottom: 2px solid #878787; */
+
+.pd_15{
+	padding : 0 15px 0 15px;
+}
+
+.title_area h3{
+	margin-top : 8px;
+}
