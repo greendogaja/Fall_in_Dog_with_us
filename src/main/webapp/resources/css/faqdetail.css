@@ -18,6 +18,10 @@
 	float:right;
 }
 
+#result{
+	line-height:70px;
+}
+
 
 .good{
     cursor: pointer;
@@ -55,9 +59,21 @@
     background-color: #0069d9;
     height:38px;
     cursor:pointer;
+    border-radius: 0.25rem;
 }
 
 .outbox{
 	width:55%;
 	margin:80px auto;	
+}
+.beaf,
+.beaf a{
+	font-size:20px;
+}
+.beaf a:hover{
+	font-size:20px;
+}
+
+.footerbox{
+	line-height:35px;
 }

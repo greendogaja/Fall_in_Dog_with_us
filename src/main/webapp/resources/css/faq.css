@@ -8,6 +8,7 @@ button{
 	color: #fff;
     background-color: #0069d9;
     height:38px;
+    border-radius: 0.25rem;
 }
 #searchbar{
 	display:flex;
@@ -85,4 +86,5 @@ button{
     text-align: center;
     color:white;
     margin-top:10px;
+    border-radius: 0.25rem;
 }

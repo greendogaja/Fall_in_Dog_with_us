@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="resources/css/faqinsert.css">
     
     
-    <script>
+<script>
 $(document).ready(function() {
   $('#summernote').summernote({
 	  // 에디터 높이
@@ -56,7 +56,7 @@ $(document).ready(function() {
 	  focus : true,
 	  toolbar: [
 		    // 글꼴 설정
-		    ['fontname', ['fontNames']],
+		    ['fontname', ['fontname']],
 		    // 글자 크기 설정
 		    ['fontsize', ['fontsize']],
 		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
@@ -70,14 +70,14 @@ $(document).ready(function() {
 		    // 줄간격
 		    ['height', ['height']],
 		    // 그림첨부, 링크만들기, 동영상첨부
-		    ['insert',['picture','link','video']],
+		    ['insert',['link']],
 		    // 코드보기, 확대해서보기, 도움말
 		    ['view', ['codeview','fullscreen', 'help']]
 		  ],
 		  // 추가한 글꼴
 		fontNames: ['dalseomedium','score','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 		 // 추가한 폰트사이즈
-		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+		fontSizes: ['8','9','10','11','12','14','15','16','18','19','20','22','24','26','28','30','35','36','45','50','72']
 			
   });
 });
@@ -279,7 +279,7 @@ $(document).ready(function() {
 	<!-- ##### Header Area End ##### -->
 	
 	
-	<div class="allbox">
+	<div class="outbox" style="width:55%; margin:80px auto;">
 	
 	<div id="box" class="dbox1">
 		<div >
@@ -294,10 +294,10 @@ $(document).ready(function() {
 						<li>
 							<ul id="hidebox" class="hidex " aria-hidden="false" >
 								<li class="hoverli cho">
-									<span >입양안내 및 절차</span>
-								</li>
-								<li class="hoverli cho">
 									<span >공지사항</span>
+								</li>
+								<li class="hoverli cho" onClick="location.href='procedure'">
+									<span >입양절차</span>
 								</li>
 							</ul>
 						</li>
@@ -317,28 +317,28 @@ $(document).ready(function() {
 	</div>
 	
 	
-	<div id="resultarea" class="dbox2">
-		<div class="title">
-			<h2 class="detail">자주묻는질문(FAQ)</h2>
-		</div>
-		
-	<div class="write" style="width: 100%; margin: auto;">
-	<form method="post" action="faqupdate">
-		<div>
-		<input type="text" name="fno" value="${faqone.fno}" style="display:none;"/>
-		<span  style="font-size:2rem; margin: 50px 0;">제목</span>
-		<input type="text" name="title" class="write-title" placeholder=" 제목을 입력하세요." value="${faqone.title}"/>
-		</div>
-		<br>
-		<textarea id="summernote" name="content" class="write-content" placeholder="내용을 입력하세요." >${faqone.content }</textarea>
-		<button type="reset"  class="writebtn ">취소</button>
-		<button type="submit"  class="writebtn" style="margin-right:8px;">글수정</button>
-	</form>
-	</div>
+		<div id="resultarea" class="box">
+			<div class="title">
+				<h2 class="detail">자주묻는질문(FAQ)</h2>
+			</div>
 
-
-	
-	</div>
+			<div class="write" style="width: 100%; margin: auto;">
+				<form method="post" action="faqupdate">
+					<div>
+						<input type="text" name="fno" value="${faqone.fno}"
+							style="display: none;" /> <span
+							style="font-size: 2rem; margin: 50px 0;">제목</span> <input
+							type="text" name="title" class="write-title"
+							placeholder=" 제목을 입력하세요." value="${faqone.title}" />
+					</div>
+					<br>
+					<textarea id="summernote" name="content" class="write-content"
+						placeholder="내용을 입력하세요.">${faqone.content }</textarea>
+					<button type="reset" class="writebtn ">취소</button>
+					<button type="submit" class="writebtn" style="margin-right: 8px;">글수정</button>
+				</form>
+			</div>
+		</div>
 
 </div>
 	

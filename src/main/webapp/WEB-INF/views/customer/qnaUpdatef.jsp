@@ -24,7 +24,7 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-	<!-- include libraries(jQuery, bootstrap) -->
+		<!-- include libraries(jQuery, bootstrap) -->
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 	<!-- include summernote css/js-->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
@@ -41,48 +41,47 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
-    <link rel="stylesheet" href="resources/css/faq.css">
-    <link rel="stylesheet" href="resources/css/faqinsert.css">
+    <link rel="stylesheet" href="resources/css/qnainsert.css">
     
     
-<script>
-$(document).ready(function() {
-  $('#summernote').summernote({
-	  // 에디터 높이
-	  height: 700,
-	  // 에디터 한글 설정
-	  lang: "ko-KR",
-	  // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
-	  focus : true,
-	  toolbar: [
-		    // 글꼴 설정
-		    ['fontname', ['fontname']],
-		    // 글자 크기 설정
-		    ['fontsize', ['fontsize']],
-		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-		    // 글자색
-		    ['color', ['forecolor','color']],
-		    // 표만들기
-		    ['table', ['table']],
-		    // 글머리 기호, 번호매기기, 문단정렬
-		    ['para', ['ul', 'ol', 'paragraph']],
-		    // 줄간격
-		    ['height', ['height']],
-		    // 그림첨부, 링크만들기, 동영상첨부
-		    ['insert',['link']],
-		    // 코드보기, 확대해서보기, 도움말
-		    ['view', ['codeview','fullscreen', 'help']]
-		  ],
-		  // 추가한 글꼴
-		fontNames: ['dalseomedium','score','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-		 // 추가한 폰트사이즈
-		fontSizes: ['8','9','10','11','12','14','15','16','18','19','20','22','24','26','28','30','35','36','45','50','72']
-			
-  });
-});
-</script>
     
+	       
+	<script>
+	$(document).ready(function() {
+	  $('#summernote').summernote({
+		  // 에디터 높이
+		  height: 300,
+		  // 에디터 한글 설정
+		  lang: "ko-KR",
+		  // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
+		  focus : true,
+		  toolbar: [
+			    // 글꼴 설정
+			    ['fontname', ['fontname']],
+			    // 글자 크기 설정
+			    ['fontsize', ['fontsize']],
+			    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    // 글자색
+			    ['color', ['forecolor','color']],
+			    // 표만들기
+			    ['table', ['table']],
+			    // 글머리 기호, 번호매기기, 문단정렬
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    // 줄간격
+			    ['height', ['height']],
+			    // 그림첨부, 링크만들기, 동영상첨부
+			    ['insert',['link']]
+			   
+			  ],
+			  // 추가한 글꼴
+			fontNames: ['dalseomedium','score','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+			 // 추가한 폰트사이즈
+			fontSizes: ['8','9','10','11','12','14','15','16','18','19','20','22','24','26','28','30','35','36','45','50','72']
+				
+	  });
+	});
+	</script>
 </head>
 <body>
 	<!-- Preloader -->
@@ -317,26 +316,66 @@ $(document).ready(function() {
 	</div>
 	
 	
-	<div id="resultarea" class="bbox">
-		<div class="title">
-			<h2 class="detail">자주묻는질문(FAQ)</h2>
-		</div>
+	<div id="resultarea" class="aabox">
+				<div class="title">
+					<h2 class="detail">Q&amp;A</h2>
+				</div>
 		
-	<div class="write" style="width: 100%; margin: auto;">
-	<form method="post" action="faqinsert">
-		<div>
-		<span  style="font-size:2rem; margin: 50px 0;"></span>
-		<input type="text" name="title" class="write-title" placeholder=" 제목을 입력하세요."/>
-		</div>
-		<br>
-		<textarea id="summernote" name="content" class="write-content" placeholder="내용을 입력하세요."></textarea>
-		<button type="reset"  class="writebtn ">취소</button>
-		<button type="submit"  class="writebtn" style="margin-right:8px;">글등록</button>
-	</form>
-	</div>
-
-
+		
+		<div class="bbox-in">
+			<div class="write" style="width: 100%; margin: auto;">
+				<form method="post" action="qnaupdate"  enctype="multipart/form-data">
 	
+	
+	
+					<div class="title">
+						<h4 class="detail2">1:1문의(Q&amp;A)</h4>
+					</div>
+					<div>
+					<input type="hidden" name="qno" value="${qnaone.qno}">
+					<img src="${loginImg}" class="profile-img">
+					<input type="text" value="${loginNick}" style="border:none" readonly />
+					</div>
+					<table class="tableqna">
+						<tr style="border-top:3px solid black">
+							<th>비밀글 </th>
+							<td>
+								<input type="checkbox" name="secret" value="1" id="secret" title="비밀글" checked> <span>비밀글설정</span>
+							</td>
+						</tr>
+						<tr>
+							<th>이름</th>
+							<td>
+								<input type="text" name="name"  id="name" title="이름"  value="${loginName}" readonly style="border:none;">
+							</td>
+						</tr>
+						<tr>
+							<th>제목</th>
+							<td>
+								<input type="text" name="title"  class="qnatitle" title="제목" value="${qnaone.title}" >
+							</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td>
+								<textarea id="summernote" name="content" class="qnacontent" title="내용" >${qnaone.content} </textarea>	
+							</td>
+						</tr>
+						<tr>
+							<th>파일첨부</th>
+							<td>
+								<input type="file" name="uploadfilef" id="uploadfilef"  value="${qnaone.uploadfile}" style="line-height: 22px;" >
+								<input type="hidden" name="uploadfile" value="${qnaone.uploadfile}">
+							</td>
+						</tr>
+						
+					</table>
+				
+					<button type="reset"  class="writebtn ">취소</button>
+					<button type="submit"  class="writebtn" style="margin-right:8px;">글등록</button>
+				</form>
+			</div>
+		</div>
 	</div>
 
 </div>
