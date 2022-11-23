@@ -3,7 +3,7 @@ package vo;
 import lombok.Data;
 
 @Data
-public class NcommentVO {
+public class NoticeReplyVO {
 
 	private int cno;
 	private int nno;

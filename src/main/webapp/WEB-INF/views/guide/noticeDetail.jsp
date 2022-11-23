@@ -273,7 +273,7 @@
 	<div class="CommentBox">
 		<div class="comment_title">댓글</div>
 			<!-- 댓글 리스트 AJAX-->
-			<ul class="comment_list comment_list">
+			<ul class="comment_list">
 				<!-- 댓글 리스트  -->
 				<c:if test="${not empty orange}">
 					<c:forEach var="ncomment_list" items="${orange}">
@@ -282,7 +282,7 @@
 							<!-- ==========================댓글 list==========================-->
 							<c:if test="${ncomment_list.grpl != 1}">
 							
-							<div class="n_comment_area ">
+							<div class="n_comment_area pd_15">
 								<!-- 작성자Img 저장 -->
 								<img src="${ncomment_list.uploadfile}">
 								<div class="comment_box">
@@ -294,7 +294,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="ncdelete?cno=${ncomment_list.cno}&nno=${ncomment_list.nno}">삭제</a>
+												<a href="ncdelete?cno=${ncomment_list.cno}&nno=${ncomment_list.nno}&grp=${ncomment_list.grp}&grps=${ncomment_list.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -305,16 +305,9 @@
 
 									</div>
 									<div class="comment_info_box">
-										<span class="comment_info_reg">${ncomment_list.regdate}</span> <a class="reply_display">답글쓰기</a>
+										<span class="comment_info_reg">${ncomment_list.regdate}</span> 
+										<a class="reply_display">답글쓰기</a>
 									</div>
-<!-- <script>
-$(".comment_tool a").click(function() {
-	$(".up_del").closet$(".up_del").toggleClass("dp_h");
-});
-$(".comment_tool a").click(function() {
-	$(".up_del").toggleClass("dp_h");
-});
-</script> -->
 									<!-- ==========================대댓글 입력==========================-->
 									<div class="comment_inbox re_box dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
@@ -341,15 +334,15 @@ $(".comment_tool a").click(function() {
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
 										<form action="ncupdate">
-											<input type="hidden" name="nno" value="${ncomment_list.nno}" >
-											<input type="hidden" name="cno" value="${ncomment_list.cno}" >
-											<input type="hidden" name="id" value="${ncomment_list.id}">
 											<div class="mg_b_10">${ncomment_list.nname}</div>
 											<textarea name="content" id="content"
 												 class="comment_textarea">${ncomment_list.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="수정"> 
+												<input type="submit" value="수정"> 
 												<input type="reset" value="취소">
+												<input type="hidden" name="nno" value="${ncomment_list.nno}" >
+												<input type="hidden" name="cno" value="${ncomment_list.cno}" >
+												<input type="hidden" name="nname" value="${ncomment_list.nname}">
 												<input type="hidden" name="grp" value="${ncomment_list.grp}"> 
 												<input type="hidden" name="grps" value="${ncomment_list.grps}">
 												<input type="hidden" name="grpl" value="${ncomment_list.grpl}">
@@ -371,10 +364,10 @@ $(".comment_tool a").click(function() {
 									<!-- 더보기 수정/삭제 -->
 									<c:if test="${loginNick == ncomment_list.nname}">
 										<div class="comment_tool">
-											<a><img src="resources/img/notice/re_more_button.png" ></a>
+											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="ncdelete?cno=${ncomment_list.cno}&nno=${ncomment_list.nno}">삭제</a>
+												<a href="ncdelete?cno=${ncomment_list.cno}&nno=${ncomment_list.nno}&grp=${ncomment_list.grp}&grps=${ncomment_list.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
