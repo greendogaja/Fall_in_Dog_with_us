@@ -128,13 +128,8 @@ public class UserController {
 		String uri = "/user/loginForm";
 		response.setCharacterEncoding("UTF-8");
 		Cookie cookie = new Cookie ("useId",id);
-		
-		
 		vo.setId(id);
 		vo = service.selectOne(vo);
-		
-	
-		
 		if ( vo != null ) { 
 			
 			if( passwordEncoder.matches(password, vo.getPassword())) {
@@ -151,8 +146,6 @@ public class UserController {
 					cook.setMaxAge(0);
 					response.addCookie(cook);
 				}
-				
-				
 				uri="redirect:home" ;
 			}else {
 				mv.addObject("msg", "비밀번호가 틀렸습니다.");

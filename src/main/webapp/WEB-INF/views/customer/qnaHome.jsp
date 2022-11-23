@@ -24,15 +24,9 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-	<!-- include libraries(jQuery, bootstrap) -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-	<!-- include summernote css/js-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
-	<!-- include summernote-ko-KR -->
-   <script src="resources/smartEditor2/js/lang/summernote-ko-KR.min.js"></script>    
-    
-    <script src="resources/mLib/customer.js"></script>
+    <script type="text/javascript" 
+		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
+	</script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -42,45 +36,39 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/customer.css">
     <link rel="stylesheet" href="resources/css/faq.css">
-    <link rel="stylesheet" href="resources/css/faqinsert.css">
-    
+    <link rel="stylesheet" href="resources/css/qnainsert.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     
 <script>
-$(document).ready(function() {
-  $('#summernote').summernote({
-	  // 에디터 높이
-	  height: 700,
-	  // 에디터 한글 설정
-	  lang: "ko-KR",
-	  // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
-	  focus : true,
-	  toolbar: [
-		    // 글꼴 설정
-		    ['fontname', ['fontname']],
-		    // 글자 크기 설정
-		    ['fontsize', ['fontsize']],
-		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-		    // 글자색
-		    ['color', ['forecolor','color']],
-		    // 표만들기
-		    ['table', ['table']],
-		    // 글머리 기호, 번호매기기, 문단정렬
-		    ['para', ['ul', 'ol', 'paragraph']],
-		    // 줄간격
-		    ['height', ['height']],
-		    // 그림첨부, 링크만들기, 동영상첨부
-		    ['insert',['link']],
-		    // 코드보기, 확대해서보기, 도움말
-		    ['view', ['codeview','fullscreen', 'help']]
-		  ],
-		  // 추가한 글꼴
-		fontNames: ['dalseomedium','score','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-		 // 추가한 폰트사이즈
-		fontSizes: ['8','9','10','11','12','14','15','16','18','19','20','22','24','26','28','30','35','36','45','50','72']
-			
-  });
-});
+	$(function(){
+		
+		$('#writeBtn').click(function(){
+			if(${loginID == null}){
+				alert('로그인 후 이용바랍니다.');
+			}else{
+				location.href="qnainsertf"
+			}
+		});//writebtn
+		$('.cantdetail').click(function(){
+				alert('본인만 확인 가능합니다.');
+		});//cantdetail
+	 	
+		$('#searchBtn').click(function(){
+	 		self.location="qna"
+	 		+"?currPage=1&rowsPerPage=10"
+	 		+"&searchType="
+	 		+$('#searchType').val()
+	 		+"&keyword="
+	 		+$('#keyword').val();
+	 	});//searchbtn
+	 	
+	 
+		
+	});//ready  
+	
+	
+	
+	
 </script>
     
 </head>
@@ -279,7 +267,7 @@ $(document).ready(function() {
 	<!-- ##### Header Area End ##### -->
 	
 	
-	<div class="outbox" style="width:55%; margin:80px auto;">
+	<div class="abox">
 	
 	<div id="box" class="dbox1">
 		<div >
@@ -315,34 +303,134 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	
-	
-	<div id="resultarea" class="bbox">
+
+
+	<div id="resultarea" class="aabox">
+		<div id="area">
 		<div class="title">
-			<h2 class="detail">자주묻는질문(FAQ)</h2>
+			<h2 class="detail">문의게시판(Q&amp;A)</h2>
+			<h1 class="detail">강아지, 입양상담 무엇이든 물어보세요.</h1>
 		</div>
 		
-	<div class="write" style="width: 100%; margin: auto;">
-	<form method="post" action="faqinsert">
-		<div>
-		<span  style="font-size:2rem; margin: 50px 0;"></span>
-		<input type="text" name="title" class="write-title" placeholder=" 제목을 입력하세요."/>
+		<div id="searchbar">
+			<div class="form-group" style="margin-bottom:0;">
+				<select class="form-control" name="searchType" id="searchType">
+					<option value="st"
+						${pageMaker.cri.searchType=='st' ? 'selected' : ''}>제목</option>
+					<option value="sc"
+						${pageMaker.cri.searchType=='sc' ? 'selected' : ''}>이름</option>
+				</select>
+			</div>
+			<div>
+				<input type="text" class="form-control" id="keyword" name="keyword"
+					value="${pageMaker.cri.keyword}">
+			</div>
+			<button id="searchBtn" class="btn btn-default">Search</button>
 		</div>
-		<br>
-		<textarea id="summernote" name="content" class="write-content" placeholder="내용을 입력하세요."></textarea>
-		<button type="reset"  class="writebtn ">취소</button>
-		<button type="submit"  class="writebtn" style="margin-right:8px;">글등록</button>
-	</form>
+		<div class="form-group searchresult" style="margin:0; border-bottom: 3px solid black; width: 99%; margin-left: 4%;">
+				<span class="btn btn-default"> 총<span class="badge">(${pageMaker.totalRowsCount})개[전체:${pageMaker.cri.currPage}/${pageMaker.epageNo}]페이지</span>
+				</span>
+		</div>
+		
+		
+
+
+		<table class="tablecon">
+			<thead>
+				<tr style="text-align:center; ">
+					<th>제목</th>
+					<th>이름</th>
+					<th>작성일</th>
+					<th>상태</th>
+				</tr>
+			</thead>
+			<tbody class="conten">
+					<c:forEach var="qna" items="${qnalist}">
+						<tr >
+							 <c:if test="${qna.secret == 1}">
+							     <c:choose>
+							        <c:when test="${qna.name eq loginName || loginID eq 'admin'}"> <!-- 작성자이거나 관리자일 때 -->
+							            <td class="qtitle" onClick="location.href='qnadetail?qno=${qna.qno}'" style="width:60%; text-align:left;">
+										<span class="material-symbols-outlined">
+										lock_open </span>
+							            <c:out value="${qna.title}"/></td>
+							        </c:when>
+							        <c:otherwise>
+							            <td class="cantdetail qtitle" style="width:60%; text-align:left;">
+										<span class="material-symbols-outlined">
+										lock </span><c:out value="${qna.title}"/></td>
+							        </c:otherwise>
+							     </c:choose>                                            
+							 </c:if>
+							
+							
+							
+							<td>${qna.name }</td>
+							<td>${qna.regdate}</td>
+							 <c:if test="${qna.secret == 1}">
+							     <c:choose>
+							        <c:when test="${qna.name eq loginName || loginID eq 'admin'}"> 
+							            <td >
+							            	<span class="situation">답변대기</span></td>
+							        </c:when>
+							        <c:otherwise>
+							            <td  >
+										<span class="situation">답변완료</span></td>
+							        </c:otherwise>
+							     </c:choose>                                            
+							 </c:if>
+							
+							
+							
+						</tr>
+					</c:forEach>
+			</tbody>
+		</table>
+		<div class="foradmin">
+			<a id="writeBtn" style="color: white;" >글쓰기</a>
+		</div>
+		
+
+		<div align="center" class="pagecs">
+			<!-- First, Prev -->
+			<c:choose>
+				<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+					<a href="customerhome${pageMaker.searchQuery(1)}" >처음</a>&nbsp;
+			<a href="customerhome${pageMaker.searchQuery(pageMaker.spageNo-1)}" >&lt;</a>&nbsp;&nbsp; 
+			
+		</c:when>
+				<c:otherwise>
+					<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>
+				</c:otherwise>
+			</c:choose>
+			<!-- Displag PageNo -->
+			<c:forEach var="i" begin="${pageMaker.spageNo}"
+				end="${pageMaker.epageNo}">
+				<c:if test="${i==pageMaker.cri.currPage}">
+					<font size="6" color="Orange">${i}</font>&nbsp;
+		</c:if>
+				<c:if test="${i!=pageMaker.cri.currPage}">
+					<a href="customerhome${pageMaker.searchQuery(i)}" >${i}</a>&nbsp;
+		</c:if>
+			</c:forEach>
+			<!-- Next, Last -->
+			<c:choose>
+				<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
+					<a href="customerhome${pageMaker.searchQuery(pageMaker.epageNo+1)}"  >&nbsp;&gt;</a>
+					<a href="customerhome${pageMaker.searchQuery(pageMaker.lastPageNo)}" >&nbsp;마지막</a>
+				</c:when>
+				<c:otherwise>
+					<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</div>
-
-
+	</div><!--area  -->
 	
 	</div>
-
-</div>
 	
 	<!--######################### Footer -->
-    <footer class="footer-area text-center" style="font-size:1rem; margin-top:300px;">
+    <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">

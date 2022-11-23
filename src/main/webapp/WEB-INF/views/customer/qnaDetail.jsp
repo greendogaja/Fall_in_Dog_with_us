@@ -14,8 +14,7 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -24,6 +23,11 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    <script type="text/javascript" 
+		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
+	</script>
+    <script src="resources/mLib/customer.js"></script>
         <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -31,6 +35,25 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/customer.css">
+    <link rel="stylesheet" href="resources/css/faq.css">
+    <link rel="stylesheet" href="resources/css/qnadetail.css">
+    
+    
+<script>
+	$(function(){
+		
+		$('#writeBtn').click(function(){
+			if(${loginID == null}){
+				alert('로그인 후 이용바랍니다.');
+			}else{
+				location.href="qnainsertf"
+			}
+		});//writebtn
+		
+	});//ready  
+</script>
+    
 </head>
 <body>
 	<!-- Preloader -->
@@ -225,44 +248,89 @@
 		</div>
 	</header>
 	<!-- ##### Header Area End ##### -->
-	
-	
-	
-	<div id="contentbox" class="site_content">
-		<div id="primary" class="content-area lw_common_container">
-			<div id="mf_sideWrap" class="w2wframe sideWrap">
-				<h2 id="mf_sideWrap_wq_uuid_431" class="w2textbox">고객센터</h2>
-				<div id="mf_sideWrap_accordian" class="w2group">
-					<ul id="mf_sideWrap_wq_uuid_433"class="w2group">
-						<li id="mf_sideWrap_grp_useInf" class="w2group">
-							<a href="#" id="mf_sideWrap_anchor1" class="w2anchor2" >이용안내</a>
-							<ul id="mf_sideWrap_ul_useInf" class="w2group" aria-hidden="false" style="display:block;">
-								<li>
-									<a href="#">입양안내 및 절차</a>
-								</li>
-								<li>
-									<a href="#">공지사항</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">자주묻는질문(FAQ)</a>
-						</li>
-						<li>
-							<a href="#">1:1문의하기(Q&amp;A)</a>
-						</li>
-						<li>
-							<a href="#">위치안내</a>
-						</li>
-					</ul>
+
+
+	<div class="abox">
+
+		<div id="box" class="dbox1">
+			<div>
+				<div>
+					<h2 class="big_title">고객센터</h2>
+					<div>
+						<ul class="left-bar">
+							<li id="guidemenu"><span>이용안내 </span> <span class="doarrow"></span>
+							</li>
+							<li>
+								<ul id="hidebox" class="hidex " aria-hidden="false">
+									<li class="hoverli cho"><span>공지사항</span></li>
+									<li class="hoverli cho" onClick="location.href='procedure'">
+										<span>입양절차</span>
+									</li>
+								</ul>
+							</li>
+							<li class="hoverli cho" onClick="location.href='customerhome'">
+								<span>자주묻는질문(FAQ)</span>
+							</li>
+							<li class="hoverli cho" onClick="location.href='qna'"><span>1:1문의하기(Q&amp;A)</span>
+							</li>
+							<li class="hoverli cho" onClick="location.href='roadmove'">
+								<span>위치안내</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
+
+
+		<div id="resultarea" class="aabox">
+			<div id="area">
+				<div class="title">
+					<h2 class="detail">Q&amp;A</h2>
+				</div>
+
+				<table class="tablecon">
+
+					<tbody class="conten">
+						<tr>
+							<td>
+								<p><img src="${loginImg}" class="profile-img">
+								${loginName}님의 문의글: ${qnaone.title}</p>
+								<p style="text-align:end;">${qnaone.regdate} ${qnaone.situation}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									${qnaone.content}
+								</div>
+							</td>
+						</tr>
+						<c:if test="${qnaone.uploadfile != null }">
+						<tr>
+							
+							<td>
+								<p>첨부파일</p>
+								<a href="download?dnfile=${qnaone.uploadfile}">${qnaone.uploadfile}</a>
+							</td>
+						</tr>
+						</c:if>
+						
+					</tbody>
+				</table>
+
+				<div class="foradmin">
+					<a href="qnadelete?qno=${qnaone.qno}" class="detailbt" style="color: white;">글삭제</a> 
+					<a href="qnadetail?want=U&qno=${qnaone.qno}" class="detailbt" style="color: white;">글수정</a> 
+					<a href="qna" class="detailbt"	style="color: white;">목록으로</a>
+				</div>
+
+			</div>
+		</div>
+		<!--area  -->
+
 	</div>
 
-
-	<div id="resultarea"></div><!--area  -->
-	
 	<!--######################### Footer -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">

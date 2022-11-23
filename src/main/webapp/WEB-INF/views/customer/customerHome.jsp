@@ -259,7 +259,7 @@
 						<li class="hoverli cho" onClick="location.href='customerhome'">
 							<span  >자주묻는질문(FAQ)</span>
 						</li>
-						<li class="hoverli cho">
+						<li class="hoverli cho"  onClick="location.href='qna'">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
