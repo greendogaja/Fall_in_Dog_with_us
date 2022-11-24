@@ -2,12 +2,16 @@ package service;
 
 import java.util.List;
 
+import noticeControl.SearchCriteria;
 import vo.NoticeVO;
 
 public interface NoticeService {
 
 	// ** selectList
 	List<NoticeVO> selectList();
+	
+	List<NoticeVO> searchList(SearchCriteria cri);
+	int searchCount(SearchCriteria cri);
 	
 	// ** selectOne
 	NoticeVO selectOne(NoticeVO vo);
@@ -23,4 +27,6 @@ public interface NoticeService {
 	
 	// ** Delete
 	int delete(NoticeVO vo);
+	
+
 }

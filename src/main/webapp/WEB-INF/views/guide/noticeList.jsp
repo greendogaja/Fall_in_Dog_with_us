@@ -32,6 +32,23 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
 	
+	<script>
+	$(function() {
+		$('#searchType').change(function(){
+			if ( $(this).val()=='n' ) $('#keyword').val('');
+		}); //change
+		
+		$('#searchBtn').click(function(){
+			self.location="noticeList"
+				+"${pageMaker.makeQuery(1)}"
+				+"&searchType="
+				+$('#searchType').val()
+				+"&keyword="
+				+$('#keyword').val()
+		}); //click
+	}); //ready	
+	</script>  
+
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -222,50 +239,44 @@
 	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<h4>Notice</h4>
-		
+		<div class="n_l_title">N O T I C E</div>
 			<!-- 세로 가운데 정렬 필요 -->
 			<div class="search_write">
-				<!-- <div id="search-wrapper" >
-					<form action="#">
-						<input type="text" id="search" placeholder="Title or Content or ID">
-						<div id="close-icon"></div>
-						<input class="d-none" type="submit" value="">
-					</form>
-				</div> -->
-				<div >
-					<!-- admin 만 보이게 -->
+				<div class="n_write">
 					<c:if test="${loginID=='admin'}">
 						<a href="ninsertf">글쓰기</a>
 					</c:if>
+				</div>
+				
+				<!-- searchBar -->
+				<div id="searchBar" class="search_bar">
+					<select class="search_select" name="searchType" id="searchType">
+						<option value="n" ${pageMaker.cri.searchType==null ? 'selected' : ''}>전체</option>
+						<option value="s" ${pageMaker.cri.searchType=='s' ? 'selected' : ''}>말머리</option>
+						<option value="t" ${pageMaker.cri.searchType=='t' ? 'selected' : ''}>제목</option>
+						<option value="c" ${pageMaker.cri.searchType=='c' ? 'selected' : ''}>내용</option>
+						<option value="nn" ${pageMaker.cri.searchType=='nn' ? 'selected' : ''}>작성자</option>
+					</select> 
+					<input type="text" class="search_input" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
+					<button id="searchBtn" class="search_btn">검색</button>
 				</div>
 			</div>
 		<div>
 		</div>
 	</div>
 
-	<br><hr>
+
 	<table class="ntable"> 
-		<tr  height="30">
-			<th>No</th><th>Subject</th><th>Title</th><th>I D</th><th>Date</th><th>조회수</th>
+		<tr>
+			<th>글번호</th><th>말머리</th><th width="40%">제목</th><th>작성자</th><th width="20%">작성일</th><th>조회</th>
 		</tr>
 		<c:if test="${not empty banana}">
 			<c:forEach  var="notice" items="${banana}" >
-			<tr height="30">
+			<tr>
 				<td>${notice.nno}</td>
 				<td>${notice.subject}</td>
 				<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
-				<%-- <td>
-					<!-- 로그인 한 경우에만 title을 클릭하면 content를 볼 수 있도록 함
-							=> bdetail 을 실행함 -->
-					<c:if test="${not empty loginID}">
-						<a href="ndetail?nno=${notice.nno}">${notice.title}</a>
-					</c:if> 
-					<c:if test="${empty loginID}">
-					    ${notice.title}
-					</c:if>      
-				</td> --%>
-				<td>${notice.id}</td>
+				<td>${notice.nname}</td>
 				<td>${notice.regdate}</td><td>${notice.cnt}</td>
 			</tr>	
 			</c:forEach>
@@ -277,21 +288,16 @@
 	<c:if test="${not empty message}">
 		${message}<br>
 	</c:if>
-	
+	&nbsp;&nbsp;<a href="noticeList">목록으로</a>
+	&nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
 	
 	<!-- Cri_Page -->
 	<div align="center">
 		<!-- First, Prev -->
 		<c:choose>
 			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-				<!-- New_ver01_Cri : pageMaker.makeQuery(1) -->
-				<!-- New_ver02_SearchCri : pageMaker.searchQuery(1) -->
-				<a href="bcrilist${pageMaker.searchQuery(1)}">FP</a>&nbsp;     
-				<a href="bcrilist${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
-				<!-- OLD_version 
-				<a href="bcrilist?currPage=1&rowsPerPage=5">FP</a>&nbsp; 
-				<a href="bcrilist${pageMaker.spageNo-1}&rowsPerPage=5">&lt;</a>&nbsp; 
-				-->
+				<a href="noticeList${pageMaker.searchQuery(1)}">FP</a>&nbsp;     
+				<a href="noticeList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
 			</c:when>
 			<c:otherwise>
 				<font color="Gray">FP&nbsp;&lt;&nbsp;&nbsp;</font>   
@@ -304,11 +310,7 @@
 				<font size="5" color="orange">${i}</font>&nbsp;
 			</c:if>
 			<c:if test="${i != pageMaker.cri.currPage}">
-				<!-- New_ver01_Cri -->
-				<a href="bcrilist${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
-				
-				<!-- OLD_version 
-				<a href="bcrilist?currPage=${i}&rowsPerPage=5">${i}</a>&nbsp; -->
+				<a href="noticeList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
 				
 			</c:if>
 		
@@ -318,12 +320,8 @@
 		<!-- Next, Last -->
 		<c:choose>
 			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-				<!-- New_ver01_Cri -->
-				<a href="bcrilist${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
-				<a href="bcrilist${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;LP</a> 
-				 <!-- OLD_version
-				<a href="bcrilist?currPage=${pageMaker.epageNo+1}&rowsPerPage=5">&nbsp;&nbsp;&gt;</a>&nbsp;     
-				<a href="bcrilist?currPage=${pageMaker.lastPageNo}&rowsPerPage=5">&nbsp;LP</a>&nbsp;&nbsp;  
+				<a href="noticeList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
+				<a href="noticeList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;LP</a> 
 				-->
 			</c:when>
 			<c:otherwise>
