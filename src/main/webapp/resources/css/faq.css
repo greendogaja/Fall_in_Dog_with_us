@@ -69,7 +69,8 @@ button{
 	}
 .tconten td:hover{
 	cursor:pointer;
-	background-color:rgb(255 118 0 / 70%);
+	background-color:darkblue;
+	color:white;
 }
 .tconten td{
 	font-size:21px;
