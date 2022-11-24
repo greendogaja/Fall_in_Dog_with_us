@@ -280,22 +280,23 @@
 						</li>
 						<li>
 							<ul id="hidebox" class="hidex " aria-hidden="false" >
-								<li class="hoverli cho">
-									<span >공지사항</span>
-								</li>
 								<li class="hoverli cho" onClick="location.href='procedure'">
 									<span >입양절차</span>
+								</li>
+								<li class="hoverli cho" onClick="lcation.href='notice'">
+									<span >공지사항</span>
 								</li>
 							</ul>
 						</li>
 						<li class="hoverli cho" onClick="location.href='customerhome'">
-							<span  >자주묻는질문(FAQ)</span>
+							<span >자주묻는질문(FAQ)</span>
 						</li>
-						<li class="hoverli cho"  onClick="location.href='qna'">
+						<li class="hoverli cho">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
-							<span >위치안내</span>
+							<span  >위치안내</span>
+							
 						</li>
 					</ul>
 				</div>
