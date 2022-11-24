@@ -51,6 +51,15 @@
 			}
 		});//writebtn
 		
+		$('#goreply').click(function(){
+			$('#show').toggleClass( 'show' );		
+		});//goreply
+
+		$('#goureply').click(function(){
+			$('#showup').toggleClass( 'showup' );		
+		});//goreply
+		
+		
 	});//ready  
 </script>
     
@@ -257,26 +266,31 @@
 				<div>
 					<h2 class="big_title">고객센터</h2>
 					<div>
-						<ul class="left-bar">
-							<li id="guidemenu"><span>이용안내 </span> <span class="doarrow"></span>
-							</li>
-							<li>
-								<ul id="hidebox" class="hidex " aria-hidden="false">
-									<li class="hoverli cho"><span>공지사항</span></li>
-									<li class="hoverli cho" onClick="location.href='procedure'">
-										<span>입양절차</span>
-									</li>
-								</ul>
-							</li>
-							<li class="hoverli cho" onClick="location.href='customerhome'">
-								<span>자주묻는질문(FAQ)</span>
-							</li>
-							<li class="hoverli cho" onClick="location.href='qna'"><span>1:1문의하기(Q&amp;A)</span>
-							</li>
-							<li class="hoverli cho" onClick="location.href='roadmove'">
-								<span>위치안내</span>
-							</li>
-						</ul>
+				<ul class="left-bar">
+						<li id="guidemenu">
+							<span >이용안내 </span>
+							<span class="doarrow"></span>
+						</li>
+						<li>
+							<ul id="hidebox" class="hidex " aria-hidden="false" >
+								<li class="hoverli cho">
+									<span >공지사항</span>
+								</li>
+								<li class="hoverli cho" onClick="location.href='procedure'">
+									<span >입양절차</span>
+								</li>
+							</ul>
+						</li>
+						<li class="hoverli cho" onClick="location.href='customerhome'">
+							<span  >자주묻는질문(FAQ)</span>
+						</li>
+						<li class="hoverli cho"  onClick="location.href='qna'">
+							<span>1:1문의하기(Q&amp;A)</span>
+						</li >
+						<li  class="hoverli cho" onClick="location.href='roadmove'">
+							<span >위치안내</span>
+						</li>
+					</ul>
 					</div>
 				</div>
 			</div>
@@ -294,9 +308,18 @@
 					<tbody class="conten">
 						<tr>
 							<td>
+								<input type="hidden" name="fno" value="${qnaone.qno}"/>
 								<p><img src="${loginImg}" class="profile-img">
 								${loginName}님의 문의글: ${qnaone.title}</p>
-								<p style="text-align:end;">${qnaone.regdate} ${qnaone.situation}</p>
+								
+								<p style="text-align:end;">${qnaone.regdate}
+								<c:if test="${qnaone.situation == 1}">
+								            <p class="situation">답변대기</p>
+								 </c:if>
+								 <c:if test="${qnaone.situation != 1}">
+											<p class="situation">답변완료</p>
+								 </c:if>
+								</p>
 							</td>
 						</tr>
 						<tr>
@@ -306,7 +329,7 @@
 								</div>
 							</td>
 						</tr>
-						<c:if test="${qnaone.uploadfile != null }">
+						<c:if test="${!empty qnaone.uploadfile  }">
 						<tr>
 							
 							<td>
@@ -323,7 +346,92 @@
 					<a href="qnadelete?qno=${qnaone.qno}" class="detailbt" style="color: white;">글삭제</a> 
 					<a href="qnadetail?want=U&qno=${qnaone.qno}" class="detailbt" style="color: white;">글수정</a> 
 					<a href="qna" class="detailbt"	style="color: white;">목록으로</a>
+				<c:if test="${loginID eq 'admin' }">
+					<c:if test="${!empty replylist.content }">
+					<span id="goureply">댓글수정</span>
+					</c:if>
+					<c:if test="${empty replylist.content }">
+					<span id="goreply">댓글작성</span>
+					</c:if>
+				</c:if>
 				</div>
+				
+				
+				<!--댓글작성  -->
+				<div class="show replyline" id="show">
+					<form method="post" action="writereply"  enctype="multipart/form-data">
+						<input type="hidden" name="qno" value="${qnaone.qno}"/>
+						<table class="tableqna">
+							<tr>
+								
+								<th>내용</th>
+								<td>
+									<textarea id="summernote" name="content" class="qnacontent" title="내용"> </textarea>	
+								</td>
+							</tr>
+							<tr>
+								<th>파일첨부</th>
+								<td>
+									<input type="file" name="uploadfilef" id="uploadfilef" style="line-height: 22px;" >
+								</td>
+							</tr>
+							
+						</table>
+					
+						<button type="reset"  class="writebtn ">취소</button>
+						<button onClick="location.href='writereply'"   class="writebtn" style="margin-right:8px;">글등록</button>
+					</form>
+				</div>
+				
+				<!--댓글 업데이트  -->
+				<div class="showup replyline" id="showup">
+					<form method="post" action="updatereply"  enctype="multipart/form-data">
+						<input type="hidden" name="qno" value="${qnaone.qno}"/>
+		
+						<table class="tableqna">
+							<tr>
+								
+								<th>내용</th>
+								<td>
+									<textarea id="summernote" name="content" class="qnacontent" title="내용">${replylist.content} </textarea>	
+								</td>
+							</tr>
+							<tr>
+								<th>파일첨부</th>
+								<td>
+									<input type="hidden" name="uploadfile" value="${user.uploadfile}"><br>
+									<input type="file" name="uploadfilef" id="uploadfilef" value="${replylist.uploadfile}" style="line-height: 22px;" >
+								</td>
+							</tr>
+							
+						</table>
+					
+						<button type="reset"  class="writebtn ">취소</button>
+						<button onClick="location.href='updatereply'"  class="writebtn" style="margin-right:8px;">글수정</button>
+					</form>
+				</div>
+				
+				<!-- 댓글 -->
+				<c:if test="${!empty replylist.content }">
+				<div id="reply">
+						<div class="replyline">
+							<div>
+								<p style="line-height: 70px; margin: 0;"><img src="${loginImg}" class="profile-img">
+						        답변자 : ${loginNick}
+						    </div>
+						
+					        <div >
+					        	${replylist.content}
+					        </div>
+					        <div >
+	    				    <c:if test="${!empty replylist.uploadfile  }">
+								<div>첨부파일</div>
+								<a href="download?dnfile=${replylist.uploadfile}">${replylist.uploadfile}</a>
+						    </c:if>
+				        	</div>
+						</div>
+				</div>
+				</c:if>
 
 			</div>
 		</div>

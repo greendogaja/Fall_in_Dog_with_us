@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper용 xml 설정 mybatis MemberMapper  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="mapperInterface.QnaReplyMapper">
+	
+	
+  	<select id="readReply" resultType="vo.QnaReplyVO">
+  		select * from qnareply where reqno = #{reqno}
+  	</select>
+	
+	<insert id="insert">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select IFNULL(max(no),0)+1 from qnareply
+		</selectKey>
+		insert into qnareply(no,reqno,content,uploadfile) 
+		values(#{no},#{reqno},#{content},#{uploadfile})
+	</insert>
+	
+	<update id="update">
+		update qnareply set   content=#{content}, uploadfile=#{uploadfile} where reqno=#{reqno}
+	</update>	
+
+
+	
+	  	
+  </mapper>
+  
+  
