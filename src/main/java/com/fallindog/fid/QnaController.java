@@ -140,7 +140,7 @@ public class QnaController {
 	
 	@RequestMapping(value="/qnaupdate", method=RequestMethod.POST)
 	public ModelAndView qnaupdate(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, QnaVO vo) throws IOException {
-		String uri = "/customer/qnaDetail";
+		String uri = "redirect:qnadetail?qno="+vo.getQno();
 		 String realPath = request.getRealPath("/"); 
 	      if ( realPath.contains(".eclipse.") )  
 	         realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
