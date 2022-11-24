@@ -15,10 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import service.QnaReplyService;
 import service.QnaService;
 import usercontrol.PageMaker;
 import usercontrol.SearchCriteria;
-import vo.CustomerVO;
+import vo.QnaReplyVO;
 import vo.QnaVO;
 
 
@@ -27,7 +28,8 @@ import vo.QnaVO;
 public class QnaController {
 	@Autowired
 	QnaService service;
-	
+	@Autowired
+	QnaReplyService reservice;
 	
 	//Q&A Home
 	@RequestMapping(value="/qna")
@@ -48,7 +50,6 @@ public class QnaController {
 		 else cri.setPhonekey(phonekey);
 		 if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
 		 else cri.setIdkey(idkey);
-		
 		cri.setSnoEno();
 		cri.setRowsPerPage(10);
 	    mv.addObject("qnalist", service.searchList(cri));  //ver2
@@ -104,12 +105,15 @@ public class QnaController {
 	
 	
 	@RequestMapping(value="/qnadetail")
-	public ModelAndView qnadetail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, QnaVO vo) {
+	public ModelAndView qnadetail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, QnaVO vo, QnaReplyVO qvo) {
 		String uri = "/customer/qnaDetail";
 		vo = service.selectOne(vo);
+		qvo.setReqno(vo.getQno());
+		qvo =reservice.readReply(qvo);
 		if ( vo != null ) {
 			if ( "U".equals(request.getParameter("want")))
 				uri = "/customer/qnaUpdatef";
+		mv.addObject("replylist",qvo);
 		mv.addObject("qnaone", vo);
 		} //faqdetail_if
 		mv.setViewName(uri);
@@ -186,5 +190,95 @@ public class QnaController {
 		mv.setViewName(uri);
 		return mv;
 	} //QnAdelete
+	
+	
+	@RequestMapping(value="/writereply",method=RequestMethod.POST)
+	public ModelAndView writereply(HttpServletRequest request, HttpServletResponse response, ModelAndView mv,RedirectAttributes rttr, QnaVO vo, QnaReplyVO qvo) throws Exception{
+		String uri = "redirect:qnadetail?qno="+vo.getQno();
+		String secret = request.getParameter("secret");
+		if( secret == null || secret.length()<1 ) vo.setSecret(null); 
+		else vo.setSecret(secret);
+		
+		//vo=service.selectOne(vo);
+		qvo.setReqno(vo.getQno());
+		
+		
+		
+		
+		
+
+		String realPath = request.getRealPath("/"); 
+	     if ( realPath.contains(".eclipse.") )  
+	         realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
+	     else
+	         realPath += "resources\\img\\uploadImage\\qna\\" ;
+	      
+	     File f1 = new File(realPath);
+	     if ( !f1.exists() ) f1.mkdir();
+	     String file1, file2; 
+	      
+	     MultipartFile uploadfilef = qvo.getUploadfilef(); 
+	     if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	         file1 = realPath + uploadfilef.getOriginalFilename();  
+	         uploadfilef.transferTo(new File(file1)); 
+	         
+	         file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
+	         qvo.setUploadfile(file2);
+	     }
+		
+		if ( reservice.insert(qvo) >0 ) {
+			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
+			//현재대기를 완료로 수정 
+			vo.setSituation(String.valueOf(2));
+			System.out.println("######################3"+vo);
+			
+			if(service.situp(vo)>0) {
+				System.out.println("업데이트 성공 !!!");
+			}else {
+				System.out.println("실패 !!!");
+			}
+			
+		}else {
+			mv.addObject("message", "~~ 새글 등록 실패, 다시 하세요 ~~");
+			uri = "/customer/qna";
+		}
+		mv.setViewName(uri);
+		return mv;
+	}//Replyinsert
+
+	@RequestMapping(value="/updatereply",method=RequestMethod.POST)
+	public ModelAndView updatereply(HttpServletRequest request, HttpServletResponse response, ModelAndView mv,RedirectAttributes rttr, QnaVO vo, QnaReplyVO qvo) throws Exception{
+		String uri = "redirect:qnadetail?qno="+vo.getQno();
+		qvo.setReqno(vo.getQno());
+		
+		String realPath = request.getRealPath("/"); 
+		if ( realPath.contains(".eclipse.") )  
+			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
+		else
+			realPath += "resources\\img\\uploadImage\\qna\\" ;
+		
+		File f1 = new File(realPath);
+		if ( !f1.exists() ) f1.mkdir();
+		String file1, file2; 
+		
+		MultipartFile uploadfilef = qvo.getUploadfilef(); 
+		if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+			file1 = realPath + uploadfilef.getOriginalFilename();  
+			uploadfilef.transferTo(new File(file1)); 
+			
+			file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
+			qvo.setUploadfile(file2);
+		}
+		
+		if ( reservice.update(qvo) >0 ) {
+			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
+		}else {
+			mv.addObject("message", "~~ 새글 등록 실패, 다시 하세요 ~~");
+			uri = "/customer/qna";
+		}
+		mv.setViewName(uri);
+		return mv;
+	}//Replyinsert
+	
 	
 }
