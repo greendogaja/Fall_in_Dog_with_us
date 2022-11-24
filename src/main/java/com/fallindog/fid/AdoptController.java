@@ -2,6 +2,8 @@ package com.fallindog.fid;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +26,7 @@ import service.DogService;
 import vo.AdoptReplyVO;
 import vo.AdoptVO;
 import vo.DogVO;
+import vo.NoticeReplyVO;
 
 
 @Controller 
@@ -103,12 +106,17 @@ public class AdoptController {
 				
 			}
 			mv.addObject("Adopt_detail", vo);
-			mv.addObject("replyVO", new AdoptReplyVO());
+
+			List<AdoptReplyVO> list = new ArrayList<AdoptReplyVO>();
+			list = Rservice.getReplyList();
+			
+			mv.addObject("Adopt_Reply", list);
 			
 			}else {
 				mv.addObject("message", "__Adopt_detail is Not Found__");
 				
 			}
+		  	
 			mv.setViewName(uri);
 			return mv;
 			
@@ -188,6 +196,56 @@ public class AdoptController {
 		return mv;
 		
 	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//	댓글 등록
+	@RequestMapping(value="/saveReply")
+	public ModelAndView saveReply(HttpServletRequest request, HttpServletResponse response,
+								 ModelAndView mv, AdoptReplyVO vo, RedirectAttributes rttr) {
+	
+		System.out.println(vo.getBid());
+		
+		String uri = "redirect:adopt_detail?ano="+vo.getBid();
+		
+		vo.setRid(vo.getRid()+1);
+		
+		if(Rservice.saveReply(vo)>0) {
+			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
+			
+		}else {
+			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
+			
+		}
+		mv.setViewName(uri);
+		
+		return mv;
+		
+	}	
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+//	댓글 삭제
+//	@RequestMapping(value="/ncdelete")
+//	public ModelAndView ncdelete(HttpServletRequest request, HttpServletResponse response, 
+//									ModelAndView mv, NoticeReplyVO cvo, RedirectAttributes rttr) {
+//
+//		String uri = "redirect:ndetail?nno="+cvo.getNno();
+//		
+//		// 2. Service 처리
+//		if ( cservice.ncdelete(cvo) > 0 ) {
+//			rttr.addFlashAttribute("message", "~~ 댓글삭제 성공 ~~"); 
+//		}else {
+//			rttr.addFlashAttribute("message", "~~ 댓글삭제 실패, 다시 하세요 ~~");
+////			uri = "redirect:ndetail?nno="+cvo.getNno();
+//		} // Service
+//		
+////		cservice.ncdelete_grp(cvo);
+//		
+//		// 3. 결과(ModelAndView) 전달 
+//		mv.setViewName(uri);
+//		return mv;
+//	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
