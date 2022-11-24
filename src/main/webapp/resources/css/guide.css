@@ -1,10 +1,31 @@
 @charset "UTF-8";
 
+.ArticleTitle a{
+	font-size : 20px;
+}
+
+.n_l_title{
+	text-align:center;
+	font-weight: bold;
+    font-size: 40px;
+    line-height : 110px;
+    background-color : AliceBlue;
+    margin : 50px 0 100px 0;
+}
+
 .ntable{
 	width : 90%;
 	margin : auto;
 	text-align:center;
 }
+
+.ntable th {
+	background-color : WhiteSmoke;
+}
+
+.ntable tr {
+	 line-height : 50px;
+	 }
 .con_box{
 	font-size: 14px;
     color: #333;
@@ -140,7 +161,7 @@ textarea{
 	
 }
 
-.search_write{
+.n_write{
 	display: flex;
 	float:right;
 	text-align : center;
@@ -213,9 +234,29 @@ select, textarea {
 	height : 50px;
 }
 
-.update_delete{
-	float : right;
+.p_f_info{
+	display: flex;
+    flex-direction : column;
+    align-items: flex-start;
+	
 }
+.update_delete{
+	display: flex;
+    float: right;
+    text-align: center;
+}
+
+.write_btn, .delete_btn{
+	width : 70px;
+	line-height : 48px;
+	background-color : whitesmoke ;
+	border-radius : 10%;
+	font-weight : bold;
+}
+.delete_btn{
+	margin-left : 20px;
+}
+
 
 .profile_info input{
 	float : left;
@@ -386,3 +427,55 @@ a{
 .title_area h3{
 	margin-top : 8px;
 }
+.n_write a  {
+	width : 70px;
+	line-height : 40px;
+	background-color : whitesmoke ;
+	border-radius : 10%;
+	font-weight : bold;
+}
+
+
+
+.search_bar{
+	margin-top : 10px;
+	height : 40px;
+	border-radius : 10%;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: flex-start;
+	
+}
+
+.search_select {
+	margin-right : 10px;
+	width : 90px;
+	height : 40px;
+	border-radius : 10%;
+	
+}
+
+.search_input {
+	width : 200px;
+	height : 40px;
+	padding : 9px;
+	border: 1px solid #ebecef;
+	
+}
+
+.search_btn{
+	margin-left : 10px;
+    width: 40px;
+    line-height: 40px;
+    background-image: url(../img/notice/search.png);
+    background-size: 100%;
+    background-color : white;
+    border-radius: 10%;
+    border : none;
+}
+
+/* .search_write {
+	display: flex;
+    flex-direction: column;
+    
+} */
