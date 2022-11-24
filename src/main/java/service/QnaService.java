@@ -16,7 +16,6 @@ public interface QnaService {
 	int insert(QnaVO vo);
 	//** Update
 	int update(QnaVO vo);
-	int situp(QnaVO vo);
 	//** Delete
 	int delete(QnaVO vo);
 	

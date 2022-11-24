@@ -50,10 +50,6 @@
 		update question set secret=#{secret}, title=#{title}, content=#{content}, uploadfile=#{uploadfile} where qno=#{qno}
 	</update>	
 	
-	<update id="situp">
-		update question set  situation=#{situation} where qno=#{qno}
-	</update>
-	
 	<delete id="delete">
 		delete from question where qno=#{qno}
 	</delete>	

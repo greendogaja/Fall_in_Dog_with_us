@@ -20,7 +20,6 @@ public interface QnaMapper {
 	int insert(QnaVO vo);
 	//Update
 	int update(QnaVO vo);
-	int situp(QnaVO vo);
 	//delete
 	int delete(QnaVO vo);
 	

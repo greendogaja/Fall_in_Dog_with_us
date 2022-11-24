@@ -292,7 +292,7 @@
 						<li class="hoverli cho" onClick="location.href='customerhome'">
 							<span  >자주묻는질문(FAQ)</span>
 						</li>
-						<li class="hoverli cho"  onClick="location.href='qna'">
+						<li class="hoverli cho" onClick="location.href='qna'">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
@@ -362,24 +362,22 @@
 							        </c:otherwise>
 							     </c:choose>                                            
 							 </c:if>
-							 <c:if test="${qna.secret !=1 }">
-								 	<td class= "qtitle" onClick="location.href='qnadetail?qno=${qna.qno}'" style="width:60%; text-align:left;">
-										<span class="material-symbols-outlined">
-										lock_open </span><c:out value="${qna.title}"/></td>
-							 </c:if> 
 							
 							
 							
 							<td>${qna.name }</td>
 							<td>${qna.regdate}</td>
-							
-							 <c:if test="${qna.situation == 1}">
+							 <c:if test="${qna.secret == 1}">
+							     <c:choose>
+							        <c:when test="${qna.name eq loginName || loginID eq 'admin'}"> 
 							            <td >
 							            	<span class="situation">답변대기</span></td>
-							 </c:if>
-							 <c:if test="${qna.situation != 1}">
+							        </c:when>
+							        <c:otherwise>
 							            <td  >
 										<span class="situation">답변완료</span></td>
+							        </c:otherwise>
+							     </c:choose>                                            
 							 </c:if>
 							
 							

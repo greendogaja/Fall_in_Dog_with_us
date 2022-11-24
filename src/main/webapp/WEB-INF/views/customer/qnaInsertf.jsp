@@ -303,7 +303,7 @@
 						<li class="hoverli cho" onClick="location.href='customerhome'">
 							<span  >자주묻는질문(FAQ)</span>
 						</li>
-						<li class="hoverli cho"  onClick="location.href='qna'">
+						<li class="hoverli cho" onClick="location.href='qna'">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
@@ -326,7 +326,9 @@
 			<div class="write" style="width: 100%; margin: auto;">
 				<form method="post" action="qnainsert"  enctype="multipart/form-data">
 	
-					<div class="title"> 
+	
+	
+					<div class="title">
 						<h4 class="detail2">1:1문의(Q&amp;A)</h4>
 					</div>
 					<div>
