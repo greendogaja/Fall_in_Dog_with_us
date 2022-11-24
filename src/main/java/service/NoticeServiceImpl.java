@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mapperInterface.NoticeMapper;
+import noticeControl.SearchCriteria;
 import vo.NoticeVO;
 
 @Service
@@ -13,6 +14,17 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Autowired
 	NoticeMapper mapper;
+	
+	// ** Criteria PageList
+	@Override 
+	public List<NoticeVO> searchList(SearchCriteria cri) {
+		return mapper.searchList(cri);
+	}
+	
+	@Override
+	public int searchCount(SearchCriteria cri) {
+		return mapper.searchCount(cri);
+	}	
 	
 	@Override
 	public List<NoticeVO> selectList(){

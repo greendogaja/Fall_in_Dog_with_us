@@ -2,9 +2,16 @@ package mapperInterface;
 
 import java.util.List;
 
+import noticeControl.SearchCriteria;
 import vo.NoticeVO;
 
 public interface NoticeMapper {
+	
+	// ** Criteria PageList
+	// => ver02
+	List<NoticeVO> searchList(SearchCriteria cri);
+	int searchCount(SearchCriteria cri);	
+	
 	// ** selectList
 	List<NoticeVO> selectList();
 	

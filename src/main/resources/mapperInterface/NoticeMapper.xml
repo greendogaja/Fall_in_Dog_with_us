@@ -4,14 +4,69 @@
 
 <mapper namespace="mapperInterface.NoticeMapper">
 
+<select id="checkList" resultType="vo.NoticeVO">
+	select * from notice 
+	<if test="check!=null">
+		 where id in
+		<foreach collection="check" item="it" open="(" close=")" separator=",">
+			#{it}
+		</foreach>  
+	 </if>  
+	order by nno desc
+	limit #{sno}, #{rowsPerPage}
+</select>
+<select id="checkCount" resultType="int">
+	select count(*) from notice
+	<if test="check!=null">
+		 where id in
+		<foreach collection="check" item="it" open="(" close=")" separator=",">
+			#{it}
+		</foreach>  
+	 </if> 
+</select>
+<!-- *********************************************** -->
+<sql id="search">
+	<if test="keyword!=null">
+		<bind name="keyVal" value="'%'+keyword+'%'"/>
+	</if>
+	<choose>
+		<when test="searchType=='s'.toString()">
+			and subject like #{keyVal} )
+		</when>
+		
+		<when test="searchType=='t'.toString()">
+			and title like #{keyVal} )
+		</when>
+		<when test="searchType=='c'.toString()">
+			and content like #{keyVal} )
+		</when>
+		<when test="searchType=='nn'.toString()">
+			and nname like #{keyVal} )
+		</when>
+		<otherwise> )</otherwise>
+	</choose>
+</sql>
+
+<select id="searchList" resultType="vo.NoticeVO">
+	select nno, subject, title, u.nname, regdate, cnt
+	from notice n, user u
+	where n.id = u.id and ( nno>0 <include refid="search"></include>  
+	order by nno desc
+	limit #{sno}, #{rowsPerPage}
+</select>
+
+<select id="searchCount" resultType="int">
+	select count(*) 
+	from notice n, user u
+	where n.id = u.id and ( nno>0 <include refid="search"></include>
+</select>
+
 <select id="selectList" resultType="vo.NoticeVO">
 	select nno, subject, title, id, regdate, cnt
 	from notice order by nno desc
 </select>
 
 <select id="selectOne" resultType="vo.NoticeVO">
-	<!-- select * from notice where nno=#{nno} -->
-	
 	select title, uploadfile, n.id, nname, regdate, cnt, content, img, nno
 	from notice n, user u
 	where n.id = u.id and nno=#{nno}
