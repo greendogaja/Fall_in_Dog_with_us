@@ -481,8 +481,10 @@
 ${message}<br>
 </c:if>
 <hr>
-<a href="noticeList">목록</a>
-<a href="javascript:history.go(-1)">이전으로</a>
+<div class="list_forward">
+	<a href="noticeList" class="list_a">목록으로</a>
+	<a href="javascript:history.go(-1)" class="forward_a">이전으로</a>
+</div>
 
  <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
