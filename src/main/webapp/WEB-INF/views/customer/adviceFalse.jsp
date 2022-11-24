@@ -34,6 +34,11 @@
 	<option value="uno" >도움말을 이해하기 어렵습니다.</option>
 	<option value="invo" >다른 사용 환경의 도움말이 필요합니다.(예:Mobile관련 도움말이 없습니다.)</option>
 </select>
-<button id="advicet">의견 보내기</button>
+<button id="advicet" style="
+    line-height: 24px;
+    background-color: #0069d9;
+    color: white;
+    width: 94px;
+    border-radius: 19%;">의견 보내기</button>
 </body>
 </html>
