@@ -33,6 +33,10 @@ public class QnaServiceImpl implements QnaService{
 	public int update(QnaVO vo) {
 		return mapper.update(vo);
 	}
+	@Override
+	public int situp(QnaVO vo) {
+		return mapper.situp(vo);
+	}
 	
 	//** Delete
 	@Override

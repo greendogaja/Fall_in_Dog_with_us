@@ -48,10 +48,84 @@
 .foradmin a{
 	margin-left:5px;
 }
+.replyline{
+	margin-top: 55px;
+    border-top: 3px solid;
+    margin-left: 33px;
+    width: 100%;
+}
+.replyline div{
+    line-height: 59px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.show{
+	display:none;
+}
+.showup{
+	display:none;
+}
 
+.replyline p{
+	line-height: 70px;
+    margin: 0;
+}
 
+.tableqna tr{
+	    border-bottom: 1px solid #e3e3e3;
+    line-height: 57px;
+}
+.tableqna th{
+	width: 5%;
+}
+.tableqna td{
+	width: 43%;
+}
+.tableqna textarea{
+	width:100%
+}
+.tableqna tr:nth-child(2){
+	line-height: 50px;
+}
 
+.tableqna tr:ntrh-child(2) input{
+	line-height: 22px;
+}
 
+.writebtn{
+	margin-right: 8px;
+    float: right;
+    line-height: 32px;
+    width: 60px;
+    background: #0069d9;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    border-radius: 0.25rem;
+    
+}
+
+#goreply{
+	float: left;
+    line-height: 32px;
+    width: 60px;
+    background: #0069d9;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    border-radius: 0.25rem;
+    margin-left: 32px;
+}
+#goureply{
+	float: left;
+    line-height: 32px;
+    width: 60px;
+    background: #0069d9;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    border-radius: 0.25rem;
+    margin-left: 33px;
+}
 
 
 

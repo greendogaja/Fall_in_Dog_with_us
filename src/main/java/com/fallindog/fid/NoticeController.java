@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import noticeControl.PageMaker;
+import noticeControl.SearchCriteria;
 import service.NoticeReplyService;
 import service.NoticeService;
 import vo.NoticeReplyVO;
@@ -80,8 +82,8 @@ public class NoticeController {
 	// ** NoticeList
 	@RequestMapping(value="/noticeList")
 	public ModelAndView noticelist(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv) {
-		
+						ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
+		/*
 		List<NoticeVO> list = new ArrayList<NoticeVO>();
 	  	list = service.selectList();
 	  	if ( list!=null ) {
@@ -89,9 +91,20 @@ public class NoticeController {
 	  	}else {
 	  		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
 	  	}
-	  	mv.setViewName("guide/noticeList");
-	  	return mv;
+		*/
+		
+		// Criteria
+		cri.setSnoEno();
+		mv.addObject("banana", service.searchList(cri));
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRowsCount(service.searchCount(cri)); 
+    	mv.addObject("pageMaker", pageMaker);
+    	
+    	mv.setViewName("guide/noticeList");
+    	return mv;
 	}
+	
+	
 	
 	// 글내용, 댓글리스트, 대댓글리스트
 	@RequestMapping(value="/ndetail")

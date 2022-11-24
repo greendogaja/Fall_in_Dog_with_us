@@ -235,17 +235,24 @@
 				<img src="${apple.uploadfile}" width=40 height=50>
 				
 			</div>
-			<div class="profile_info">${apple.id}</div>
-			<div class="article_info">
-				<span>${apple.regdate}&nbsp;&nbsp;</span>
-				<span>조회&nbsp;${apple.cnt}</span>
+			<div class="write_info_box">
 				<c:if test="${loginID=='admin'}">
 					<div class="update_delete">
-						<span><a href="ndetail?jCode=U&nno=${apple.nno}">글수정</a></span>&nbsp;&nbsp;
-						<span><a href="ndelete?nno=${apple.nno}">글삭제</a></span>
+						<a href="ndetail?jCode=U&nno=${apple.nno}" class="write_btn">글수정</a>
+						<a href="ndelete?nno=${apple.nno}" class="delete_btn">글삭제</a>
 					</div>
 				</c:if>
+				
+				<div class="p_f_info">
+					<div class="profile_info">${apple.id}</div>
+					<div class="article_info">
+				
+					<span>${apple.regdate}&nbsp;&nbsp;</span>
+					<span>조회&nbsp;${apple.cnt}</span>
+					</div>	
+				</div>
 			</div>
+			
 			
 		
 		
@@ -443,11 +450,21 @@
 								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
 								<input type="submit" name="commentData" id="commentData" value="등록">
-							<%-- 	<input type="hidden" name="grp" value="${grp}"> --%>
 							</div>
 						</div>
 					</div>
 				</form>
+			</c:if>
+			
+			<c:if test="${empty loginID}">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+								<textarea name="content" id="content" placeholder="로그인 후 댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<input type="submit" name="commentData" id="commentData" value="등록">
+							</div>
+						</div>
+					</div>
 			</c:if>
 
 	</div>
@@ -464,11 +481,10 @@
 ${message}<br>
 </c:if>
 <hr>
-<c:if test="${loginID==apple.id || loginID=='admin'}">
-	&nbsp;&nbsp;<a href="ndetail?jCode=U&nno=${apple.nno}">[글수정]</a>
-</c:if>
-&nbsp;&nbsp;<a href="noticeList">목록</a>
-&nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
+<div class="list_forward">
+	<a href="noticeList" class="list_a">목록으로</a>
+	<a href="javascript:history.go(-1)" class="forward_a">이전으로</a>
+</div>
 
  <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">

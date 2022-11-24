@@ -21,6 +21,5 @@ public class NoticeVO {
 	
 	private int grp;
 	private int grps;
-	
-	
+	private String nname;
 }
