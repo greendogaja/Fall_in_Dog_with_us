@@ -19,4 +19,8 @@ public class NoticeVO {
 	// user 테이블에서 가져올 uploadfile 담는 vo
 	private String uploadfile;
 	
+	private int grp;
+	private int grps;
+	
+	
 }

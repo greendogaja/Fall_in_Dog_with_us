@@ -62,7 +62,7 @@
 
 .comment_inbox{
 	width:100%;
-	margin: 12px 0 29px;
+	margin: 12px 0 6px;
     padding: 16px 10px 10px 18px;
     border: 2px solid silver;
     border-radius: 6px;
@@ -90,6 +90,12 @@ textarea{
 
 .article_viewer{
 	min-height:200px;
+}
+.w-s_p-w{
+	white-space: pre-wrap;
+	word-break: break-all;
+    word-wrap: break-word;
+	
 }
 
 .article_viewer img{
@@ -285,9 +291,10 @@ a{
 	cursor: pointer;
 }
 
-.CommentBox .comment_list .comment_area {
+.CommentBox .comment_list .n_comment_area {
     position: relative;
-    padding: 12px 23px 10px 0;
+    padding-top : 12px;
+    padding-bottom : 10px;
 }
 
 .CommentBox .comment_list .comment_thumb {
@@ -302,7 +309,7 @@ a{
     padding-left: 55px;
 }
 
-.comment_area img{
+.n_comment_area img{
 	height : 45px;
 	width : 43px;
 	border-radius:50%;
@@ -342,4 +349,40 @@ a{
 .comment_attach input{
 	float : right;
 	border : none;
+	margin-left : 15px;
+	cursor: pointer;
+}
+
+.pd_55{
+	padding-left:55px;
+}
+
+.bg_ws{
+	background-color : WhiteSmoke;
+	
+}
+
+.comment_tool img{
+	position: absolute;
+    top: 12px;
+    right: 10px;
+	height : 16px;
+	width : 16px;
+}
+
+.up_del  {
+	position: absolute;
+    top: 30px;
+    right: 0;
+	height : 30px;
+	width : 70px;
+	z-index : 1;
+}
+
+.pd_15{
+	padding : 0 15px 0 15px;
+}
+
+.title_area h3{
+	margin-top : 8px;
 }

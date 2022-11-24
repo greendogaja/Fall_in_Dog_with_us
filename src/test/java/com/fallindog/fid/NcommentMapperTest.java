@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import mapperInterface.NcommentMapper;
+import mapperInterface.NoticeReplyMapper;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -18,7 +18,7 @@ import mapperInterface.NcommentMapper;
 @Log4j
 public class NcommentMapperTest {
 	@Setter(onMethod_ = @Autowired)
-	private NcommentMapper mapper;
+	private NoticeReplyMapper mapper;
 	
 	@Test
 	public void testMapper() {
