@@ -304,7 +304,7 @@ $(document).ready(function() {
 						<li class="hoverli cho" onClick="location.href='customerhome'">
 							<span  >자주묻는질문(FAQ)</span>
 						</li>
-						<li class="hoverli cho"  onClick="location.href='qna'">
+						<li class="hoverli cho">
 							<span>1:1문의하기(Q&amp;A)</span>
 						</li >
 						<li  class="hoverli cho" onClick="location.href='roadmove'">
