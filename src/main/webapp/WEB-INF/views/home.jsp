@@ -76,7 +76,8 @@
                                     <li><a href="noticeList">공지사항</a></li>
                                     <li><a href="adopt_procedure">입양안내 및 절차</a></li>
                                     <li><a href="dog_list_S">분양중 동물 </a></li>
-                                    <li><a href="qna">1:1문의</a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -570,6 +571,7 @@
                                         <li><a href="contact">오시는길</a></li>
                                         <li><a href="dog_list_S">입양목록</a></li>
                                         <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="review">입양후기</a></li>
                                         <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
