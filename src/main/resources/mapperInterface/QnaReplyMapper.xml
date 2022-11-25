@@ -13,8 +13,8 @@
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
 			select IFNULL(max(no),0)+1 from qnareply
 		</selectKey>
-		insert into qnareply(no,reqno,content,uploadfile) 
-		values(#{no},#{reqno},#{content},#{uploadfile})
+		insert into qnareply(no,reqno,content,profile,uploadfile) 
+		values(#{no},#{reqno},#{content},#{profile},#{uploadfile})
 	</insert>
 	
 	<update id="update">

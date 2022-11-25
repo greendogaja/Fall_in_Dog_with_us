@@ -331,6 +331,7 @@
 					</div>
 					<div>
 					<img src="${loginImg}" class="profile-img">
+					<input  type="hidden" name="profile" value="${loginImg }"/>
 					<input type="text" value="${loginNick}" style="border:none" readonly />
 					</div>
 					<table class="tableqna">
