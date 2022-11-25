@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class ReviewReplyVO {
 
-	private int cno;
-	private int nno;
+	private int rrno;
+	private int rvno;
 	private int grp;
 	private int grps;
 	private int grpl;
