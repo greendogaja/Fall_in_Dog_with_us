@@ -14,5 +14,6 @@ public interface QnaReplyMapper  {
 	QnaReplyVO readReply(QnaReplyVO qvo);
 	int insert(QnaReplyVO vo);
 	int update(QnaReplyVO vo);
+	int delete(QnaReplyVO vo);
 	
 }//interface

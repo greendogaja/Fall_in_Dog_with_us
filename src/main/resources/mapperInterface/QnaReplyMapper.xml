@@ -20,6 +20,10 @@
 	<update id="update">
 		update qnareply set   content=#{content}, uploadfile=#{uploadfile} where reqno=#{reqno}
 	</update>	
+	
+	<delete id="delete">
+		delete from qnareply where reqno=#{reqno}
+	</delete>
 
 
 	
