@@ -6,12 +6,13 @@ import lombok.Data;
 
 @Data
 public class ReviewVO {
-	private int nno;
+	private int rvno;
 	private String title;
 	private String content;
 	private String id;
 	private String regdate;
 	private int cnt;
+	private int dno;
 	private String subject;
 	private String img;
 	private MultipartFile uploadfilef;
