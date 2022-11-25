@@ -1,25 +1,27 @@
-package service;
+package mapperInterface;
 
 import java.util.List;
 
 import noticeControl.SearchCriteria;
 import vo.NoticeVO;
 
-public interface NoticeService {
-
+public interface ReviewMapper {
+	
+	// ** Criteria PageList
+	// => ver02
+	List<NoticeVO> searchList(SearchCriteria cri);
+	int searchCount(SearchCriteria cri);	
+	
 	// ** selectList
 	List<NoticeVO> selectList();
-	
-	List<NoticeVO> searchList(SearchCriteria cri);
-	int searchCount(SearchCriteria cri);
 	
 	// ** selectOne
 	NoticeVO selectOne(NoticeVO vo);
 	
 	// ** 조회수 증가
 	int countUp(NoticeVO vo);
-
-	// ** 새글 등록
+	
+	// ** Insert: 새글등록 
 	int insert(NoticeVO vo);
 	
 	// ** Update: 글수정

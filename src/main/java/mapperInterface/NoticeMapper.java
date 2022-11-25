@@ -30,4 +30,6 @@ public interface NoticeMapper {
 	// ** Delete
 	int delete(NoticeVO vo);
 	
+	// ** noticeWriterList
+	List<NoticeVO> w_searchList(SearchCriteria cri);
 }
