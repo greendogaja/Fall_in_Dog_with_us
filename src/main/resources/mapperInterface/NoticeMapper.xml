@@ -4,27 +4,6 @@
 
 <mapper namespace="mapperInterface.NoticeMapper">
 
-<select id="checkList" resultType="vo.NoticeVO">
-	select * from notice 
-	<if test="check!=null">
-		 where id in
-		<foreach collection="check" item="it" open="(" close=")" separator=",">
-			#{it}
-		</foreach>  
-	 </if>  
-	order by nno desc
-	limit #{sno}, #{rowsPerPage}
-</select>
-<select id="checkCount" resultType="int">
-	select count(*) from notice
-	<if test="check!=null">
-		 where id in
-		<foreach collection="check" item="it" open="(" close=")" separator=",">
-			#{it}
-		</foreach>  
-	 </if> 
-</select>
-<!-- *********************************************** -->
 <sql id="search">
 	<if test="keyword!=null">
 		<bind name="keyVal" value="'%'+keyword+'%'"/>
@@ -48,11 +27,19 @@
 </sql>
 
 <select id="searchList" resultType="vo.NoticeVO">
-	select nno, subject, title, u.nname, regdate, cnt
+	select nno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
 	from notice n, user u
 	where n.id = u.id and ( nno>0 <include refid="search"></include>  
 	order by nno desc
 	limit #{sno}, #{rowsPerPage}
+</select>
+
+<select id="w_searchList" resultType="vo.NoticeVO">
+	select nno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	from notice n, user u
+	where u.id = #{id} and ( nno>0 <include refid="search"></include>  
+	order by nno desc
+	<!-- limit #{sno}, #{rowsPerPage} -->
 </select>
 
 <select id="searchCount" resultType="int">
@@ -62,12 +49,12 @@
 </select>
 
 <select id="selectList" resultType="vo.NoticeVO">
-	select nno, subject, title, id, regdate, cnt
+	select nno, subject, title, id, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt
 	from notice order by nno desc
 </select>
 
 <select id="selectOne" resultType="vo.NoticeVO">
-	select title, uploadfile, n.id, nname, regdate, cnt, content, img, nno
+	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, nno
 	from notice n, user u
 	where n.id = u.id and nno=#{nno}
 </select>

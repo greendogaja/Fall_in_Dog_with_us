@@ -19,38 +19,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import noticeControl.PageMaker;
 import noticeControl.SearchCriteria;
-import service.NoticeReplyService;
-import service.NoticeService;
+import service.ShareService;
 import vo.NoticeReplyVO;
 import vo.NoticeVO;
+import vo.ShareReplyVO;
+import vo.ShareVO;
 
 
 
 @Controller 
-public class NoticeController {
+public class ShareController {
   
-	@Autowired 
-	NoticeService service;
 	@Autowired
-	NoticeReplyService cservice;
-
-	 	
-	@RequestMapping(value="/aboutUs")
-	public ModelAndView aboutUs(ModelAndView mv) {
-		mv.setViewName("guide/about-us");
-		return mv;
-	} //aboutUs
-	
-
-	@RequestMapping(value="/contact")
-	public ModelAndView contact(ModelAndView mv) {
-		mv.setViewName("guide/contact");
-		return mv;
-	} //contact
+	ShareService sservice;
 	
 	// ** Image (File) Download
 	// => 전달받은 파일패스와 이름으로 File 객체를 만들어 뷰로 전달
-	@RequestMapping(value="/dnload")
+	@RequestMapping(value="/shareDnload")
 	public ModelAndView dnload(HttpServletRequest request, ModelAndView mv,
 								@RequestParam("dnfile")	String dnfile) {
 				// => 동일기능 : String dnfile = request.getParameter("dnfile");
@@ -64,10 +49,10 @@ public class NoticeController {
 		// => 개발중인지, 배포했는지 에 따라 결정
 		// => 해당화일 File 찾기
 		if ( realPath.contains(".eclipse.") )  // eslipse 개발환경 (배포전)
-			realPath = "C:\\MTest\\project\\fall_in_dog\\src\\main\\webapp\\resources\\img\\uploadImage\\notice" 
+			realPath = "C:\\MTest\\project\\fall_in_dog\\src\\main\\webapp\\resources\\img\\uploadImage\\share" 
 						+ fileName;
 		else  // 톰캣서버에 배포 후 : 서버내에서의 위치
-			realPath += "resources\\img\\uploadImage\\notice\\" + fileName ;
+			realPath += "resources\\img\\uploadImage\\share\\" + fileName ;
 		
 		// 2) 해당 화일 객체화
 		File file = new File(realPath);
@@ -79,69 +64,50 @@ public class NoticeController {
     	return mv;
 	} //dnload
   
-	// ** NoticeList
-	@RequestMapping(value="/noticeList")
-	public ModelAndView noticelist(HttpServletRequest request, HttpServletResponse response,
+	// ** shareList
+	@RequestMapping(value="/shareList")
+	public ModelAndView shareList(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		/*
-		List<NoticeVO> list = new ArrayList<NoticeVO>();
-	  	list = service.selectList();
-	  	if ( list!=null ) {
-	  		mv.addObject("banana", list);  // request.setAttribute(...) 와 동일효과
-	  	}else {
-	  		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-	  	}
-		*/
 		
 		// Criteria
 		cri.setSnoEno();
-		mv.addObject("banana", service.searchList(cri));
+		mv.addObject("banana", sservice.searchList(cri));
 		pageMaker.setCri(cri);
-		pageMaker.setTotalRowsCount(service.searchCount(cri)); 
+		pageMaker.setTotalRowsCount(sservice.searchCount(cri)); 
     	mv.addObject("pageMaker", pageMaker);
     	
-    	mv.setViewName("guide/noticeList");
+    	mv.setViewName("community/shareList");
     	return mv;
 	}
 
-	// ** noticeWriterList
-	@RequestMapping(value="/nwriterList")
-	public ModelAndView nwriterList(HttpServletRequest request, HttpServletResponse response,
+	// ** shareWriterList
+	@RequestMapping(value="/shareWriterList")
+	public ModelAndView shareWriterList(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		/*
-		List<NoticeVO> list = new ArrayList<NoticeVO>();
-	  	list = service.selectList();
-	  	if ( list!=null ) {
-	  		mv.addObject("nwriterList", list);  // request.setAttribute(...) 와 동일효과
-	  	}else {
-	  		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-	  	}
-		*/
-	  	
 		// Criteria
 		cri.setSnoEno();
-		mv.addObject("nwriterList", service.w_searchList(cri));
+		mv.addObject("mango", sservice.w_searchList(cri));
 		
 		pageMaker.setCri(cri);
-		pageMaker.setTotalRowsCount(service.searchCount(cri)); 
+		pageMaker.setTotalRowsCount(sservice.searchCount(cri)); 
     	mv.addObject("pageMaker", pageMaker);
     	
-	  	mv.setViewName("guide/noticeWriterList");
+	  	mv.setViewName("community/shareWriterList");
 	  	return mv;
 	}
 	
 	
 	// 글내용, 댓글리스트, 대댓글리스트
-	@RequestMapping(value="/ndetail")
-	public ModelAndView ndetail(HttpServletRequest request, HttpServletResponse response, 
-								ModelAndView mv, NoticeVO vo, NoticeReplyVO cvo) {
+	@RequestMapping(value="/shareDetail")
+	public ModelAndView shareDetail(HttpServletRequest request, HttpServletResponse response, 
+								ModelAndView mv, ShareVO vo, ShareReplyVO rvo) {
 		// 1. 요청분석
-		String uri = "guide/noticeDetail";
+		String uri = "community/shareDetail";
 		
 		// 2. Service 처리
-		int nno = Integer.parseInt((String)request.getParameter("nno"));
-		vo.setNno(nno);
-		vo = service.selectOne(vo);
+		int shno = Integer.parseInt((String)request.getParameter("shno"));
+		vo.setShno(shno);
+		vo = sservice.selectOne(vo);
 		System.out.println("#################################"+vo);
 		
 		if ( vo != null ) { 
@@ -149,24 +115,24 @@ public class NoticeController {
 			String loginID = (String)request.getSession().getAttribute("loginID");
 			if ( !vo.getId().equals(loginID) && !"U".equals(request.getParameter("jCode")) ) {
 				// => 조회수 증가
-				if ( service.countUp(vo) > 0 ) vo.setCnt(vo.getCnt()+1); 
+				if ( sservice.countUp(vo) > 0 ) vo.setCnt(vo.getCnt()+1); 
 			} //if_증가조건
 			
 			// 2.2) 수정요청 인지 확인
 			if ( "U".equals(request.getParameter("jCode")))
-			uri = "guide/noticeUpdateF";
+			uri = "community/shareUpdateF";
 			
 			// 2.3)	결과전달		
 			mv.addObject("apple", vo);
 		}else mv.addObject("message", "~~ 글번호에 해당하는 자료가 없습니다. ~~");
 		
-		// 3. 댓글리스트 Ncomment selectList
-		cvo.setNno(nno);
-		System.out.println("nno => "+nno);
+		// 3. 댓글리스트 
+		rvo.setShno(shno);
+		System.out.println("shno => "+shno);
 		
 		// 댓글리스트
-		List<NoticeReplyVO> list = new ArrayList<NoticeReplyVO>();
-    	list = cservice.selectList(cvo);
+		List<ShareReplyVO> list = new ArrayList<ShareReplyVO>();
+    	list = sservice.replySelectList(rvo);
     	
     	if ( list!=null ) {
     		mv.addObject("orange", list); 
@@ -183,20 +149,20 @@ public class NoticeController {
 	} //ndetail 
 	
 	
-	// ** Insert : 새글등록
-	@RequestMapping(value="/ninsertf")
-	public ModelAndView ninsertf(HttpServletRequest request, HttpServletResponse response, 
+	@RequestMapping(value="/shareInsertF")
+	public ModelAndView shareInsertF(HttpServletRequest request, HttpServletResponse response, 
 								ModelAndView mv) {
-		mv.setViewName("guide/noticeInsertF");
+		mv.setViewName("community/shareInsertF");
 		return mv;
 	}
 	
-	@RequestMapping(value="/ninsert", method=RequestMethod.POST)
-	public ModelAndView ninsert(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) throws IOException  {
+	// ** Insert : 새글등록
+	@RequestMapping(value="/shareInsert", method=RequestMethod.POST)
+	public ModelAndView shareInsert(HttpServletRequest request, 
+			HttpServletResponse response, ModelAndView mv, ShareVO vo, RedirectAttributes rttr) throws IOException  {
 		System.out.println("새글등록 vo =>"+vo);
 		// 1. 요청분석
-		String uri = "redirect:noticeList";
+		String uri = "redirect:shareList";
 		
 		
 		//image upload
@@ -204,9 +170,9 @@ public class NoticeController {
 		System.out.println("** realPath => "+realPath);
 		
 		if ( realPath.contains(".eclipse.") )  // eclipse 개발환경 (배포전)
-			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\notice\\";
+			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\share\\";
 		else  // 톰캣서버에 배포 후 : 서버내에서의 위치
-			realPath += "resources\\img\\uploadImage\\notice\\" ;
+			realPath += "resources\\img\\uploadImage\\share\\" ;
 		
 		File f1 = new File(realPath);
 		if ( !f1.exists() ) f1.mkdir();
@@ -219,7 +185,7 @@ public class NoticeController {
 			file1 = realPath + uploadfilef.getOriginalFilename(); // 경로완성
 			uploadfilef.transferTo(new File(file1)); // Image저장
 			
-			file1="resources/img/uploadImage/notice/"+uploadfilef.getOriginalFilename();
+			file1="resources/img/uploadImage/share/"+uploadfilef.getOriginalFilename();
 			vo.setImg(file1);
 		}
 		
@@ -229,11 +195,11 @@ public class NoticeController {
 		
 		// 2. Service 처리
 		
-		if ( service.insert(vo)>0 ) {
+		if ( sservice.insert(vo)>0 ) {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
 		}else {
 			mv.addObject("message", "~~ 새글 등록 실패, 다시 하세요 ~~");
-			uri = "guide/noticeInsertF";
+			uri = "community/shareInsertF";
 		}
 		// 3. 결과(ModelAndView) 전달 
 		mv.setViewName(uri);
@@ -241,15 +207,15 @@ public class NoticeController {
 	} //ninsert	
 	
 	// ** Update : 글수정하기
-	@RequestMapping(value="/nupdate", method=RequestMethod.POST)
-	public ModelAndView nupdate(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv, NoticeVO vo)  throws IOException {
+	@RequestMapping(value="/shareUpdate", method=RequestMethod.POST)
+	public ModelAndView shareUpdate(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, ShareVO vo)  throws IOException {
 		// 1. 요청분석
 
 		
-		int nno = Integer.parseInt((String)request.getParameter("nno"));
-		vo.setNno(nno);
-		String uri = "redirect:ndetail?nno="+nno;
+		int shno = Integer.parseInt((String)request.getParameter("shno"));
+		vo.setShno(shno);
+		String uri = "redirect:shareDetail?shno="+shno;
 		
 		
 		mv.addObject("apple",vo);
@@ -262,9 +228,9 @@ public class NoticeController {
 		System.out.println("** realPath => " + realPath);
 
 		if (realPath.contains(".eclipse.")) // eclipse 개발환경 (배포전)
-			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\notice\\";
+			realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\share\\";
 		else // 톰캣서버에 배포 후 : 서버내에서의 위치
-			realPath += "resources\\img\\uploadImage\\notice\\";
+			realPath += "resources\\img\\uploadImage\\share\\";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -278,16 +244,16 @@ public class NoticeController {
 			file1 = realPath + uploadfilef.getOriginalFilename(); // 경로완성
 			uploadfilef.transferTo(new File(file1)); // Image저장
 			
-			file1="resources/img/uploadImage/notice/"+uploadfilef.getOriginalFilename();
+			file1="resources/img/uploadImage/share/"+uploadfilef.getOriginalFilename();
 			vo.setImg(file1);
 		}
 		
 		// 2. Service 처리
-		if ( service.update(vo) > 0 ) {
+		if ( sservice.update(vo) > 0 ) {
 			mv.addObject("message", "~~ 글수정 성공 ~~"); 
 		}else {
 			mv.addObject("message", "~~ 글수정 실패, 다시 하세요 ~~");
-			uri = "guide/noticeUpdateF";
+			uri = "community/shareUpdate";
 		}
 		
 		// 3. 결과(ModelAndView) 전달 
@@ -298,20 +264,17 @@ public class NoticeController {
 	}
 	
 	// ** Delete : 글 삭제
-	@RequestMapping(value="/ndelete")
-	public ModelAndView bdelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, NoticeVO vo, RedirectAttributes rttr) {
-		// 1. 요청분석
-		// => Delete 성공: redirect:blist
-		//           실패: message 표시, redirect:bdetail
-		String uri = "redirect:noticeList";
+	@RequestMapping(value="/shareDelete")
+	public ModelAndView shareDelete(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, ShareVO vo, RedirectAttributes rttr) {
+		String uri = "redirect:shareList";
 		
 		// 2. Service 처리
-		if ( service.delete(vo) > 0 ) {
+		if ( sservice.delete(vo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 
 		}else {
 			rttr.addFlashAttribute("message", "~~ 글삭제 실패, 다시 하세요 ~~");
-			uri = "redirect:ndetail?nno="+vo.getNno();
+			uri = "redirect:shareDetail?shno="+vo.getShno();
 		} // Service
 		
 		// 3. 결과(ModelAndView) 전달 
@@ -320,22 +283,22 @@ public class NoticeController {
 	} //bdelete
 
 	// 대댓글입력
-	@RequestMapping(value="/ncreply")
-	public ModelAndView ncreply(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NoticeReplyVO cvo, 
+	@RequestMapping(value="/rereplyInsert")
+	public ModelAndView rereplyInsert(HttpServletRequest request, 
+			HttpServletResponse response, ModelAndView mv, ShareReplyVO cvo, 
 			RedirectAttributes rttr) {
 	
-		int nno = Integer.parseInt(request.getParameter("nno"));
-		cvo.setNno(nno); 
+		int shno = Integer.parseInt(request.getParameter("shno"));
+		cvo.setShno(shno); 
     	
 		// 대댓글의 grpl = 1, 모댓글 = 0(default)
 		cvo.setGrpl(1);
 		
 		System.out.println("대댓vo => "+cvo);
 		
-		String uri = "redirect:ndetail?nno="+nno;
+		String uri = "redirect:shareDetail?shno="+shno;
 		
-		if(cservice.ncreply(cvo)>0) {
+		if(sservice.replyInsert(cvo)>0) {
 			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
 		}else {
 			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
@@ -349,17 +312,17 @@ public class NoticeController {
 	
 	
 	// 댓글입력
-	@RequestMapping(value="/ncinsert")
-	public ModelAndView ncinsert(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NoticeReplyVO cvo, 
+	@RequestMapping(value="/replyInsert")
+	public ModelAndView replyInsert(HttpServletRequest request, 
+			HttpServletResponse response, ModelAndView mv, ShareReplyVO cvo, 
 			RedirectAttributes rttr) {
 	
-		int nno = Integer.parseInt(request.getParameter("nno"));
-		cvo.setNno(nno); 
+		int shno = Integer.parseInt(request.getParameter("shno"));
+		cvo.setShno(shno);  
 		
-		String uri = "redirect:ndetail?nno="+nno;
+		String uri = "redirect:shareDetail?shno="+shno;
 		
-		if(cservice.ncinsert(cvo)>0) {
+		if(sservice.rereplyInsert(cvo)>0) {
 			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
 		}else {
 			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
@@ -372,21 +335,18 @@ public class NoticeController {
 	}	
 	
 	// ncdelete 댓글 삭제
-	@RequestMapping(value="/ncdelete")
-	public ModelAndView ncdelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, NoticeReplyVO cvo, RedirectAttributes rttr) {
+	@RequestMapping(value="/replyDelete")
+	public ModelAndView replyDelete(HttpServletRequest request, HttpServletResponse response, 
+									ModelAndView mv, ShareReplyVO cvo, RedirectAttributes rttr) {
 
-		String uri = "redirect:ndetail?nno="+cvo.getNno();
+		String uri = "redirect:shareDetail?shno="+cvo.getShno();
 		
 		// 2. Service 처리
-		if ( cservice.ncdelete(cvo) > 0 ) {
+		if ( sservice.replyDelete(cvo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 댓글삭제 성공 ~~"); 
 		}else {
 			rttr.addFlashAttribute("message", "~~ 댓글삭제 실패, 다시 하세요 ~~");
-//			uri = "redirect:ndetail?nno="+cvo.getNno();
 		} // Service
-		
-//		cservice.ncdelete_grp(cvo);
 		
 		// 3. 결과(ModelAndView) 전달 
 		mv.setViewName(uri);
@@ -394,16 +354,16 @@ public class NoticeController {
 	} //bdelete
 	
 	
-	// **ncupdate 댓글수정
-	@RequestMapping(value="/ncupdate")
-	public ModelAndView ncupdate(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv, NoticeReplyVO cvo) {
+	// ** 댓글수정
+	@RequestMapping(value="/replyUpdate")
+	public ModelAndView replyUpdate(HttpServletRequest request, HttpServletResponse response,
+								ModelAndView mv, ShareReplyVO cvo) {
 		// 1. 요청분석
 
 		
-		int nno = Integer.parseInt((String)request.getParameter("nno"));
-		cvo.setNno(nno);
-		String uri = "redirect:ndetail?nno="+nno;
+		int shno = Integer.parseInt(request.getParameter("shno"));
+		cvo.setShno(shno);  
+		String uri = "redirect:shareDetail?shno="+shno;
 		
 		
 		mv.addObject("apple",cvo);
@@ -413,7 +373,7 @@ public class NoticeController {
 		
 		
 		// 2. Service 처리
-		if ( cservice.ncupdate(cvo) > 0 ) {
+		if ( sservice.replyUpdate(cvo) > 0 ) {
 			mv.addObject("message", "~~ 댓글수정 성공 ~~"); 
 		}else {
 			mv.addObject("message", "~~ 댓글수정 실패, 다시 하세요 ~~");

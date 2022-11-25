@@ -5,11 +5,13 @@ import lombok.Data;
 @Data
 public class AdoptReplyVO {
 	
-	private int rid;
-	private int bid;
+	private int rno;
+	private int ano;
+	private int grp;
+	private int grps;
+	private int grpl;
+	private String id;
 	private String content;
-	private String reg_id;
-	private String reg_dt;
-	private String edit_dt;
+	private String regdate;
 	
 }

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,17 +11,15 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- ##### Footer Area End ##### -->
 
-    <!-- Title -->
-    <title>Original - Lifestyle Blog Template</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="resources/img/core-img/favicon.ico">
-
-    <!-- Style CSS -->
+<meta charset="UTF-8">
+<title>Notice</title>
+<!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
-    
 
+	<!-- ajax 댓글리스트 js 
+	<script src="resources/myLib/ax_ncomment.js"></script> -->
+	
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -34,7 +33,8 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-	
+	<!-- reply.js -->
+    <script defer="defer" src="resources/mLib/notice_reply.js"></script>
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -42,6 +42,7 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/guide.css">
 
 </head>
 
@@ -217,126 +218,274 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    
+<!-- Notice Detail Start 
+	================================== 본문 ==================================-->
+<hr>
 
-    <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img" style="background-image: url(resources/img/notice/dog1.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="text-center">
-                        <h2>about us</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Breadcumb Area End ##### -->
-
-    <!-- ##### Blog Wrapper Start ##### -->
-    <div class="blog-wrapper section-padding-100-0 clearfix">
-        <div class="container">
-            <div class="row align-items-end">
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
-                        <!-- Blog Content -->
-                            <div class="line"></div>
-                            <a href="#" class="post-tag">Fall In Dog</a>
-                            <h4 class="post-headline">이 세상 모든 반려동물들의 삶이 행복하기를</a></h4><br>
-                        <div class="single-blog-content">
-                            <p class="mb-3 lh40">Fall In Dog는 개인이 운영하는 보호 시설입니다.<br>
-                            PET 분양을 가장한 보호소가 아니며 판매하는 아이들이 없는 진짜 보호소입니다.<br>
-                            Fall In Dog는 보호 명목으로 수십, 수백만원을 요구하는 일이 없으며 무료로 입소를 할 수 있습니다.<br>
-                            개인사정 등에 의한 동물들을 보호 및 생활할 수 있도록 따뜻한 보금자리가 되어주고 있습니다.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
-                        <!-- Blog Content -->
-                        <div class="single-blog-content">
-                            <p class="mb-3 lh40" >반려동물에 대한 인식의 변화가 있다고는 하지만<br>
-                            아직도 여전히 반려동물을 소중한 생명이나 가족으로 대하지 않고<br>
-                            감정없는 물건이나 개인의 소유물이라고 생각하며 유기하거나,<br>
-                            학대하는 일들이 끊임없이 우리 사회 안에서 벌어지고 있습니다.<br>
-                            Fall In Dog는 이러한 행위들을 방지하는데 앞장서며<br>
-                            이 세상 모든 반려동물들의 삶이 행복하기를 원합니다.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-catagory-area clearfix mb-100">
-                        <img src="resources/img/notice/dog0.jpg" alt="">
-                        <!-- Catagory Title 
-                        <div class="catagory-title">
-                            <a href="#">Lifestyle posts</a>
-                        </div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Blog Wrapper End ##### -->
-
-    <!-- ##### Cool Facts Area Start ##### 
-    보호중 강아지수 / 입양된 강아지 수 / 회원 수 / 자유게시판 글 수 -->
-    <div class="cool-facts-area section-padding-100-0 bg-img background-overlay" style="background-image: url(resources/img/notice/notice_dog.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="single-blog-area blog-style-2 text-center mb-100">
-                        <!-- Blog Content -->
-                        <div class="single-blog-content">
-                            <div class="line"></div>
-                            <a href="#" class="post-tag">Lifestyle</a>
-                            <h4><a href="#" class="post-headline">Welcome to Fall In Dog!</a></h4>
-                            <p>Fall In Dog는 반려동물에 대한 인식 개선과 누구의 보살핌도 받지 못하는 유기동물을 보호하고 있습니다.
-                            병들고 늙었다는 이유만으로 버려지거나, 개인사정으로 파양을 당하는 반려동물에게 따스한 손길과 더불어 새로운 가족을 찾는 것을 도와줍니다.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">25</span></h2>
-                        <p>보호중인 강아지</p>
-                    </div>
-                </div>
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">36</span></h2>
-                        <p>가족을 기다리는 강아지</p>
-                    </div>
-                </div>
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">216</span></h2>
-                        <p>회원수</p>
-                    </div>
-                </div>
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">16</span></h2>
-                        <p>자유게시판 새글</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Cool Facts Area End ##### -->
+<div class="ArticleContentBox">
+	<div class="article_header">
+		<div class="ArticleTitle">
+			<a href="shareList">나눔장터</a>
+			<div class="title_area"><h3>${apple.title}</h3></div>
+		</div>
+		<div class="WriterInfo" >
+			<div class="profile_image">
+				<!-- 프로필이미지 : user 테이블에서 uploadfile 가져와야함 -->
+				<img src="${apple.uploadfile}" width=40 height=50>
+				
+			</div>
+			<div class="write_info_box">
+				<c:if test="${loginID == apple.id}">
+					<div class="update_delete">
+						<a href="shareDetail?jCode=U&shno=${apple.shno}" class="write_btn">글수정</a>
+						<a href="shareDelete?shno=${apple.shno}" class="delete_btn">글삭제</a>
+					</div>
+				</c:if>
+				
+				<div class="p_f_info">
+					<div class="profile_info">${apple.nname}</div>
+					<div class="article_info">
+				
+					<span>${apple.regdate}&nbsp;&nbsp;</span>
+					<span>조회&nbsp;${apple.cnt}</span>
+					</div>	
+				</div>
+			</div>
+			
+			
+		
+		
+		</div>
+		<div class="ArticleTool"></div>
+	</div>
+	<hr>
+	<div class="article_container">
+		<div class="article_viewer">
+			<div class="w-s_p-w">${apple.content}</div>
+			<c:if test="${not empty apple.img}">
+				<img src="${apple.img}"> 
+			</c:if>
+		</div>
+		<div class="article_writer">
+		<a href="shareWriterList?id=${apple.id}&uploadfile=${apple.uploadfile}">
+			<span>${apple.nname}님의 게시글 더보기</span>
+		</a>
+		</div>
+	</div>
+	<hr>
+	
+	<!-- =========================== comment/댓글 ================================== -->
+	<div class="CommentBox">
+		<div class="comment_title">댓글</div>
+			<!-- 댓글 리스트 AJAX-->
+			<ul class="comment_list">
+				<!-- 댓글 리스트  -->
+				<c:if test="${not empty orange}">
+					<c:forEach var="orange" items="${orange}">
+						<li class="comment_item">
+							
+							<!-- ==========================댓글 list==========================-->
+							<c:if test="${orange.grpl != 1}">
+							
+							<div class="n_comment_area pd_15">
+								<!-- 작성자Img 저장 -->
+								<img src="${orange.uploadfile}">
+								<div class="comment_box">
+									<!-- 작성자 닉네임 -->
+									<div class="comment_nick">${orange.nname}</div>
+									<!-- 더보기 수정/삭제 -->
+									<c:if test="${loginNick == orange.nname}">
+										<div class="comment_tool">
+											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
+											<div class="up_del dp_h">
+												<a class="re_update">수정</a>&nbsp;&nbsp;
+												<a href="shareDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+											</div>
+										</div>
+									</c:if>
+									
+									<div class="comment_text_box">
+										<div class="comment_text_view w-s_p-w">${orange.content}</div>
 
 
-   <!-- Footer 위에 margin : 10%; 정도 주면 좋을듯
-   ##### Footer Area Start ##### -->
+									</div>
+									<div class="comment_info_box">
+										<span class="comment_info_reg">${orange.regdate}</span> 
+										<a class="reply_display">답글쓰기</a>
+									</div>
+									<!-- ==========================대댓글 입력==========================-->
+									<div class="comment_inbox re_box dp_h" >
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="rereplyInsert">
+											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+											<input type="hidden" name="shno" value="${apple.shno}" id="shno">
+											<input type="hidden" name="id" value="${loginID}">
+											<div class="mg_b_10">${loginNick}</div>
+											<textarea name="content" id="content"
+												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+									<!-- ==========================댓글 수정창==========================-->
+									<div class="comment_inbox re_box_update dp_h" >
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="replyUpdate">
+											<div class="mg_b_10">${orange.nname}</div>
+											<textarea name="content" id="content"
+												 class="comment_textarea">${orange.content}</textarea>
+											<div class="comment_attach">
+												<input type="submit" value="수정"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="shno" value="${orange.shno}" >
+												<input type="hidden" name="srno" value="${orange.srno}" >
+												<input type="hidden" name="nname" value="${orange.nname}">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							</c:if> 
+							<!-- ========================== 대댓글 list ==========================-->
+							<c:if test="${orange.grpl != 0}">
+							
+							<div class="n_comment_area  pd_55">
+								<!-- 작성자Img 저장 -->
+								<img src="${orange.uploadfile}">
+								<div class="comment_box">
+									<!-- 작성자 닉네임 -->
+									<div class="comment_nick">${orange.nname}</div>
+									<!-- 더보기 수정/삭제 -->
+									<c:if test="${loginNick == orange.nname}">
+										<div class="comment_tool">
+											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
+											<div class="up_del dp_h">
+												<a class="replyUpdate">수정</a>&nbsp;&nbsp;
+												<a href="replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+											</div>
+										</div>
+									</c:if>
+									<div class="comment_text_box">
+										<div class="comment_text_view w-s_p-w">${orange.content}</div>
+									</div>
+									<div class="comment_info_box">
+										<span class="comment_info_reg">${orange.regdate}</span> <a class="rereply_display">답글쓰기</a>
+									</div>
+
+									<!-- ==========================대댓글의 대댓글 입력==========================-->
+									<div class="comment_inbox rere_box dp_h">
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="rereplyInsert">
+											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+											<input type="hidden" name="shno" value="${apple.shno}" id="shno">
+											<input type="hidden" name="id" value="${loginID}">
+											<div class="mg_b_10">${loginNick}</div>
+											<textarea name="content" id="content"
+												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+									<!-- ==========================대댓글 수정창==========================-->
+									<div class="comment_inbox re_box_update dp_h" >
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="replyUpdate">
+											<input type="hidden" name="shno" value="${orange.shno}" >
+											<input type="hidden" name="srno" value="${orange.srno}" >
+											<input type="hidden" name="id" value="${orange.id}">
+											<div class="mg_b_10">${orange.nname}</div>
+											<textarea name="content" id="content"
+												 class="comment_textarea">${orange.content}</textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData" value="수정"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+							</c:if>
+							
+						</li>
+					</c:forEach>
+				</c:if>
+			</ul>
+			
+			
+			<!-- ========================== 댓글입력 ========================== -->
+			<c:if test="${not empty loginID}">
+				<form action="replyInsert" method="post">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+							apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+							<input type="hidden" name="shno" value="${apple.shno}" id="shno">
+							<input type="hidden" name="id" value="${loginID}">
+							<div class="mg_b_10">${loginNick}</div>
+								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<input type="submit" name="commentData" id="commentData" value="등록">
+							</div>
+						</div>
+					</div>
+				</form>
+			</c:if>
+			
+			<c:if test="${empty loginID}">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+								<textarea name="content" id="content" placeholder="로그인 후 댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<input type="submit" name="commentData" id="commentData" value="등록">
+							</div>
+						</div>
+					</div>
+			</c:if>
+
+	</div>
+
+
+
+</div>
+
+	<!-- Notice Detail End -->
+
+
+<c:if test="${not empty message}">
+<hr>
+${message}<br>
+</c:if>
+<hr>
+<div class="list_forward">
+	<a href="noticeList" class="list_a">목록으로</a>
+	<a href="javascript:history.go(-1)" class="forward_a">이전으로</a>
+</div>
+
+ <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
@@ -390,8 +539,5 @@ Copyright &copy;<script>document.write('fallindog.com');</script> all right rese
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
 
-
-
 </body>
-
 </html>
