@@ -324,11 +324,11 @@
 		<div class="footerbox">
 		<div class="beaf">
 			<span>이전글 </span>
-			<a href="faqdetail?fno=${min.fno}">${min.title}</a>
+			<a href="faqdetail?fno=${max.fno}">${max.title}</a>
 		</div>
 		<div class="beaf">
 			<span>다음글 </span>
-			<a href="faqdetail?fno=${max.fno}">${max.title}</a>
+			<a href="faqdetail?fno=${min.fno}">${min.title}</a>
 		</div>
 		
 		<div class="beaf">
