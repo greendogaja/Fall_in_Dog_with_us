@@ -88,9 +88,11 @@ public class AdoptController {
 //	입양 신청 상세
 	@RequestMapping(value="/adopt_detail")
 	public ModelAndView adopt_detail(HttpServletRequest request, HttpServletResponse response, 
-									 ModelAndView mv, AdoptVO vo) {
+									 ModelAndView mv, AdoptVO vo, AdoptReplyVO rvo) {
 
 		String uri = "adopt_dog/adopt_detail";
+		int ano = Integer.parseInt((String)request.getParameter("ano"));
+		vo.setAno(ano);
 		vo = Aservice.selectOne(vo);
 
 		if (vo != null) {
@@ -106,9 +108,37 @@ public class AdoptController {
 				
 			}
 			mv.addObject("Adopt_detail", vo);
+			
+
+	    	
+
+/////////////////////////////////////////////////////
+	    	
+	    	rvo.setAno(ano);
+			System.out.println("ano => "+ano);
 
 			List<AdoptReplyVO> list = new ArrayList<AdoptReplyVO>();
-			list = Rservice.getReplyList();
+			list = Rservice.getReplyList(rvo);
+			
+			
+			
+			
+	    	if ( list!=null ) {
+	    		mv.addObject("orange", list); 
+	    		System.out.println("댓글리스트 불러오기 성공! TTT");
+	    		System.out.println("~~~댓글list"+list);
+	    	}else {
+	    		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
+	    		System.out.println("댓글리스트 불러오기 실패 FFF");
+	    	}
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			mv.addObject("Adopt_Reply", list);
 			
@@ -204,11 +234,12 @@ public class AdoptController {
 	public ModelAndView saveReply(HttpServletRequest request, HttpServletResponse response,
 								 ModelAndView mv, AdoptReplyVO vo, RedirectAttributes rttr) {
 	
-		System.out.println(vo.getBid());
+		int ano = Integer.parseInt(request.getParameter("ano"));
+		vo.setAno(ano);
 		
-		String uri = "redirect:adopt_detail?ano="+vo.getBid();
-		
-		vo.setRid(vo.getRid()+1);
+		System.out.println(vo.getGrp());		
+		String uri = "redirect:adopt_detail?ano="+ano;
+
 		
 		if(Rservice.saveReply(vo)>0) {
 			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
@@ -218,7 +249,6 @@ public class AdoptController {
 			
 		}
 		mv.setViewName(uri);
-		
 		return mv;
 		
 	}	

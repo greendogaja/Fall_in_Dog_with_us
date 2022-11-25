@@ -4,41 +4,66 @@
 
 <mapper namespace="mapperInterface.AdoptReplyMapper">
 
-<!-- 게시판 -->
+
+<!-- 댓글 목록 -->
 <select id="getReplyList" resultType="vo.AdoptReplyVO">
-	select rid, bid, content, reg_id, reg_dt, edit_dt
+	<!-- selectList 에 담겨야 하는 모든 vo 를 select 해야함! -->
+	select ano, rno, content, regdate, grp, grps, grpl, id
 	from adopt_reply
-	order by reg_dt desc
+	where ano = #{ano}
+	order by grp desc, grps asc	
 </select>
-<!--  select rid, bid, r.content, reg_id, reg_dt, edit_dt from adopt_reply r, adopt a where a.ano=r.bid order by reg_dt desc; -->
 
 
-<!-- 글쓰기 -->
+<!-- 댓글 등록 -->
 <insert id="saveReply">
-	insert into adopt_reply(rid, bid, content, reg_id, reg_dt, edit_dt) 
-	values(#{rid}, #{bid}, #{content}, #{reg_id}, now(), now())
+	<selectKey keyProperty="grp" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grp),0)+1 
+		from adopt_reply
+		where ano = #{ano}
+	</selectKey>
+	
+	insert into adopt_reply(rno, ano, grp, grpl, id, content) 
+	values(#{rno},#{ano}, #{grp}, #{grpl}, #{id}, #{content})
 </insert>
 
-<!-- 글수정 -->
+
+<!-- 댓글 수정 -->
 <update id="updateReply">
-	update adopt_reply set content=#{content}, edit_dt=now()
-	where rid = #{rid}
+	update adopt_reply
+	set content = #{content}
+	where rno = #{rno}
 </update>
 
-<!-- 글삭제 -->
-<delete id="deleteReply">
+
+<!-- 댓글 삭제 -->
+ <delete id="deleteReply">
 	delete from adopt_reply
-	where rid = #{rid}
-</delete>	
+	<choose>
+		<when test="grps == 0">
+			where grp = #{grp} and ano = #{ano}
+		</when>
+		<when test="grps != 0">
+			where rno = #{rno}
+		</when>
+	</choose>
+</delete>
+
+
+<!-- 대댓글 등록 -->
+<insert id="saveReplyReply">
+	<selectKey keyProperty="grps" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grps),0)+1
+		from adopt_reply 
+		where ano = #{ano} and grp = #{grp}
+	</selectKey>
+	
+	insert into adopt_reply(rno, ano, grp, grps, grpl, id, content)
+	values(#{rno}, #{ano},  #{grp}, #{grps}, #{grpl}, #{id}, #{content})
+</insert>
+
 
 </mapper> 
-
-
-
-
-
-
-
 
 
 
