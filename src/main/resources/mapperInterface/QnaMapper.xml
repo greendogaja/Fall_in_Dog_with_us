@@ -41,8 +41,8 @@
 		<selectKey keyProperty="qno" resultType="int" order="BEFORE">
 			select IFNULL(max(qno),0)+1 from question
 		</selectKey>
-		insert into question(qno,name,secret,title,content,profile,uploadfile) 
-		values(#{qno},#{name},#{secret},#{title},#{content},#{profile},#{uploadfile})
+		insert into question(qno,name,secret,title,content,profile,nickname,uploadfile) 
+		values(#{qno},#{name},#{secret},#{title},#{content},#{profile},#{nickname},#{uploadfile})
 	</insert>
  
  
