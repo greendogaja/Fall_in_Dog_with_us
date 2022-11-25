@@ -195,9 +195,9 @@
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
                                     </li> -->
-                                             <li><a href="reviewList">입양후기</a></li>
                                     <li><a href="#">커뮤니티</a>
                                         <ul class="dropdown">
+                                             <li><a href="reviewList">입양후기</a></li>
                                             <li><a href="freeList">자유게시판</a></li>
                                             <li><a href="shareList">나눔장터</a></li>
                                         </ul>
