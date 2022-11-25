@@ -124,11 +124,16 @@ a {
 /* 댓글 */
 .comment {
     width: 90%;
-    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
     margin-top: 20px;
     margin-bottom: 40px;
     padding-top: 20px;
     position: relative;
+}
+
+.replyList {
+	border: 1px solid black;
+	
 }
 
 /* ------------------------------------------------------------------------------------------------- */

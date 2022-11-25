@@ -258,7 +258,7 @@
 						<option value="nn" ${pageMaker.cri.searchType=='nn' ? 'selected' : ''}>작성자</option>
 					</select> 
 					<input type="text" class="search_input" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
-					<button id="searchBtn" class="search_btn">검색</button>
+					<button id="searchBtn" class="search_btn"></button>
 				</div>
 			</div>
 		<div>
@@ -272,35 +272,36 @@
 		</tr>
 		<c:if test="${not empty banana}">
 			<c:forEach  var="notice" items="${banana}" >
-			<tr>
+			<tr class="ntable_tr">
 				<td>${notice.nno}</td>
 				<td>${notice.subject}</td>
 				<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
 				<td>${notice.nname}</td>
 				<td>${notice.regdate}</td><td>${notice.cnt}</td>
-			</tr>	
+			</tr>
 			</c:forEach>
 		</c:if>
 	</table>
 	</div>
 	<hr>
-	
+
+
 	<c:if test="${not empty message}">
 		${message}<br>
 	</c:if>
-	&nbsp;&nbsp;<a href="noticeList">목록으로</a>
-	&nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
-	
+	<div class="list_forward">
+		<a href="javascript:history.go(-1)" class="nl_forward_a">이전으로</a>
+	</div>
 	<!-- Cri_Page -->
 	<div align="center">
 		<!-- First, Prev -->
 		<c:choose>
 			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-				<a href="noticeList${pageMaker.searchQuery(1)}">FP</a>&nbsp;     
+				<a href="noticeList${pageMaker.searchQuery(1)}">&lt;&lt;</a>&nbsp;     
 				<a href="noticeList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
 			</c:when>
 			<c:otherwise>
-				<font color="Gray">FP&nbsp;&lt;&nbsp;&nbsp;</font>   
+				<font color="Gray">&nbsp;&lt;&lt;&nbsp;&nbsp;</font>   
 			</c:otherwise>
 		</c:choose>	
 	
@@ -321,11 +322,11 @@
 		<c:choose>
 			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
 				<a href="noticeList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
-				<a href="noticeList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;LP</a> 
+				<a href="noticeList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
 				-->
 			</c:when>
 			<c:otherwise>
-				<font color="Gray">&nbsp;&gt;&nbsp;LP</font>   
+				<font color="Gray">&nbsp;&gt;&gt;</font>   
 			</c:otherwise>
 		</c:choose>	
 	</div>    
