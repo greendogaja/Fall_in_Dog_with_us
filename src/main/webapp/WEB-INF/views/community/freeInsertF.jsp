@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,6 @@
     <!-- ##### Footer Area End ##### -->
 
 <meta charset="UTF-8">
-<title>Share</title>
 <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
@@ -31,24 +30,10 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    <!-- NAVER Smart Editor -->
+    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 	
-	<script>
-	$(function() {
-		$('#searchType').change(function(){
-			if ( $(this).val()=='n' ) $('#keyword').val('');
-		}); //change
-		
-		$('#searchBtn').click(function(){
-			self.location="reviewList"
-				+"${pageMaker.makeQuery(1)}"
-				+"&searchType="
-				+$('#searchType').val()
-				+"&keyword="
-				+$('#keyword').val()
-		}); //click
-	}); //ready	
-	</script>  
-
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -59,7 +44,7 @@
     <link rel="stylesheet" href="resources/css/guide.css">
 
 </head>
-
+<!-- 글쓰기 성공/실패 후 noticeList 로 화면 변경, alert 으로 결과 알림 -->
 <body>
     <!-- Preloader -->
     <div id="preloader">
@@ -233,112 +218,83 @@
     </header>
     <!-- ##### Header Area End ##### -->
     
-   <!--  #### 리스트  start ####-->
-
-	<hr>
-	<div class="nlist">
-	<!-- title, Search Form , write -->
-	<div class="title_search_write">
-		<div class="n_l_title">입 양 후 기</div>
-			<!-- 세로 가운데 정렬 필요 -->
-			<div class="search_write">
-				<div class="n_write">
-					<c:if test="${!empty loginID}">
-						<a href="reviewInsertF">글쓰기</a>
-					</c:if>
+    <!-- 글쓰기 Start -->
+    
+    <section class="write_container">
+		<div class="WritingWrap"> 
+			<form action="freeInsert" method="post" enctype="multipart/form-data">
+			<div class="WritingHeader">
+				<h2>자유게시판 글쓰기</h2>
+				<div class="ip">
+					<input type="submit" value="등록">
 				</div>
-				
-				<!-- searchBar -->
-				<div id="searchBar" class="search_bar">
-					<select class="search_select" name="searchType" id="searchType">
-						<option value="n" ${pageMaker.cri.searchType==null ? 'selected' : ''}>전체</option>
-						<option value="s" ${pageMaker.cri.searchType=='s' ? 'selected' : ''}>말머리</option>
-						<option value="t" ${pageMaker.cri.searchType=='t' ? 'selected' : ''}>제목</option>
-						<option value="c" ${pageMaker.cri.searchType=='c' ? 'selected' : ''}>내용</option>
-						<option value="nn" ${pageMaker.cri.searchType=='nn' ? 'selected' : ''}>작성자</option>
-					</select> 
-					<input type="text" class="search_input" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
-					<button id="searchBtn" class="search_btn"></button>
+				<!-- user info start -->
+				<div class="WriterInfo" >
+					<div class="profile_image m_b">
+						<img src="${loginImg}" >
+					</div>
+					<div class="profile_info" >
+						<input value="${loginNick}" readonly>
+						<input type="hidden" name="id" value="${loginID}">
+					</div>
 				</div>
+			<!-- user info end -->
+			
 			</div>
-		<div>
-		</div>
-	</div>
-
-
-	<table class="ntable"> 
-		<tr>
-			<th>글번호</th><th>말머리</th><th width="40%">제목</th><th>작성자</th><th width="20%">작성일</th><th>조회</th>
-		</tr>
-		<c:if test="${not empty banana}">
-			<c:forEach  var="banana" items="${banana}" >
-			<tr class="ntable_tr">
-				<td>${banana.rvno}</td>
-				<td>${banana.subject}</td>
-				<td><a href="reviewDetail?rvno=${banana.rvno}">${banana.title}</a></td>
-				<td>${banana.nname}</td>
-				<td>${banana.regdate}</td><td>${banana.cnt}</td>
-			</tr>
-			</c:forEach>
-		</c:if>
-	</table>
-	</div>
-	<hr>
-
-
-	<c:if test="${not empty message}">
-		${message}<br>
-	</c:if>
-	<div class="list_forward">
-		<a href="javascript:history.go(-1)" class="nl_forward_a">이전으로</a>
-	</div>
-	<!-- Cri_Page -->
-	<div align="center">
-		<!-- First, Prev -->
-		<c:choose>
-			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-				<a href="reviewList${pageMaker.searchQuery(1)}">&lt;&lt;</a>&nbsp;     
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
-			</c:when>
-			<c:otherwise>
-				<font color="Gray">&nbsp;&lt;&lt;&nbsp;&nbsp;</font>   
-			</c:otherwise>
-		</c:choose>	
-	
-		<!-- Display PageNo -->
-		<c:forEach var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
-			<c:if test="${i == pageMaker.cri.currPage}">
-				<font size="5" color="orange">${i}</font>&nbsp;
-			</c:if>
-			<c:if test="${i != pageMaker.cri.currPage}">
-				<a href="reviewList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+			<hr>
+				<div class="WritingContent">
+					<div class="write_row">
+						<div class="column_title">
+							<input name="title" placeholder="제목을 입력하세요.">
+						</div>
+					
+						<div class="column_category" >
+							<select name="subject" >
+								<option value="[가입인사]" >[가입인사]</option>
+								<option value="[댕댕이자랑]" >[댕댕이자랑]</option>
+								<option value="[정보공유]" >[정보공유]</option>
+								<option value="[애견동반여행후기]" >[애견동반여행후기]</option>
+								<option value="[질문]" >[질문]</option>
+								<option value="[자유]" >[자유]</option>
+							</select>
+						</div>
+					</div>
+					<div class="write_content">
+						<textarea id="content" name="content" placeholder="내용을 입력하세요."></textarea>
+						
+					</div>
+				</div>
+					
+					
+				<!-- 사진첨부 -->
+				<div class="n_u_img">
+					<img src="" class="select_img">
+					<input type="file" name="uploadfilef" id="uploadfilef" >
+					<script>
+						$('#uploadfilef').change(function(){
+							if(this.files && this.files[0]) {
+								var reader = new FileReader;
+								reader.onload = function(e) {
+									$(".select_img").attr("src", e.target.result).width(100).height(100); 
+								} // onload_function
+								reader.readAsDataURL(this.files[0]);
+							} // if   
+			           }); //change
+					</script>
+				</div>
 				
-			</c:if>
-		
-		</c:forEach>
-	
-	
-		<!-- Next, Last -->
-		<c:choose>
-			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
-				-->
-			</c:when>
-			<c:otherwise>
-				<font color="Gray">&nbsp;&gt;&gt;</font>   
-			</c:otherwise>
-		</c:choose>	
-	</div>    
-	    
+			</form>
+		</div>
+    	
     
+    </section>
     
-    
-    
-    
-   <!--  #### 리스트  end ####-->
-    
-    <!-- ##### Footer Area Start ##### -->
+
+<hr>
+&nbsp;&nbsp;<a href="freeList">목록으로</a>
+&nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
+
+   <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
@@ -391,8 +347,6 @@ E-mail : fallindogkorea@gmail.com <br>
 Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
-
-    
 
 </body>
 </html>

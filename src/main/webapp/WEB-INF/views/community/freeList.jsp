@@ -39,7 +39,7 @@
 		}); //change
 		
 		$('#searchBtn').click(function(){
-			self.location="reviewList"
+			self.location="freeList"
 				+"${pageMaker.makeQuery(1)}"
 				+"&searchType="
 				+$('#searchType').val()
@@ -239,12 +239,12 @@
 	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<div class="n_l_title">입 양 후 기</div>
+		<div class="n_l_title">자 유 게 시 판</div>
 			<!-- 세로 가운데 정렬 필요 -->
 			<div class="search_write">
 				<div class="n_write">
 					<c:if test="${!empty loginID}">
-						<a href="reviewInsertF">글쓰기</a>
+						<a href="freeInsertF">글쓰기</a>
 					</c:if>
 				</div>
 				
@@ -273,9 +273,9 @@
 		<c:if test="${not empty banana}">
 			<c:forEach  var="banana" items="${banana}" >
 			<tr class="ntable_tr">
-				<td>${banana.rvno}</td>
+				<td>${banana.freeno}</td>
 				<td>${banana.subject}</td>
-				<td><a href="reviewDetail?rvno=${banana.rvno}">${banana.title}</a></td>
+				<td><a href="freeDetail?freeno=${banana.freeno}">${banana.title}</a></td>
 				<td>${banana.nname}</td>
 				<td>${banana.regdate}</td><td>${banana.cnt}</td>
 			</tr>
@@ -297,8 +297,8 @@
 		<!-- First, Prev -->
 		<c:choose>
 			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-				<a href="reviewList${pageMaker.searchQuery(1)}">&lt;&lt;</a>&nbsp;     
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
+				<a href="freeList${pageMaker.searchQuery(1)}">&lt;&lt;</a>&nbsp;     
+				<a href="freeList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
 			</c:when>
 			<c:otherwise>
 				<font color="Gray">&nbsp;&lt;&lt;&nbsp;&nbsp;</font>   
@@ -311,7 +311,7 @@
 				<font size="5" color="orange">${i}</font>&nbsp;
 			</c:if>
 			<c:if test="${i != pageMaker.cri.currPage}">
-				<a href="reviewList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+				<a href="freeList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
 				
 			</c:if>
 		
@@ -321,8 +321,8 @@
 		<!-- Next, Last -->
 		<c:choose>
 			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
+				<a href="freeList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
+				<a href="freeList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
 				-->
 			</c:when>
 			<c:otherwise>

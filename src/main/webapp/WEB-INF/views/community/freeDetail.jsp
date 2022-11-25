@@ -12,12 +12,14 @@
     <!-- ##### Footer Area End ##### -->
 
 <meta charset="UTF-8">
-<title>Share</title>
+<title>Review</title>
 <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
 
-
+	<!-- ajax 댓글리스트 js 
+	<script src="resources/myLib/ax_ncomment.js"></script> -->
+	
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -31,24 +33,19 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-	
-	<script>
-	$(function() {
-		$('#searchType').change(function(){
-			if ( $(this).val()=='n' ) $('#keyword').val('');
-		}); //change
-		
-		$('#searchBtn').click(function(){
-			self.location="reviewList"
-				+"${pageMaker.makeQuery(1)}"
-				+"&searchType="
-				+$('#searchType').val()
-				+"&keyword="
-				+$('#keyword').val()
-		}); //click
-	}); //ready	
-	</script>  
-
+	<!-- reply.js -->
+    <script defer="defer" src="resources/mLib/notice_reply.js"></script>
+    
+    <script>
+			$(function(){
+				$('#commentData').click(function(){
+       				  if(${loginID == null}){
+            				alert('로그인 후 이용바랍니다.');
+       				  }
+					});
+     		 });//	ready
+      </script>
+      
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -233,112 +230,273 @@
     </header>
     <!-- ##### Header Area End ##### -->
     
-   <!--  #### 리스트  start ####-->
+<!-- Notice Detail Start 
+	================================== 본문 ==================================-->
+<hr>
 
-	<hr>
-	<div class="nlist">
-	<!-- title, Search Form , write -->
-	<div class="title_search_write">
-		<div class="n_l_title">입 양 후 기</div>
-			<!-- 세로 가운데 정렬 필요 -->
-			<div class="search_write">
-				<div class="n_write">
-					<c:if test="${!empty loginID}">
-						<a href="reviewInsertF">글쓰기</a>
-					</c:if>
-				</div>
+<div class="ArticleContentBox">
+	<div class="article_header">
+		<div class="ArticleTitle">
+			<a href="freeList">자유게시판</a>
+			<div class="title_area"><h3>${apple.title}</h3></div>
+		</div>
+		<div class="WriterInfo" >
+			<div class="profile_image">
+				<!-- 프로필이미지 : user 테이블에서 uploadfile 가져와야함 -->
+				<img src="${apple.uploadfile}" width=40 height=50>
 				
-				<!-- searchBar -->
-				<div id="searchBar" class="search_bar">
-					<select class="search_select" name="searchType" id="searchType">
-						<option value="n" ${pageMaker.cri.searchType==null ? 'selected' : ''}>전체</option>
-						<option value="s" ${pageMaker.cri.searchType=='s' ? 'selected' : ''}>말머리</option>
-						<option value="t" ${pageMaker.cri.searchType=='t' ? 'selected' : ''}>제목</option>
-						<option value="c" ${pageMaker.cri.searchType=='c' ? 'selected' : ''}>내용</option>
-						<option value="nn" ${pageMaker.cri.searchType=='nn' ? 'selected' : ''}>작성자</option>
-					</select> 
-					<input type="text" class="search_input" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
-					<button id="searchBtn" class="search_btn"></button>
+			</div>
+			<div class="write_info_box">
+				<c:if test="${loginID == apple.id}">
+					<div class="update_delete">
+						<a href="freeDetail?jCode=U&freeno=${apple.freeno}" class="write_btn">글수정</a>
+						<a href="freeDelete?freeno=${apple.freeno}" class="delete_btn">글삭제</a>
+					</div>
+				</c:if>
+				
+				<div class="p_f_info">
+					<div class="profile_info">${apple.nname}</div>
+					<div class="article_info">
+				
+					<span>${apple.regdate}&nbsp;&nbsp;</span>
+					<span>조회&nbsp;${apple.cnt}</span>
+					</div>	
 				</div>
 			</div>
-		<div>
+			
+			
+		
+		
 		</div>
-	</div>
-
-
-	<table class="ntable"> 
-		<tr>
-			<th>글번호</th><th>말머리</th><th width="40%">제목</th><th>작성자</th><th width="20%">작성일</th><th>조회</th>
-		</tr>
-		<c:if test="${not empty banana}">
-			<c:forEach  var="banana" items="${banana}" >
-			<tr class="ntable_tr">
-				<td>${banana.rvno}</td>
-				<td>${banana.subject}</td>
-				<td><a href="reviewDetail?rvno=${banana.rvno}">${banana.title}</a></td>
-				<td>${banana.nname}</td>
-				<td>${banana.regdate}</td><td>${banana.cnt}</td>
-			</tr>
-			</c:forEach>
-		</c:if>
-	</table>
+		<div class="ArticleTool"></div>
 	</div>
 	<hr>
-
-
-	<c:if test="${not empty message}">
-		${message}<br>
-	</c:if>
-	<div class="list_forward">
-		<a href="javascript:history.go(-1)" class="nl_forward_a">이전으로</a>
+	<div class="article_container">
+		<div class="article_viewer">
+			<div class="w-s_p-w">${apple.content}</div>
+			<c:if test="${not empty apple.img}">
+				<img src="${apple.img}"> 
+			</c:if>
+		</div>
+		<div class="article_writer">
+		<a href="freeWriterList?id=${apple.id}&uploadfile=${apple.uploadfile}">
+			<span>${apple.nname}님의 게시글 더보기</span>
+		</a>
+		</div>
 	</div>
-	<!-- Cri_Page -->
-	<div align="center">
-		<!-- First, Prev -->
-		<c:choose>
-			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-				<a href="reviewList${pageMaker.searchQuery(1)}">&lt;&lt;</a>&nbsp;     
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
-			</c:when>
-			<c:otherwise>
-				<font color="Gray">&nbsp;&lt;&lt;&nbsp;&nbsp;</font>   
-			</c:otherwise>
-		</c:choose>	
+	<hr>
 	
-		<!-- Display PageNo -->
-		<c:forEach var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
-			<c:if test="${i == pageMaker.cri.currPage}">
-				<font size="5" color="orange">${i}</font>&nbsp;
+	<!-- =========================== comment/댓글 ================================== -->
+	<div class="CommentBox">
+		<div class="comment_title">댓글</div>
+			<!-- 댓글 리스트 AJAX-->
+			<ul class="comment_list">
+				<!-- 댓글 리스트  -->
+				<c:if test="${not empty orange}">
+					<c:forEach var="orange" items="${orange}">
+						<li class="comment_item">
+							
+							<!-- ==========================댓글 list==========================-->
+							<c:if test="${orange.grpl != 1}">
+							
+							<div class="n_comment_area pd_15">
+								<!-- 작성자Img 저장 -->
+								<img src="${orange.uploadfile}">
+								<div class="comment_box">
+									<!-- 작성자 닉네임 -->
+									<div class="comment_nick">${orange.nname}</div>
+									<!-- 더보기 수정/삭제 -->
+									<c:if test="${loginNick == orange.nname}">
+										<div class="comment_tool">
+											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
+											<div class="up_del dp_h">
+												<a class="re_update">수정</a>&nbsp;&nbsp;
+												<a href="freeDelete?frpno=${orange.frpno}&freeno=${orange.freeno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+											</div>
+										</div>
+									</c:if>
+									
+									<div class="comment_text_box">
+										<div class="comment_text_view w-s_p-w">${orange.content}</div>
+
+
+									</div>
+									<div class="comment_info_box">
+										<span class="comment_info_reg">${orange.regdate}</span> 
+										<a class="reply_display">답글쓰기</a>
+									</div>
+									<!-- ==========================대댓글 입력==========================-->
+									<div class="comment_inbox re_box dp_h" >
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="f_rereplyInsert">
+											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+											<input type="hidden" name="freeno" value="${apple.freeno}" id="freeno">
+											<input type="hidden" name="id" value="${loginID}">
+											<div class="mg_b_10">${loginNick}</div>
+											<textarea name="content" id="content"
+												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+									<!-- ==========================댓글 수정창==========================-->
+									<div class="comment_inbox re_box_update dp_h" >
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="f_replyUpdate">
+											<div class="mg_b_10">${orange.nname}</div>
+											<textarea name="content" id="content"
+												 class="comment_textarea">${orange.content}</textarea>
+											<div class="comment_attach">
+												<input type="submit" value="수정"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="freeno" value="${orange.freeno}" >
+												<input type="hidden" name="frpno" value="${orange.frpno}" >
+												<input type="hidden" name="nname" value="${orange.nname}">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							</c:if> 
+							<!-- ========================== 대댓글 list ==========================-->
+							<c:if test="${orange.grpl != 0}">
+							
+							<div class="n_comment_area  pd_55">
+								<!-- 작성자Img 저장 -->
+								<img src="${orange.uploadfile}">
+								<div class="comment_box">
+									<!-- 작성자 닉네임 -->
+									<div class="comment_nick">${orange.nname}</div>
+									<!-- 더보기 수정/삭제 -->
+									<c:if test="${loginNick == orange.nname}">
+										<div class="comment_tool">
+											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
+											<div class="up_del dp_h">
+												<a class="replyUpdate">수정</a>&nbsp;&nbsp;
+												<a href="f_replyDelete?freeno=${orange.freeno}&frpno=${orange.frpno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+											</div>
+										</div>
+									</c:if>
+									<div class="comment_text_box">
+										<div class="comment_text_view w-s_p-w">${orange.content}</div>
+									</div>
+									<div class="comment_info_box">
+										<span class="comment_info_reg">${orange.regdate}</span> <a class="rereply_display">답글쓰기</a>
+									</div>
+
+									<!-- ==========================대댓글의 대댓글 입력==========================-->
+									<div class="comment_inbox rere_box dp_h">
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="f_rereplyInsert">
+											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+											<input type="hidden" name="freeno" value="${apple.freeno}" id="freeno">
+											<input type="hidden" name="id" value="${loginID}">
+											<div class="mg_b_10">${loginNick}</div>
+											<textarea name="content" id="content"
+												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+									<!-- ==========================대댓글 수정창==========================-->
+									<div class="comment_inbox re_box_update dp_h" >
+										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
+										orange 의 vo 로 담겨져 있음 -->
+										<form action="f_replyUpdate">
+											<input type="hidden" name="freeno" value="${orange.freeno}" >
+											<input type="hidden" name="frpno" value="${orange.frpno}" >
+											<input type="hidden" name="id" value="${orange.id}">
+											<div class="mg_b_10">${orange.nname}</div>
+											<textarea name="content" id="content"
+												 class="comment_textarea">${orange.content}</textarea>
+											<div class="comment_attach">
+												<input type="submit" name="commentData" id="commentData" value="수정"> 
+												<input type="reset" value="취소">
+												<input type="hidden" name="grp" value="${orange.grp}"> 
+												<input type="hidden" name="grps" value="${orange.grps}">
+												<input type="hidden" name="grpl" value="${orange.grpl}">
+											</div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+							</c:if>
+							
+						</li>
+					</c:forEach>
+				</c:if>
+			</ul>
+			
+			
+			<!-- ========================== 댓글입력 ========================== -->
+			<c:if test="${not empty loginID}">
+				<form action="f_replyInsert" method="post">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
+							apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
+							<input type="hidden" name="freeno" value="${apple.freeno}" id="freeno">
+							<input type="hidden" name="id" value="${loginID}">
+							<div class="mg_b_10">${loginNick}</div>
+								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<input type="submit" name="commentData" id="commentData" value="등록">
+							</div>
+						</div>
+					</div>
+				</form>
 			</c:if>
-			<c:if test="${i != pageMaker.cri.currPage}">
-				<a href="reviewList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
-				
+			
+			<c:if test="${empty loginID}">
+					<div class="CommentWriter">
+						<div class="comment_inbox">
+								<textarea name="content" id="content" placeholder="로그인 후 댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<div class="comment_attach">
+								<input type="submit" name="commentData" id="commentData" value="등록">
+							</div>
+						</div>
+					</div>
 			</c:if>
-		
-		</c:forEach>
-	
-	
-		<!-- Next, Last -->
-		<c:choose>
-			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
-				<a href="reviewList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
-				-->
-			</c:when>
-			<c:otherwise>
-				<font color="Gray">&nbsp;&gt;&gt;</font>   
-			</c:otherwise>
-		</c:choose>	
-	</div>    
-	    
-    
-    
-    
-    
-    
-   <!--  #### 리스트  end ####-->
-    
-    <!-- ##### Footer Area Start ##### -->
+			
+	</div>
+
+
+
+</div>
+
+	<!-- Notice Detail End -->
+
+
+<c:if test="${not empty message}">
+<hr>
+${message}<br>
+</c:if>
+<hr>
+<div class="list_forward">
+	<a href="freeList" class="list_a">목록으로</a>
+	<a href="javascript:history.go(-1)" class="forward_a">이전으로</a>
+</div>
+
+ <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
@@ -391,8 +549,6 @@ E-mail : fallindogkorea@gmail.com <br>
 Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
-
-    
 
 </body>
 </html>
