@@ -160,11 +160,17 @@ function inCheck(){
 	
 	if(iCheck && pCheck && ppCheck && nCheck &&nnCheck && phCheck && bCheck ){
 		if ( confirm("~~ 정말 가입 하십니까 ? (Yes:확인 / No:취소)")==false ) {
-			 alert('~~ 가입이 취소 되었습니다 ~~');
+			 alert('회원가입이 취소 되었습니다');
 			 return false; 
-		}else return true; 
+		}else{
+			alert(' 회원가입 되었습니다');
+			return true; 
+		} 
 		
-	}else return false;
+	}else{
+		alert('가입양식을 확인부탁드립니다.');
+		return false;
+	} 
 		
 }//inCheck
 function upCheck(){
@@ -177,12 +183,16 @@ function upCheck(){
 	
 	if(pCheck && ppCheck && nCheck &&nnCheck && phCheck ){
 		if ( confirm("~~ 정말 수정 하십니까 ? (Yes:확인 / No:취소)")==false ) {
-			 alert('~~ 가입이 취소 되었습니다 ~~');
+			 alert('수정이 취소 되었습니다 ');
 			 return false; 
-		}else return true; 
-		
-	}else return false;
-		
+		}else {
+			 alert('수정 되었습니다 ');
+			 return true; 
+		}
+	}else {
+		alert('수정양식을 확인부탁드립니다');
+		return false;
+	}	
 }//inCheck
 
 
