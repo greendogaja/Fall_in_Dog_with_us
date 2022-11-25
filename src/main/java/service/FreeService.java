@@ -1,12 +1,18 @@
-package mapperInterface;
+package service;
 
 import java.util.List;
 
 import noticeControl.SearchCriteria;
 import vo.FreeReplyVO;
 import vo.FreeVO;
+import vo.NoticeReplyVO;
+import vo.NoticeVO;
+import vo.ReviewReplyVO;
+import vo.ReviewVO;
+import vo.ShareReplyVO;
+import vo.ShareVO;
 
-public interface FreeMapper {
+public interface FreeService {
 	
 	// ** selectList
 	List<FreeVO> selectList();

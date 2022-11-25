@@ -26,63 +26,115 @@
 	</choose>
 </sql>
 
-<select id="searchList" resultType="vo.NoticeVO">
-	select nno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
-	from notice n, user u
-	where n.id = u.id and ( nno>0 <include refid="search"></include>  
-	order by nno desc
+<select id="searchList" resultType="vo.FreeVO">
+	select freeno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	from free n, user u
+	where n.id = u.id and ( freeno>0 <include refid="search"></include>  
+	order by freeno desc
 	limit #{sno}, #{rowsPerPage}
 </select>
 
-<select id="w_searchList" resultType="vo.NoticeVO">
-	select nno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
-	from notice n, user u
-	where u.id = #{id} and ( nno>0 <include refid="search"></include>  
-	order by nno desc
+<select id="w_searchList" resultType="vo.FreeVO">
+	select freeno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	from free n, user u
+	where u.id = #{id} and ( freeno>0 <include refid="search"></include>  
+	order by freeno desc
 	<!-- limit #{sno}, #{rowsPerPage} -->
 </select>
 
 <select id="searchCount" resultType="int">
 	select count(*) 
-	from notice n, user u
-	where n.id = u.id and ( nno>0 <include refid="search"></include>
+	from free n, user u
+	where n.id = u.id and ( freeno>0 <include refid="search"></include>
 </select>
 
-<select id="selectList" resultType="vo.NoticeVO">
-	select nno, subject, title, id, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt
-	from notice order by nno desc
+<select id="selectList" resultType="vo.FreeVO">
+	select freeno, subject, title, id, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt
+	from free order by freeno desc
 </select>
 
-<select id="selectOne" resultType="vo.NoticeVO">
-	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, nno
-	from notice n, user u
-	where n.id = u.id and nno=#{nno}
+<select id="selectOne" resultType="vo.FreeVO">
+	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, freeno
+	from free n, user u
+	where n.id = u.id and freeno=#{freeno}
 </select>
 
 <!-- ** 조회수 증가	 -->
 <update id="countUp">
-	update notice set cnt=cnt+1 where nno=#{nno}
+	update free set cnt=cnt+1 where freeno=#{freeno}
 </update>
 
 <!-- ** 원글 입력 -->
 <insert id="insert">
-	<selectKey keyProperty="nno" resultType="int" order="BEFORE">
-		select IFNULL(max(nno),0)+1 from notice
+	<selectKey keyProperty="freeno" resultType="int" order="BEFORE">
+		select IFNULL(max(freeno),0)+1 from free
 	</selectKey>
-	insert into notice(nno, title, id, content, subject, img) 
-	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img})
-
+	insert into free(freeno, title, id, content, subject, img) 
+	values(#{freeno}, #{title}, #{id}, #{content}, #{subject}, #{img})
 </insert>
 
 <update id="update">
-	update notice 
+	update free 
 	set title=#{title}, content=#{content}, subject=#{subject}, img=#{img} 
-	where nno=#{nno}
+	where freeno=#{freeno}
 </update>	
 	
 <delete id="delete">
-	delete from notice where nno=#{nno}
+	delete from free where freeno=#{freeno}
 </delete>	
 
+<!-- ======================= 댓글 =======================  -->
+
+
+<!-- 댓글입력 -->
+<insert id="replyInsert">
+	<selectKey keyProperty="grp" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grp),0)+1 
+		from free_reply
+		where freeno = #{freeno}
+	</selectKey>
+	
+	insert into free_reply(frpno, freeno, grp, grpl, id, content) 
+	values(#{frpno}, #{freeno}, #{grp}, #{grpl}, #{id}, #{content})
+</insert>
+
+<update id="replyUpdate">
+	update free_reply
+	set content = #{content}
+	where frpno = #{frpno}
+</update>
+
+<!-- 댓글리스트 가져오기 -->
+<select id="replySelectList" resultType="vo.FreeReplyVO">
+	<!-- selectList 에 담겨야 하는 모든 vo 를 select 해야함! -->
+	select freeno, frpno, content, regdate, nname, uploadfile, grp, grps, grpl
+	from free_reply n, user u
+	where n.id = u.id and freeno = #{freeno} 
+	order by grp desc, grps asc	
+</select>
+
+<!-- 대댓글 입력 -->
+<insert id="rereplyInsert">
+	<selectKey keyProperty="grps" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grps),0)+1
+		from free_reply 
+		where freeno = #{freeno} and grp = #{grp}
+	</selectKey>
+	insert into free_reply(frpno, freeno, grp, grps, grpl, id, content)
+	values(#{frpno}, #{freeno},  #{grp}, #{grps}, #{grpl}, #{id}, #{content})
+</insert>
+
+<!-- 댓글 삭제 -->
+ <delete id="replyDelete">
+	delete from free_reply
+	<choose>
+		<when test="grps == 0">
+			where grp = #{grp} and freeno = #{freeno}
+		</when>
+		<when test="grps != 0">
+			where frpno = #{frpno}
+		</when>
+	</choose>
+</delete>
 
 </mapper> 
