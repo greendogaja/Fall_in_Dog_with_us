@@ -278,8 +278,6 @@
                 <!-- 댓글 리스트  -->
                 <c:if test="${not empty Adopt_Reply}">
                     <c:forEach var="reply_list" items="${Adopt_Reply}">
-                    ${reply_list.id}
-                    ${reply_list.content}
                         <li class="comment_item">
 
                             <!-- ==========================댓글 list==========================-->
@@ -452,7 +450,7 @@ ${message}<br>
                             <div class="comment_attach">
             				<c:if test="${not empty loginID}">
                                 <input type="submit" name="commentData" id="commentData" value="등록">
-                                <input type="hidden" name="grp" id="grp" value="1">
+                                <input type="hidden" name="grp" id="grp" value="0">
             				</c:if>
                             </div>
                         </div>

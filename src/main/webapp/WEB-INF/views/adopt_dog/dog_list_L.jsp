@@ -254,13 +254,13 @@
             <ul class="dog-size-u">
 				<li><a href="dog_list_S" class="dog-size-l">소형견</a></li>
                 <li><a href="dog_list_M" class="dog-size-l">중형견</a></li>
-                <li><a href="dog_list_L" class="dog-size-l" style="background-color: skyblue">대형견</a></li>
+                <li><a href="dog_list_L" class="dog-size-l" style="background-color: grey">대형견</a></li>
             </ul>
         </div>
 
 
         <div id="searchBar">
-            <form action="bchecklist" method="post">
+<!--             <form action="bchecklist" method="post">
 
                 <input type="checkbox" name="check" value="apple" id="checkL">
                 <label for="checkL">골든리트리버</label>
@@ -278,7 +278,7 @@
                 <label for="checkL">진돗개</label>
 
                 <input type="submit" value="검색">
-            </form>
+            </form> -->
         </div>
 
 

@@ -225,9 +225,7 @@
             <dl>
                 <dt>보호/입양 중 동물</dt>
                 <dd>
-                    보호입양도물두ㅗ룯루우루ㅗ우ㅗㅜㅗㄷ우ㅗ두오ㅜㅗㄷ우ㅗㄷ오두우도우동ㅇ두ㅗㅇ두ㅗㄷ우ㅗㄷ우ㅗ<br>
-                    dsdsadsdsadsadsadsasdwodmwodofmsdibvdesfmiocmsoimciosmcisamcsomcsomosmosamosamdomdomomdp<br>
-                    dsdmopsdmpsmdasmdaspd
+					
                 </dd>
             </dl>
         </div>
