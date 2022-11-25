@@ -72,11 +72,12 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Fall In Dog </a></li>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">입양안내 및 절차</a></li>
-                                    <li><a href="#">분양중 동물 </a></li>
-                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="aboutUs">Fall In Dog </a></li>
+                                    <li><a href="noticeList">공지사항</a></li>
+                                    <li><a href="adopt_procedure">입양안내 및 절차</a></li>
+                                    <li><a href="dog_list_S">분양중 동물 </a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -97,8 +98,8 @@
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<li><a href="#" style="color:white;">내가쓴글</a></li>
-												<li><a href="#" style="color:white;">내가단댓글</a></li>
+												<!-- <li><a href="#" style="color:white;">내가쓴글</a></li>
+												<li><a href="#" style="color:white;">내가단댓글</a></li> -->
 												<li><a href="info" style="color:white;">회원정보</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
@@ -120,7 +121,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt=""></a>
+                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt="" style="margin-right: 29px;"></a>
                     </div>
                 </div>
             </div>
@@ -150,22 +151,26 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Guide</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="aboutUs">About Us</a></li>
-                                            <li><a href="contact">Contact</a></li>
-                                            <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Adopt</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
                                         	<li><a href="adopt_guide">입양 위탁 소개</a></li>
                                             <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
                                             <li><a href="dog_list_S">보호/입양중 목록</a></li>
                                             <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                  <!--   <li><a href="#">Catagory</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
@@ -189,11 +194,10 @@
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">Community</a>
+                                    </li> -->
+                                     <li><a href="review">입양후기</a></li> 
+                                    <li><a href="#">커뮤니티</a>
                                         <ul class="dropdown">
-                                            <li><a href="review">입양후기</a></li>
                                             <li><a href="free">자유게시판</a></li>
                                             <li><a href="share">나눔장터</a></li>
                                         </ul>
@@ -201,7 +205,7 @@
                                     <li><a href="#">고객센터</a>
                                         <ul class="dropdown">
                                             <li><a href="customerhome">자주하는질문</a></li>
-                                            <li><a href="customerhome">1:1문의</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
                                         </ul>
                                     </li>
                                     
@@ -253,7 +257,7 @@
                                 <div class="post-tag">
                                     <a href="#" data-animation="fadeInUp" style="background-color:rgba(0, 0, 0, 0.3);">Fall in Dog</a>
                                 </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="single-post.html" style="background-color:rgba(0, 0, 0, 0.3);">사단법인<br>반려동물협회 공식인증<br>안심분양센터</a></h2>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="#" style="background-color:rgba(0, 0, 0, 0.3);">사단법인<br>반려동물협회 공식인증<br>안심분양센터</a></h2>
                             </div>
                         </div>
                     </div>
@@ -268,7 +272,7 @@
                                 <div class="post-tag">
                                     <a href="#" data-animation="fadeInUp" style="background-color:rgba(0, 0, 0, 0.3);">Fall in Dog</a>
                                 </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="single-post.html" style="background-color:rgba(0, 0, 0, 0.3);"> 깨끗한 거리문화를 위해<br>배변봉투 무료나눔을<br>시작하였습니다</a></h2>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="#" style="background-color:rgba(0, 0, 0, 0.3);"> 깨끗한 거리문화를 위해<br>배변봉투 무료나눔을<br>시작하였습니다</a></h2>
                             </div>
                         </div>
                     </div>
@@ -291,7 +295,7 @@
                             <a href="#" class="post-tag">Fall in Dog</a>
                             <h4><a href="#" class="post-headline">ABOUT US</a></h4>
                             <p><bold>Fall in Dog는 안심하고 맡길 수 있습니다</bold><br> 안락사 없는 안심보호소로 안전하고 안심 할 수 있는 <br>공간을 제공합니다.</p>
-                            <a href="#" class="btn original-btn">Read More</a>
+                            <a href="aboutUs" class="btn original-btn">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -302,7 +306,7 @@
 	                        <img class="height-300 boradi" src="resources/img/blog-img/company.jpg" alt="">
 	                        <!-- Catagory Title -->
 	                        <div class="catagory-title height-300 boradi">
-	                            <a href="#">입양안내</a>
+	                            <a href="adopt_procedure">입양안내</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -312,7 +316,7 @@
 	                        <img class="height-300 boradi" src="resources/img/blog-img/company2.jpg" alt="">
 	                        <!-- Catagory Title -->
 	                        <div class="catagory-title boradi">
-	                            <a href="#">오시는길</a>
+	                            <a href="contact">오시는길</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -563,11 +567,12 @@
                                 <div class="classynav">
                                     <ul>
                                         <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="noticeList">공지사항</a></li>
+                                        <li><a href="contact">오시는길</a></li>
+                                        <li><a href="dog_list_S">입양목록</a></li>
+                                        <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="review">입양후기</a></li>
+                                        <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->

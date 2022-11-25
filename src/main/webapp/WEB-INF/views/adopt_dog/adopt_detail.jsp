@@ -23,10 +23,7 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-    
-    
-    <!-- 댓글 Ajax -->
-	<script src="resources/myLib/adopt_reply.js"></script>
+
     
 	
     <!-- Title -->
@@ -230,7 +227,6 @@
 
    
    
-
     <!-- content -->
     <div class="content" id="content">
         <div class="content-title-wrap">
@@ -251,14 +247,15 @@
             </div>
 
             <!-- 목록 버튼 -->
-            	<div class="content-dtn">
-            <c:if test="${loginID==Adopt_detail.id || loginID=='admin'}">
-                	<a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
-                	<a class="btn-go" href="adopt_delete?ano=${Adopt_detail.ano}&root=${Adopt_detail.root}"><span>삭제</span></a>
-            </c:if>
-                	<a class="btn-go" href="adopt_board"><span>목록</span></a>
-            	</div>
-            
+            <div class="content-dtn">
+                <c:if test="${loginID==Adopt_detail.id || loginID=='admin'}">
+                    <a class="btn-go" href="adopt_detail?jCode=U&ano=${Adopt_detail.ano}"><span>수정</span></a>
+                    <a class="btn-go"
+                        href="adopt_delete?ano=${Adopt_detail.ano}&root=${Adopt_detail.root}"><span>삭제</span></a>
+                </c:if>
+                <a class="btn-go" href="adopt_board"><span>목록</span></a>
+            </div>
+
         </div>
 
         <div class="content-text">
@@ -269,24 +266,44 @@
         <!-- 댓글 -->
         <div class="comment">
             <!-- 댓글 창 -->
-			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-				<div id="replyList"></div>
-				<div id="showReplyList"></div>
-			</div> 
-            <form action="binsert" method="Post" class="comment-form" name="form" id="form" role="form" modelAttribute="replyVO" method="post">
+            <div class="replyList">
+                <c:if test="${not empty Adopt_Reply}">
+                    <c:forEach var="list" items="${Adopt_Reply}">
+                    
+                    <c:if test="${Adopt_detail.ano == list.bid}">
+						<ul class="reg_id">
+                    		<li>${list.reg_id}</li>
+                    		<li>${list.reg_dt}</li>
+						</ul>
+                    
+                        <ul class="replyUD">
+							<li><a href="">수정</a></li>
+							<li><a href="">삭제</a></li>
+                        </ul>
+                        
+						<div class="comment-text">
+                    		${list.content}
+						</div>
+					</c:if>
+					
+                    </c:forEach>
+                </c:if>
+            </div>
+            <form action="saveReply" method="Post" class="comment-form" name="form" id="form">
                 <!-- 댓글 쓰기 -->
                 <div class="comment-text">
                     <textarea rows="5" cols="100" placeholder="댓글 작성" name="content"></textarea>
                 </div>
 
                 <div class="comment-submit">
-                    <input type="text" name="id" value="${loginID}" size="20" readonly>
+                    <input type="text" name="reg_id" value="${loginID}" size="20" readonly>
+                    <input type="hidden" name="bid" value="${Adopt_detail.ano}" size="20" readonly>
                 </div>
+
+                <button class="btn btn-sm btn-primary">등록</button>
             </form>
-                    <button type="button" class="btn btn-sm btn-primary" id="btnReplySave" >등록</button>
         </div>
     </div>
-   
 
 
 

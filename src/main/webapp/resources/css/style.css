@@ -426,7 +426,7 @@ img {
 .original-btn:hover,
 .original-btn:focus {
   font-family: "score", sans-serif;
-  color: #30336b;
+  color: white;
   border-color: #30336b;
   background-color: #30336b;
 }

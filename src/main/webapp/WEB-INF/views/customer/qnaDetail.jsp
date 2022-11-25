@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="resources/css/customer.css">
     <link rel="stylesheet" href="resources/css/faq.css">
     <link rel="stylesheet" href="resources/css/qnadetail.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     
     
 <script>
@@ -307,19 +308,18 @@
 
 					<tbody class="conten">
 						<tr>
-							<td>
+							<td class="toptd">
 								<input type="hidden" name="fno" value="${qnaone.qno}"/>
-								<p><img src="${loginImg}" class="profile-img">
-								${loginName}님의 문의글: ${qnaone.title}</p>
-								
-								<p style="text-align:end;">${qnaone.regdate}
+								<img src="${qnaone.profile}" class="profile-img">
+								<p>${loginName}님의 문의글:${qnaone.title}</p>
+								<span style="margin-left: 57%;">${qnaone.regdate}
 								<c:if test="${qnaone.situation == 1}">
-								            <p class="situation">답변대기</p>
+								           <span  class="situation">답변대기</span>
 								 </c:if>
 								 <c:if test="${qnaone.situation != 1}">
-											<p class="situation">답변완료</p>
+											<span class="situation">답변완료</span>
 								 </c:if>
-								</p>
+								</span>
 							</td>
 						</tr>
 						<tr>
@@ -333,8 +333,8 @@
 						<tr>
 							
 							<td>
-								<p>첨부파일</p>
-								<a href="download?dnfile=${qnaone.uploadfile}">${qnaone.uploadfile}</a>
+								<span class="material-symbols-outlined">
+								folder_open </span>첨부파일: <a href="download?dnfile=${qnaone.uploadfile}">${qnaone.uploadfile}</a>
 							</td>
 						</tr>
 						</c:if>
@@ -343,8 +343,10 @@
 				</table>
 
 				<div class="foradmin">
+					<c:if test="${qnaone.name eq loginName || loginID eq 'admin'}">
 					<a href="qnadelete?qno=${qnaone.qno}" class="detailbt" style="color: white;">글삭제</a> 
 					<a href="qnadetail?want=U&qno=${qnaone.qno}" class="detailbt" style="color: white;">글수정</a> 
+					</c:if>
 					<a href="qna" class="detailbt"	style="color: white;">목록으로</a>
 				<c:if test="${loginID eq 'admin' }">
 					<c:if test="${!empty replylist.content }">
@@ -361,6 +363,8 @@
 				<div class="show replyline" id="show">
 					<form method="post" action="writereply"  enctype="multipart/form-data">
 						<input type="hidden" name="qno" value="${qnaone.qno}"/>
+						<input type="hidden" name="profile" value="${loginImg}"/>
+						
 						<table class="tableqna">
 							<tr>
 								
@@ -416,8 +420,8 @@
 				<div id="reply">
 						<div class="replyline">
 							<div>
-								<p style="line-height: 70px; margin: 0;"><img src="${loginImg}" class="profile-img">
-						        답변자 : ${loginNick}
+								<p style="line-height: 70px; margin: 0;"><img src="${replylist.profile}" class="profile-img">
+						        답변자 : admin
 						    </div>
 						
 					        <div >
@@ -425,8 +429,9 @@
 					        </div>
 					        <div >
 	    				    <c:if test="${!empty replylist.uploadfile  }">
-								<div>첨부파일</div>
-								<a href="download?dnfile=${replylist.uploadfile}">${replylist.uploadfile}</a>
+								<div><span class="material-symbols-outlined">
+								folder_open </span>첨부파일: <a href="download?dnfile=${replylist.uploadfile}">${replylist.uploadfile}</a></div>
+								
 						    </c:if>
 				        	</div>
 						</div>
