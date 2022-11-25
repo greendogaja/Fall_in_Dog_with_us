@@ -176,12 +176,14 @@ public class QnaController {
 	
 	@RequestMapping(value="/qnadelete")
 	public ModelAndView qnadelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, QnaVO vo, RedirectAttributes rttr) {
+									ModelAndView mv, QnaVO vo,QnaReplyVO qvo, RedirectAttributes rttr) {
 		String uri = "redirect:qna";
-		
+		qvo.setReqno(vo.getQno());
+		reservice.delete(qvo);
 		// 2. Service 처리
 		if ( service.delete(vo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 
+			
 		}else {
 			rttr.addFlashAttribute("message", "~~ 글삭제 실패, 다시 하세요 ~~");
 			uri = "redirect:qnadetail?qno="+vo.getQno();
