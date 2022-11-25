@@ -7,7 +7,8 @@ import vo.AdoptReplyVO;
 public interface AdoptReplyService {
 	
 //	게시판
-	List<AdoptReplyVO> getReplyList();
+	
+	List<AdoptReplyVO> getReplyList(AdoptReplyVO rvo);
 
 //	글쓰기
 	int saveReply(AdoptReplyVO vo);

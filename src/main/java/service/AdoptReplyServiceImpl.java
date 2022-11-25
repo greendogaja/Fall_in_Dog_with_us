@@ -16,8 +16,8 @@ public class AdoptReplyServiceImpl implements AdoptReplyService{
 	
 //	게시판
 	@Override
-	public List<AdoptReplyVO> getReplyList(){
-		return mapper.getReplyList();
+	public List<AdoptReplyVO> getReplyList(AdoptReplyVO rvo){
+		return mapper.getReplyList(rvo);
 	}
 	
 //	글쓰기
