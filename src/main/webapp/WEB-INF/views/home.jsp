@@ -76,7 +76,8 @@
                                     <li><a href="noticeList">공지사항</a></li>
                                     <li><a href="adopt_procedure">입양안내 및 절차</a></li>
                                     <li><a href="dog_list_S">분양중 동물 </a></li>
-                                    <li><a href="qna">1:1문의</a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -157,10 +158,14 @@
                                             <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">입양</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
                                         	<li><a href="adopt_guide">입양 위탁 소개</a></li>
                                             <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
                                             <li><a href="dog_list_S">보호/입양중 목록</a></li>
                                             <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
@@ -190,10 +195,9 @@
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
                                     </li> -->
-                                   <!--  <li><a href="home">커뮤니티</a></li> -->
+                                     <li><a href="review">입양후기</a></li> 
                                     <li><a href="#">커뮤니티</a>
                                         <ul class="dropdown">
-                                            <li><a href="review">입양후기</a></li>
                                             <li><a href="free">자유게시판</a></li>
                                             <li><a href="share">나눔장터</a></li>
                                         </ul>
@@ -563,11 +567,12 @@
                                 <div class="classynav">
                                     <ul>
                                         <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="noticeList">공지사항</a></li>
+                                        <li><a href="contact">오시는길</a></li>
+                                        <li><a href="dog_list_S">입양목록</a></li>
+                                        <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="review">입양후기</a></li>
+                                        <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
