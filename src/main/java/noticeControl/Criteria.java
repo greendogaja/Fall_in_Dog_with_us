@@ -32,6 +32,9 @@ public class Criteria {
 	private int sno; // start RowNo
 	private int eno; // end RowNo (MySql 은 없어도 됨)
 	
+	
+	
+	
 	// 1) 필요한 초기값은 생성자로 초기화 
 	public Criteria() {
 		this.rowsPerPage=5;

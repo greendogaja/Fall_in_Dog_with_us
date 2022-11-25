@@ -58,4 +58,9 @@ public class NoticeServiceImpl implements NoticeService{
 	public int delete(NoticeVO vo) {
 		return mapper.delete(vo);
 	}	
+	
+	@Override 
+	public List<NoticeVO> w_searchList(SearchCriteria cri) {
+		return mapper.w_searchList(cri);
+	}
 }
