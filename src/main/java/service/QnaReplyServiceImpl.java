@@ -29,6 +29,10 @@ public class QnaReplyServiceImpl implements QnaReplyService{
 	public int update(QnaReplyVO vo) {
 		return mapper.update(vo);
 	}
+	@Override
+	public int delete(QnaReplyVO vo) {
+		return mapper.delete(vo);
+	}
 	
 
 	
