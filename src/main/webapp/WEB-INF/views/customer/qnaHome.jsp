@@ -62,11 +62,22 @@
 	 		+$('#keyword').val();
 	 	});//searchbtn
 	 	
+	 	
 	 
 		
 	});//ready  
 	
 	
+		var maskingName = function(strName) {
+			  if (strName.length > 2) {
+			      var sstr = strName;
+			      sstr.replace(/(?<=.{1})./,'*');
+			    return sstr;
+			  } else {
+			    var pattern = /.$/; // 정규식
+			    return strName.replace(pattern, '*');
+			  }
+		};
 	
 	
 </script>
@@ -370,7 +381,9 @@
 							
 							
 							
-							<td>${qna.name }</td>
+							<td class="qname">
+								${qna.name }
+							</td>
 							<td>${qna.regdate}</td>
 							
 							 <c:if test="${qna.situation == 1}">
@@ -388,6 +401,7 @@
 					</c:forEach>
 			</tbody>
 		</table>
+		
 		<div class="foradmin">
 			<a id="writeBtn" style="color: white;" >글쓰기</a>
 		</div>

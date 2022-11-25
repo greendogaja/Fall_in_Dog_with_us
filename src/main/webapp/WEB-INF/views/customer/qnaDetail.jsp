@@ -311,7 +311,7 @@
 							<td class="toptd">
 								<input type="hidden" name="fno" value="${qnaone.qno}"/>
 								<img src="${qnaone.profile}" class="profile-img">
-								<p>${loginName}님의 문의글:${qnaone.title}</p>
+								<p> ${qnaone.nickname}님의 문의글:${qnaone.title}</p>
 								<span style="margin-left: 57%;">${qnaone.regdate}
 								<c:if test="${qnaone.situation == 1}">
 								           <span  class="situation">답변대기</span>
