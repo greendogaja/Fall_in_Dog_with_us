@@ -500,8 +500,23 @@ a{
     border : none;
 }
 
-/* .search_write {
-	display: flex;
-    flex-direction: column;
-    
-} */
+/* ========= noticeWriterList ========= */
+
+.notice_writer_info{
+	display : flex;
+	margin : 0 0 20px 5%;
+}
+
+.notice_writer_image img{
+	border-radius: 50%;
+	width : 70px;
+	height : 70px;
+}
+
+.notice_writer_nname {
+	margin-left : 15px;
+	font-size : 30px;
+	line-height: 70px;
+}
+
+

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapperInterface.ShareMapper">
+
+<sql id="search">
+	<if test="keyword!=null">
+		<bind name="keyVal" value="'%'+keyword+'%'"/>
+	</if>
+	<choose>
+		<when test="searchType=='s'.toString()">
+			and subject like #{keyVal} )
+		</when>
+		
+		<when test="searchType=='t'.toString()">
+			and title like #{keyVal} )
+		</when>
+		<when test="searchType=='c'.toString()">
+			and content like #{keyVal} )
+		</when>
+		<when test="searchType=='nn'.toString()">
+			and nname like #{keyVal} )
+		</when>
+		<otherwise> )</otherwise>
+	</choose>
+</sql>
+
+<select id="searchList" resultType="vo.ShareVO">
+	select shno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	from share n, user u
+	where n.id = u.id and ( shno>0 <include refid="search"></include>  
+	order by shno desc
+	limit #{sno}, #{rowsPerPage}
+</select>
+
+<select id="w_searchList" resultType="vo.ShareVO">
+	select shno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	from share n, user u
+	where u.id = #{id} and ( shno>0 <include refid="search"></include>  
+	order by shno desc
+	<!-- limit #{sno}, #{rowsPerPage} -->
+</select>
+
+<select id="searchCount" resultType="int">
+	select count(*) 
+	from share n, user u
+	where n.id = u.id and ( shno>0 <include refid="search"></include>
+</select>
+
+<select id="selectList" resultType="vo.ShareVO">
+	select shno, subject, title, id, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt
+	from share order by shno desc
+</select>
+
+<select id="selectOne" resultType="vo.ShareVO">
+	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, shno
+	from share n, user u
+	where n.id = u.id and shno=#{shno}
+</select>
+
+<!-- ** 조회수 증가	 -->
+<update id="countUp">
+	update share set cnt=cnt+1 where shno=#{shno}
+</update>
+
+<!-- ** 원글 입력 -->
+<insert id="insert">
+	<selectKey keyProperty="shno" resultType="int" order="BEFORE">
+		select IFNULL(max(shno),0)+1 from share
+	</selectKey>
+	insert into share(shno, title, id, content, subject, img) 
+	values(#{shno}, #{title}, #{id}, #{content}, #{subject}, #{img})
+</insert>
+
+<update id="update">
+	update share 
+	set title=#{title}, content=#{content}, subject=#{subject}, img=#{img} 
+	where shno=#{shno}
+</update>	
+	
+<delete id="delete">
+	delete from share where shno=#{shno}
+</delete>	
+
+<!-- ======================= 댓글 =======================  -->
+
+
+<!-- 댓글입력 -->
+<insert id="replyInsert">
+	<selectKey keyProperty="grp" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grp),0)+1 
+		from share_reply
+		where shno = #{shno}
+	</selectKey>
+	
+	insert into share_reply(srno, shno, grp, grpl, id, content) 
+	values(#{srno}, #{shno}, #{grp}, #{grpl}, #{id}, #{content})
+</insert>
+
+<update id="replyUpdate">
+	update share_reply
+	set content = #{content}
+	where srno = #{srno}
+</update>
+
+<!-- 댓글리스트 가져오기 -->
+<select id="replySelectList" resultType="vo.ShareReplyVO">
+	<!-- selectList 에 담겨야 하는 모든 vo 를 select 해야함! -->
+	select shno, srno, content, regdate, nname, uploadfile, grp, grps, grpl
+	from share_reply n, user u
+	where n.id = u.id and n.shno = #{shno} 
+	order by grp desc, grps asc	
+</select>
+
+<!-- 대댓글 입력 -->
+<insert id="rereplyInsert">
+	<selectKey keyProperty="grps" resultType="int" order="BEFORE"> 
+		select IFNULL(max(grps),0)+1
+		from share_reply 
+		where shno = #{shno} and grp = #{grp}
+	</selectKey>
+	insert into share_reply(srno, shno, grp, grps, grpl, id, content)
+	values(#{srno}, #{shno},  #{grp}, #{grps}, #{grpl}, #{id}, #{content})
+</insert>
+
+<!-- 댓글 삭제 -->
+ <delete id="replyDelete">
+	delete from share_reply
+	<choose>
+		<when test="grps == 0">
+			where grp = #{grp} and shno = #{shno}
+		</when>
+		<when test="grps != 0">
+			where srno = #{srno}
+		</when>
+	</choose>
+</delete>
+
+</mapper> 
