@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,12 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- ##### Footer Area End ##### -->
 
-    <!-- Title -->
-    <title>Original - Lifestyle Blog Template</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="resources/img/core-img/favicon.ico">
-
-    <!-- Style CSS -->
+<meta charset="UTF-8">
+<title>Share</title>
+<!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
-    
+
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
@@ -35,6 +32,23 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
 	
+	<script>
+	$(function() {
+		$('#searchType').change(function(){
+			if ( $(this).val()=='n' ) $('#keyword').val('');
+		}); //change
+		
+		$('#searchBtn').click(function(){
+			self.location="ReviewList"
+				+"${pageMaker.makeQuery(1)}"
+				+"&searchType="
+				+$('#searchType').val()
+				+"&keyword="
+				+$('#keyword').val()
+		}); //click
+	}); //ready	
+	</script>  
+
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -42,6 +56,7 @@
     <link rel="icon" href="resources/img/core-img/ficon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/guide.css">
 
 </head>
 
@@ -217,126 +232,113 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    
+   <!--  #### 리스트  start ####-->
 
-    <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img" style="background-image: url(resources/img/notice/dog1.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="text-center">
-                        <h2>about us</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Breadcumb Area End ##### -->
-
-    <!-- ##### Blog Wrapper Start ##### -->
-    <div class="blog-wrapper section-padding-100-0 clearfix">
-        <div class="container">
-            <div class="row align-items-end">
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
-                        <!-- Blog Content -->
-                            <div class="line"></div>
-                            <a href="#" class="post-tag">Fall In Dog</a>
-                            <h4 class="post-headline">이 세상 모든 반려동물들의 삶이 행복하기를</a></h4><br>
-                        <div class="single-blog-content">
-                            <p class="mb-3 lh40">Fall In Dog는 개인이 운영하는 보호 시설입니다.<br>
-                            PET 분양을 가장한 보호소가 아니며 판매하는 아이들이 없는 진짜 보호소입니다.<br>
-                            Fall In Dog는 보호 명목으로 수십, 수백만원을 요구하는 일이 없으며 무료로 입소를 할 수 있습니다.<br>
-                            개인사정 등에 의한 동물들을 보호 및 생활할 수 있도록 따뜻한 보금자리가 되어주고 있습니다.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
-                        <!-- Blog Content -->
-                        <div class="single-blog-content">
-                            <p class="mb-3 lh40" >반려동물에 대한 인식의 변화가 있다고는 하지만<br>
-                            아직도 여전히 반려동물을 소중한 생명이나 가족으로 대하지 않고<br>
-                            감정없는 물건이나 개인의 소유물이라고 생각하며 유기하거나,<br>
-                            학대하는 일들이 끊임없이 우리 사회 안에서 벌어지고 있습니다.<br>
-                            Fall In Dog는 이러한 행위들을 방지하는데 앞장서며<br>
-                            이 세상 모든 반려동물들의 삶이 행복하기를 원합니다.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-catagory-area clearfix mb-100">
-                        <img src="resources/img/notice/dog0.jpg" alt="">
-                        <!-- Catagory Title 
-                        <div class="catagory-title">
-                            <a href="#">Lifestyle posts</a>
-                        </div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Blog Wrapper End ##### -->
-
-    <!-- ##### Cool Facts Area Start ##### 
-    보호중 강아지수 / 입양된 강아지 수 / 회원 수 / 자유게시판 글 수 -->
-    <div class="cool-facts-area section-padding-100-0 bg-img background-overlay" style="background-image: url(resources/img/notice/notice_dog.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="single-blog-area blog-style-2 text-center mb-100">
-                        <!-- Blog Content -->
-                        <div class="single-blog-content">
-                            <div class="line"></div>
-                            <a href="#" class="post-tag">Lifestyle</a>
-                            <h4><a href="#" class="post-headline">Welcome to Fall In Dog!</a></h4>
-                            <p>Fall In Dog는 반려동물에 대한 인식 개선과 누구의 보살핌도 받지 못하는 유기동물을 보호하고 있습니다.
-                            병들고 늙었다는 이유만으로 버려지거나, 개인사정으로 파양을 당하는 반려동물에게 따스한 손길과 더불어 새로운 가족을 찾는 것을 도와줍니다.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">25</span></h2>
-                        <p>보호중인 강아지</p>
-                    </div>
-                </div>
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">36</span></h2>
-                        <p>가족을 기다리는 강아지</p>
-                    </div>
-                </div>
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">216</span></h2>
-                        <p>회원수</p>
-                    </div>
-                </div>
-                <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-facts-area text-center mb-100">
-                        <h2><span class="counter">16</span></h2>
-                        <p>자유게시판 새글</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Cool Facts Area End ##### -->
+	<hr>
+	<div class="nlist">
+	<!-- title, Search Form , write -->
+	<div class="title_search_write">
+		<div class="n_l_title">입 양 후 기</div>
+			<!-- 세로 가운데 정렬 필요 -->
+			<div class="search_write">
+				<div class="n_write">
+					<c:if test="${!empty loginID}">
+						<a href="reviewInsertF">글쓰기</a>
+					</c:if>
+				</div>
+				
+				<!-- searchBar -->
+				<div id="searchBar" class="search_bar">
+					<select class="search_select" name="searchType" id="searchType">
+						<option value="n" ${pageMaker.cri.searchType==null ? 'selected' : ''}>전체</option>
+						<option value="s" ${pageMaker.cri.searchType=='s' ? 'selected' : ''}>말머리</option>
+						<option value="t" ${pageMaker.cri.searchType=='t' ? 'selected' : ''}>제목</option>
+						<option value="c" ${pageMaker.cri.searchType=='c' ? 'selected' : ''}>내용</option>
+						<option value="nn" ${pageMaker.cri.searchType=='nn' ? 'selected' : ''}>작성자</option>
+					</select> 
+					<input type="text" class="search_input" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
+					<button id="searchBtn" class="search_btn"></button>
+				</div>
+			</div>
+		<div>
+		</div>
+	</div>
 
 
-   <!-- Footer 위에 margin : 10%; 정도 주면 좋을듯
-   ##### Footer Area Start ##### -->
+	<table class="ntable"> 
+		<tr>
+			<th>글번호</th><th>말머리</th><th width="40%">제목</th><th>작성자</th><th width="20%">작성일</th><th>조회</th>
+		</tr>
+		<c:if test="${not empty banana}">
+			<c:forEach  var="banana" items="${banana}" >
+			<tr class="ntable_tr">
+				<td>${banana.rvno}</td>
+				<td>${banana.subject}</td>
+				<td><a href="reviewDetail?rvno=${banana.rvno}">${banana.title}</a></td>
+				<td>${banana.nname}</td>
+				<td>${banana.regdate}</td><td>${banana.cnt}</td>
+			</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+	</div>
+	<hr>
+
+
+	<c:if test="${not empty message}">
+		${message}<br>
+	</c:if>
+	<div class="list_forward">
+		<a href="javascript:history.go(-1)" class="nl_forward_a">이전으로</a>
+	</div>
+	<!-- Cri_Page -->
+	<div align="center">
+		<!-- First, Prev -->
+		<c:choose>
+			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+				<a href="reviewList${pageMaker.searchQuery(1)}">&lt;&lt;</a>&nbsp;     
+				<a href="reviewList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp;  
+			</c:when>
+			<c:otherwise>
+				<font color="Gray">&nbsp;&lt;&lt;&nbsp;&nbsp;</font>   
+			</c:otherwise>
+		</c:choose>	
+	
+		<!-- Display PageNo -->
+		<c:forEach var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
+			<c:if test="${i == pageMaker.cri.currPage}">
+				<font size="5" color="orange">${i}</font>&nbsp;
+			</c:if>
+			<c:if test="${i != pageMaker.cri.currPage}">
+				<a href="reviewList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+				
+			</c:if>
+		
+		</c:forEach>
+	
+	
+		<!-- Next, Last -->
+		<c:choose>
+			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
+				<a href="reviewList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
+				<a href="reviewList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
+				-->
+			</c:when>
+			<c:otherwise>
+				<font color="Gray">&nbsp;&gt;&gt;</font>   
+			</c:otherwise>
+		</c:choose>	
+	</div>    
+	    
+    
+    
+    
+    
+    
+   <!--  #### 리스트  end ####-->
+    
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
@@ -390,8 +392,7 @@ Copyright &copy;<script>document.write('fallindog.com');</script> all right rese
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
 
-
+    
 
 </body>
-
 </html>
