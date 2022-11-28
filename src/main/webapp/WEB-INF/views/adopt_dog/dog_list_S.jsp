@@ -56,8 +56,7 @@
 </head>
 
 	<body>
-               
-    <!-- Preloader -->
+<!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -94,11 +93,12 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Fall In Dog </a></li>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">입양안내 및 절차</a></li>
-                                    <li><a href="#">분양중 동물 </a></li>
-                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="aboutUs">Fall In Dog </a></li>
+                                    <li><a href="noticeList">공지사항</a></li>
+                                    <li><a href="adopt_procedure">입양안내 및 절차</a></li>
+                                    <li><a href="dog_list_S">분양중 동물 </a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -119,9 +119,13 @@
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<li><a href="#" style="color:white;">내가쓴글</a></li>
-												<li><a href="#" style="color:white;">내가단댓글</a></li>
+												<!-- <li><a href="#" style="color:white;">내가쓴글</a></li>
+												<li><a href="#" style="color:white;">내가단댓글</a></li> -->
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<c:if test="${'admin' == loginID }">
+												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
+												
+												</c:if>
 		                                    </ul>
 				                      	</li>
 				                      </ul>
@@ -138,7 +142,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt=""></a>
+                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt="" style="margin-right: 29px;"></a>
                     </div>
                 </div>
             </div>
@@ -168,22 +172,26 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Guide</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="aboutUs">About Us</a></li>
-                                            <li><a href="contact">Contact</a></li>
-                                            <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Adopt</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
                                         	<li><a href="adopt_guide">입양 위탁 소개</a></li>
                                             <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
                                             <li><a href="dog_list_S">보호/입양중 목록</a></li>
                                             <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                  <!--   <li><a href="#">Catagory</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
@@ -207,16 +215,21 @@
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">Community</a>
+                                    </li> -->
+                                             <li><a href="reviewList">입양후기</a></li>
+                                    <li><a href="#">커뮤니티</a>
                                         <ul class="dropdown">
-                                            <li><a href="review">입양후기</a></li>
-                                            <li><a href="free">자유게시판</a></li>
-                                            <li><a href="share">나눔장터</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -252,7 +265,7 @@
 
 		<div class="dog-size">
             <ul class="dog-size-u">
-				<li><a href="dog_list_S" class="dog-size-l" style="background-color: skyblue">소형견</a></li>
+				<li><a href="dog_list_S" class="dog-size-l" style="background-color: grey">소형견</a></li>
                 <li><a href="dog_list_M" class="dog-size-l">중형견</a></li>
                 <li><a href="dog_list_L" class="dog-size-l">대형견</a></li>
             </ul>
@@ -260,7 +273,7 @@
 
 
         <div id="searchBar">
-            <form action="bchecklist" method="post">
+<!--             <form action="bchecklist" method="post">
 
                 <input type="checkbox" name="check" value="BMWM340">말티즈
                 <input type="checkbox" name="check" value="summer">믹스견
@@ -277,7 +290,7 @@
 
                 <input type="submit" value="검색">
                 <input type="reset" value="리셋">
-            </form>
+            </form> -->
         </div>
 
 

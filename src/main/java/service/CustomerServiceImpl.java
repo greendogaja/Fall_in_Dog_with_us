@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import customercontrol.CustomSearchCriteria;
 import mapperInterface.CustomerMapper;
-import usercontrol.SearchCriteria;
 import vo.CustomerVO;
 
 
@@ -47,11 +47,11 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	
 	@Override
-	public List<CustomerVO> searchList(SearchCriteria cri){
-		return mapper.searchList(cri);
+	public List<CustomerVO> csearchList(CustomSearchCriteria cri){
+		return mapper.csearchList(cri);
 	}
 	@Override
-	public int searchCount(SearchCriteria cri){
+	public int searchCount(CustomSearchCriteria cri){
 		return mapper.searchCount(cri);
 	}
 	@Override

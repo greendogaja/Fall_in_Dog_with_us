@@ -327,19 +327,20 @@
 							<th>성별</th>
 							<th>연락처</th>
 							<th>이메일</th>
+							<th>회원삭제</th>
 						</tr>
 					</thead>
 					<tbody id="find">
 						<c:forEach var="user" items="${userlist}">
-							<tr onClick="location.href='info?id=${user.id}'">
-								<td><img src="${user.uploadfile}"></td>
-								<td style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
-								<td>${user.name}</td>
-								<td>${user.yy}-${user.mm}-${user.dd}</td>
-								<td>${user.nname}</td>
-								<td>${user.gender}</td>
-								<td >
-								<span class="tcenter2" id="${user.id}">${user.phone}
+							<tr id="info?id=${user.id}">
+								<td class="userDetail"><img src="${user.uploadfile}"></td>
+								<td class="userDetail" style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
+								<td class="userDetail">${user.name}</td>
+								<td class="userDetail">${user.yy}-${user.mm}-${user.dd}</td>
+								<td class="userDetail">${user.nname}</td>
+								<td class="userDetail">${user.gender}</td>
+								<td class="userDetail" >
+								<span class="tcenter2 userDetail" id="${user.id}">${user.phone}
 								</span>
 								<script>
 									 var num = "${user.phone}";
@@ -347,8 +348,21 @@
 									 $('#${user.id}').text(data);
 								</script>
 								</td>
-								<td>${user.email}</td>
+								<td class="userDetail">${user.email}</td>
+								<td class="deleteUser" id="userdelete?id=${user.id}" ><span>Delete</span>
+									<script>
+										$('.deleteUser').click(function (e) {
+											e.preventDefault();
+											location.href=this.id;
+										});
+									</script>
+								</td>
 							</tr>
+							<script>
+								$('.userDetail').click(function() {
+									location.href=$(this).parent().attr("id");
+								});
+							</script>
 						</c:forEach>
 					</tbody>
 				</table>
