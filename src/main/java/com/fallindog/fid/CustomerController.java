@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import customercontrol.CustomPageMaker;
+import customercontrol.CustomSearchCriteria;
 import service.CustomerService;
-import usercontrol.PageMaker;
-import usercontrol.SearchCriteria;
 import vo.CustomerVO;
 
 
@@ -37,7 +37,7 @@ public class CustomerController {
 	
 	@RequestMapping(value="/customerhome")
 	public ModelAndView customerhome(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,
-			SearchCriteria cri,PageMaker pageMaker) {
+			CustomSearchCriteria cri,CustomPageMaker pageMaker) {
 		String searchType  = request.getParameter("searchType");
 		String keyword  = request.getParameter("keyword");
 		String namekey  = request.getParameter("namekey");
@@ -56,7 +56,7 @@ public class CustomerController {
 
 		
 		cri.setSnoEno();
-	    mv.addObject("faqlist", service.searchList(cri));  //ver2
+	    mv.addObject("faqlist", service.csearchList(cri));  //ver2
 	    pageMaker.setCri(cri);
 	    pageMaker.setTotalRowsCount(service.searchCount(cri));   //ver2 : 조건과 일치하는 Rows 갯수 
 	      
@@ -69,7 +69,7 @@ public class CustomerController {
 	// 자주하는 질문 
 	@RequestMapping(value="/faq")
 	public ModelAndView faq(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
-								, SearchCriteria cri, PageMaker pageMaker) {
+								, CustomSearchCriteria cri, CustomPageMaker pageMaker) {
 		response.setContentType("text/html; charset=UTF-8;");
 		
 		String searchType  = request.getParameter("searchType");
@@ -92,7 +92,7 @@ public class CustomerController {
 		
 		System.out.println("#####"+cri);
 		cri.setSnoEno();
-	    mv.addObject("faqlist", service.searchList(cri));  //ver2
+	    mv.addObject("faqlist", service.csearchList(cri));  //ver2
 	    pageMaker.setCri(cri);
 	    pageMaker.setTotalRowsCount(service.searchCount(cri));   //ver2 : 조건과 일치하는 Rows 갯수 
 	      
