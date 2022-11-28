@@ -180,14 +180,18 @@ textarea{
 }
 
 .WritingHeader{
-	
 	position : relative;
 }
-.ip input {
+
+.ip {
 	position : absolute;
 	right : 0;
 	bottom: 0;
 }
+
+.ip input {
+	margin-left : 20px;
+	}
 
 .write_row{
 	position : relative;
@@ -269,7 +273,6 @@ select, textarea {
 .list_forward{
 	display: flex;
 	text-align: center;
-	margin-left : 5%
 }
 
 
