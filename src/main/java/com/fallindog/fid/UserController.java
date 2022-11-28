@@ -74,7 +74,7 @@ public class UserController {
 	//** 회원가입
 	@RequestMapping(value="/join",method = RequestMethod.POST)
 	public ModelAndView join(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
-		  String uri = "redirect:home";
+		  String url = "redirect:home";
 	      String realPath = request.getRealPath("/");
 	      System.out.println("** realPath => "+realPath);
 	     
@@ -103,10 +103,10 @@ public class UserController {
 		}else {
 			//Join 실패
 			mv.addObject("msg","회원가입에 실패하셨습니다 다시 시도 해주세요.");
-			uri = "/user/joinForm";
+			url = "/user/joinForm";
 		}
 
-		mv.setViewName(uri);
+		mv.setViewName(url);
 		return mv;
 	}
 	
@@ -125,7 +125,7 @@ public class UserController {
 		String idsave = request.getParameter("idsave");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		String uri = "/user/loginForm";
+		String url = "/user/loginForm";
 		response.setCharacterEncoding("UTF-8");
 		Cookie cookie = new Cookie ("useId",id);
 		vo.setId(id);
@@ -146,7 +146,7 @@ public class UserController {
 					cook.setMaxAge(0);
 					response.addCookie(cook);
 				}
-				uri="redirect:home" ;
+				url="redirect:home" ;
 			}else {
 				mv.addObject("msg", "비밀번호가 틀렸습니다.");
 			}
@@ -154,7 +154,7 @@ public class UserController {
 			mv.addObject("msg", "해당되는 아이디가 없습니다.");
 			
 		} //else
-		mv.setViewName(uri);
+		mv.setViewName(url);
 		return mv;
 	}
 	//** 로그아웃
@@ -184,12 +184,12 @@ public class UserController {
 			}
 		}
 		
-		String uri = "/user/info";
+		String url = "/user/info";
 		vo = service.selectOne(vo);
 		if(vo != null) {
 			
 			if("U".equals(request.getParameter("want"))) {
-				uri = "/user/updateForm";
+				url = "/user/updateForm";
 				vo.setPassword((String)session.getAttribute("loginPW"));
 				
 			}
@@ -197,7 +197,7 @@ public class UserController {
 		}else {
 			mv.addObject("msg","~~ "+request.getParameter("id")+"님의 자료는 존재하지 않습니다 ~~");
 		}
-		mv.setViewName(uri);
+		mv.setViewName(url);
 		return mv;
 	}
 	
@@ -206,7 +206,7 @@ public class UserController {
 	@RequestMapping(value="/infoupdate", method = RequestMethod.POST)
 	public ModelAndView infoupdate(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
 	    
-	  	String uri = "/user/info";
+	  	String url = "/user/info";
 	  	mv.addObject("user", vo);
 		 String realPath = request.getRealPath("/"); 
 	      if ( realPath.contains(".eclipse.") )  
@@ -234,9 +234,9 @@ public class UserController {
 		  	mv.addObject("user", vo);
 		}else{
 			mv.addObject("msg", " 내정보수정 실패 ");
-			uri = "/user/updateForm";
+			url = "/user/updateForm";
 		}
-		mv.setViewName(uri);
+		mv.setViewName(url);
 		return mv;
 	}
 	
@@ -244,7 +244,7 @@ public class UserController {
 	@RequestMapping(value="/userdelete")
 	public ModelAndView userdelete(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv,UserVO vo, RedirectAttributes rttr) {
-		
+		String url = null;
 		String id = null;
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("loginID") != null) {
@@ -264,8 +264,8 @@ public class UserController {
 		}else {
 			rttr.addFlashAttribute("message", "삭제할 ID가 없습니다.");
 		}
-		
-		mv.setViewName("redirect:home");
+		if("admin".equals(id)) mv.setViewName("redirect:usearchlist");
+		else mv.setViewName("redirect:home");
 		return mv;
 	}
 	

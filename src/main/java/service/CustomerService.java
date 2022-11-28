@@ -4,7 +4,7 @@ package service;
 
 import java.util.List;
 
-import usercontrol.SearchCriteria;
+import customercontrol.CustomSearchCriteria;
 import vo.CustomerVO;
 
 public interface CustomerService {
@@ -22,6 +22,6 @@ public interface CustomerService {
 	int delete(CustomerVO vo);
 	
 	List<CustomerVO> selectList();
-	List<CustomerVO> searchList(SearchCriteria cri);
-	int searchCount(SearchCriteria cri);
+	List<CustomerVO> csearchList(CustomSearchCriteria cri);
+	int searchCount(CustomSearchCriteria cri);
 }

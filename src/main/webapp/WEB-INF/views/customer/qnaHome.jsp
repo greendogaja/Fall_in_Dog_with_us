@@ -68,16 +68,14 @@
 	});//ready  
 	
 	
-		var maskingName = function(strName) {
-			  if (strName.length > 2) {
-			      var sstr = strName;
-			      sstr.replace(/(?<=.{1})./,'*');
-			    return sstr;
-			  } else {
-			    var pattern = /.$/; // 정규식
-			    return strName.replace(pattern, '*');
-			  }
-		};
+	function maskingName(strName) {
+		if (strName.length > 2) {
+			return strName.replace(strName.substr(1,1), '*');
+		} else {
+			var pattern = /.$/; // 정규식
+			return strName.replace(pattern, '*');
+		}
+	};
 	
 	
 </script>
@@ -356,7 +354,7 @@
 				</tr>
 			</thead>
 			<tbody class="conten">
-					<c:forEach var="qna" items="${qnalist}">
+					<c:forEach var="qna" items="${qnalist}" varStatus="qnano">
 						<tr >
 							 <c:if test="${qna.secret == 1}">
 							     <c:choose>
@@ -381,8 +379,11 @@
 							
 							
 							
-							<td class="qname">
-								${qna.name }
+							<td id="qname${qnano.count}">
+								<script>
+									$('#qname${qnano.count}').text(maskingName("${qna.name}"));
+									console.log($('#qname${qnano.count}').val());
+								</script>
 							</td>
 							<td>${qna.regdate}</td>
 							

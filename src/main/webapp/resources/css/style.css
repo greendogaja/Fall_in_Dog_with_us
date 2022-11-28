@@ -2216,6 +2216,23 @@ textarea:focus~.highlight {
     width:110%
 }
 
+.docur{
+	cursor:pointer;
+}
+.docur:hover{
+	font-family: "dalseobold";
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    text-decoration: none;
+    outline: none;
+    font-size: 19px;
+}
+.tcontens{
+	line-height:25px;	
+}
+
+
+
 
 
 /* The End */
