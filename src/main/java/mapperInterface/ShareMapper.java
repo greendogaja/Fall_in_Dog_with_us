@@ -3,8 +3,6 @@ package mapperInterface;
 import java.util.List;
 
 import noticeControl.SearchCriteria;
-import vo.NoticeReplyVO;
-import vo.NoticeVO;
 import vo.ShareReplyVO;
 import vo.ShareVO;
 

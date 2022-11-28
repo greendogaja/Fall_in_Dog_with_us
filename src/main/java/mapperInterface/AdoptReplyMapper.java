@@ -3,7 +3,6 @@ package mapperInterface;
 import java.util.List;
 
 import vo.AdoptReplyVO;
-import vo.NoticeReplyVO;
 
 public interface AdoptReplyMapper {
 	

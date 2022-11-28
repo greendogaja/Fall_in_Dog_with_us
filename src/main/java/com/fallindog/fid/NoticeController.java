@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import noticeControl.PageMaker;
 import noticeControl.SearchCriteria;
-import service.NoticeReplyService;
 import service.NoticeService;
 import vo.NoticeVO;
 
