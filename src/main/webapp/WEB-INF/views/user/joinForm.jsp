@@ -22,6 +22,10 @@
     <script defer="defer" src="resources/js/active.js"></script>
 	
 	<script src="resources/mLib/inCheck.js"></script>
+	<!-- alert -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.min.js"></script>
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -31,6 +35,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/joinf.css">  
+	<link rel="stylesheet" href="sweetalert2.min.css">
     
     <style type="text/css">
     	.eMessage{
@@ -142,7 +147,7 @@
     	$('#phone').keydown(function(e){
     		if(e.which==13){
     			e.preventDefault();  
-    			$('#submit').focus();
+    			$('#submitBtn').focus();
     		}
     	}).focusout(function(){
     		phCheck = phoCheck();
@@ -362,10 +367,10 @@
 							class="text-danger">*</span></label>
 						<div class="col-md-8 col-sm-9 ">
 							<div class="input-group">
-									<input type="text" class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내" value="">
+									<input type="text" class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내" value="" maxlength="10">
 							<button type="button"  id="idDup" onclick="dupCheck()" style="margin-left:30px;">ID 중복확인</button>
 							</div>
-							<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small><br>
+							<small>귀하의 이메일, ID는 계정 보안, 승인 및x 액세스 복구를 위해 사용됩니다.</small><br>
 							<span id="iMessage" class="eMessage"></span>
 						</div>
 					</div>
@@ -395,7 +400,7 @@
 							class="text-danger">*</span></label>
 						<div class="col-md-8 col-sm-9">
 							<input type="text" class="form-control" name="name"
-								id="name" placeholder="여기에 이름을 입력하세요" value="">
+								id="name" placeholder="여기에 이름을 입력하세요" value="" maxlength="8">
 								<span id="nMessage" class="eMessage"></span>
 						</div>
 					</div>
@@ -404,7 +409,7 @@
 							class="text-danger">*</span></label>
 						<div class="col-md-8 col-sm-9 ">
 							<div class="input-group">
-									<input type="text" class="form-control" name="nname" id="nname" placeholder="한글,영문 10자이내" value="">
+									<input type="text" class="form-control" name="nname" id="nname" placeholder="한글,영문 8자이내" value="" maxlength="8">
 							<button type="button"  id="idDup" onclick="nickCheck()" style="margin-left:30px;">별명 중복확인</button>
 							</div>
 							<small>귀하의 커뮤니티 사용을 위해 사용됩니다.</small><br>
@@ -489,7 +494,7 @@
 							class="text-danger">*</span></label>
 						<div class="col-md-5 col-sm-8" style="max-width:50%;">
 							<input type="text" class="form-control" name="phone" id="phone"
-							placeholder="연락처 번호를 입력해주세요. (-)미포함  " value="">
+							placeholder="연락처 번호를 입력해주세요. (-)미포함  " value="" maxlength="11">
 							<span id="phMessage" class="eMessage"></span>
 						</div>
 					</div>
@@ -519,7 +524,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-xs-offset-3 col-sm-2 mauto" style="max-width:30%; display:flex; justify-content:space-between;">
-							<input name="submit" id="submit" onclick="return inCheck()"  type="submit" value="가입하기"
+							<input id="submitBtn" onclick="inCheck()"  type="button" value="가입하기"
 								class="btn btn-primary" disabled>
 							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
