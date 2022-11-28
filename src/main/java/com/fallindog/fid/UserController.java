@@ -74,7 +74,7 @@ public class UserController {
 	//** 회원가입
 	@RequestMapping(value="/join",method = RequestMethod.POST)
 	public ModelAndView join(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,UserVO vo) throws IOException {
-		  String uri = "home";
+		  String uri = "redirect:home";
 	      String realPath = request.getRealPath("/");
 	      System.out.println("** realPath => "+realPath);
 	     
