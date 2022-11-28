@@ -176,8 +176,8 @@ function inCheck() {
 					title: '회원가입 되었습니다.',
 					showConfirmButton: false,
 					timer: 3000
-				})
-				$('#signup').submit();
+				});
+				setTimeout(() =>$('#signup').submit() , 1000);
 				
 			} else if (result.isDenied) {
 				Swal.fire('제출하지 못하였습니다.', '', 'info');
@@ -221,8 +221,8 @@ function upCheck() {
 					title: '수정 되었습니다.',
 					showConfirmButton: false,
 					timer: 3000
-				})
-				$('#signup').submit();
+				});
+				setTimeout(() =>$('#updateinfo').submit() , 1000);
 				
 			} else if (result.isDenied) {
 				Swal.fire('수정하지 못하였습니다.', '', 'info');

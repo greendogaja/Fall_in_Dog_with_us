@@ -154,14 +154,14 @@
                             ${loginNick}님 환영합니다
                             <a href="logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃"><i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i></a>
 			                      <div class="classynav" >
-				                      <ul >
+				                     <ul >
 				                      	<li class="mhover" >
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<li><a href="#" style="color:white;">내가쓴글</a></li>
-												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
@@ -341,7 +341,7 @@
 		<div class="dinfo2">
 			<div class="account_box">
 				<h1 class="title " >내프로필</h1>
-				<form action="infoupdate" method="post" enctype="multipart/form-data">
+				<form action="infoupdate" method="post" id="updateinfo" enctype="multipart/form-data">
 					<ul class="account_row">
 						<li>
 						<div class="row_item " style="display:none;">

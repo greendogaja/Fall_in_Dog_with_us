@@ -24,9 +24,12 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    <!-- Alert  -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <!-- Title -->
 	
-	<script>
+<script>
 	$(function(){
 		$('#searchType').change(function(){
 			if($(this).val()=='n') $('#keyword').val('');
@@ -40,15 +43,17 @@
 			+"&keyword="
 			+$('#keyword').val()
 		});
-	});
+	});//ready
 	
-	 function reclear() {
+	function reclear() {
 			$('#idkey').val('');
 			$('#namekey').val('');
 			$('#phonekey').val('');
 			return false;
-	} 
-	</script>
+	}//reclear
+	
+
+</script>
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -130,20 +135,20 @@
 									class="fa fa-sign-out" style="font-size: 30px"
 									aria-hidden="true"></i></a>
 								<div class="classynav">
-									<ul>
-										<li class="mhover"><i class="fa fa-cog "
-											style="font-size: 30px" aria-hidden="true"></i>
-											<ul class="dropdown mhover-content boradi ">
-												<li style="font-size: 1rem;">MyPage</li>
-												<li><a href="#" style="color: white;">내가쓴글</a></li>
-												<li><a href="#" style="color: white;">내가단댓글</a></li>
-												<li><a href="info" style="color: white;">회원정보</a></li>
+								   <ul >
+				                      	<li class="mhover" >
+				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
+				                      		<ul class="dropdown mhover-content boradi " >
+				                      			<li style="font-size:1rem;">MyPage</li>
+												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
-													<li><a href="#" style="color: white;">회원관리</a></li>
-
+												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
-											</ul></li>
-									</ul>
+		                                    </ul>
+				                      	</li>
+				                     </ul>
 								</div>
 							</c:if>
 						</div>
@@ -353,7 +358,28 @@
 									<script>
 										$('.deleteUser').click(function (e) {
 											e.preventDefault();
-											location.href=this.id;
+											function deleteUser() {
+												Swal.fire({
+													title: '회원삭제를 하시겠습니까?',
+													showDenyButton: true,
+													showCancelButton: true,
+													confirmButtonText: '네',
+													denyButtonText: `아니오`,
+												}).then((result) => {
+													if (result.isConfirmed) {
+														Swal.fire({
+															icon: 'success',
+															title: '삭제 되었습니다.',
+															showConfirmButton: false,
+															timer: 3000
+														});
+														setTimeout(() =>location.href="userdelete?id=${user.id}" , 1000);			
+													} else if (result.isDenied) {
+														Swal.fire('삭제하지 못하였습니다.', '', 'info');
+													}
+												});//comfirm
+											}//userDelete
+											deleteUser();
 										});
 									</script>
 								</td>

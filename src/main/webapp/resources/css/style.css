@@ -2231,7 +2231,71 @@ textarea:focus~.highlight {
 	line-height:25px;	
 }
 
+.thumbnail img{
+	height:300px;
+	border-radius: 10% 10% 0 0;
+	width:100%;
+}
 
+.backgr::before{
+    content:"";
+    width:90%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:13px;
+    background-color: black;
+    opacity:0.2;
+    border-radius:10%;
+    
+}
+
+.pict{
+    position: absolute;
+    background-color: black;
+    width: 90%;
+    line-height: 40px;
+    opacity: 0.7;
+    transition: top .7s;
+    overflow: hidden;
+    bottom: -5%;
+    color: white;
+    font-size: 23px;
+    left: 14px;
+}
+.howrite{
+    position: absolute;
+    background-color: black;
+    width: 90%;
+    line-height: 500px;
+    height:100%;
+    opacity: 0.7;
+    bottom: -5%;
+    color: white;
+    font-size: 23px;
+    left: 14px;
+    transition: top .7s;
+}
+.dpnone{
+	display:none;
+}
+.xxxx::before{
+    content:"";
+    width:90%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:13px;
+    background-color: black;
+    opacity:0.2;
+    border-radius:10%;
+    
+}
+.xxxx::after{
+    transition:.7s;
+    transform:translate(0);
+
+}
 
 
 
