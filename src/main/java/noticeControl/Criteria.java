@@ -50,9 +50,9 @@ public class Criteria {
 	// => 제한조건 점검 ( 50개 까지만 허용)
 	// => 당장은 사용하지 않지만 사용가능하도록 작성
 	public void setRowsPerPage(int rowsPerPage) {
-		if ( rowsPerPage>5  &&  rowsPerPage<=50 )
+		if ( rowsPerPage>4  &&  rowsPerPage<=50 )
 			 this.rowsPerPage=rowsPerPage;
-		else this.rowsPerPage=5; 
+		else this.rowsPerPage=4; 
 	}
 	// 4) setSnoEno : sno, eno 계산
 	// => currPage, rowsPerPage 를 이용해 계산

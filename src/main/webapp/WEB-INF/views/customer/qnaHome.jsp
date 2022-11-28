@@ -23,7 +23,7 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-    
+    <script src="resources/mLib/customer.js"></script>
     <script type="text/javascript" 
 		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
 	</script>
@@ -156,14 +156,15 @@
 											style="font-size: 30px" aria-hidden="true"></i>
 											<ul class="dropdown mhover-content boradi ">
 												<li style="font-size: 1rem;">MyPage</li>
-												<li><a href="#" style="color: white;">내가쓴글</a></li>
-												<li><a href="#" style="color: white;">내가단댓글</a></li>
 												<li><a href="info" style="color: white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}"
+													style="color: white;">내정보수정</a></li>
+												<li><a href="qna" style="color: white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 													<li><a href="usearchlist" style="color: white;">회원관리</a></li>
-
 												</c:if>
-											</ul></li>
+											</ul>
+										</li>
 									</ul>
 								</div>
 							</c:if>
