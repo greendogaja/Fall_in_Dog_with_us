@@ -35,6 +35,12 @@
     <script defer="defer" src="resources/js/active.js"></script>
 	<!-- reply.js -->
     <script defer="defer" src="resources/mLib/notice_reply.js"></script>
+    <script defer="defer" src="resources/mLib/community.js"></script>
+    
+    <!-- alert, comfirm -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -292,7 +298,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="reviewDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -310,7 +316,7 @@
 									<div class="comment_inbox re_box dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_rereplyInsert">
+										<form action="r_rereplyInsert" id="rereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
@@ -319,7 +325,7 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="button" class="rere_btn" value="등록">
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -331,12 +337,12 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_replyUpdate">
+										<form action="r_replyUpdate" id="replyUpdate">
 											<div class="mg_b_10">${orange.nname}</div>
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" value="수정"> 
+												<input type="button" class="re_up_btn" value="수정">
 												<input type="reset" value="취소">
 												<input type="hidden" name="rvno" value="${orange.rvno}" >
 												<input type="hidden" name="rrno" value="${orange.rrno}" >
@@ -364,7 +370,7 @@
 										<div class="comment_tool">
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
-												<a class="replyUpdate">수정</a>&nbsp;&nbsp;
+												<a class="re_update">수정</a>&nbsp;&nbsp;
 												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
@@ -380,7 +386,7 @@
 									<div class="comment_inbox rere_box dp_h">
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_rereplyInsert">
+										<form action="r_rereplyInsert" id="rereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
@@ -389,7 +395,7 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="button" class="rere_btn" value="등록"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -401,7 +407,7 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_replyUpdate">
+										<form action="r_replyUpdate" id="replyUpdate">
 											<input type="hidden" name="rvno" value="${orange.rvno}" >
 											<input type="hidden" name="rrno" value="${orange.rrno}" >
 											<input type="hidden" name="id" value="${orange.id}">
@@ -409,7 +415,7 @@
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="수정"> 
+												<input type="button" class="rere_up_btn" value="수정"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -430,7 +436,7 @@
 			
 			<!-- ========================== 댓글입력 ========================== -->
 			<c:if test="${not empty loginID}">
-				<form action="r_replyInsert" method="post">
+				<form action="r_replyInsert" method="post" id="replyInsert" >
 					<div class="CommentWriter">
 						<div class="comment_inbox">
 							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
@@ -440,12 +446,14 @@
 							<div class="mg_b_10">${loginNick}</div>
 								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<input type="submit" name="commentData" id="commentData" value="등록">
+								<input type="button" class="re_btn" name="commentData" id="commentData" value="등록">
 							</div>
 						</div>
 					</div>
 				</form>
 			</c:if>
+			
+
 			
 			<c:if test="${empty loginID}">
 					<div class="CommentWriter">

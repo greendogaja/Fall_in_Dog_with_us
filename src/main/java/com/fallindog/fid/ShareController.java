@@ -298,7 +298,7 @@ public class ShareController {
 		
 		String uri = "redirect:shareDetail?shno="+shno;
 		
-		if(sservice.replyInsert(cvo)>0) {
+		if(sservice.rereplyInsert(cvo)>0) {
 			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
 		}else {
 			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
@@ -322,7 +322,7 @@ public class ShareController {
 		
 		String uri = "redirect:shareDetail?shno="+shno;
 		
-		if(sservice.rereplyInsert(cvo)>0) {
+		if(sservice.replyInsert(cvo)>0) {
 			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
 		}else {
 			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");

@@ -288,6 +288,16 @@ public class ReviewController {
 	
 		int rvno = Integer.parseInt(request.getParameter("rvno"));
 		cvo.setRvno(rvno); 
+		
+		String content = request.getParameter("content");
+		if(content == null || content.length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_rereplyInsert 실패 "+cvo.getContent());
+		} else {
+			System.out.println("r_rereplyInsert 성공 "+cvo.getContent());
+			service.rereplyInsert(cvo);
+		}
+		
     	
 		// 대댓글의 grpl = 1, 모댓글 = 0(default)
 		cvo.setGrpl(1);
@@ -296,11 +306,11 @@ public class ReviewController {
 		
 		String uri = "redirect:reviewDetail?rvno="+rvno;
 		
-		if(service.rereplyInsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
-		}
+//		if(service.rereplyInsert(cvo)>0) {
+//			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
+//		}else {
+//			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
+//		}
 		
 		System.out.println("대댓vo2 => "+cvo);
 		mv.setViewName(uri);
@@ -318,14 +328,24 @@ public class ReviewController {
 		int rvno = Integer.parseInt(request.getParameter("rvno"));
 		cvo.setRvno(rvno);  
 		
-		String uri = "redirect:reviewDetail?rvno="+rvno;
-		
-		if(service.rereplyInsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
+		String content = request.getParameter("content");
+		if(content == null || content.length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_replyInsert content 실패 "+cvo.getContent());
+		} else {
+			service.replyInsert(cvo);
+			System.out.println("r_replyInsert content 성공 "+cvo.getContent());
 		}
 		
+		System.out.println("대댓vo => "+cvo);
+		
+//		if(service.replyInsert(cvo)>0) {
+//			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
+//		}else {
+//			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
+//		}
+		
+		String uri = "redirect:reviewDetail?rvno="+rvno;
 		System.out.println("~ncinsert cvo"+cvo);
 		mv.setViewName(uri);
 		return mv;

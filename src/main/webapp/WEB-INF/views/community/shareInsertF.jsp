@@ -244,6 +244,8 @@
 							<select name="subject" >
 								<option value="[나눔]" >[나눔]</option>
 								<option value="[교환]" >[교환]</option>
+								<option value="[나눔완료]" >[나눔완료]</option>
+								<option value="[교환완료]" >[나눔완료]</option>
 							</select>
 						</div>
 					</div>

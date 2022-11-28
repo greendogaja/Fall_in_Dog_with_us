@@ -218,6 +218,9 @@
 			<div class="WritingHeader">
 				<h2>게시판 글쓰기</h2>
 				<div class="ip">
+					<label>
+						<input type="checkbox" name="top" value="1">  게시물 상단고정
+					</label>
 					<input type="submit" value="등록">
 				</div>
 				<!-- user info start -->
