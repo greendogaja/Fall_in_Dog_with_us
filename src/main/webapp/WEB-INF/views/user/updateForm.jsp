@@ -40,13 +40,13 @@
     <link rel="stylesheet" href="resources/css/info.css">
 	<link rel="stylesheet" href="sweetalert2.min.css">
 	
-	 <style type="text/css">
-    	.eMessage{
-    		color:red;
-    		font-size:small;
-    	}
-    </style>
-    <script>
+<style type="text/css">
+   	.eMessage{
+   		color:red;
+   		font-size:small;
+   	}
+</style>
+<script>
     let pCheck =true;
     let ppCheck =true;
     let nCheck =true;
@@ -54,8 +54,6 @@
     let phCheck=true;
     
     $(function(){
-    	
-    	
     	//## password
     	$('#password').on("keyup change", function(e){
     		pCheck=false;
@@ -89,11 +87,8 @@
     		phCheck = phoCheck();
     	});
     	
-    })
-
-
-    
-    </script>
+    })//ready
+</script>
 </head>
 
 <body>
@@ -160,7 +155,7 @@
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
-												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보변경</a></li>
 												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
@@ -304,6 +299,7 @@
     </header>
     <!-- ##### Header Area End ##### -->
 	<hr>
+	<!--사이드정보창  -->
 	<div class="allinfo">
 		<div class="dinfo">
 			<div class="gnb_area">
@@ -327,17 +323,18 @@
 			<div class="header_left">
 				<ul class="left_menu" role="menu">
 					<li>
-						<a href="info?want=U" class="left_item" role="menuitem">내정보수정</a>
+						<a href="info" class="left_item" role="menuitem">내정보</a>
 					</li>
 					<li>
-						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
+						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보변경</a>
 					</li>
 					<li>
-						<a href="#" class="left_item" role="menuitem">내가단댓글</a>
+						<a href="qna" class="left_item" role="menuitem">1:1문의</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<!--회원정보변경폼  -->
 		<div class="dinfo2">
 			<div class="account_box">
 				<h1 class="title " >내프로필</h1>
@@ -348,7 +345,7 @@
 							<span class="item_text">아이디 :</span>
 							<input type="text" class="tcenter2" name="id" id="id" value="${user.id }">
 						</div>
-					</li>
+						</li>
 						<li>
 							<div class="row_item ">
 								<span class="item_text">성명 :</span>
@@ -389,7 +386,6 @@
 											<option value="<c:out value="${start-result}" />"
 												<c:if test="${start-result == detail.YY}"> selected="selected"</c:if>><c:out
 													value="${start-result}" /></option>
-
 										</c:forEach>
 									</select>
 									-
@@ -475,7 +471,7 @@
 									<input type="file"
 									name="uploadfilef" id="uploadfilef" class="form-control upload" style="width:230;"
 									placeholder=" " value="${user.uploadfile}">
-									
+									<!--script -->
 									<script>
 						            $('#uploadfilef').change(function(){
 						               if(this.files && this.files[0]) {
@@ -491,9 +487,9 @@
 							</div>
 						</li>
 					</ul>
+					<!--버튼  -->
 					<div class="form-group" style="margin-top: 10px;">
 							<a href="userdelete?id=${user.id}" >회원탈퇴 ></a>
-							<%-- <a href="userdelete?id=${user.id}" >회원탈퇴 ></a> --%>
 							<div style="float:right;">
 							<input  id="submitBtn" onclick="upCheck()"  type="button" value="수정하기"
 								class="btn btn-primary"  >
