@@ -263,16 +263,17 @@
 			<th>글번호</th><th>말머리</th><th width="40%">제목</th><th>작성자</th><th width="20%">작성일</th><th>조회</th>
 		</tr>
 		<c:if test="${not empty banana}">
-			<c:forEach  var="notice" items="${banana}" >
-			<tr class="ntable_tr">
-				<td>${notice.nno}</td>
-				<td>${notice.subject}</td>
-				<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
-				<td>${notice.nname}</td>
-				<td>${notice.regdate}</td><td>${notice.cnt}</td>
-			</tr>
-			</c:forEach>
-		</c:if>
+				<c:forEach var="notice" items="${banana}">
+					<tr class="ntable_tr">
+						<td>${notice.nno}</td>
+						<td>${notice.subject}</td>
+						<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
+						<td>${notice.nname}</td>
+						<td>${notice.regdate}</td>
+						<td>${notice.cnt}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 	</table>
 	</div>
 	<hr>

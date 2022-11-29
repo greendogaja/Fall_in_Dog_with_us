@@ -19,9 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import noticeControl.PageMaker;
 import noticeControl.SearchCriteria;
-import service.NoticeReplyService;
 import service.NoticeService;
-import vo.NoticeReplyVO;
 import vo.NoticeVO;
 
 
@@ -31,9 +29,6 @@ public class NoticeController {
   
 	@Autowired 
 	NoticeService service;
-	@Autowired
-	NoticeReplyService cservice;
-
 	 	
 	@RequestMapping(value="/aboutUs")
 	public ModelAndView aboutUs(ModelAndView mv) {
@@ -131,10 +126,10 @@ public class NoticeController {
 	}
 	
 	
-	// 글내용, 댓글리스트, 대댓글리스트
+	// 글내용
 	@RequestMapping(value="/ndetail")
 	public ModelAndView ndetail(HttpServletRequest request, HttpServletResponse response, 
-								ModelAndView mv, NoticeVO vo, NoticeReplyVO cvo) {
+								ModelAndView mv, NoticeVO vo) {
 		// 1. 요청분석
 		String uri = "guide/noticeDetail";
 		
@@ -159,23 +154,6 @@ public class NoticeController {
 			// 2.3)	결과전달		
 			mv.addObject("apple", vo);
 		}else mv.addObject("message", "~~ 글번호에 해당하는 자료가 없습니다. ~~");
-		
-		// 3. 댓글리스트 Ncomment selectList
-		cvo.setNno(nno);
-		System.out.println("nno => "+nno);
-		
-		// 댓글리스트
-		List<NoticeReplyVO> list = new ArrayList<NoticeReplyVO>();
-    	list = cservice.selectList(cvo);
-    	
-    	if ( list!=null ) {
-    		mv.addObject("orange", list); 
-    		System.out.println("댓글리스트 불러오기 성공! TTT");
-    		System.out.println("~~~댓글list"+list);
-    	}else {
-    		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-    		System.out.println("댓글리스트 불러오기 실패 FFF");
-    	}
 		
 		// 화면 출력
 		mv.setViewName(uri);
@@ -319,112 +297,5 @@ public class NoticeController {
 		return mv;
 	} //bdelete
 
-	// 대댓글입력
-	@RequestMapping(value="/ncreply")
-	public ModelAndView ncreply(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NoticeReplyVO cvo, 
-			RedirectAttributes rttr) {
-	
-		int nno = Integer.parseInt(request.getParameter("nno"));
-		cvo.setNno(nno); 
-    	
-		// 대댓글의 grpl = 1, 모댓글 = 0(default)
-		cvo.setGrpl(1);
-		
-		System.out.println("대댓vo => "+cvo);
-		
-		String uri = "redirect:ndetail?nno="+nno;
-		
-		if(cservice.ncreply(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
-		}
-		
-		System.out.println("대댓vo2 => "+cvo);
-		mv.setViewName(uri);
-		return mv;
-		
-	}
-	
-	
-	// 댓글입력
-	@RequestMapping(value="/ncinsert")
-	public ModelAndView ncinsert(HttpServletRequest request, 
-			HttpServletResponse response, ModelAndView mv, NoticeReplyVO cvo, 
-			RedirectAttributes rttr) {
-	
-		int nno = Integer.parseInt(request.getParameter("nno"));
-		cvo.setNno(nno); 
-		
-		String uri = "redirect:ndetail?nno="+nno;
-		
-		if(cservice.ncinsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
-		}
-		
-		System.out.println("~ncinsert cvo"+cvo);
-		mv.setViewName(uri);
-		return mv;
-		
-	}	
-	
-	// ncdelete 댓글 삭제
-	@RequestMapping(value="/ncdelete")
-	public ModelAndView ncdelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, NoticeReplyVO cvo, RedirectAttributes rttr) {
-
-		String uri = "redirect:ndetail?nno="+cvo.getNno();
-		
-		// 2. Service 처리
-		if ( cservice.ncdelete(cvo) > 0 ) {
-			rttr.addFlashAttribute("message", "~~ 댓글삭제 성공 ~~"); 
-		}else {
-			rttr.addFlashAttribute("message", "~~ 댓글삭제 실패, 다시 하세요 ~~");
-//			uri = "redirect:ndetail?nno="+cvo.getNno();
-		} // Service
-		
-//		cservice.ncdelete_grp(cvo);
-		
-		// 3. 결과(ModelAndView) 전달 
-		mv.setViewName(uri);
-		return mv;
-	} //bdelete
-	
-	
-	// **ncupdate 댓글수정
-	@RequestMapping(value="/ncupdate")
-	public ModelAndView ncupdate(HttpServletRequest request, HttpServletResponse response,
-								ModelAndView mv, NoticeReplyVO cvo) {
-		// 1. 요청분석
-
-		
-		int nno = Integer.parseInt((String)request.getParameter("nno"));
-		cvo.setNno(nno);
-		String uri = "redirect:ndetail?nno="+nno;
-		
-		
-		mv.addObject("apple",cvo);
-		// => Update 성공/실패 모두 출력시 필요하므로
-		
-		System.out.println("댓글수정 vo =>"+cvo);
-		
-		
-		// 2. Service 처리
-		if ( cservice.ncupdate(cvo) > 0 ) {
-			mv.addObject("message", "~~ 댓글수정 성공 ~~"); 
-		}else {
-			mv.addObject("message", "~~ 댓글수정 실패, 다시 하세요 ~~");
-//			uri = "guide/noticeUpdateF";
-		}
-		
-		// 3. 결과(ModelAndView) 전달 
-		mv.setViewName(uri);
-		System.out.println("댓글수정"+mv);
-		System.out.println("##댓글수정"+cvo);
-		return mv;
-	}
 } //NoticeController
  

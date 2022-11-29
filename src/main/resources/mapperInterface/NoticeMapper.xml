@@ -27,10 +27,10 @@
 </sql>
 
 <select id="searchList" resultType="vo.NoticeVO">
-	select nno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	select nno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, top
 	from notice n, user u
 	where n.id = u.id and ( nno>0 <include refid="search"></include>  
-	order by nno desc
+	order by top desc, nno desc
 	limit #{sno}, #{rowsPerPage}
 </select>
 
@@ -54,7 +54,7 @@
 </select>
 
 <select id="selectOne" resultType="vo.NoticeVO">
-	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, nno
+	select title, subject, subject, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, nno
 	from notice n, user u
 	where n.id = u.id and nno=#{nno}
 </select>
@@ -69,8 +69,8 @@
 	<selectKey keyProperty="nno" resultType="int" order="BEFORE">
 		select IFNULL(max(nno),0)+1 from notice
 	</selectKey>
-	insert into notice(nno, title, id, content, subject, img) 
-	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img})
+	insert into notice(nno, title, id, content, subject, img, top) 
+	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img}, #{top})
 
 </insert>
 
