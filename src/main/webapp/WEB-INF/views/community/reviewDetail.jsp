@@ -225,7 +225,7 @@
 	<div class="article_header">
 		<div class="ArticleTitle">
 			<a href="reviewList">나눔장터</a>
-			<div class="title_area"><h3>${apple.title}</h3></div>
+			<div class="title_area"><h3>${apple.subject}&nbsp;&nbsp;${apple.title}</h3></div>
 		</div>
 		<div class="WriterInfo" >
 			<div class="profile_image">

@@ -54,7 +54,7 @@
 </select>
 
 <select id="selectOne" resultType="vo.FreeVO">
-	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, freeno
+	select title, subject, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, freeno
 	from free n, user u
 	where n.id = u.id and freeno=#{freeno}
 </select>

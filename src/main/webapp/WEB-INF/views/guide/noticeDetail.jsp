@@ -235,7 +235,7 @@
 			<div class="ArticleTitle">
 				<a href="noticeList">Notice</a>
 				<div class="title_area">
-					<h3>${apple.title}</h3>
+					<h3>${apple.subject}&nbsp;&nbsp;${apple.title}</h3>
 				</div>
 			</div>
 			<div class="WriterInfo">
@@ -282,6 +282,7 @@
 				</a>
 			</div>
 		</div>
+	</div>
 		<hr>
 
 	<!-- Notice Detail End -->

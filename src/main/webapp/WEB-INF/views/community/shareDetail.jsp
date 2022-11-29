@@ -219,7 +219,7 @@
 	<div class="article_header">
 		<div class="ArticleTitle">
 			<a href="shareList">나눔장터</a>
-			<div class="title_area"><h3>${apple.title}</h3></div>
+			<div class="title_area"><h3>${apple.subject}&nbsp;&nbsp;${apple.title}</h3></div>
 		</div>
 		<div class="WriterInfo" >
 			<div class="profile_image">
@@ -279,7 +279,7 @@
 							
 							<!-- ==========================댓글 list==========================-->
 							<c:if test="${orange.grpl != 1}">
-							
+							<%-- <c:if test="${orange.nname == loginID}"></c:if> --%>
 							<div class="n_comment_area pd_15">
 								<!-- 작성자Img 저장 -->
 								<img src="${orange.uploadfile}">
