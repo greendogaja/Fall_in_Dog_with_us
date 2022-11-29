@@ -332,7 +332,7 @@
                         <div class="row align-items-center">
                             <div class="col-12 ">
                                 <div class="single-blog-content">
-                                    <h4><a href="#" class="post-headline" style="margin-bottom:2px;">자주하는질문</a></h4>
+                                    <h4><a href="customerhome" class="post-headline" style="margin-bottom:2px;">자주하는질문</a></h4>
                                     <div class="line"></div>
                                     <table class="tablecon">
 									<tbody class="tcontens">
