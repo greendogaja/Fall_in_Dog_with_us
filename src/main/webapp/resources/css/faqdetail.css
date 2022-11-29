@@ -63,8 +63,12 @@
 }
 
 .outbox{
-	width:55%;
-	margin:80px auto;	
+	width:80%;
+	margin:auto;	
+}
+.bbox{
+	width:80%;
+	margin:auto;	
 }
 .beaf,
 .beaf a{
