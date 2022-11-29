@@ -103,7 +103,7 @@
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
-												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보변경</a></li>
 												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
@@ -241,7 +241,7 @@
 						<a href="info" class="left_item" role="menuitem">내정보</a>
 					</li>
 					<li>
-						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보수정</a>
+						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보변경</a>
 					</li>
 					<li>
 						<a href="qna" class="left_item" role="menuitem">1:1문의</a>
