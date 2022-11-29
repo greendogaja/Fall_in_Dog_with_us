@@ -54,7 +54,7 @@
 </select>
 
 <select id="selectOne" resultType="vo.ShareVO">
-	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, shno
+	select title, subject, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, shno
 	from share n, user u
 	where n.id = u.id and shno=#{shno}
 </select>

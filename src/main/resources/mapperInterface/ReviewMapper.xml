@@ -27,7 +27,7 @@
 </sql>
 
 <select id="searchList" resultType="vo.ReviewVO">
-	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile
+	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, id
 	from review n, user u
 	where n.id = u.id and ( rvno>0 <include refid="search"></include>  
 	order by rvno desc
@@ -54,7 +54,7 @@
 </select>
 
 <select id="selectOne" resultType="vo.ReviewVO">
-	select title, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, rvno
+	select title, subject, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, rvno
 	from review n, user u
 	where n.id = u.id and rvno=#{rvno}
 </select>

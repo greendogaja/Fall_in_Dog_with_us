@@ -273,6 +273,7 @@ select, textarea {
 .list_forward{
 	display: flex;
 	text-align: center;
+	margin-left:5%;
 }
 
 
