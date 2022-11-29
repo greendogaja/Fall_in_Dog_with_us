@@ -32,6 +32,28 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
 
+<script>
+$(function(){
+
+ 	$('.adoptdogs').on('mouseenter', function () {
+	    $(this).addClass('backgr');
+	})
+	    .on('mouseleave', function () {
+	        $(this).removeClass('backgr');
+	    }); 
+	 
+ 	$('.hover-write').on('mouseenter', function () {
+ 		$(this).addClass('xxxx');
+	})
+	    .on('mouseleave', function () {
+	    	$(this).removeClass('xxxx');
+	    }); 
+	 
+});
+
+</script>
+
+
 </head>
 
 <body>
@@ -98,12 +120,11 @@
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<!-- <li><a href="#" style="color:white;">내가쓴글</a></li>
-												<li><a href="#" style="color:white;">내가단댓글</a></li> -->
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
-												
 												</c:if>
 		                                    </ul>
 				                      	</li>
@@ -170,34 +191,9 @@
                                             <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
-                                  <!--   <li><a href="#">Catagory</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                        </ul>
-                                    </li> -->
-                                             <li><a href="reviewList">입양후기</a></li>
                                     <li><a href="#">커뮤니티</a>
                                         <ul class="dropdown">
+                                             <li><a href="reviewList">입양후기</a></li>
                                             <li><a href="freeList">자유게시판</a></li>
                                             <li><a href="shareList">나눔장터</a></li>
                                         </ul>
@@ -333,26 +329,17 @@
                             <div class="col-12 ">
                                 <div class="single-blog-content">
                                     <!-- <a href="#" class="post-tag">Lifestyle</a> -->
-                                    <h4><a href="#" class="post-headline">공지사항</a></h4>
+                                    <h4><a href="#" class="post-headlines" style="margin-bottom:2px;">공지사항</a></h4>
                                     <div class="line"></div>
-									<ul >
-										<li>
-									    	<a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=4"> [드라마] 기막힌유산 진순이 촬영</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span>  <i class="fa fa-download" aria-hidden="true"></i>
-									        <span class="date">2022-22-22</span>
-									    </li>
-									    <li>
-									        <a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=3"> [광고] 웰메이드 포메라니안 출연 ٩(๑❛ᴗ❛๑)۶</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span> 
-									        <span class="date">${notice.regdate}</span>
-									    </li>
-									    <li>
-									        <a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=2"> [광고] SK텔레콤 구름이 출연 ٩(๑❛ᴗ❛๑)۶</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span> 
-									        <span class="date">${notice.regdate}</span>
-									    </li>
-									    <li>
-									        <a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=1"> [광고] 삼성화재 봄이 출연 ٩(๑❛ᴗ❛๑)۶</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span>  <i class="fa fa-download" aria-hidden="true"></i>
-									        <span class="date">${notice.regdate}</span>
-									    </li>
-									</ul>
+								    <table class="tablecon">
+									<tbody class="tcontens">
+										<c:forEach var="notice" items="${noticelist}">
+											<tr  onClick="location.href='ndetail?nno=${notice.nno}'">
+												<td class="docur">${notice.title} <i class="fa fa-heart" aria-hidden="true"></i></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+									</table>
                                 </div>
                             </div>
                         </div>
@@ -365,26 +352,18 @@
                             <div class="col-12 ">
                                 <div class="single-blog-content">
                                     <!-- <a href="#" class="post-tag">Lifestyle</a> -->
-                                    <h4><a href="#" class="post-headline">자주하는질문</a></h4>
+                                    <h4><a href="#" class="post-headline" style="margin-bottom:2px;">자주하는질문</a></h4>
                                     <div class="line"></div>
-									<ul >
-										<li>
-									    	<a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=4"> [드라마] 기막힌유산 진순이 촬영</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span>  <i class="fa fa-download" aria-hidden="true"></i>
-									        <span class="date">2022-22-22</span>
-									    </li>
-									    <li>
-									        <a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=3"> [광고] 웰메이드 포메라니안 출연 ٩(๑❛ᴗ❛๑)۶</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span> 
-									        <span class="date">${notice.regdate}</span>
-									    </li>
-									    <li>
-									        <a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=2"> [광고] SK텔레콤 구름이 출연 ٩(๑❛ᴗ❛๑)۶</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span> 
-									        <span class="date">${notice.regdate}</span>
-									    </li>
-									    <li>
-									        <a href="http://www.com2petcare.com/bbs/board.php?bo_table=notice&amp;wr_id=1"> [광고] 삼성화재 봄이 출연 ٩(๑❛ᴗ❛๑)۶</a>&nbsp;<span class="hot_icon"><i class="fa fa-heart" aria-hidden="true"></i><span class="sound_only">인기글</span></span>  <i class="fa fa-download" aria-hidden="true"></i>
-									        <span class="date">${notice.regdate}</span>
-									    </li>
-									</ul>
+                                    <table class="tablecon">
+									<tbody class="tcontens">
+										<c:forEach var="faq" items="${faqlist}">
+											<tr  onClick="location.href='faqdetail?fno=${faq.fno}'">
+												<td class="docur">${faq.title} <i class="fa fa-heart" aria-hidden="true"></i></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+									</table>
+									
                                 </div>
                             </div>
                         </div>
@@ -399,30 +378,14 @@
      <h1 style="text-align:center; padding-bottom:40px;"><a href="#" style="font-size:3rem; font-weight:500;">분양목록</a></h1>
 	<div class="container2">
 		<div class="row ">
+			<c:forEach var="adopt" items="${adoptlist}">
 			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header One</h3>
+				<a href="dog_detail?dno=${adopt.dno}" class="thumbnail adoptdogs"> 
+				<img src="${adopt.img }" alt="">
 				</a>
+				<p class="pict">${adopt.title}//</p>
 			</div>
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header Two</h3>
-				</a>
-			</div>
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header Three</h3>
-				</a>
-			</div>
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header Four</h3>
-				</a>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- /.section -->
@@ -432,31 +395,15 @@
    <h1 style="text-align:center; padding:40px; "><a href="#" style="font-size:3rem; font-weight:500;">분양후기</a></h1>
 	<div class="container2">
 		<div class="row ">
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header One</h3>
-				</a>
-			</div>
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header Two</h3>
-				</a>
-			</div>
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header Three</h3>
-				</a>
-			</div>
-			<div class="col-md-3">
-				<a href="#" class="thumbnail"> <img
-					src="resources/img/bg-img/b1.jpg" alt="">
-					<h3>Header Four</h3>
-				</a>
-			</div>
-		</div>
+			<c:forEach var="review" items="${reviewlist}">
+				<div class="col-md-3 ruru">
+					<a href="dog_detail?dno=${review.dno}" class="thumbnail hovers-write"> 
+					<img src="${review.img }" alt="">
+					</a>
+					<p class=" howrite" >${review.title}님의 ${review.subject} </p>
+				</div>
+			</c:forEach>
+		</div>	
 	</div>
 <!-- /.section -->
 

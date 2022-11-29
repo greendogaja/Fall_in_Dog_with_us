@@ -3,12 +3,8 @@ package service;
 import java.util.List;
 
 import noticeControl.SearchCriteria;
-import vo.NoticeReplyVO;
-import vo.NoticeVO;
 import vo.ReviewReplyVO;
 import vo.ReviewVO;
-import vo.ShareReplyVO;
-import vo.ShareVO;
 
 public interface ReviewService {
 

@@ -35,6 +35,12 @@
     <script defer="defer" src="resources/js/active.js"></script>
 	<!-- reply.js -->
     <script defer="defer" src="resources/mLib/notice_reply.js"></script>
+    <script defer="defer" src="resources/mLib/community.js"></script>
+    
+    <!-- alert, comfirm -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -158,47 +164,39 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Guide</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="aboutUs">About Us</a></li>
-                                            <li><a href="contact">Contact</a></li>
-                                            <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">Community</a>
+                                    <li><a href="#">입양목록 및 신청</a>
                                         <ul class="dropdown">
-                                            <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+		                                     <li><a href="reviewList">입양후기</a></li>
                                             <li><a href="freeList">자유게시판</a></li>
                                             <li><a href="shareList">나눔장터</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -269,7 +267,7 @@
 		</div>
 		<div class="article_writer">
 		<a href="reviewWriterList?id=${apple.id}&uploadfile=${apple.uploadfile}">
-			<span>${apple.nname}님의 게시글 더보기</span>
+			<%-- <span>${apple.nname}님의 게시글 더보기</span> --%>
 		</a>
 		</div>
 	</div>
@@ -300,7 +298,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="reviewDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -318,7 +316,7 @@
 									<div class="comment_inbox re_box dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_rereplyInsert">
+										<form action="r_rereplyInsert" id="rereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
@@ -327,7 +325,7 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="button" class="rere_btn" value="등록">
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -339,12 +337,12 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_replyUpdate">
+										<form action="r_replyUpdate" id="replyUpdate">
 											<div class="mg_b_10">${orange.nname}</div>
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" value="수정"> 
+												<input type="button" class="re_up_btn" value="수정">
 												<input type="reset" value="취소">
 												<input type="hidden" name="rvno" value="${orange.rvno}" >
 												<input type="hidden" name="rrno" value="${orange.rrno}" >
@@ -372,7 +370,7 @@
 										<div class="comment_tool">
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
-												<a class="replyUpdate">수정</a>&nbsp;&nbsp;
+												<a class="re_update">수정</a>&nbsp;&nbsp;
 												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
@@ -388,7 +386,7 @@
 									<div class="comment_inbox rere_box dp_h">
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_rereplyInsert">
+										<form action="r_rereplyInsert" id="rereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
@@ -397,7 +395,7 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="button" class="rere_btn" value="등록"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -409,7 +407,7 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_replyUpdate">
+										<form action="r_replyUpdate" id="replyUpdate">
 											<input type="hidden" name="rvno" value="${orange.rvno}" >
 											<input type="hidden" name="rrno" value="${orange.rrno}" >
 											<input type="hidden" name="id" value="${orange.id}">
@@ -417,7 +415,7 @@
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="수정"> 
+												<input type="button" class="rere_up_btn" value="수정"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -438,7 +436,7 @@
 			
 			<!-- ========================== 댓글입력 ========================== -->
 			<c:if test="${not empty loginID}">
-				<form action="r_replyInsert" method="post">
+				<form action="r_replyInsert" method="post" id="replyInsert" >
 					<div class="CommentWriter">
 						<div class="comment_inbox">
 							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
@@ -448,12 +446,14 @@
 							<div class="mg_b_10">${loginNick}</div>
 								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<input type="submit" name="commentData" id="commentData" value="등록">
+								<input type="button" class="re_btn" name="commentData" id="commentData" value="등록">
 							</div>
 						</div>
 					</div>
 				</form>
 			</c:if>
+			
+
 			
 			<c:if test="${empty loginID}">
 					<div class="CommentWriter">

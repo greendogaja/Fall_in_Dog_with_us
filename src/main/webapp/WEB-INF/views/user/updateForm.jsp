@@ -24,6 +24,9 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.min.js"></script>
 	
 	<script src="resources/mLib/inCheck.js"></script>
 	
@@ -35,6 +38,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/info.css">
+	<link rel="stylesheet" href="sweetalert2.min.css">
 	
 	 <style type="text/css">
     	.eMessage{
@@ -73,7 +77,7 @@
     	//## nname
     	$('#nname').on("keyup change", function(e){
     		nnCheck=false;
-    		$('#submit').attr('disabled','disabled');
+    		$('#submitBtn').attr('disabled','disabled');
     		$('#idDupn').prop('disabled',false);
    			e.preventDefault();  
     		nnCheck = nnmCheck();
@@ -150,14 +154,14 @@
                             ${loginNick}님 환영합니다
                             <a href="logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃"><i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i></a>
 			                      <div class="classynav" >
-				                      <ul >
+				                     <ul >
 				                      	<li class="mhover" >
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<li><a href="#" style="color:white;">내가쓴글</a></li>
-												<li><a href="#" style="color:white;">내가단댓글</a></li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
@@ -337,7 +341,7 @@
 		<div class="dinfo2">
 			<div class="account_box">
 				<h1 class="title " >내프로필</h1>
-				<form action="infoupdate" method="post" enctype="multipart/form-data">
+				<form action="infoupdate" method="post" id="updateinfo" enctype="multipart/form-data">
 					<ul class="account_row">
 						<li>
 						<div class="row_item " style="display:none;">
@@ -348,7 +352,7 @@
 						<li>
 							<div class="row_item ">
 								<span class="item_text">성명 :</span>
-								<input type="text" class="tcenter2" name="name" id="name" value="${user.name }">
+								<input type="text" class="tcenter2" name="name" id="name" value="${user.name }" maxlength="10">
 								<span id="nMessage" class="eMessage" ></span>
 							</div>
 						</li>
@@ -369,7 +373,7 @@
 						<li>
 							<div class="row_item " style="flex-wrap: wrap;">
 								<span class="item_text">별명 :</span>
-								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 10자이내" value="${user.nname}">
+								<input type="text" class="tcenter2" name="nname" id="nname" placeholder="한글,영문 8자이내" value="${user.nname}" maxlength="8">
 									<button type="button"  id="idDupn" onclick="return nickCheck()" style="margin-left:30px; font-size: 15; border-radius: 20%;" disabled>중복확인</button><br>
 									<span id="nnMessage" class="eMessage" style="margin:auto;"></span>
 							</div>
@@ -444,7 +448,7 @@
 						<li>
 							<div class="row_item ">
 								<span class="item_text">연락처 :</span>
-								<input type="text" class="tcenter2" name="phone" id="phone" placeholder="연락처 번호를(-포함) 입력해주세요" value="${user.phone}">
+								<input type="text" class="tcenter2" name="phone" id="phone" placeholder="연락처 번호를(-포함) 입력해주세요" value="${user.phone}" maxlength="11">
 									<span id="phMessage" class="eMessage"></span>
 							</div>
 						</li>
@@ -491,7 +495,7 @@
 							<a href="userdelete?id=${user.id}" >회원탈퇴 ></a>
 							<%-- <a href="userdelete?id=${user.id}" >회원탈퇴 ></a> --%>
 							<div style="float:right;">
-							<input name="submit" id="submit" onclick="return upCheck()"  type="submit" value="수정하기"
+							<input  id="submitBtn" onclick="upCheck()"  type="button" value="수정하기"
 								class="btn btn-primary"  >
 							<input class="btn btn-primary" type="reset" value="취소">
 						</div>

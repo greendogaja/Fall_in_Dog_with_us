@@ -320,7 +320,7 @@ public class FreeController {
 		
 		String uri = "redirect:freeDetail?freeno="+freeno;
 		
-		if(service.rereplyInsert(cvo)>0) {
+		if(service.replyInsert(cvo)>0) {
 			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
 		}else {
 			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");

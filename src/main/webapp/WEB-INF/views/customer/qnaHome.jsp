@@ -23,7 +23,7 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-    
+    <script src="resources/mLib/customer.js"></script>
     <script type="text/javascript" 
 		    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de9414c60aa7e6482bee260109a3caa9&libraries=services">
 	</script>
@@ -68,16 +68,14 @@
 	});//ready  
 	
 	
-		var maskingName = function(strName) {
-			  if (strName.length > 2) {
-			      var sstr = strName;
-			      sstr.replace(/(?<=.{1})./,'*');
-			    return sstr;
-			  } else {
-			    var pattern = /.$/; // 정규식
-			    return strName.replace(pattern, '*');
-			  }
-		};
+	function maskingName(strName) {
+		if (strName.length > 2) {
+			return strName.replace(strName.substr(1,1), '*');
+		} else {
+			var pattern = /.$/; // 정규식
+			return strName.replace(pattern, '*');
+		}
+	};
 	
 	
 </script>
@@ -158,14 +156,15 @@
 											style="font-size: 30px" aria-hidden="true"></i>
 											<ul class="dropdown mhover-content boradi ">
 												<li style="font-size: 1rem;">MyPage</li>
-												<li><a href="#" style="color: white;">내가쓴글</a></li>
-												<li><a href="#" style="color: white;">내가단댓글</a></li>
 												<li><a href="info" style="color: white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}"
+													style="color: white;">내정보수정</a></li>
+												<li><a href="qna" style="color: white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 													<li><a href="usearchlist" style="color: white;">회원관리</a></li>
-
 												</c:if>
-											</ul></li>
+											</ul>
+										</li>
 									</ul>
 								</div>
 							</c:if>
@@ -356,7 +355,7 @@
 				</tr>
 			</thead>
 			<tbody class="conten">
-					<c:forEach var="qna" items="${qnalist}">
+					<c:forEach var="qna" items="${qnalist}" varStatus="qnano">
 						<tr >
 							 <c:if test="${qna.secret == 1}">
 							     <c:choose>
@@ -381,8 +380,11 @@
 							
 							
 							
-							<td class="qname">
-								${qna.name }
+							<td id="qname${qnano.count}">
+								<script>
+									$('#qname${qnano.count}').text(maskingName("${qna.name}"));
+									console.log($('#qname${qnano.count}').val());
+								</script>
 							</td>
 							<td>${qna.regdate}</td>
 							

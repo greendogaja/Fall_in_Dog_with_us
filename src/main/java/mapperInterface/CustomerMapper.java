@@ -6,7 +6,7 @@ package mapperInterface;
 
 import java.util.List;
 
-import usercontrol.SearchCriteria;
+import customercontrol.CustomSearchCriteria;
 import vo.CustomerVO;
 
 
@@ -26,7 +26,7 @@ public interface CustomerMapper {
 	int delete(CustomerVO vo);
 	
 	//** List
-	List<CustomerVO> searchList(SearchCriteria cri);
-	int searchCount(SearchCriteria cri);
+	List<CustomerVO> csearchList(CustomSearchCriteria cri);
+	int searchCount(CustomSearchCriteria cri);
 	List<CustomerVO> selectList();
 }//interface

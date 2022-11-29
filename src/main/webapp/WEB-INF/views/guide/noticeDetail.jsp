@@ -36,8 +36,6 @@
 <script defer="defer" src="resources/js/plugins.js"></script>
 <!-- Active js -->
 <script defer="defer" src="resources/js/active.js"></script>
-<!-- reply.js -->
-<script defer="defer" src="resources/mLib/notice_reply.js"></script>
 <!-- Title -->
 <title>Fall IN Dog - 폴인독</title>
 
@@ -173,57 +171,53 @@
 							</div>
 
 							<!-- Nav Start -->
-							<div class="classynav">
-								<ul>
-									<li><a href="#">Guide</a>
-										<ul class="dropdown">
-											<li><a href="aboutUs">About Us</a></li>
-											<li><a href="contact">Contact</a></li>
-											<li><a href="noticeList">Notice</a></li>
-										</ul></li>
-									<li><a href="#">Catagory</a>
-										<ul class="dropdown">
-											<li><a href="#">Catagory 1</a></li>
-											<li><a href="#">Catagory 1</a></li>
-											<li><a href="#">Catagory 1</a>
-												<ul class="dropdown">
-													<li><a href="#">Catagory 2</a></li>
-													<li><a href="#">Catagory 2</a></li>
-													<li><a href="#">Catagory 2</a>
-														<ul class="dropdown">
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-														</ul></li>
-													<li><a href="#">Catagory 2</a></li>
-													<li><a href="#">Catagory 2</a></li>
-												</ul></li>
-											<li><a href="#">Catagory 1</a></li>
-											<li><a href="#">Catagory 1</a></li>
-										</ul></li>
-									<li><a href="home.jsp">About Us</a></li>
-									<li><a href="#">Community</a>
-										<ul class="dropdown">
-											<li><a href="reviewList">입양후기</a></li>
-											<li><a href="freeList">자유게시판</a></li>
-											<li><a href="shareList">나눔장터</a></li>
-										</ul></li>
-									<li><a href="home.jsp">Contact</a></li>
-								</ul>
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="#">폴인독</a>
+                                        <ul class="dropdown">
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양안내 및 절차</a>
+                                        <ul class="dropdown">
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+		                                     <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
 
-								<!-- Search Form  -->
-								<div id="search-wrapper">
-									<form action="#">
-										<input type="text" id="search"
-											placeholder="Search something...">
-										<div id="close-icon"></div>
-										<input class="d-none" type="submit" value="">
-									</form>
-								</div>
-							</div>
-							<!-- Nav End -->
+                                <!-- Search Form  -->
+                                <div id="search-wrapper">
+                                    <form action="#">
+                                        <input type="text" id="search" placeholder="Search something...">
+                                        <div id="close-icon"></div>
+                                        <input class="d-none" type="submit" value="">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
 						</div>
 					</nav>
 				</div>
@@ -290,223 +284,12 @@
 		</div>
 		<hr>
 
-		<!-- =========================== comment/댓글 ================================== -->
-		<div class="CommentBox">
-			<div class="comment_title">댓글</div>
-			<!-- 댓글 리스트 AJAX-->
-			<ul class="comment_list">
-				<!-- 댓글 리스트  -->
-				<c:if test="${not empty orange}">
-					<c:forEach var="ncomment_list" items="${orange}">
-						<li class="comment_item">
-							<!-- ==========================댓글 list==========================-->
-							<c:if test="${ncomment_list.grpl != 1}">
-
-								<div class="n_comment_area pd_15">
-									<!-- 작성자Img 저장 -->
-									<img src="${ncomment_list.uploadfile}">
-									<div class="comment_box">
-										<!-- 작성자 닉네임 -->
-										<div class="comment_nick">${ncomment_list.nname}</div>
-										<!-- 더보기 수정/삭제 -->
-										<c:if test="${loginNick == ncomment_list.nname}">
-											<div class="comment_tool">
-												<a class="comment_tool_a"><img
-													src="resources/img/notice/re_more_button.png"></a>
-												<div class="up_del dp_h">
-													<a class="re_update">수정</a>&nbsp;&nbsp; <a
-														href="ncdelete?cno=${ncomment_list.cno}&nno=${ncomment_list.nno}&grp=${ncomment_list.grp}&grps=${ncomment_list.grps}">삭제</a>
-												</div>
-											</div>
-										</c:if>
-
-										<div class="comment_text_box">
-											<div class="comment_text_view w-s_p-w">${ncomment_list.content}</div>
-
-
-										</div>
-										<div class="comment_info_box">
-											<span class="comment_info_reg">${ncomment_list.regdate}</span>
-											<a class="reply_display">답글쓰기</a>
-										</div>
-										<!-- ==========================대댓글 입력==========================-->
-										<div class="comment_inbox re_box dp_h">
-											<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
-										orange 의 vo 로 담겨져 있음 -->
-											<form action="ncreply">
-												<!-- nno는 현재 noticeController -> ndetail 메서드 ->
-													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
-												<input type="hidden" name="nno" value="${apple.nno}"
-													id="nno"> <input type="hidden" name="id"
-													value="${loginID}">
-												<div class="mg_b_10">${loginNick}</div>
-												<textarea name="content" id="content"
-													placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
-												<div class="comment_attach">
-													<input type="submit" name="commentData" id="commentData"
-														value="등록"> <input type="reset" value="취소">
-													<input type="hidden" name="grp"
-														value="${ncomment_list.grp}"> <input type="hidden"
-														name="grps" value="${ncomment_list.grps}"> <input
-														type="hidden" name="grpl" value="${ncomment_list.grpl}">
-												</div>
-											</form>
-										</div>
-										<!-- ==========================댓글 수정창==========================-->
-										<div class="comment_inbox re_box_update dp_h">
-											<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
-										orange 의 vo 로 담겨져 있음 -->
-											<form action="ncupdate">
-												<div class="mg_b_10">${ncomment_list.nname}</div>
-												<textarea name="content" id="content"
-													class="comment_textarea">${ncomment_list.content}</textarea>
-												<div class="comment_attach">
-													<input type="submit" value="수정"> <input
-														type="reset" value="취소"> <input type="hidden"
-														name="nno" value="${ncomment_list.nno}"> <input
-														type="hidden" name="cno" value="${ncomment_list.cno}">
-													<input type="hidden" name="nname"
-														value="${ncomment_list.nname}"> <input
-														type="hidden" name="grp" value="${ncomment_list.grp}">
-													<input type="hidden" name="grps"
-														value="${ncomment_list.grps}"> <input
-														type="hidden" name="grpl" value="${ncomment_list.grpl}">
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</c:if> <!-- ========================== 대댓글 list ==========================-->
-							<c:if test="${ncomment_list.grpl != 0}">
-
-								<div class="n_comment_area  pd_55">
-									<!-- 작성자Img 저장 -->
-									<img src="${ncomment_list.uploadfile}">
-									<div class="comment_box">
-										<!-- 작성자 닉네임 -->
-										<div class="comment_nick">${ncomment_list.nname}</div>
-										<!-- 더보기 수정/삭제 -->
-										<c:if test="${loginNick == ncomment_list.nname}">
-											<div class="comment_tool">
-												<a class="comment_tool_a"><img
-													src="resources/img/notice/re_more_button.png"></a>
-												<div class="up_del dp_h">
-													<a class="re_update">수정</a>&nbsp;&nbsp; <a
-														href="ncdelete?cno=${ncomment_list.cno}&nno=${ncomment_list.nno}&grp=${ncomment_list.grp}&grps=${ncomment_list.grps}">삭제</a>
-												</div>
-											</div>
-										</c:if>
-										<div class="comment_text_box">
-											<div class="comment_text_view w-s_p-w">${ncomment_list.content}</div>
-										</div>
-										<div class="comment_info_box">
-											<span class="comment_info_reg">${ncomment_list.regdate}</span>
-											<a class="rereply_display">답글쓰기</a>
-										</div>
-
-										<!-- ==========================대댓글의 대댓글 입력==========================-->
-										<div class="comment_inbox rere_box dp_h">
-											<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
-										orange 의 vo 로 담겨져 있음 -->
-											<form action="ncreply">
-												<!-- nno는 현재 noticeController -> ndetail 메서드 ->
-													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
-												<input type="hidden" name="nno" value="${apple.nno}"
-													id="nno"> <input type="hidden" name="id"
-													value="${loginID}">
-												<div class="mg_b_10">${loginNick}</div>
-												<textarea name="content" id="content"
-													placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
-												<div class="comment_attach">
-													<input type="submit" name="commentData" id="commentData"
-														value="등록"> <input type="reset" value="취소">
-													<input type="hidden" name="grp"
-														value="${ncomment_list.grp}"> <input type="hidden"
-														name="grps" value="${ncomment_list.grps}"> <input
-														type="hidden" name="grpl" value="${ncomment_list.grpl}">
-												</div>
-											</form>
-										</div>
-										<!-- ==========================대댓글 수정창==========================-->
-										<div class="comment_inbox re_box_update dp_h">
-											<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
-										orange 의 vo 로 담겨져 있음 -->
-											<form action="ncupdate">
-												<input type="hidden" name="nno" value="${ncomment_list.nno}">
-												<input type="hidden" name="cno" value="${ncomment_list.cno}">
-												<input type="hidden" name="id" value="${ncomment_list.id}">
-												<div class="mg_b_10">${ncomment_list.nname}</div>
-												<textarea name="content" id="content"
-													class="comment_textarea">${ncomment_list.content}</textarea>
-												<div class="comment_attach">
-													<input type="submit" name="commentData" id="commentData"
-														value="수정"> <input type="reset" value="취소">
-													<input type="hidden" name="grp"
-														value="${ncomment_list.grp}"> <input type="hidden"
-														name="grps" value="${ncomment_list.grps}"> <input
-														type="hidden" name="grpl" value="${ncomment_list.grpl}">
-												</div>
-											</form>
-										</div>
-
-									</div>
-								</div>
-							</c:if>
-
-						</li>
-					</c:forEach>
-				</c:if>
-			</ul>
-
-
-			<!-- ========================== 댓글입력 ========================== -->
-			<c:if test="${not empty loginID}">
-				<form action="ncinsert" method="post">
-					<div class="CommentWriter">
-						<div class="comment_inbox">
-							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
-							apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
-							<input type="hidden" name="nno" value="${apple.nno}" id="nno">
-							<input type="hidden" name="id" value="${loginID}">
-							<div class="mg_b_10">${loginNick}</div>
-							<textarea name="content" id="content" placeholder="댓글을 남겨보세요."
-								class="comment_textarea"></textarea>
-							<div class="comment_attach">
-								<input type="submit" name="commentData" id="commentData"
-									value="등록">
-							</div>
-						</div>
-					</div>
-				</form>
-			</c:if>
-
-			<c:if test="${empty loginID}">
-				<div class="CommentWriter">
-					<div class="comment_inbox">
-						<textarea name="content" id="content"
-							placeholder="로그인 후 댓글을 남겨보세요." class="comment_textarea"></textarea>
-						<div class="comment_attach">
-							<input type="submit" name="commentData" id="commentData"
-								value="등록">
-						</div>
-					</div>
-				</div>
-			</c:if>
-
-		</div>
-
-
-
-	</div>
-
 	<!-- Notice Detail End -->
 
 
 	<c:if test="${not empty message}">
-		<hr>
-${message}<br>
+		${message}<br>
 	</c:if>
-	<hr>
 	<div class="list_forward">
 		<a href="noticeList" class="list_a">목록으로</a> <a
 			href="javascript:history.go(-1)" class="forward_a">이전으로</a>

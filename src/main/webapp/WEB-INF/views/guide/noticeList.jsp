@@ -172,47 +172,39 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Guide</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="aboutUs">About Us</a></li>
-                                            <li><a href="contact">Contact</a></li>
-                                            <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">Community</a>
+                                    <li><a href="#">입양목록 및 신청</a>
                                         <ul class="dropdown">
-                                            <li><a href="review">입양후기</a></li>
-                                            <li><a href="free">자유게시판</a></li>
-                                            <li><a href="share">나눔장터</a></li>
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+		                                     <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -271,16 +263,17 @@
 			<th>글번호</th><th>말머리</th><th width="40%">제목</th><th>작성자</th><th width="20%">작성일</th><th>조회</th>
 		</tr>
 		<c:if test="${not empty banana}">
-			<c:forEach  var="notice" items="${banana}" >
-			<tr class="ntable_tr">
-				<td>${notice.nno}</td>
-				<td>${notice.subject}</td>
-				<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
-				<td>${notice.nname}</td>
-				<td>${notice.regdate}</td><td>${notice.cnt}</td>
-			</tr>
-			</c:forEach>
-		</c:if>
+				<c:forEach var="notice" items="${banana}">
+					<tr class="ntable_tr">
+						<td>${notice.nno}</td>
+						<td>${notice.subject}</td>
+						<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
+						<td>${notice.nname}</td>
+						<td>${notice.regdate}</td>
+						<td>${notice.cnt}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 	</table>
 	</div>
 	<hr>

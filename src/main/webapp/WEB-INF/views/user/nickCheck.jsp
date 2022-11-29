@@ -40,7 +40,7 @@
 
 function niOK(){
 	opener.$('#nname').val('${newNick}');
-	opener.$('#submit').prop('disabled',false);
+	opener.$('#submitBtn').prop('disabled',false);
 	
 	window.close();
 	

@@ -24,9 +24,12 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    <!-- Alert  -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <!-- Title -->
 	
-	<script>
+<script>
 	$(function(){
 		$('#searchType').change(function(){
 			if($(this).val()=='n') $('#keyword').val('');
@@ -40,15 +43,17 @@
 			+"&keyword="
 			+$('#keyword').val()
 		});
-	});
+	});//ready
 	
-	 function reclear() {
+	function reclear() {
 			$('#idkey').val('');
 			$('#namekey').val('');
 			$('#phonekey').val('');
 			return false;
-	} 
-	</script>
+	}//reclear
+	
+
+</script>
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -130,20 +135,20 @@
 									class="fa fa-sign-out" style="font-size: 30px"
 									aria-hidden="true"></i></a>
 								<div class="classynav">
-									<ul>
-										<li class="mhover"><i class="fa fa-cog "
-											style="font-size: 30px" aria-hidden="true"></i>
-											<ul class="dropdown mhover-content boradi ">
-												<li style="font-size: 1rem;">MyPage</li>
-												<li><a href="#" style="color: white;">내가쓴글</a></li>
-												<li><a href="#" style="color: white;">내가단댓글</a></li>
-												<li><a href="info" style="color: white;">회원정보</a></li>
+								   <ul >
+				                      	<li class="mhover" >
+				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
+				                      		<ul class="dropdown mhover-content boradi " >
+				                      			<li style="font-size:1rem;">MyPage</li>
+												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
-													<li><a href="#" style="color: white;">회원관리</a></li>
-
+												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
-											</ul></li>
-									</ul>
+		                                    </ul>
+				                      	</li>
+				                     </ul>
 								</div>
 							</c:if>
 						</div>
@@ -327,19 +332,20 @@
 							<th>성별</th>
 							<th>연락처</th>
 							<th>이메일</th>
+							<th>회원삭제</th>
 						</tr>
 					</thead>
 					<tbody id="find">
 						<c:forEach var="user" items="${userlist}">
-							<tr onClick="location.href='info?id=${user.id}'">
-								<td><img src="${user.uploadfile}"></td>
-								<td style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
-								<td>${user.name}</td>
-								<td>${user.yy}-${user.mm}-${user.dd}</td>
-								<td>${user.nname}</td>
-								<td>${user.gender}</td>
-								<td >
-								<span class="tcenter2" id="${user.id}">${user.phone}
+							<tr id="info?id=${user.id}">
+								<td class="userDetail"><img src="${user.uploadfile}"></td>
+								<td class="userDetail" style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
+								<td class="userDetail">${user.name}</td>
+								<td class="userDetail">${user.yy}-${user.mm}-${user.dd}</td>
+								<td class="userDetail">${user.nname}</td>
+								<td class="userDetail">${user.gender}</td>
+								<td class="userDetail" >
+								<span class="tcenter2 userDetail" id="${user.id}">${user.phone}
 								</span>
 								<script>
 									 var num = "${user.phone}";
@@ -347,8 +353,42 @@
 									 $('#${user.id}').text(data);
 								</script>
 								</td>
-								<td>${user.email}</td>
+								<td class="userDetail">${user.email}</td>
+								<td class="deleteUser" id="userdelete?id=${user.id}" ><span>Delete</span>
+									<script>
+										$('.deleteUser').click(function (e) {
+											e.preventDefault();
+											function deleteUser() {
+												Swal.fire({
+													title: '회원삭제를 하시겠습니까?',
+													showDenyButton: true,
+													showCancelButton: true,
+													confirmButtonText: '네',
+													denyButtonText: `아니오`,
+												}).then((result) => {
+													if (result.isConfirmed) {
+														Swal.fire({
+															icon: 'success',
+															title: '삭제 되었습니다.',
+															showConfirmButton: false,
+															timer: 3000
+														});
+														setTimeout(() =>location.href="userdelete?id=${user.id}" , 1000);			
+													} else if (result.isDenied) {
+														Swal.fire('삭제하지 못하였습니다.', '', 'info');
+													}
+												});//comfirm
+											}//userDelete
+											deleteUser();
+										});
+									</script>
+								</td>
 							</tr>
+							<script>
+								$('.userDetail').click(function() {
+									location.href=$(this).parent().attr("id");
+								});
+							</script>
 						</c:forEach>
 					</tbody>
 				</table>
