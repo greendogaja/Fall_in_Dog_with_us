@@ -18,9 +18,9 @@ public class DogCriteria {
 		else this.currPage=1;
 	}
 	public void setRowsPerPage(int rowsPerPage) {
-		if ( rowsPerPage>9  &&  rowsPerPage<=50 )
+		if ( rowsPerPage>8  &&  rowsPerPage<=50 )
 			 this.rowsPerPage=rowsPerPage;
-		else this.rowsPerPage=9; 
+		else this.rowsPerPage=4; 
 	}
 	public void setSnoEno() {
 		if ( this.sno<1 ) this.sno=1;

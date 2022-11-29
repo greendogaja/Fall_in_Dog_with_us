@@ -26,7 +26,6 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="sweetalert2.min.js"></script>
-	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -360,7 +359,7 @@
 					<span>회원가입</span>
 				</h1>
 				<hr>
-				<form action="join" class="form-horizontal" method="post"
+				<form action="join" class="form-horizontal" method="post" 
 					name="signup" id="signup" enctype="multipart/form-data" style="margin:auto;">
 					<div class="form-group">
 						<label class="control-label col-sm-3">아이디<span

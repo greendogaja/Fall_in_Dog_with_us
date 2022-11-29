@@ -102,9 +102,9 @@
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
-												<li><span class="goqnaone" >내가쓴글</span></li>
-												<li><span >내가단댓글</span></li>
-												<li><span >회원정보</span></li>
+												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
@@ -238,13 +238,13 @@
 			<div class="header_left">
 				<ul class="left_menu" role="menu">
 					<li>
+						<a href="info" class="left_item" role="menuitem">내정보</a>
+					</li>
+					<li>
 						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보수정</a>
 					</li>
 					<li>
-						<span class="left_item goqnaone" role="menuitem">내가쓴글</span>
-					</li>
-					<li>
-						<span class="left_item" role="menuitem">내가단댓글</span>
+						<a href="qna" class="left_item" role="menuitem">1:1문의</a>
 					</li>
 				</ul>
 			</div>
