@@ -2225,7 +2225,7 @@ textarea:focus~.highlight {
     transition-duration: 500ms;
     text-decoration: none;
     outline: none;
-    font-size: 19px;
+    font-size: 17px;
 }
 .tcontens{
 	line-height:25px;	
