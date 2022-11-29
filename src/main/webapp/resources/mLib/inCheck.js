@@ -1,7 +1,19 @@
-
-
-
-
+$(function(){
+	$('form').on('submit', function() {
+      var invalidInputs = $(":invalid", this);
+      if (invalidInputs.length > 0) {
+         Swal.fire({
+            icon: 'error',
+            title: '경고',
+            text: '양식에 맞지 않습니다.',
+         });
+         $(invalidInputs).val('');
+         return false;
+      }else{
+         return true;
+      }
+   });//form
+});//ready
 
 function idCheck() {
 
@@ -78,9 +90,6 @@ function nnmCheck() {
 }//nnmCheck
 
 
-
-
-
 function phoCheck() {
 	let phone = $('#phone').val();
 	if (phone.length != 11) {
@@ -106,7 +115,9 @@ function bryCheck() {
 		$('#brMessage').html('');
 		return true;
 	}
-}
+}//bryCheck
+
+
 function brmCheck() {
 
 	let mm = $("#mm option:selected").text();
@@ -117,7 +128,9 @@ function brmCheck() {
 		$('#brMessage').html('');
 		return true;
 	}
-}
+}//brmCheck
+
+
 function brdCheck() {
 
 	let dd = $("#dd option:selected").text();
@@ -128,7 +141,7 @@ function brdCheck() {
 		$('#brMessage').html('');
 		return true;
 	}
-}
+}//brdCheck
 
 function dupCheck() {
 	if (iCheck == false) iCheck = idCheck();
@@ -146,7 +159,7 @@ function nickCheck() {
 		window.open(url, '_blank',
 			'width=400,height=300,resizable=yes,toolbar=no,menubar=yes,left=500,top=500');
 	}
-}//dupCheck
+}//nickCheck
 
 
 function inCheck() {
@@ -159,8 +172,6 @@ function inCheck() {
 	if (bCheck == false) { $('#brMessage').html('생년월일을 확인하세요.'); }
 
 	if (iCheck && pCheck && ppCheck && nCheck && nnCheck && phCheck && bCheck) {
-
-
 		Swal.fire({
 			title: '회원가입 양식을 제출하시겠습니까?',
 			showDenyButton: true,
@@ -183,8 +194,6 @@ function inCheck() {
 				Swal.fire('제출하지 못하였습니다.', '', 'info');
 			}
 		})
-
-
 	} else {
         Swal.fire({
            title: '알림',
@@ -193,7 +202,7 @@ function inCheck() {
            timer : 1500,
            showConfirmButton : false
         });
-	}
+	}//else
 
 }//inCheck
 function upCheck() {
@@ -228,8 +237,6 @@ function upCheck() {
 				Swal.fire('수정하지 못하였습니다.', '', 'info');
 			}
 		})
-
-
 	} else {
         Swal.fire({
            title: '알림',
@@ -238,22 +245,7 @@ function upCheck() {
            timer : 1500,
            showConfirmButton : false
         });
-	}
+	}//else
 }//inCheck
 
-$(function(){
-	$('form').on('submit', function() {
-      var invalidInputs = $(":invalid", this);
-      if (invalidInputs.length > 0) {
-         Swal.fire({
-            icon: 'error',
-            title: '경고',
-            text: '양식에 맞지 않습니다.',
-         });
-         $(invalidInputs).val('');
-         return false;
-      }else{
-         return true;
-      }
-   });
-});
+

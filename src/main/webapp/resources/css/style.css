@@ -2265,7 +2265,7 @@ textarea:focus~.highlight {
     overflow: hidden;
     bottom: -5%;
     color: white;
-    font-size: 23px;
+    font-size: 21px;
     left: 14px;
 }
 .howrite{
@@ -2280,8 +2280,12 @@ textarea:focus~.highlight {
     color: white;
     font-size: 23px;
     left: 14px;
-    transition: top .7s;
+    transition: all .7s;
     border-radius:10%;
+}
+.howrite.visibleBox{
+	visibility:hidden;
+	opacity: 0;
 }
 
 

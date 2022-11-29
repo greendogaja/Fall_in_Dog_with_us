@@ -33,68 +33,54 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/joinf.css">
 
-
-
-<script>
-
-
-function idOK(){
-	opener.$('#id').val('${newId}');
-	
-	
-	opener.$('#idDup').prop('disabled',true);
-	
-	opener.$('#id').prop('readonly',true);
-	opener.$('#password').focus();
-	
-	window.close();
-	
-}//idOK
-</script>
-
-
-
-
+	<script>
+		function idOK(){
+			opener.$('#id').val('${newId}');
+			opener.$('#idDup').prop('disabled',true);
+			opener.$('#id').prop('readonly',true);
+			opener.$('#password').focus();
+			window.close();
+		}//idOK
+	</script>
 </head>
 <body>
-<div id="wrap" >
-<form action="dupCheck" method="get">
-	<legend>아이디 중복확인</legend>
-			<div class="form-group">
-				<label class="control-label col-sm-3">별명<span
-					class="text-danger">*</span></label>
-				<div class="col-md-8 col-sm-9 ">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-envelope"></i></span> <input type="text"
-							class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
-							value=""> 
-						<button type="submit" class="doubch" onclick="return idCheck()"
-							style="margin-left: 30px;">ID 중복확인</button>
-							<span id="iMessage" class="eMessage"></span>
+	<div id="wrap" >
+		<!--중복확인  -->
+		<form action="dupCheck" method="get">
+			<legend>아이디 중복확인</legend>
+					<div class="form-group">
+						<label class="control-label col-sm-3">별명<span
+							class="text-danger">*</span></label>
+						<div class="col-md-8 col-sm-9 ">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-envelope"></i></span> <input type="text"
+									class="form-control" name="id" id="id" placeholder="영문,숫자 10자이내"
+									value=""> 
+								<button type="submit" class="doubch" onclick="return idCheck()"
+									style="margin-left: 30px;">ID 중복확인</button>
+									<span id="iMessage" class="eMessage"></span>
+							</div>
+							<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
+						</div>
 					</div>
-					<small>귀하의 이메일, ID는 계정 보안, 승인 및 액세스 복구를 위해 사용됩니다.</small>
-				</div>
-			</div>
-</form>
-	<hr>
-    <div id="msgBlock">
-    	<c:if test="${isUse=='T'}">
-    		${newId}는 사용 가능합니다 &nbsp;&nbsp;
-    		<input type="button" value="사용" onclick="idOK()">
-    	</c:if>
-    	<c:if test="${isUse=='F' }">
-    		${newId}는 사용중 <br>
-    		다시 입력 하세요 
-    		<script>
-    			$('#id').focus();
-    			opener.document.getElementById('id').value='';
-    		</script>
-    	</c:if>
-    </div>
-</div>
-
-
-
+		</form><!--중복확인끝  -->
+		<hr>
+		<!-- 메세지박스 -->
+	    <div id="msgBlock">
+	    	<c:if test="${isUse=='T'}">
+	    		${newId}는 사용 가능합니다 &nbsp;&nbsp;
+	    		<input type="button" value="사용" onclick="idOK()">
+	    	</c:if>
+	    	<c:if test="${isUse=='F' }">
+	    		${newId}는 사용중 <br>
+	    		다시 입력 하세요 
+	    		<script>
+	    			$('#id').focus();
+	    			opener.document.getElementById('id').value='';
+	    		</script>
+	    	</c:if>
+	    </div><!-- msgBlock -->
+	</div><!-- wrap  -->
 </body>
 </html>
