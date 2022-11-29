@@ -29,6 +29,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <!-- Title -->
 	
+    <!-- Title -->
+    <title>Fall IN Dog - 폴인독</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/ficon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/usearch.css">
+	
 <script>
 	$(function(){
 		$('#searchType').change(function(){
@@ -51,19 +60,7 @@
 			$('#phonekey').val('');
 			return false;
 	}//reclear
-	
-
 </script>
-	
-    <!-- Title -->
-    <title>Fall IN Dog - 폴인독</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="resources/img/core-img/ficon.ico">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/usearch.css">
-	
 </head>
 <body>
 	<!-- Preloader -->
@@ -259,13 +256,11 @@
 	</header>
 	<!-- ##### Header Area End ##### -->
 	
-	
+	<!--회원관리  -->
 	<div class="container">
 		<h2 class="headertext">
 			회원 관리
 		</h2>
-	
-	
 		<!--조건이 있을때  -->
 		<!--입력값이 있을때 유지  -->
 		<div class="panel panel-default box1">
@@ -317,7 +312,7 @@
 				</form>
 			</div>
 		</div>
-
+		<!--회원명단 출력  -->
 		<div class="panel panel-default box2">
 			<div class="panel-heading"><h3>회원명단 출력</h3></div>
 			<div class="panel-body">
@@ -392,14 +387,14 @@
 						</c:forEach>
 					</tbody>
 				</table>
-							
+				<!--검색결과  -->		
 				<div class="form-group searchresult" >
 						<span  class="btnn btn-default" >
 							검색결과 <span class="badge">${pageMaker.totalRowsCount}건</span>
 						</span>
 				</div>
+				<!--검색바  -->	
 				<div id="searchbar">
-					
 					<div class="form-group">
 						<select class="form-control" name="searchType" id="searchType">
 							<option value="n" ${pageMaker.cri.searchType=='null' ? 'selected' : ''}>전체</option>
@@ -408,16 +403,11 @@
 							<option value="semail" ${pageMaker.cri.searchType=='semail' ? 'selected' : ''}>이메일</option>
 						</select>
 					</div>
-					
 					<div>
 						<input type="text" class="form-control" id="keyword" name="keyword" value="${pageMaker.cri.keyword}">
 					</div>
-					
 					<button id="searchBtn" class="btn btn-default">Search</button>
-					
 				</div>
-					
-					
 			</div>
 		</div>
 	</div>
