@@ -38,226 +38,201 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/usearch.css">
 	
-<script>
-	$(function(){
-		$('#searchType').change(function(){
-			if($(this).val()=='n') $('#keyword').val('');
-		});
+	<script>
+		$(function(){
+			$('#searchType').change(function(){
+				if($(this).val()=='n') $('#keyword').val('');
+			});
+			
+			$('#searchBtn').click(function(){
+				self.location="usearchlist"
+				+"${pageMaker.makeQuery(1)}"
+				+"&searchType="
+				+$('#searchType').val()
+				+"&keyword="
+				+$('#keyword').val()
+			});
+		});//ready
 		
-		$('#searchBtn').click(function(){
-			self.location="usearchlist"
-			+"${pageMaker.makeQuery(1)}"
-			+"&searchType="
-			+$('#searchType').val()
-			+"&keyword="
-			+$('#keyword').val()
-		});
-	});//ready
-	
-	function reclear() {
-			$('#idkey').val('');
-			$('#namekey').val('');
-			$('#phonekey').val('');
-			return false;
-	}//reclear
-</script>
+		function reclear() {
+				$('#idkey').val('');
+				$('#namekey').val('');
+				$('#phonekey').val('');
+				return false;
+		}//reclear
+	</script>
 </head>
 <body>
-	<!-- Preloader -->
-	<div id="preloader">
-		<div class="preload-content">
-			<div id="original-load"></div>
-		</div>
-	</div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preload-content">
+            <div id="original-load"></div>
+        </div>
+    </div>
 
-	<!-- Subscribe Modal -->
-	<div class="subscribe-newsletter-area">
-		<div class="modal fade" id="subsModal" tabindex="-1" role="dialog"
-			aria-labelledby="subsModal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="modal-body">
-						<h5 class="title">Subscribe to my newsletter</h5>
-						<form action="#" class="newsletterForm" method="post">
-							<input type="email" name="email" id="subscribesForm2"
-								placeholder="Your e-mail here">
-							<button type="submit" class="btn original-btn">Subscribe</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- Subscribe Modal -->
+    <div class="subscribe-newsletter-area">
+        <div class="modal fade" id="subsModal" tabindex="-1" role="dialog" aria-labelledby="subsModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="modal-body">
+                        <h5 class="title">Subscribe to my newsletter</h5>
+                        <form action="#" class="newsletterForm" method="post">
+                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
+                            <button type="submit" class="btn original-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<!-- ##### Header Area Start ##### -->
-	<header class="header-area">
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
 
-		<!-- Top Header Area -->
-		<div class="top-header">
-			<div class="container h-100">
-				<div class="row h-110 align-items-center">
-					<!-- Breaking News Area -->
-					<div class="col-12 col-sm-8">
-						<div class="breaking-news-area">
-							<div id="breakingNewsTicker" class="ticker">
-								<ul>
-									<li><a href="#">Fall In Dog </a></li>
-									<li><a href="#">공지사항</a></li>
-									<li><a href="#">입양안내 및 절차</a></li>
-									<li><a href="#">분양중 동물 </a></li>
-									<li><a href="#">1:1문의</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- Top Social Area -->
-					<div class="col-12 col-sm-4">
-						<div class="top-social-area dologin">
-							<c:if test="${empty loginID}">
-								<a href="loginf" data-toggle="tooltip" data-placement="bottom"
-									title="로그인"><i class="fa fa-linkedin"
-									style="font-size: 30px" aria-hidden="true"></i></a>
-								<a href="joinf" data-toggle="tooltip" data-placement="bottom"
-									title="회원가입"><i class="fa fa-user-plus"
-									style="font-size: 30px" aria-hidden="true"></i></a>
-							</c:if>
-							<c:if test="${!empty loginID}">
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-110 align-items-center">
+                    <!-- Breaking News Area -->
+                    <div class="col-12 col-sm-8">
+                        <div class="breaking-news-area">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a href="aboutUs">Fall In Dog </a></li>
+                                    <li><a href="noticeList">공지사항</a></li>
+                                    <li><a href="adopt_procedure">입양안내 및 절차</a></li>
+                                    <li><a href="dog_list_S">분양중 동물 </a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Social Area -->
+                    <div class="col-12 col-sm-4">
+                        <div class="top-social-area dologin">
+                        	<c:if test="${empty loginID}">
+                            <a href="loginf" data-toggle="tooltip" data-placement="bottom" title="로그인"><i class="fa fa-linkedin" style="font-size:30px" aria-hidden="true"></i></a>
+                            <a href="joinf" data-toggle="tooltip" data-placement="bottom" title="회원가입"><i class="fa fa-user-plus" style="font-size:30px" aria-hidden="true"></i></a>
+                        	</c:if>
+                            <c:if test="${!empty loginID}">
                             ${loginNick}님 환영합니다
-                            <a href="logout" data-toggle="tooltip"
-									data-placement="bottom" title="로그아웃"><i
-									class="fa fa-sign-out" style="font-size: 30px"
-									aria-hidden="true"></i></a>
-								<div class="classynav">
-								   <ul >
+                            <a href="logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃"><i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i></a>
+			                      <div class="classynav" >
+				                      <ul >
 				                      	<li class="mhover" >
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
-												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보변경</a></li>
 												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
 												</c:if>
 		                                    </ul>
 				                      	</li>
-				                     </ul>
-								</div>
-							</c:if>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+				                      </ul>
+			                      </div>
+                            </c:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<!-- Logo Area -->
-		<div class="logo-area text-center">
-			<div class="container h-100">
-				<div class="row h-100 align-items-center">
-					<div class="col-12">
-						<a href="home" class="original-logo"><img
-							src="resources/img/core-img/flogo.png" alt=""></a>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!-- Logo Area -->
+        <div class="logo-area text-center">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt="" style="margin-right: 29px;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<!-- Nav Area -->
-		<div class="original-nav-area" id="stickyNav">
-			<div class="classy-nav-container breakpoint-off">
-				<div class="container">
-					<!-- Classy Menu -->
-					<nav class="classy-navbar justifyww">
+        <!-- Nav Area -->
+        <div class="original-nav-area" id="stickyNav">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justifyww">
 
+                     
 
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
 
-						<!-- Navbar Toggler -->
-						<div class="classy-navbar-toggler">
-							<span class="navbarToggler"><span></span><span></span><span></span></span>
-						</div>
+                        <!-- Menu -->
+                        <div class="classy-menu" id="originalNav">
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
 
-						<!-- Menu -->
-						<div class="classy-menu" id="originalNav">
-							<!-- close btn -->
-							<div class="classycloseIcon">
-								<div class="cross-wrap">
-									<span class="top"></span><span class="bottom"></span>
-								</div>
-							</div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="#">폴인독</a>
+                                        <ul class="dropdown">
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양안내 및 절차</a>
+                                        <ul class="dropdown">
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+                                             <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
 
-							<!-- Nav Start -->
-							<div class="classynav">
-								<ul>
-									<li><a href="#">Guide</a>
-										<ul class="dropdown">
-											<li><a href="aboutUs">About Us</a></li>
-											<li><a href="contact">Contact</a></li>
-											<li><a href="noticeList">Notice</a></li>
-										</ul></li>
-									<li><a href="#">Adopt</a>
-										<ul class="dropdown">
-											<li><a href="adopt_guide">입양 위탁 소개</a></li>
-											<li><a href="adopt_procedure">입양 위탁 절차</a></li>
-											<li><a href="dog_list_S">보호/입양중 목록</a></li>
-											<li><a href="adopt_board">입양 신청</a></li>
-										</ul></li>
-									<li><a href="#">Catagory</a>
-										<ul class="dropdown">
-											<li><a href="#">Catagory 1</a></li>
-											<li><a href="#">Catagory 1</a></li>
-											<li><a href="#">Catagory 1</a>
-												<ul class="dropdown">
-													<li><a href="#">Catagory 2</a></li>
-													<li><a href="#">Catagory 2</a></li>
-													<li><a href="#">Catagory 2</a>
-														<ul class="dropdown">
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-															<li><a href="#">Catagory 3</a></li>
-														</ul></li>
-													<li><a href="#">Catagory 2</a></li>
-													<li><a href="#">Catagory 2</a></li>
-												</ul></li>
-											<li><a href="#">Catagory 1</a></li>
-											<li><a href="#">Catagory 1</a></li>
-										</ul></li>
-									<li><a href="home.jsp">About Us</a></li>
-									<li><a href="#">Community</a>
-										<ul class="dropdown">
-											<li><a href="review">입양후기</a></li>
-											<li><a href="free">자유게시판</a></li>
-											<li><a href="share">나눔장터</a></li>
-										</ul></li>
-									<li><a href="home.jsp">Contact</a></li>
-								</ul>
-
-								<!-- Search Form  -->
-								<div id="search-wrapper">
-									<form action="#">
-										<input type="text" id="search"
-											placeholder="Search something...">
-										<div id="close-icon"></div>
-										<input class="d-none" type="submit" value="">
-									</form>
-								</div>
-							</div>
-							<!-- Nav End -->
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- ##### Header Area End ##### -->
+                                <!-- Search Form  -->
+                                <div id="search-wrapper">
+                                    <form action="#">
+                                        <input type="text" id="search" placeholder="Search something...">
+                                        <div id="close-icon"></div>
+                                        <input class="d-none" type="submit" value="">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
 	
 	<!--회원관리  -->
-	<div class="container">
+	<div class="container" style="min-width: 1000px;">
 		<h2 class="headertext">
 			회원 관리
 		</h2>
@@ -311,88 +286,93 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div><!-- 검색끝 -->
+		
 		<!--회원명단 출력  -->
 		<div class="panel panel-default box2">
 			<div class="panel-heading"><h3>회원명단 출력</h3></div>
-			<div class="panel-body">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>프로필</th>
-							<th>아이디</th>
-							<th>이름</th>
-							<th>생년월일</th>
-							<th>별명</th>
-							<th>성별</th>
-							<th>연락처</th>
-							<th>이메일</th>
-							<th>회원삭제</th>
-						</tr>
-					</thead>
-					<tbody id="find">
-						<c:forEach var="user" items="${userlist}">
-							<tr id="info?id=${user.id}">
-								<td class="userDetail"><img src="${user.uploadfile}"></td>
-								<td class="userDetail" style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
-								<td class="userDetail">${user.name}</td>
-								<td class="userDetail">${user.yy}-${user.mm}-${user.dd}</td>
-								<td class="userDetail">${user.nname}</td>
-								<td class="userDetail">${user.gender}</td>
-								<td class="userDetail" >
-								<span class="tcenter2 userDetail" id="${user.id}">${user.phone}
-								</span>
-								<script>
-									 var num = "${user.phone}";
-									 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-									 $('#${user.id}').text(data);
-								</script>
-								</td>
-								<td class="userDetail">${user.email}</td>
-								<td class="deleteUser" id="userdelete?id=${user.id}" ><span>Delete</span>
-									<script>
-										$('.deleteUser').click(function (e) {
-											e.preventDefault();
-											function deleteUser() {
-												Swal.fire({
-													title: '회원삭제를 하시겠습니까?',
-													showDenyButton: true,
-													showCancelButton: true,
-													confirmButtonText: '네',
-													denyButtonText: `아니오`,
-												}).then((result) => {
-													if (result.isConfirmed) {
-														Swal.fire({
-															icon: 'success',
-															title: '삭제 되었습니다.',
-															showConfirmButton: false,
-															timer: 3000
-														});
-														setTimeout(() =>location.href="userdelete?id=${user.id}" , 1000);			
-													} else if (result.isDenied) {
-														Swal.fire('삭제하지 못하였습니다.', '', 'info');
-													}
-												});//comfirm
-											}//userDelete
-											deleteUser();
-										});
-									</script>
-								</td>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>프로필</th>
+								<th>아이디</th>
+								<th>이름</th>
+								<th>생년월일</th>
+								<th>별명</th>
+								<th>성별</th>
+								<th>연락처</th>
+								<th>이메일</th>
+								<th>회원삭제</th>
 							</tr>
-							<script>
-								$('.userDetail').click(function() {
-									location.href=$(this).parent().attr("id");
-								});
-							</script>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						
+						<!-- 회원목록 -->
+						<tbody id="find">
+							<c:forEach var="user" items="${userlist}">
+								<tr id="info?id=${user.id}">
+									<td class="userDetail"><img src="${user.uploadfile}"></td>
+									<td class="userDetail" style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
+									<td class="userDetail">${user.name}</td>
+									<td class="userDetail">${user.yy}-${user.mm}-${user.dd}</td>
+									<td class="userDetail">${user.nname}</td>
+									<td class="userDetail">${user.gender}</td>
+									<td class="userDetail" >
+									<span class="tcenter2 userDetail" id="${user.id}">${user.phone}
+									</span>
+									<script>
+										 var num = "${user.phone}";
+										 var data = num.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+										 $('#${user.id}').text(data);
+									</script>
+									</td>
+									<td class="userDetail">${user.email}</td>
+									<td class="deleteUser" id="userdelete?id=${user.id}" ><span>Delete</span>
+										<script>
+											$('.deleteUser').click(function (e) {
+												e.preventDefault();
+												function deleteUser() {
+													Swal.fire({
+														title: '회원삭제를 하시겠습니까?',
+														showDenyButton: true,
+														showCancelButton: true,
+														confirmButtonText: '네',
+														denyButtonText: `아니오`,
+													}).then((result) => {
+														if (result.isConfirmed) {
+															Swal.fire({
+																icon: 'success',
+																title: '삭제 되었습니다.',
+																showConfirmButton: false,
+																timer: 3000
+															});
+															setTimeout(() =>location.href="userdelete?id=${user.id}" , 1000);			
+														} else if (result.isDenied) {
+															Swal.fire('삭제하지 못하였습니다.', '', 'info');
+														}
+													});//comfirm
+												}//userDelete
+												deleteUser();
+											});
+										</script>
+									</td>
+								</tr>
+								<script>
+									$('.userDetail').click(function() {
+										location.href=$(this).parent().attr("id");
+									});
+								</script>
+							</c:forEach>
+						</tbody>
+					</table><!-- 회원명단끝 -->
+				
 				<!--검색결과  -->		
 				<div class="form-group searchresult" >
 						<span  class="btnn btn-default" >
 							검색결과 <span class="badge">${pageMaker.totalRowsCount}건</span>
 						</span>
 				</div>
+			
 				<!--검색바  -->	
 				<div id="searchbar">
 					<div class="form-group">
@@ -410,93 +390,85 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> <!-- 회원관리끝  -->
+	
+	<!-- 페이징 -->
 	<div align="center" class="pagecs">
-	<!-- First, Prev -->
-	<c:choose>
-		<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
-			<a href="usearchlist${pageMaker.searchQuery(1)}">처음</a>&nbsp;
-			<a href="usearchlist${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
-			
-		</c:when>
-		<c:otherwise>
-			<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>   
-		</c:otherwise>
-	</c:choose>	
-	<!-- Displag PageNo -->
-	<c:forEach  var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
-		<c:if test="${i==pageMaker.cri.currPage}">
-			<font size="6" color="Orange">${i}</font>&nbsp;
-		</c:if>
-		<c:if test="${i!=pageMaker.cri.currPage}">
-			<a href="usearchlist${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
-		</c:if>
-	</c:forEach>
-	<!-- Next, Last -->
-	<c:choose>
-		<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-			<a href="usearchlist${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>  
-			<a href="usearchlist${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a> 
-		</c:when>
-		<c:otherwise>
-			<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>   
-		</c:otherwise>
-	</c:choose>
-</div>
+		<!-- First, Prev -->
+		<c:choose>
+			<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+				<a href="usearchlist${pageMaker.searchQuery(1)}">처음</a>&nbsp;
+				<a href="usearchlist${pageMaker.searchQuery(pageMaker.spageNo-1)}">&lt;</a>&nbsp;&nbsp; 
+				
+			</c:when>
+			<c:otherwise>
+				<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>   
+			</c:otherwise>
+		</c:choose>	
+		<!-- Displag PageNo -->
+		<c:forEach  var="i" begin="${pageMaker.spageNo}" end="${pageMaker.epageNo}">
+			<c:if test="${i==pageMaker.cri.currPage}">
+				<font size="6" color="Orange">${i}</font>&nbsp;
+			</c:if>
+			<c:if test="${i!=pageMaker.cri.currPage}">
+				<a href="usearchlist${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
+			</c:if>
+		</c:forEach>
+		<!-- Next, Last -->
+		<c:choose>
+			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
+				<a href="usearchlist${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>  
+				<a href="usearchlist${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;마지막</a> 
+			</c:when>
+			<c:otherwise>
+				<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>   
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<!-- 페이징끝  -->
 	
-	
-	<!--######################### Footer -->
+   <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                   
                     <!-- Footer Nav Area -->
                     <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
                         <nav class="classy-navbar ">
-
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
                                 <span class="navbarToggler"><span></span><span></span><span></span></span>
                             </div>
-
                             <!-- Menu -->
                             <div class="classy-menu">
-
                                 <!-- close btn -->
                                 <div class="classycloseIcon">
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
-
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="noticeList">공지사항</a></li>
+                                        <li><a href="contact">오시는길</a></li>
+                                        <li><a href="dog_list_S">입양목록</a></li>
+                                        <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="reviewList">입양후기</a></li>
+                                        <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
-                                </div>
+                            	</div><!--classynav  -->
                                 <!-- Nav End -->
-                            </div>
+                            </div><!--classy-menu  -->
                         </nav>
-                    </div>
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
-대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
-E-mail : fallindogkorea@gmail.com <br>
-Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div><!-- classy-nav-container breakpoint-off -->
+                </div><!-- col-12 -->
+            </div><!-- row  -->
+        </div><!-- container -->
+		법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+		대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+		E-mail : fallindogkorea@gmail.com <br>
+		Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
     </footer>
 </body>
 </html>

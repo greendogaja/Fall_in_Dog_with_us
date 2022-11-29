@@ -1,9 +1,4 @@
-
-
 $(function() {
-	//################################################################
-	//faq	
-	
 	 $('#guidemenu').click(function(){
        if($('#hidebox').hasClass("hidex")){
            $("#hidebox").removeClass("hidex");
@@ -13,19 +8,10 @@ $(function() {
     });//hidex //이용안내박스
 	
 	
-	
 	$('#searchType').change(function(){
 			if($(this).val()=='n') $('#keyword').val('');
-	});
+	});//클리어검색창
 		
-	
-	
-
-	
-	
-	
-	
-	//##########################################################################
 	var pageUrl = window.location.href; 
   	 $('.left-bar span').siblings('span').removeClass('clicked'); 
      
@@ -33,9 +19,11 @@ $(function() {
          $('.left-bar span').eq(4).addClass('clicked');
      } else if (pageUrl.indexOf('roadmove') > -1) { 
          $('.left-bar span').eq(6).addClass('clicked');
-     } 
-
-
+     } else if (pageUrl.indexOf('qna') > -1) { 
+         $('.left-bar span').eq(5).addClass('clicked');
+     } else if (pageUrl.indexOf('procedure') > -1) { 
+         $('.left-bar span').eq(3).addClass('clicked');
+     } //사이드정보창 클릭한곳 색지정
 
 	var searchq =location.search;
 	var params = new URLSearchParams(searchq);
@@ -59,8 +47,10 @@ $(function() {
      } else{
          $('.bcho span').eq(0).removeClass('bobo');
          $('.bcho span').eq(0).addClass('base');
-     } 
-	     
+     } //faq 클릭검색 색지정
+     
+     
+    //검색창 
   	$('#searchBtn').click(function(){
 	self.location="customerhome"
 	+"?currPage=1&rowsPerPage=5"
@@ -97,7 +87,7 @@ $(function() {
 		+"&searchType=st"
 		+"&keyword=방문"+'#area';
 	});//방문
-	//기타
+	//기타sideBoxsideBoxsideBoxsideBox
 	$('#meother').click(function(){
 		self.location="customerhome"
 		+"?currPage=1&rowsPerPage=5"
@@ -105,29 +95,18 @@ $(function() {
 		+"&keyword=기타"+'#area';
 	});//기타
 	  	  
-	
-	
-	
+	//사이드반응형
+	$('#box').on('mouseover',function(){
+		console.log("Tt");
+		$(this).children('div').children('div').children('.big_title').toggleClass('sideBox1');
+		$(this).children('div').children('div').children('.sideBox').toggleClass('sideBox2');
+	}).on('mouseout',function(){
+		console.log("Tt");
+		$(this).children('div').children('div').children('.big_title').toggleClass('sideBox1');
+		$(this).children('div').children('div').children('.sideBox').toggleClass('sideBox2');
+	});
 
 });//ready
-	
-
-function faqDetail(fno) {
-	$.ajax({
- 			type:'Get',
- 			url:'faqdetail',
- 			data: {
- 				fno: fno 
- 			},
- 			success:function(resultPage){
- 				$('#resultarea').html(resultPage);
- 			},
- 			error:function(){
- 				$('#resultarea').html('~~ 서버 오류 !! 잠시후 다시 하세요 ~~');
- 			}
- 		}); //ajax
-} //faqDetail1
-
 	
 	
 	
