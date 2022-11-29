@@ -44,12 +44,12 @@ public class QnaController {
 		else cri.setSearchType(searchType);
 		if( keyword == null || keyword.length()<1 ) cri.setKeyword(null); 
 		else cri.setKeyword(keyword);
-		 if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
-		 else cri.setNamekey(namekey);
-		 if( phonekey == null || phonekey.length()<1 ) cri.setPhonekey(null); 
-		 else cri.setPhonekey(phonekey);
-		 if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
-		 else cri.setIdkey(idkey);
+		if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
+		else cri.setNamekey(namekey);
+		if( phonekey == null || phonekey.length()<1 ) cri.setPhonekey(null); 
+		else cri.setPhonekey(phonekey);
+		if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
+		else cri.setIdkey(idkey);
 		cri.setSnoEno();
 		cri.setRowsPerPage(10);
 	    mv.addObject("qnalist", service.searchList(cri));  //ver2
@@ -72,26 +72,25 @@ public class QnaController {
 			HttpServletResponse response, ModelAndView mv, QnaVO vo, RedirectAttributes rttr) throws IOException {
 	
 		String uri = "redirect:qna";
-		 String realPath = request.getRealPath("/"); 
-	      if ( realPath.contains(".eclipse.") )  
-	         realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
-	      else
-	         realPath += "resources\\img\\uploadImage\\qna\\" ;
+		String realPath = request.getRealPath("/"); 
+	    if ( realPath.contains(".eclipse.") )  
+	        realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
+	    else
+	        realPath += "resources\\img\\uploadImage\\qna\\" ;
 	      
-	      File f1 = new File(realPath);
-	      if ( !f1.exists() ) f1.mkdir();
-	      String file1, file2; 
+	    File f1 = new File(realPath);
+	    if ( !f1.exists() ) f1.mkdir();
+	    String file1, file2; 
 	      
-	      MultipartFile uploadfilef = vo.getUploadfilef(); 
-	      if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	    MultipartFile uploadfilef = vo.getUploadfilef(); 
+	    if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
 	         
-	         file1 = realPath + uploadfilef.getOriginalFilename();  
-	         uploadfilef.transferTo(new File(file1)); 
-	         
-	         file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
-	         vo.setUploadfile(file2);
-	      }
-		
+	       file1 = realPath + uploadfilef.getOriginalFilename();  
+	       uploadfilef.transferTo(new File(file1)); 
+	       
+	       file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
+	       vo.setUploadfile(file2);
+	    }
 		
 		if ( service.insert(vo)>0 ) {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
@@ -104,6 +103,7 @@ public class QnaController {
 	} //QnAinsert
 	
 	
+	//QnA 디테일
 	@RequestMapping(value="/qnadetail")
 	public ModelAndView qnadetail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, QnaVO vo, QnaReplyVO qvo) {
 		String uri = "/customer/qnaDetail";
@@ -120,7 +120,7 @@ public class QnaController {
 		return mv;
 	}//QnAdetail
 
-	
+	//첨부파일다운로드
 	@RequestMapping(value="/download")
 	public ModelAndView download(HttpServletRequest request, ModelAndView mv,
 								@RequestParam("dnfile")	String dnfile) {
@@ -138,28 +138,29 @@ public class QnaController {
     	return mv;
 	} //download
 	
+	//QnA 업데이트
 	@RequestMapping(value="/qnaupdate", method=RequestMethod.POST)
 	public ModelAndView qnaupdate(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, QnaVO vo) throws IOException {
 		String uri = "redirect:qnadetail?qno="+vo.getQno();
-		 String realPath = request.getRealPath("/"); 
-	      if ( realPath.contains(".eclipse.") )  
-	         realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
-	      else
-	         realPath += "resources\\img\\uploadImage\\qna\\" ;
+		String realPath = request.getRealPath("/"); 
+	    if ( realPath.contains(".eclipse.") )  
+	       realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
+	    else
+	       realPath += "resources\\img\\uploadImage\\qna\\" ;
 	      
-	      File f1 = new File(realPath);
-	      if ( !f1.exists() ) f1.mkdir();
-	      String file1, file2; 
+	    File f1 = new File(realPath);
+	    if ( !f1.exists() ) f1.mkdir();
+	    String file1, file2; 
 	      
-	      MultipartFile uploadfilef = vo.getUploadfilef(); 
-	      if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
-	         
-	         file1 = realPath + uploadfilef.getOriginalFilename();  
-	         uploadfilef.transferTo(new File(file1)); 
-	         
-	         file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
-	         vo.setUploadfile(file2);
-	      }
+	    MultipartFile uploadfilef = vo.getUploadfilef(); 
+	    if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	        
+	        file1 = realPath + uploadfilef.getOriginalFilename();  
+	        uploadfilef.transferTo(new File(file1)); 
+	        
+	        file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
+	        vo.setUploadfile(file2);
+	    }
 		mv.addObject("qnaone",vo);
 		if ( service.update(vo) > 0 ) {
 			mv.addObject("message", "~~ 글수정 성공 ~~"); 
@@ -173,7 +174,7 @@ public class QnaController {
 	
 	
 	
-	
+	//QnA delete
 	@RequestMapping(value="/qnadelete")
 	public ModelAndView qnadelete(HttpServletRequest request, HttpServletResponse response, 
 									ModelAndView mv, QnaVO vo,QnaReplyVO qvo, RedirectAttributes rttr) {
@@ -193,7 +194,7 @@ public class QnaController {
 		return mv;
 	} //QnAdelete
 	
-	
+	//리플작성
 	@RequestMapping(value="/writereply",method=RequestMethod.POST)
 	public ModelAndView writereply(HttpServletRequest request, HttpServletResponse response, ModelAndView mv,RedirectAttributes rttr, QnaVO vo, QnaReplyVO qvo) throws Exception{
 		String uri = "redirect:qnadetail?qno="+vo.getQno();
@@ -201,32 +202,26 @@ public class QnaController {
 		if( secret == null || secret.length()<1 ) vo.setSecret(null); 
 		else vo.setSecret(secret);
 		
-		//vo=service.selectOne(vo);
 		qvo.setReqno(vo.getQno());
-		
-		
-		
-		
-		
 
 		String realPath = request.getRealPath("/"); 
-	     if ( realPath.contains(".eclipse.") )  
-	         realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
-	     else
-	         realPath += "resources\\img\\uploadImage\\qna\\" ;
+	    if ( realPath.contains(".eclipse.") )  
+	        realPath = "C:\\MTest\\project\\Fall_in_Dog\\src\\main\\webapp\\resources\\img\\uploadImage\\qna\\";
+	    else
+	        realPath += "resources\\img\\uploadImage\\qna\\" ;
 	      
-	     File f1 = new File(realPath);
-	     if ( !f1.exists() ) f1.mkdir();
-	     String file1, file2; 
+	    File f1 = new File(realPath);
+	    if ( !f1.exists() ) f1.mkdir();
+	    String file1, file2; 
 	      
-	     MultipartFile uploadfilef = qvo.getUploadfilef(); 
-	     if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
-	         file1 = realPath + uploadfilef.getOriginalFilename();  
-	         uploadfilef.transferTo(new File(file1)); 
-	         
-	         file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
-	         qvo.setUploadfile(file2);
-	     }
+	    MultipartFile uploadfilef = qvo.getUploadfilef(); 
+	    if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
+	       file1 = realPath + uploadfilef.getOriginalFilename();  
+	        uploadfilef.transferTo(new File(file1)); 
+	        
+	        file2="resources/img/uploadImage/qna/"+uploadfilef.getOriginalFilename();
+	        qvo.setUploadfile(file2);
+	    }
 		
 		if ( reservice.insert(qvo) >0 ) {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
@@ -247,7 +242,8 @@ public class QnaController {
 		mv.setViewName(uri);
 		return mv;
 	}//Replyinsert
-
+	
+	//리플수정
 	@RequestMapping(value="/updatereply",method=RequestMethod.POST)
 	public ModelAndView updatereply(HttpServletRequest request, HttpServletResponse response, ModelAndView mv,RedirectAttributes rttr, QnaVO vo, QnaReplyVO qvo) throws Exception{
 		String uri = "redirect:qnadetail?qno="+vo.getQno();
@@ -283,4 +279,4 @@ public class QnaController {
 	}//Replyinsert
 	
 	
-}
+}//class

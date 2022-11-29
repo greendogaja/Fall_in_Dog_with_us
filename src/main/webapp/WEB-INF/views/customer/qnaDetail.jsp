@@ -234,60 +234,6 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Hero Area Start ##### -->
-    <div class="hero-area">
-        <!-- Hero Slides Area -->
-        <div class="hero-slides owl-carousel">
-            <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/first.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="#" data-animation="fadeInUp" style="background-color:rgba(0, 0, 0, 0.3);">Fall in Dog</a>
-                                </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="#" style="background-color:rgba(0, 0, 0, 0.3);">올바른 반려동물문화를 <br>선도하는 폴인독</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/second.png);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="#" data-animation="fadeInUp" style="background-color:rgba(0, 0, 0, 0.3);">Fall in Dog</a>
-                                </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="#" style="background-color:rgba(0, 0, 0, 0.3);">사단법인<br>반려동물협회 공식인증<br>안심분양센터</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/third.png);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="#" data-animation="fadeInUp" style="background-color:rgba(0, 0, 0, 0.3);">Fall in Dog</a>
-                                </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="#" style="background-color:rgba(0, 0, 0, 0.3);"> 깨끗한 거리문화를 위해<br>배변봉투 무료나눔을<br>시작하였습니다</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Hero Area End ##### -->
-
-
 	<div class="abox">
 		<div id="box" class="dbox1">
 			<div><!--사이드정보창  -->
