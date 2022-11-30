@@ -38,7 +38,7 @@ public class UserController {
 	public ModelAndView joinf(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
 		mv.setViewName("/user/joinForm");
 		return mv;
-	}
+	}//joinf
 	
 	//**id 중복확인
 	@RequestMapping(value="/dupCheck")
@@ -55,7 +55,8 @@ public class UserController {
     	}
     	mv.setViewName("user/idDupCheck");
     	return mv;
-	}
+	}//dupCheck
+	
 	//**별명 중복확인
 	@RequestMapping(value="/nickCheck")
 	public ModelAndView nickCheck(HttpServletRequest request, HttpServletResponse response,
@@ -69,7 +70,7 @@ public class UserController {
 		}
 		mv.setViewName("user/nickCheck");
 		return mv;
-	}
+	}//nickCheck
 	
 	//** 회원가입
 	@RequestMapping(value="/join",method = RequestMethod.POST)
@@ -108,7 +109,7 @@ public class UserController {
 
 		mv.setViewName(url);
 		return mv;
-	}
+	}//join
 	
 	//**로그인 양식
 	@RequestMapping(value="/loginf")
@@ -116,7 +117,6 @@ public class UserController {
 		mv.setViewName("/user/loginForm");
 		return mv;
 	}
-	
 	//** 로그인
 	@RequestMapping(value="/login")
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response,ModelAndView mv, UserVO vo
@@ -156,7 +156,8 @@ public class UserController {
 		} //else
 		mv.setViewName(url);
 		return mv;
-	}
+	}//login
+	
 	//** 로그아웃
 	@RequestMapping(value="/logout")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
@@ -165,15 +166,12 @@ public class UserController {
     	mv.addObject("msg", "로그아웃 되었습니다 ~~");
     	mv.setViewName("home");
 		return mv;
-	}
+	}//logout
 	
 	//** 회원정보
 	@RequestMapping(value="/info")
 	public ModelAndView info(HttpServletRequest request, HttpServletResponse response,UserVO vo,ModelAndView mv) {
-		
-		
 		HttpSession session = request.getSession(false);
-		
 		if (vo.getId() == null || vo.getId().length()<1) {
 			if(session != null && session.getAttribute("loginID") != null) {
 					vo.setId((String)session.getAttribute("loginID"));
@@ -182,8 +180,7 @@ public class UserController {
 				mv.setViewName("home");
 				return mv;
 			}
-		}
-		
+		}//if
 		String url = "/user/info";
 		vo = service.selectOne(vo);
 		if(vo != null) {
@@ -196,10 +193,10 @@ public class UserController {
 			mv.addObject("user",vo);
 		}else {
 			mv.addObject("msg","~~ "+request.getParameter("id")+"님의 자료는 존재하지 않습니다 ~~");
-		}
+		}//if
 		mv.setViewName(url);
 		return mv;
-	}
+	}//info
 	
 	
 	// ** 회원정보변경
@@ -238,9 +235,9 @@ public class UserController {
 		}
 		mv.setViewName(url);
 		return mv;
-	}
+	}//infoupdate
 	
-	//**회워탈퇴
+	//**회원탈퇴
 	@RequestMapping(value="/userdelete")
 	public ModelAndView userdelete(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv,UserVO vo, RedirectAttributes rttr) {
@@ -250,7 +247,6 @@ public class UserController {
 		if(session != null && session.getAttribute("loginID") != null) {
 			id =(String)session.getAttribute("loginID");
 			if(!"admin".equals(id)) vo.setId(id);
-			
 			if(service.delete(vo)>0) {
 				rttr.addFlashAttribute("message","ㅇㅅㅇ 회원탈퇴 성공 ");
 				
@@ -267,7 +263,7 @@ public class UserController {
 		if("admin".equals(id)) mv.setViewName("redirect:usearchlist");
 		else mv.setViewName("redirect:home");
 		return mv;
-	}
+	}//delete
 	
 
 
@@ -275,7 +271,6 @@ public class UserController {
 	//**회원검색
 	@RequestMapping(value="/usearchlist")
 	public ModelAndView usearchlist(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		
 		cri.setSnoEno();
 		cri.setRowsPerPage(5);
 		cri.setRowsPerPage(10);
@@ -302,6 +297,6 @@ public class UserController {
 		
 		mv.setViewName("user/userControl");
     	return mv;
-	} //bchecklist
-	} //usearchLlist
+	} //usearchlist
+}//class
 

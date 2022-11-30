@@ -20,6 +20,7 @@ public interface QnaService {
 	//** Delete
 	int delete(QnaVO vo);
 	
+	//** List
 	List<QnaVO> searchList(SearchCriteria cri);
 	int searchCount(SearchCriteria cri);
 }

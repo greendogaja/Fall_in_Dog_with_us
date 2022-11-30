@@ -33,15 +33,13 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/joinf.css">
 
-
-
-<script>
-	function niOK(){
-		opener.$('#nname').val('${newNick}');
-		opener.$('#submitBtn').prop('disabled',false);
-		window.close();
-	}//niOK
-</script>
+	<script>
+		function niOK(){
+			opener.$('#nname').val('${newNick}');
+			opener.$('#submitBtn').prop('disabled',false);
+			window.close();
+		}//niOK
+	</script>
 </head>
 <body>
 	<div id="wrap" >
@@ -64,7 +62,9 @@
 						</div>
 					</div>
 		</form>
+		
 		<hr>
+		
 		<!--사용 가능,불가능  -->
 	    <div id="msgBlock">
 	    	<c:if test="${useNick =='T'}">
@@ -79,7 +79,7 @@
 	    			opener.document.getElementById('id').value='';
 	    		</script>
 	    	</c:if>
-	    </div>
-	</div>
+	    </div><!-- msgBlock -->
+	</div><!-- wrap  -->
 </body>
 </html>
