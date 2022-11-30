@@ -23,25 +23,6 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-    
-   	<script>
-
-	$(function() {
-		$('#searchType').change(function(){
-			if ( $(this).val()=='n' ) $('#keyword').val('');
-		}); //change
-
-		$('#searchBtn').click(function(){
-			self.location="dog_list_S"
-				+"${AdoptPageMaker.makeQuery(1)}"
-				+"&searchType="
-				+$('#searchType').val()
-				+"&keyword="
-				+$('#keyword').val()
-		}); //click
-	});
-	
-	</script>
 	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -52,6 +33,38 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <!-- Style CSS -->
 	<link rel="stylesheet" href="resources/css/adopt_list.css">
+	
+	<script>
+	
+		function checkClear() {
+			$('.clear').attr('checked', false);
+			return false;
+
+		}
+
+/* 	 	$(document).ready(function() {
+ 			$("input:checkbox").on('click', function() {
+			      if ( $(this).prop('checked') ) {
+			        $(this).parent().addClass("selected");
+			        
+			      } else {
+			        $(this).parent().removeClass("selected");
+			        
+			      }
+			});
+			
+			$(.label).find("input:checked").each(function(){
+			      if ( $(this).prop('checked') ) {
+			        $(this).parent().addClass("selected");
+			        
+			      } else {
+			        $(this).parent().removeClass("selected");
+			        
+			      }
+			});
+		}); */
+
+	</script>
 
 </head>
 
@@ -114,7 +127,7 @@
                             ${loginNick}님 환영합니다
                             <a href="logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃"><i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i></a>
 			                      <div class="classynav" >
-				                      <ul >
+				                      <ul>
 				                      	<li class="mhover" >
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
@@ -159,7 +172,7 @@
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            <span class="navbarToggler">
                         </div>
 
                         <!-- Menu -->
@@ -191,31 +204,7 @@
                                             <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
-                                  <!--   <li><a href="#">Catagory</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                        </ul>
-                                    </li> -->
+
                                              <li><a href="reviewList">입양후기</a></li>
                                     <li><a href="#">커뮤니티</a>
                                         <ul class="dropdown">
@@ -265,34 +254,66 @@
 
 		<div class="dog-size">
             <ul class="dog-size-u">
-				<li><a href="dog_list_S" class="dog-size-l" style="background-color: grey">소형견</a></li>
+				<li><a href="dog_list_S" class="dog-size-l" style="background-color: #e2e2e2">소형견</a></li>
                 <li><a href="dog_list_M" class="dog-size-l">중형견</a></li>
                 <li><a href="dog_list_L" class="dog-size-l">대형견</a></li>
             </ul>
         </div>
 
 
-        <div id="searchBar">
-<!--             <form action="bchecklist" method="post">
+<%--         <div id="searchBar">
+        
+			<c:if test="${not empty Adopt_list}">
+					
+            <form action="dog_list_S" method="post">
+				<c:forEach var="ch" items="${Adopt_list}">
+					<input type="checkbox" name="check" value="${ch.breed}">${ch.breed}&nbsp;
+				</c:forEach>
+              <input type="submit" value="검색">
+              <input type="reset" value="리셋">
+            </form>
+              
+			</c:if>
+			
+        </div> --%>
 
-                <input type="checkbox" name="check" value="BMWM340">말티즈
-                <input type="checkbox" name="check" value="summer">믹스견
-                <input type="checkbox" name="check" value="apple">비숑프리제
-                <input type="checkbox" name="check" value="namgu">시바
-                <input type="checkbox" name="check" value="apple">시츄
-                <input type="checkbox" name="check" value="apple">스피츠
-                <input type="checkbox" name="check" value="apple">슈나우저
-                <input type="checkbox" name="check" value="apple">요크셔테리어
-                <input type="checkbox" name="check" value="apple">치와와
-                <input type="checkbox" name="check" value="apple">포메라니안
-                <input type="checkbox" name="check" value="admin">푸들
+        
+	<div id="searchBar">
+	<form action="dog_list_S" method="post">
+	
+		<c:forEach var="dog" varStatus="breedv"  items="${dogCheck}">
+		
+			<c:set var="ckPrint" value="false"/>
+			<c:forEach var="breed" items="${check}">
+				
+				<c:if test="${breed==dog.breed}">
+					<input type="checkbox" name="check" value="${dog.breed}" id="${dog.breed}" checked class="clear">
+					<label for="${dog.breed}"><span class="label">${dog.breed}</span></label>
+					<c:set var="ckPrint" value="true"/>
+				</c:if>
+				
+			</c:forEach>
+			
+			<c:if test="${not ckPrint}">
+				<input type="checkbox" name="check" value="${dog.breed}" id="${dog.breed}">
+				<label for="${dog.breed}" class="label"><span class="label">${dog.breed}</span></label>
+			</c:if>
+			
+			<c:if test="${breedv.count%5 == 1 && breedv.count != 1}">
+				<br>
+			</c:if>
+			
+		</c:forEach>
 
+		<div class="searchbutton">
+			<input type="submit" value="검색" class="searchbtn">
+			<input type="reset" value="리셋" class="searchbtn" onclick="checkClear()">
+		</div>
+	</form>
+	</div>
+        
 
-                <input type="submit" value="검색">
-                <input type="reset" value="리셋">
-            </form> -->
-        </div>
-
+        
 
         <div class="dog_div">
 
@@ -366,8 +387,10 @@
 			<c:if test="${loginID == 'admin'}">
 				<a class="btn-go" href="dog_insert_form"><span>동물 등록</span></a>
             </c:if>
-				
+            
 		</div>
+				
+	</div>
 
 
 

@@ -22,5 +22,6 @@ public class DogVO {
 	private String weight;
 	private String img;
 	private MultipartFile uploadfilef;
+	private String[] check;
 	
 }

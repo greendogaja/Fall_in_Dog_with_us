@@ -24,23 +24,14 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <script>
-
-	$(function() {
-		$('#searchType').change(function(){
-			if ( $(this).val()=='n' ) $('#keyword').val('');
-		}); //change
-
-		$('#searchBtn').click(function(){
-			self.location="dog_list_M"
-				+"${AdoptPageMaker.makeQuery(1)}"
-				+"&searchType="
-				+$('#searchType').val()
-				+"&keyword="
-				+$('#keyword').val()
-		}); //click
-	});
+	<script>
 	
+		function checkClear() {
+			$('.clear').attr('checked', false);
+			return false;
+
+		}
+
 	</script>
 	
     <!-- Title -->
@@ -281,32 +272,44 @@
             <ul class="dog-size-u">
 				<li><a href="dog_list_S" class="dog-size-l">소형견</a></li>
                 <li><a href="dog_list_M" class="dog-size-l">중형견</a></li>
-                <li><a href="dog_list_L" class="dog-size-l" style="background-color: grey">대형견</a></li>
+                <li><a href="dog_list_L" class="dog-size-l" style="background-color: #e2e2e2">대형견</a></li>
             </ul>
         </div>
 
 
-        <div id="searchBar">
-<!--             <form action="bchecklist" method="post">
+	<div id="searchBar">
+	<form action="dog_list_L" method="post">
+	
+		<c:forEach var="dog" varStatus="breedv"  items="${dogCheck}">
+		
+			<c:set var="ckPrint" value="false"/>
+			<c:forEach var="breed" items="${check}">
+				
+				<c:if test="${breed==dog.breed}">
+					<input type="checkbox" name="check" value="${dog.breed}" id="${dog.breed}" checked class="clear">
+					<label for="${dog.breed}" class="label"><span>${dog.breed}</span></label>
+					<c:set var="ckPrint" value="true"/>
+				</c:if>
+				
+			</c:forEach>
+			
+			<c:if test="${not ckPrint}">
+				<input type="checkbox" name="check" value="${dog.breed}" id="${dog.breed}">
+				<label for="${dog.breed}" class="label"><span class="label">${dog.breed}</span></label>
+			</c:if>
+			
+			<c:if test="${breedv.count%5 == 1 && breedv.count != 1}">
+				<br>
+			</c:if>
+		
+		</c:forEach>
 
-                <input type="checkbox" name="check" value="apple" id="checkL">
-                <label for="checkL">골든리트리버</label>
-                
-                <input type="checkbox" name="check" value="apple" id="checkL">
-                <label for="checkL">말라뮤트</label>
-                
-                <input type="checkbox" name="check" value="apple" id="checkL">
-                <label for="checkL">믹스견</label>
-                
-                <input type="checkbox" name="check" value="apple" id="checkL">
-                <label for="checkL">시베리안허스키</label>
-                
-                <input type="checkbox" name="check" value="apple" id="checkL">
-                <label for="checkL">진돗개</label>
-
-                <input type="submit" value="검색">
-            </form> -->
-        </div>
+		<div class="searchbutton">
+			<input type="submit" value="검색" class="searchbtn">
+			<input type="reset" value="리셋" class="searchbtn" onclick="checkClear()">
+		</div>
+	</form>
+	</div>
 
 
         <div class="dog_div">
