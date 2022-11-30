@@ -27,11 +27,7 @@
 </sql>
 
 <select id="searchList" resultType="vo.ReviewVO">
-<<<<<<< HEAD
 	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id
-=======
-	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id 
->>>>>>> 565426222aed086b042063029955189bb6e2d40b
 	from review n, user u
 	where n.id = u.id and ( rvno>0 <include refid="search"></include>  
 	order by rvno desc

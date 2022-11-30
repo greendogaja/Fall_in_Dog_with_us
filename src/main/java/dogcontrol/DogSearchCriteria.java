@@ -7,5 +7,6 @@ public class DogSearchCriteria extends DogCriteria {
 	
 	private String searchType;
 	private String keyword;
-
+	private String[] check;
+	
 }

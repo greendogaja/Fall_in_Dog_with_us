@@ -40,64 +40,59 @@
     <link rel="stylesheet" href="resources/css/info.css">
 	<link rel="stylesheet" href="sweetalert2.min.css">
 	
-	 <style type="text/css">
-    	.eMessage{
-    		color:red;
-    		font-size:small;
-    	}
-    </style>
-    <script>
-    let pCheck =true;
-    let ppCheck =true;
-    let nCheck =true;
-    let nnCheck =true;
-    let phCheck=true;
-    
-    $(function(){
-    	
-    	
-    	//## password
-    	$('#password').on("keyup change", function(e){
-    		pCheck=false;
-   			e.preventDefault();  
-    		pCheck = pwCheck();
-    	});
-    	//## cpassoword
-       	$('#cpassword').on("keyup change", function(e){
-    		ppCheck=false;
-   			e.preventDefault();  
-    		ppCheck = cpCheck();
-    	});
-     	 //## name
-    	$('#name').on("keyup change", function(e){
-    		nCheck=false;
-   			e.preventDefault();  
-    		nCheck = nmCheck();
-    	});
-    	//## nname
-    	$('#nname').on("keyup change", function(e){
-    		nnCheck=false;
-    		$('#submitBtn').attr('disabled','disabled');
-    		$('#idDupn').prop('disabled',false);
-   			e.preventDefault();  
-    		nnCheck = nnmCheck();
-    	});
-    	//## phone
-    	$('#phone').on("keyup change", function(e){
-    		phCheck=false;
-   			e.preventDefault();  
-    		phCheck = phoCheck();
-    	});
-    	
-    })
-
-
-    
-    </script>
+	<style type="text/css">
+	   	.eMessage{
+	   		color:red;
+	   		font-size:small;
+	   	}
+	</style>
+	<script>
+	    let pCheck =true;
+	    let ppCheck =true;
+	    let nCheck =true;
+	    let nnCheck =true;
+	    let phCheck=true;
+	    
+	    $(function(){
+	    	//## password
+	    	$('#password').on("keyup change", function(e){
+	    		pCheck=false;
+	   			e.preventDefault();  
+	    		pCheck = pwCheck();
+	    	});
+	    	//## cpassoword
+	       	$('#cpassword').on("keyup change", function(e){
+	    		ppCheck=false;
+	   			e.preventDefault();  
+	    		ppCheck = cpCheck();
+	    	});
+	     	 //## name
+	    	$('#name').on("keyup change", function(e){
+	    		nCheck=false;
+	   			e.preventDefault();  
+	    		nCheck = nmCheck();
+	    	});
+	    	//## nname
+	    	$('#nname').on("keyup change", function(e){
+	    		nnCheck=false;
+	    		$('#submitBtn').attr('disabled','disabled');
+	    		$('#idDupn').prop('disabled',false);
+	   			e.preventDefault();  
+	    		nnCheck = nnmCheck();
+	    	});
+	    	//## phone
+	    	$('#phone').on("keyup change", function(e){
+	    		phCheck=false;
+	   			e.preventDefault();  
+	    		phCheck = phoCheck();
+	    	});
+	    	
+	    })//ready
+	</script>
 </head>
 
 <body>
-   <!-- Preloader -->
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -134,11 +129,12 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Fall In Dog </a></li>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">입양안내 및 절차</a></li>
-                                    <li><a href="#">분양중 동물 </a></li>
-                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="aboutUs">Fall In Dog </a></li>
+                                    <li><a href="noticeList">공지사항</a></li>
+                                    <li><a href="adopt_procedure">입양안내 및 절차</a></li>
+                                    <li><a href="dog_list_S">분양중 동물 </a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -154,13 +150,13 @@
                             ${loginNick}님 환영합니다
                             <a href="logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃"><i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i></a>
 			                      <div class="classynav" >
-				                     <ul >
+				                      <ul >
 				                      	<li class="mhover" >
 				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
-												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보변경</a></li>
 												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
@@ -181,7 +177,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt=""></a>
+                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt="" style="margin-right: 29px;"></a>
                     </div>
                 </div>
             </div>
@@ -211,79 +207,39 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="home">Home</a></li>
-                                    <li><a href="#">Pages</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="home">Home</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">가나다라마바</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 1</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 2</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 3</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 4</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                        </div>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
+                                        </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+                                             <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -306,11 +262,13 @@
 	<hr>
 	<div class="allinfo">
 		<div class="dinfo">
+			<!--사이드정보창  -->
 			<div class="gnb_area">
 				<a href="home"><img src="resources/img/core-img/ficon.ico" width="50" height="50"></a>
 				<h1>폴인독ID</h1>
 			</div>
 			
+			<!-- 프로필사진 -->
 			<div class="profile_area">
 				<div class="profile_inner">
 					<a href="#" class="photo">
@@ -323,32 +281,37 @@
 						<p class="usemail" >${user.id }</p>
 				</div>
 			</div>
-			
+		
+			<!-- 정보창 -->
 			<div class="header_left">
 				<ul class="left_menu" role="menu">
 					<li>
-						<a href="info?want=U" class="left_item" role="menuitem">내정보수정</a>
+						<a href="info" class="left_item" role="menuitem">내정보</a>
 					</li>
 					<li>
-						<a href="#" class="left_item" role="menuitem">내가쓴글</a>
+						<a href="info?want=U&id=${user.id}" class="left_item" role="menuitem">내정보변경</a>
 					</li>
 					<li>
-						<a href="#" class="left_item" role="menuitem">내가단댓글</a>
+						<a href="qna" class="left_item" role="menuitem">1:1문의</a>
 					</li>
 				</ul>
 			</div>
-		</div>
+		</div><!--사이드정보창끝  -->
+	
+		<!--회원정보변경폼  -->
 		<div class="dinfo2">
 			<div class="account_box">
 				<h1 class="title " >내프로필</h1>
 				<form action="infoupdate" method="post" id="updateinfo" enctype="multipart/form-data">
 					<ul class="account_row">
+						<!-- 아이디 -->
 						<li>
 						<div class="row_item " style="display:none;">
 							<span class="item_text">아이디 :</span>
 							<input type="text" class="tcenter2" name="id" id="id" value="${user.id }">
 						</div>
-					</li>
+						</li>
+						<!-- 성명  -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">성명 :</span>
@@ -356,6 +319,7 @@
 								<span id="nMessage" class="eMessage" ></span>
 							</div>
 						</li>
+						<!-- 비밀번호 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">비밀번호설정 :</span>
@@ -363,6 +327,7 @@
 									<span id="pMessage" class="eMessage" ></span>
 							</div>
 						</li>
+						<!-- 비밀번호 확인 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">비밀번호확인 :</span>
@@ -370,6 +335,7 @@
 									<span id="ppMessage" class="eMessage"></span>
 							</div>
 						</li>
+						<!-- 별명 -->
 						<li>
 							<div class="row_item " style="flex-wrap: wrap;">
 								<span class="item_text">별명 :</span>
@@ -378,6 +344,7 @@
 									<span id="nnMessage" class="eMessage" style="margin:auto;"></span>
 							</div>
 						</li>
+						<!-- 생년월일 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">생년월일 :</span>
@@ -389,7 +356,6 @@
 											<option value="<c:out value="${start-result}" />"
 												<c:if test="${start-result == detail.YY}"> selected="selected"</c:if>><c:out
 													value="${start-result}" /></option>
-
 										</c:forEach>
 									</select>
 									-
@@ -422,6 +388,7 @@
 									</select>
 							</div>
 						</li>
+						<!-- 성별 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">성별 :</span>
@@ -445,6 +412,7 @@
 							   </c:choose>
 							</div>
 						</li>
+						<!-- 연락처 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">연락처 :</span>
@@ -452,6 +420,7 @@
 									<span id="phMessage" class="eMessage"></span>
 							</div>
 						</li>
+						<!-- 이메일 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">이메일 :</span>
@@ -467,6 +436,7 @@
 								</c:if>
 							</div>
 						</li>
+						<!-- 프로필사진 -->
 						<li>
 							<div class="row_item ">
 								<span class="item_text">프로필 :</span>
@@ -475,7 +445,7 @@
 									<input type="file"
 									name="uploadfilef" id="uploadfilef" class="form-control upload" style="width:230;"
 									placeholder=" " value="${user.uploadfile}">
-									
+									<!--script -->
 									<script>
 						            $('#uploadfilef').change(function(){
 						               if(this.files && this.files[0]) {
@@ -491,9 +461,9 @@
 							</div>
 						</li>
 					</ul>
+					<!--버튼  -->
 					<div class="form-group" style="margin-top: 10px;">
 							<a href="userdelete?id=${user.id}" >회원탈퇴 ></a>
-							<%-- <a href="userdelete?id=${user.id}" >회원탈퇴 ></a> --%>
 							<div style="float:right;">
 							<input  id="submitBtn" onclick="upCheck()"  type="button" value="수정하기"
 								class="btn btn-primary"  >
@@ -501,62 +471,51 @@
 						</div>
 					</div>
 				</form>
-			</div>
-		</div>
-	</div>
-	<!--######################### Footer -->
-    <footer class="footer-area text-center" style="font-size:1rem; ">
+			</div> <!--account_box끝  -->
+		</div><!-- 회원정보끝 -->
+	</div> <!--all박스끝  -->
+	   <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                   
                     <!-- Footer Nav Area -->
                     <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
                         <nav class="classy-navbar ">
-
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
                                 <span class="navbarToggler"><span></span><span></span><span></span></span>
                             </div>
-
                             <!-- Menu -->
                             <div class="classy-menu">
-
                                 <!-- close btn -->
                                 <div class="classycloseIcon">
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
-
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="noticeList">공지사항</a></li>
+                                        <li><a href="contact">오시는길</a></li>
+                                        <li><a href="dog_list_S">입양목록</a></li>
+                                        <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="reviewList">입양후기</a></li>
+                                        <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
                             </div>
                         </nav>
                     </div>
-                    
-                    
-                    
-                    
                 </div>
             </div>
         </div>
-
-   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
-대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
-E-mail : fallindogkorea@gmail.com <br>
-Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+		대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+		E-mail : fallindogkorea@gmail.com <br>
+		Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
     </footer>
 </body>
 </html>

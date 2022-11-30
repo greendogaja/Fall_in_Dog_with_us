@@ -24,23 +24,14 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <script>
-
-	$(function() {
-		$('#searchType').change(function(){
-			if ( $(this).val()=='n' ) $('#keyword').val('');
-		}); //change
-
-		$('#searchBtn').click(function(){
-			self.location="dog_list_M"
-				+"${AdoptPageMaker.makeQuery(1)}"
-				+"&searchType="
-				+$('#searchType').val()
-				+"&keyword="
-				+$('#keyword').val()
-		}); //click
-	});
+	<script>
 	
+		function checkClear() {
+			$('.clear').attr('checked', false);
+			return false;
+
+		}
+
 	</script>
 	
     <!-- Title -->
@@ -267,31 +258,45 @@
 		<div class="dog-size">
             <ul class="dog-size-u">
 				<li><a href="dog_list_S" class="dog-size-l">소형견</a></li>
-                <li><a href="dog_list_M" class="dog-size-l" style="background-color: grey">중형견</a></li>
+                <li><a href="dog_list_M" class="dog-size-l" style="background-color: #e2e2e2">중형견</a></li>
                 <li><a href="dog_list_L" class="dog-size-l">대형견</a></li>
             </ul>
         </div>
 
 
-        <div id="searchBar">
-<!--             <form action="bchecklist" method="post">
+	<div id="searchBar">
+	<form action="dog_list_M" method="post">
+	
+		<c:forEach var="dog" varStatus="breedv"  items="${dogCheck}">
+		
+			<c:set var="ckPrint" value="false"/>
+			<c:forEach var="breed" items="${check}">
+				
+				<c:if test="${breed==dog.breed}">
+					<input type="checkbox" name="check" value="${dog.breed}" id="${dog.breed}" checked class="clear">
+					<label for="${dog.breed}" class="label"><span>${dog.breed}</span></label>
+					<c:set var="ckPrint" value="true"/>
+				</c:if>
+				
+			</c:forEach>
+			
+			<c:if test="${not ckPrint}">
+				<input type="checkbox" name="check" value="${dog.breed}" id="${dog.breed}">
+				<label for="${dog.breed}" class="label"><span class="label">${dog.breed}</span></label>
+			</c:if>
+			
+			<c:if test="${breedv.count%5 == 0 && breedv.count != 1}">
+				<br>
+			</c:if>
+		
+		</c:forEach>
 
-                <input type="checkbox" name="check" value="BMWM340">닥스훈트
-                <input type="checkbox" name="check" value="apple">믹스견
-                <input type="checkbox" name="check" value="apple">비글
-                <input type="checkbox" name="check" value="summer">보더콜리
-                <input type="checkbox" name="check" value="apple">아메리칸불리
-                <input type="checkbox" name="check" value="apple">웰시코기
-                <input type="checkbox" name="check" value="namgu">코카스파니엘
-                <input type="checkbox" name="check" value="apple">핏불테리어
-                <input type="checkbox" name="check" value="admin">풍산개
-                <input type="checkbox" name="check" value="apple">프렌치불독
-
-
-                <input type="submit" value="검색">
-                <input type="reset" value="리셋">
-            </form> -->
-        </div>
+		<div class="searchbutton">
+			<input type="submit" value="검색" class="searchbtn">
+			<input type="reset" value="리셋" class="searchbtn" onclick="checkClear()">
+		</div>
+	</form>
+	</div>
 
 
         <div class="dog_div">

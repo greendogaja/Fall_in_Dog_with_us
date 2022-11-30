@@ -2225,7 +2225,7 @@ textarea:focus~.highlight {
     transition-duration: 500ms;
     text-decoration: none;
     outline: none;
-    font-size: 19px;
+    font-size: 17px;
 }
 .tcontens{
 	line-height:25px;	
@@ -2234,6 +2234,11 @@ textarea:focus~.highlight {
 .thumbnail img{
 	height:300px;
 	border-radius: 10% 10% 0 0;
+	width:100%;
+}
+.thumbnail2 img{
+	height:300px;
+	border-radius: 10%;
 	width:100%;
 }
 
@@ -2245,7 +2250,7 @@ textarea:focus~.highlight {
     top:0;
     left:13px;
     background-color: black;
-    opacity:0.2;
+    opacity:0.4;
     border-radius:10%;
     
 }
@@ -2253,49 +2258,36 @@ textarea:focus~.highlight {
 .pict{
     position: absolute;
     background-color: black;
-    width: 90%;
+    width: 91%;
     line-height: 40px;
     opacity: 0.7;
     transition: top .7s;
     overflow: hidden;
     bottom: -5%;
     color: white;
-    font-size: 23px;
-    left: 14px;
+    font-size: 21px;
 }
 .howrite{
     position: absolute;
     background-color: black;
     width: 90%;
-    line-height: 500px;
+    line-height: 50px;
     height:100%;
     opacity: 0.7;
+    padding:15px;
     bottom: -5%;
     color: white;
     font-size: 23px;
     left: 14px;
-    transition: top .7s;
-}
-.dpnone{
-	display:none;
-}
-.xxxx::before{
-    content:"";
-    width:90%;
-    height:100%;
-    position: absolute;
-    top:0;
-    left:13px;
-    background-color: black;
-    opacity:0.2;
+    transition: all .7s;
     border-radius:10%;
-    
 }
-.xxxx::after{
-    transition:.7s;
-    transform:translate(0);
+.howrite.visibleBox{
+	visibility:hidden;
+	opacity: 0;
+}
 
-}
+
 
 
 

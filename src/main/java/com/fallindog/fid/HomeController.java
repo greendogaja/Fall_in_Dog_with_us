@@ -45,9 +45,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	//홈화면
 	@RequestMapping(value = {"/", "/home","/index"}, method = RequestMethod.GET)
 	public String index(Locale locale, Model model,CustomSearchCriteria ccri,SearchCriteria cri,DogSearchCriteria dcri) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -88,4 +86,4 @@ public class HomeController {
 
 
 
-}
+}//class

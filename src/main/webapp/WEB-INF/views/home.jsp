@@ -23,7 +23,8 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-	
+    <!-- home js -->
+	<script src="resources/mLib/home.js"></script>
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -32,26 +33,6 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
 
-<script>
-$(function(){
-
- 	$('.adoptdogs').on('mouseenter', function () {
-	    $(this).addClass('backgr');
-	})
-	    .on('mouseleave', function () {
-	        $(this).removeClass('backgr');
-	    }); 
-	 
- 	$('.hover-write').on('mouseenter', function () {
- 		$(this).addClass('xxxx');
-	})
-	    .on('mouseleave', function () {
-	    	$(this).removeClass('xxxx');
-	    }); 
-	 
-});
-
-</script>
 
 
 </head>
@@ -121,7 +102,7 @@ $(function(){
 				                      		<ul class="dropdown mhover-content boradi " >
 				                      			<li style="font-size:1rem;">MyPage</li>
 												<li><a href="info" style="color:white;">회원정보</a></li>
-												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보수정</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보변경</a></li>
 												<li><a href="qna" style="color:white;">1:1문의</a></li>
 												<c:if test="${'admin' == loginID }">
 												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
@@ -321,6 +302,7 @@ $(function(){
         </div>
 
         <div class="container">
+        	<!-- 공지사항 -->
             <div class="row">
                 <div class="col-12 col-lg-4">
                     <!-- Single Blog Area ############################### -->
@@ -328,8 +310,7 @@ $(function(){
                         <div class="row align-items-center">
                             <div class="col-12 ">
                                 <div class="single-blog-content">
-                                    <!-- <a href="#" class="post-tag">Lifestyle</a> -->
-                                    <h4><a href="#" class="post-headlines" style="margin-bottom:2px;">공지사항</a></h4>
+                                    <h4><a href="noticeList" class="post-headlines" style="margin-bottom:2px;">공지사항</a></h4>
                                     <div class="line"></div>
 								    <table class="tablecon">
 									<tbody class="tcontens">
@@ -346,13 +327,12 @@ $(function(){
                     </div> 
                 </div>
                 <div class="col-12 col-lg-4">
-                    <!-- Single Blog Area ############################### -->
+                <!-- 자주묻는질문 -->
                      <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
                         <div class="row align-items-center">
                             <div class="col-12 ">
                                 <div class="single-blog-content">
-                                    <!-- <a href="#" class="post-tag">Lifestyle</a> -->
-                                    <h4><a href="#" class="post-headline" style="margin-bottom:2px;">자주하는질문</a></h4>
+                                    <h4><a href="customerhome" class="post-headline" style="margin-bottom:2px;">자주하는질문</a></h4>
                                     <div class="line"></div>
                                     <table class="tablecon">
 									<tbody class="tcontens">
@@ -363,7 +343,6 @@ $(function(){
 										</c:forEach>
 									</tbody>
 									</table>
-									
                                 </div>
                             </div>
                         </div>
@@ -374,7 +353,7 @@ $(function(){
         </div>
     </div>
     
-    <!--section  -->
+    <!--분양목록 -->
      <h1 style="text-align:center; padding-bottom:40px;"><a href="#" style="font-size:3rem; font-weight:500;">분양목록</a></h1>
 	<div class="container2">
 		<div class="row ">
@@ -391,27 +370,21 @@ $(function(){
 	<!-- /.section -->
 
 
-<!-- /.section분양후기 -->
+<!-- 분양후기 -->
    <h1 style="text-align:center; padding:40px; "><a href="#" style="font-size:3rem; font-weight:500;">분양후기</a></h1>
 	<div class="container2">
 		<div class="row ">
-			<c:forEach var="review" items="${reviewlist}">
-				<div class="col-md-3 ruru">
-					<a href="dog_detail?dno=${review.dno}" class="thumbnail hovers-write"> 
-					<img src="${review.img }" alt="">
+			<c:forEach var="review" items="${reviewlist}" >
+				<div class="col-md-3 hover-write" id="rev${revno.count}">
+					<a href="reviewDetail?rvno=${review.rvno}" class="thumbnail2 "> 
+					<img src="${review.img}" alt="">
 					</a>
-					<p class=" howrite" >${review.title}님의 ${review.subject} </p>
+					<p class=" howrite visibleBox" onClick="location.href='reviewDetail?rvno=${review.rvno}'">${review.nname}님의 ${review.subject} 폴인독의 모든 서비스를 이용 후 남겨주신 고객님들의 소중한 리뷰를 소개합니다 </p>
 				</div>
 			</c:forEach>
 		</div>	
 	</div>
 <!-- /.section -->
-
-
-
-
-
-
 
 	<!-- ##### Instagram Feed Area Start ##### -->
     <div class="instagram-feed-area">
@@ -491,34 +464,29 @@ $(function(){
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                   
                     <!-- Footer Nav Area -->
                     <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
                         <nav class="classy-navbar ">
-
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
                                 <span class="navbarToggler"><span></span><span></span><span></span></span>
                             </div>
-
                             <!-- Menu -->
                             <div class="classy-menu">
-
                                 <!-- close btn -->
                                 <div class="classycloseIcon">
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
-
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
+                                        <li><a href="home">Home</a></li>
                                         <li><a href="noticeList">공지사항</a></li>
                                         <li><a href="contact">오시는길</a></li>
                                         <li><a href="dog_list_S">입양목록</a></li>
                                         <li><a href="adopt_board">입양신청</a></li>
-                                        <li><a href="review">입양후기</a></li>
+                                        <li><a href="reviewList">입양후기</a></li>
                                         <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
@@ -526,22 +494,13 @@ $(function(){
                             </div>
                         </nav>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
         </div>
-
-   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
-대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
-E-mail : fallindogkorea@gmail.com <br>
-Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+		대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+		E-mail : fallindogkorea@gmail.com <br>
+		Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
     </footer>
-
-
 </body>
-
 </html>
