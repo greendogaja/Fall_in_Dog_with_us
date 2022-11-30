@@ -227,7 +227,6 @@ public class QnaController {
 			rttr.addFlashAttribute("message", "~~ 새글 등록 성공 ~~");
 			//현재대기를 완료로 수정 
 			vo.setSituation(String.valueOf(2));
-			System.out.println("######################3"+vo);
 			
 			if(service.situp(vo)>0) {
 				System.out.println("업데이트 성공 !!!");
