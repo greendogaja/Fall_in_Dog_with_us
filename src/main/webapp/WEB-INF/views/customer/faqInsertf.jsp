@@ -268,11 +268,11 @@ $(document).ready(function() {
 							</li>
 							<li>
 								<ul id="hidebox" class="hidex " aria-hidden="false" >
-									<li class="hoverli cho">
-										<span >공지사항</span>
-									</li>
 									<li class="hoverli cho" onClick="location.href='procedure'">
 										<span >입양절차</span>
+									</li>
+									<li  class="hoverli cho" onClick="location.href='roadmove'">
+										<span >위치안내</span>
 									</li>
 								</ul>
 							</li>
@@ -287,10 +287,6 @@ $(document).ready(function() {
 								<span>1:1문의하기(Q&amp;A)</span>
 							</li >
 							
-							<!-- 위치안내 -->
-							<li  class="hoverli cho" onClick="location.href='roadmove'">
-								<span >위치안내</span>
-							</li>
 						</ul>
 					</div><!-- sideBox2 -->
 				</div>
