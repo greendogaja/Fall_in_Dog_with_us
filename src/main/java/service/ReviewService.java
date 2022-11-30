@@ -29,6 +29,9 @@ public interface ReviewService {
 	// ** Delete
 	int delete(ReviewVO vo);
 	
+	// ** 글삭제시 포함된 댓글 삭제
+	int replyDeleteAll(ReviewReplyVO rvo);
+	
 	// ** WriterList
 	List<ReviewVO> w_searchList(SearchCriteria cri);
 	

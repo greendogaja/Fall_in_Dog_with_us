@@ -31,9 +31,11 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <!-- NAVER Smart Editor -->
-    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
-	
+    <!-- alert, comfirm -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script defer="defer" src="resources/mLib/community.js"></script>
+    	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -214,11 +216,12 @@
     
     <section class="write_container">
 		<div class="WritingWrap"> 
-			<form action="reviewInsert" method="post" enctype="multipart/form-data">
+			<form action="reviewInsert" method="post" enctype="multipart/form-data" class="reviewInsert">
 			<div class="WritingHeader">
-				<h2>분양후기 글쓰기</h2>
+				<h2>입양후기 글쓰기</h2>
 				<div class="ip">
-					<input type="submit" value="등록">
+					<button type="button"  id="adoptList_call" onclick="window.open('adoptSearch','test','width = 950, height = 600, top = 100, left = 200, location = no')" >입양한 강아지 정보 선택</button>
+					<input type="button" value="등록" class="insertf">
 				</div>
 				<!-- user info start -->
 				<div class="WriterInfo" >
@@ -237,18 +240,27 @@
 				<div class="WritingContent">
 					<div class="write_row">
 						<div class="column_title">
-							<input name="title" placeholder="제목을 입력하세요.">
+							<input name="title" placeholder="제목을 입력하세요." class="insert_title">
 						</div>
 					
 						<div class="column_category" >
 							<select name="subject" >
-								<option value="[분양후기]" >[분양후기]</option>
+								<option value="[입양후기]" >[입양후기]</option>
 							</select>
 						</div>
 					</div>
 					<div class="write_content">
 						<textarea id="content" name="content" placeholder="내용을 입력하세요."></textarea>
-						
+						<script
+							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+						<script
+							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/translations/ko.js"></script>
+						<script>
+							ClassicEditor.create(document
+									.querySelector('#content'), {
+								language : "ko"
+							});
+						</script>
 					</div>
 				</div>
 					

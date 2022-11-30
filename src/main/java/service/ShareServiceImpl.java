@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import mapperInterface.ShareMapper;
 import noticeControl.SearchCriteria;
+import vo.FreeReplyVO;
 import vo.ShareReplyVO;
 import vo.ShareVO;
 
@@ -58,6 +59,12 @@ public class ShareServiceImpl implements ShareService{
 	@Override
 	public int delete(ShareVO vo) {
 		return mapper.delete(vo);
+	}	
+	
+	// ** 글삭제시 포함된 댓글 삭제
+	@Override
+	public int replyDeleteAll(ShareReplyVO rvo) {
+		return mapper.replyDeleteAll(rvo);
 	}	
 	
 	@Override 

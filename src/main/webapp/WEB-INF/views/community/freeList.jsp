@@ -315,7 +315,6 @@
 			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
 				<a href="freeList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
 				<a href="freeList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
-				-->
 			</c:when>
 			<c:otherwise>
 				<font color="Gray">&nbsp;&gt;&gt;</font>   

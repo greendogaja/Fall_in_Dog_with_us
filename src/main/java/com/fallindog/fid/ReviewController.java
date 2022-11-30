@@ -19,7 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import noticeControl.PageMaker;
 import noticeControl.SearchCriteria;
+import service.DogService;
 import service.ReviewService;
+import vo.DogVO;
 import vo.ReviewReplyVO;
 import vo.ReviewVO;
 
@@ -30,6 +32,31 @@ public class ReviewController {
   
 	@Autowired
 	ReviewService service;
+	
+	@Autowired 
+	DogService Dservice;
+	
+	// 입양한 동물정보 Search
+	@RequestMapping(value="/adoptSearch")
+	public ModelAndView adoptSearch(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, DogVO vo) {
+		
+		vo = Dservice.selectOne(vo);
+		
+		mv.addObject("Adopt_detail", vo);
+		mv.setViewName("community/adoptSearch_ajax");
+		return mv;
+	}	
+	
+	// 입양한 동물정보 Ajax
+	@RequestMapping(value="/adoptInfo")
+	public ModelAndView adoptInfo(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, DogVO vo) {
+		
+		vo = Dservice.selectOne(vo);
+		
+		mv.addObject("Adopt_detail", vo);
+		mv.setViewName("community/adoptInfo_ajax");
+		return mv;
+	}	
 	
 	// ** Image (File) Download
 	// => 전달받은 파일패스와 이름으로 File 객체를 만들어 뷰로 전달
@@ -264,9 +291,12 @@ public class ReviewController {
 	// ** Delete : 글 삭제
 	@RequestMapping(value="/reviewDelete")
 	public ModelAndView reviewDelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, ReviewVO vo, RedirectAttributes rttr) {
+									ModelAndView mv, ReviewVO vo, RedirectAttributes rttr, ReviewReplyVO cvo) {
 		String uri = "redirect:reviewList";
 		
+		// 글에 포함된 댓글삭제
+		service.replyDeleteAll(cvo);
+	
 		// 2. Service 처리
 		if ( service.delete(vo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 
@@ -286,11 +316,17 @@ public class ReviewController {
 			HttpServletResponse response, ModelAndView mv, ReviewReplyVO cvo, 
 			RedirectAttributes rttr) {
 	
+		System.out.println("컨트롤러도착");
+		
 		int rvno = Integer.parseInt(request.getParameter("rvno"));
 		cvo.setRvno(rvno); 
 		
-		String content = request.getParameter("content");
-		if(content == null || content.length()<1) {
+		// 대댓글의 grpl = 1, 모댓글 = 0(default)
+		cvo.setGrpl(1);
+		
+		System.out.println("컨트롤러도착"+cvo.getContent());
+		
+		if(cvo.getContent() == null || cvo.getContent().length()<1) {
 			cvo.setContent(null); 
 			System.out.println("r_rereplyInsert 실패 "+cvo.getContent());
 		} else {
@@ -298,24 +334,11 @@ public class ReviewController {
 			service.rereplyInsert(cvo);
 		}
 		
-    	
-		// 대댓글의 grpl = 1, 모댓글 = 0(default)
-		cvo.setGrpl(1);
-		
 		System.out.println("대댓vo => "+cvo);
 		
 		String uri = "redirect:reviewDetail?rvno="+rvno;
-		
-//		if(service.rereplyInsert(cvo)>0) {
-//			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
-//		}else {
-//			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
-//		}
-		
-		System.out.println("대댓vo2 => "+cvo);
 		mv.setViewName(uri);
 		return mv;
-		
 	}
 	
 	
@@ -328,8 +351,7 @@ public class ReviewController {
 		int rvno = Integer.parseInt(request.getParameter("rvno"));
 		cvo.setRvno(rvno);  
 		
-		String content = request.getParameter("content");
-		if(content == null || content.length()<1) {
+		if(cvo.getContent() == null || cvo.getContent().length()<1) {
 			cvo.setContent(null); 
 			System.out.println("r_replyInsert content 실패 "+cvo.getContent());
 		} else {
@@ -339,14 +361,7 @@ public class ReviewController {
 		
 		System.out.println("대댓vo => "+cvo);
 		
-//		if(service.replyInsert(cvo)>0) {
-//			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
-//		}else {
-//			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
-//		}
-		
 		String uri = "redirect:reviewDetail?rvno="+rvno;
-		System.out.println("~ncinsert cvo"+cvo);
 		mv.setViewName(uri);
 		return mv;
 		
@@ -378,31 +393,25 @@ public class ReviewController {
 								ModelAndView mv, ReviewReplyVO cvo) {
 		// 1. 요청분석
 
+		String id = (String)request.getSession().getAttribute("loginID");
+		cvo.setId(id);
 		
 		int rvno = Integer.parseInt(request.getParameter("rvno"));
 		cvo.setRvno(rvno);  
 		String uri = "redirect:reviewDetail?rvno="+rvno;
 		
-		
-		mv.addObject("apple",cvo);
-		// => Update 성공/실패 모두 출력시 필요하므로
-		
-		System.out.println("댓글수정 vo =>"+cvo);
-		
-		
-		// 2. Service 처리
-		if ( service.replyUpdate(cvo) > 0 ) {
-			mv.addObject("message", "~~ 댓글수정 성공 ~~"); 
-		}else {
-			mv.addObject("message", "~~ 댓글수정 실패, 다시 하세요 ~~");
-//			uri = "guide/noticeUpdateF";
+		String content = request.getParameter("content");
+		if(content == null || content.length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_replyUpdate 실패 "+cvo.getContent());
+		} else {
+			System.out.println("r_replyUpdate 성공 "+cvo.getContent());
+			service.replyUpdate(cvo);
 		}
 		
-		// 3. 결과(ModelAndView) 전달 
+		mv.addObject("apple",cvo);
 		mv.setViewName(uri);
-		System.out.println("댓글수정"+mv);
-		System.out.println("##댓글수정"+cvo);
 		return mv;
 	}
-} //NoticeController
+} //Controller
  

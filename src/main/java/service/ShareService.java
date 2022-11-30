@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import noticeControl.SearchCriteria;
+import vo.FreeReplyVO;
 import vo.ShareReplyVO;
 import vo.ShareVO;
 
@@ -28,6 +29,9 @@ public interface ShareService {
 	
 	// ** Delete
 	int delete(ShareVO vo);
+	
+	// ** 글삭제시 포함된 댓글 삭제
+	int replyDeleteAll(ShareReplyVO rvo);
 	
 	// ** WriterList
 	List<ShareVO> w_searchList(SearchCriteria cri);

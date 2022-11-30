@@ -31,10 +31,10 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
-    
-    <!-- NAVER Smart Editor 
-    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>-->
-	
+    <!-- alert, comfirm -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script defer="defer" src="resources/mLib/community.js"></script>		
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -214,11 +214,11 @@
     <!-- 글쓰기 Start -->
     <section class="write_container">
 		<div class="WritingWrap"> 
-		    <form action="shareUpdate" method="post"  enctype="multipart/form-data">
+		    <form action="shareUpdate" method="post"  enctype="multipart/form-data" class="shareUpdate">
 			<div class="WritingHeader">
 				<h2>나눔장터 글수정</h2>
 				<div class="ip">
-					<input type="submit" value="등록">
+					<input type="button" value="등록" class="supdate">
 				</div>
 				
 				<!-- user info start -->
@@ -245,7 +245,7 @@
 				<div class="WritingContent">
 					<div class="write_row">
 						<div class="column_title">
-							<input name="title" value="${apple.title}" >
+							<input name="title" value="${apple.title}" class="update_title">
 						</div>
 					
 						<div class="column_category" >
@@ -256,7 +256,17 @@
 						</div>
 					</div>
 					<div class="write_content">
-						<textarea name="content">${apple.content}</textarea>
+						<textarea id="content" name="content">${apple.content}</textarea>
+						<script
+							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+						<script
+							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/translations/ko.js"></script>
+						<script>
+							ClassicEditor.create(document
+									.querySelector('#content'), {
+								language : "ko"
+							});
+						</script>
 					</div>
 				</div>
 					
