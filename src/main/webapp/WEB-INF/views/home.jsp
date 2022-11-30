@@ -376,10 +376,10 @@
 		<div class="row ">
 			<c:forEach var="review" items="${reviewlist}" >
 				<div class="col-md-3 hover-write" id="rev${revno.count}">
-					<a href="dog_detail?dno=${review.dno}" class="thumbnail2 "> 
+					<a href="reviewDetail?rvno=${review.rvno}" class="thumbnail2 "> 
 					<img src="${review.img}" alt="">
 					</a>
-					<p class=" howrite visibleBox">${review.id}님의 ${review.subject} 폴인독의 모든 서비스를 이용 후 남겨주신 고객님들의 소중한 리뷰를 소개합니다 </p>
+					<p class=" howrite visibleBox" onClick="location.href='reviewDetail?rvno=${review.rvno}'">${review.nname}님의 ${review.subject} 폴인독의 모든 서비스를 이용 후 남겨주신 고객님들의 소중한 리뷰를 소개합니다 </p>
 				</div>
 			</c:forEach>
 		</div>	
