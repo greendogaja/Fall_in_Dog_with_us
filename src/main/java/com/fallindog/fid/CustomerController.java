@@ -22,19 +22,22 @@ public class CustomerController {
 	@Autowired
 	CustomerService service;
 	
-	
+	//위치안내
 	@RequestMapping(value="/roadmove")
 	public ModelAndView roadmove(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
 		mv.setViewName("customer/road");
 		return mv;
-	} //contact
+	} //roadmove
+	
+	//절차안내
 	@RequestMapping(value="/procedure")
 	public ModelAndView procedure(HttpServletRequest request, HttpServletResponse response,ModelAndView mv) {
 		mv.setViewName("customer/procedure");
 		return mv;
-	} //contact
+	} //procedure
 	
 	
+	//자주묻는질문홈
 	@RequestMapping(value="/customerhome")
 	public ModelAndView customerhome(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,
 			CustomSearchCriteria cri,CustomPageMaker pageMaker) {
@@ -47,61 +50,26 @@ public class CustomerController {
 		else cri.setSearchType(searchType);
 		if( keyword == null || keyword.length()<1 ) cri.setKeyword(null); 
 		else cri.setKeyword(keyword);
-		 if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
-		 else cri.setNamekey(namekey);
-		 if( phonekey == null || phonekey.length()<1 ) cri.setPhonekey(null); 
-		 else cri.setPhonekey(phonekey);
-		 if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
-		 else cri.setIdkey(idkey);
-
+		if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
+		else cri.setNamekey(namekey);
+		if( phonekey == null || phonekey.length()<1 ) cri.setPhonekey(null); 
+		else cri.setPhonekey(phonekey);
+		if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
+		else cri.setIdkey(idkey);
 		
 		cri.setSnoEno();
-	    mv.addObject("faqlist", service.csearchList(cri));  //ver2
+	    mv.addObject("faqlist", service.csearchList(cri));  
 	    pageMaker.setCri(cri);
-	    pageMaker.setTotalRowsCount(service.searchCount(cri));   //ver2 : 조건과 일치하는 Rows 갯수 
+	    pageMaker.setTotalRowsCount(service.searchCount(cri));   
 	      
 	    mv.addObject("pageMaker", pageMaker);
 		mv.setViewName("/customer/customerHome");
 		return mv;
-	}
+	}//customerhome
 	
 	
-	// 자주하는 질문 
-	@RequestMapping(value="/faq")
-	public ModelAndView faq(HttpServletRequest request, HttpServletResponse response,ModelAndView mv
-								, CustomSearchCriteria cri, CustomPageMaker pageMaker) {
-		response.setContentType("text/html; charset=UTF-8;");
-		
-		String searchType  = request.getParameter("searchType");
-		String keyword  = request.getParameter("keyword");
-		String namekey  = request.getParameter("namekey");
-		String phonekey = request.getParameter("phonekey");
-		String idkey = request.getParameter("idkey");
-		if( searchType == null || searchType.length()<1 ) cri.setSearchType(null); 
-		else cri.setSearchType(searchType);
-		if( keyword == null || keyword.length()<1 ) cri.setKeyword(null); 
-		else cri.setKeyword(keyword);
-		 if( namekey == null || namekey.length()<1 ) cri.setNamekey(null); 
-		 else cri.setNamekey(namekey);
-		 if( phonekey == null || phonekey.length()<1 ) cri.setPhonekey(null); 
-		 else cri.setPhonekey(phonekey);
-		 if(  idkey == null || idkey.length()<1 ) cri.setIdkey(null); 
-		 else cri.setIdkey(idkey);
-
-		
-		
-		System.out.println("#####"+cri);
-		cri.setSnoEno();
-	    mv.addObject("faqlist", service.csearchList(cri));  //ver2
-	    pageMaker.setCri(cri);
-	    pageMaker.setTotalRowsCount(service.searchCount(cri));   //ver2 : 조건과 일치하는 Rows 갯수 
-	      
-	    mv.addObject("pageMaker", pageMaker);
-	     
-	    mv.setViewName("/customer/faq");
-	    return mv;
-	}
 	
+	//자주묻는질문 디테일
 	@RequestMapping(value="/faqdetail")
 	public ModelAndView faqdetail(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, CustomerVO vo) {
 		String uri = "/customer/faqDetail";
@@ -153,7 +121,7 @@ public class CustomerController {
 		return mv;
 	} //faqinsert
 
-	
+	//자주묻는질문 업데이트
 	@RequestMapping(value="/faqupdate", method=RequestMethod.POST)
 	public ModelAndView faqupdate(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, CustomerVO vo) {
 		String uri = "/customer/faqDetail";
@@ -169,6 +137,7 @@ public class CustomerController {
 		return mv;
 	}//faqupdate
 	
+	//자주묻는질문 삭제
 	@RequestMapping(value="/faqdelete")
 	public ModelAndView faqdelete(HttpServletRequest request, HttpServletResponse response, 
 									ModelAndView mv, CustomerVO vo, RedirectAttributes rttr) {
@@ -188,9 +157,9 @@ public class CustomerController {
 		// 3. 결과(ModelAndView) 전달 
 		mv.setViewName(uri);
 		return mv;
-	} //bdelete
+	} //faqdelete
 	
 	
 
 	
-}
+}//class

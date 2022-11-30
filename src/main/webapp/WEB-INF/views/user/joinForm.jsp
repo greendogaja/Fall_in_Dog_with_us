@@ -43,124 +43,112 @@
     	}
     </style>
     <script>
-    let iCheck =false;
-    let pCheck =false;
-    let ppCheck =false;
-    let nCheck =false;
-    let nnCheck =false;
-    let phCheck=false;
-    let bCheck=false;
-    
-    $(function(){
-    	//## ID
-    	$('#id').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#name').focus();
-    		}
-    	}).focusout(function(){
-    		iCheck = idCheck();
-    	});
-    	
-    	//## password
-    	$('#password').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    		}
-    	}).focusout(function(){
-    		pCheck = pwCheck();
-    	});
-    	
-    	
-    	//## cpassoword
-    	$('#cpassword').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();		}
-    	}).focusout(function(){
-    		ppCheck = cpCheck();
-    	});
-    	
-    	//## name
-    	$('#name').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#nname').focus();
-    		}
-    	}).focusout(function(){
-    		nCheck = nmCheck();
-    	});
-    	//## nname	
-    	$('#nname').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#email').focus();
-    		}
-    	}).focusout(function(){
-    		nnCheck = nnmCheck();
-    	});
-    	//## 생년월일
-    	$('#yy').change(function(){
-    		bCheck = bryCheck();
-    		if(bCheck == false)
-        	$('#mm').prop('disabled',true);
-        	$('#dd').prop('disabled',true);
-    		if(bCheck == true) {
-    		$('#mm').prop('disabled',false);
-    			return true;
-    		}
-    		
-    	});
-    	$('#mm').change(function(){
-    		bCheck = bryCheck();
-    		bCheck = false;
-    		bCheck = brmCheck(); 
-    		if(bCheck == false)
-    		$('#yy').prop('disabled',true);
-    		$('#dd').prop('disabled',true);
-    		if(bCheck == true){
-    			$('#yy').prop('disabled',false);
-    			$('#dd').prop('disabled',false);
-    			return true;
-    		}
-    	});
-    	$('#dd').change(function(){
-    		bCheck = brdCheck();
-    		if(bCheck == false)
-        		$('#yy').prop('disabled',true);
-        		$('#mm').prop('disabled',true);
-    		if(bCheck == true){ 
-    			$('#mm').prop('disabled',false);
-    			return true;
-    		}
-    	});
-
-    	//## email
-    	$('#email').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#phone').focus();
-    		}
-    	});
-
-    	//## email
-    	$('#phone').keydown(function(e){
-    		if(e.which==13){
-    			e.preventDefault();  
-    			$('#submitBtn').focus();
-    		}
-    	}).focusout(function(){
-    		phCheck = phoCheck();
-    	});
-    	
-    })
-    
-
-
-    
+	    let iCheck =false;
+	    let pCheck =false;
+	    let ppCheck =false;
+	    let nCheck =false;
+	    let nnCheck =false;
+	    let phCheck=false;
+	    let bCheck=false;
+	    
+	    $(function(){
+	    	//## ID
+	    	$('#id').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();  
+	    			$('#name').focus();
+	    		}
+	    	}).focusout(function(){
+	    		iCheck = idCheck();
+	    	});
+	    	//## password
+	    	$('#password').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();  
+	    		}
+	    	}).focusout(function(){
+	    		pCheck = pwCheck();
+	    	});
+	    	//## cpassoword
+	    	$('#cpassword').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();		}
+	    	}).focusout(function(){
+	    		ppCheck = cpCheck();
+	    	});
+	    	//## name
+	    	$('#name').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();  
+	    			$('#nname').focus();
+	    		}
+	    	}).focusout(function(){
+	    		nCheck = nmCheck();
+	    	});
+	    	//## nname	
+	    	$('#nname').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();  
+	    			$('#email').focus();
+	    		}
+	    	}).focusout(function(){
+	    		nnCheck = nnmCheck();
+	    	});
+	    	//## 생년월일
+	    	$('#yy').change(function(){
+	    		bCheck = bryCheck();
+	    		if(bCheck == false)
+	        	$('#mm').prop('disabled',true);
+	        	$('#dd').prop('disabled',true);
+	    		if(bCheck == true) {
+	    		$('#mm').prop('disabled',false);
+	    			return true;
+	    		}
+	    	});
+	    	$('#mm').change(function(){
+	    		bCheck = bryCheck();
+	    		bCheck = false;
+	    		bCheck = brmCheck(); 
+	    		if(bCheck == false)
+	    		$('#yy').prop('disabled',true);
+	    		$('#dd').prop('disabled',true);
+	    		if(bCheck == true){
+	    			$('#yy').prop('disabled',false);
+	    			$('#dd').prop('disabled',false);
+	    			return true;
+	    		}
+	    	});
+	    	$('#dd').change(function(){
+	    		bCheck = brdCheck();
+	    		if(bCheck == false)
+	        		$('#yy').prop('disabled',true);
+	        		$('#mm').prop('disabled',true);
+	    		if(bCheck == true){ 
+	    			$('#mm').prop('disabled',false);
+	    			return true;
+	    		}
+	    	});
+	    	//## email
+	    	$('#email').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();  
+	    			$('#phone').focus();
+	    		}
+	    	});
+	    	//## email
+	    	$('#phone').keydown(function(e){
+	    		if(e.which==13){
+	    			e.preventDefault();  
+	    			$('#submitBtn').focus();
+	    		}
+	    	}).focusout(function(){
+	    		phCheck = phoCheck();
+	    	});
+	    })//ready
     </script>
 </head>
 <body>
- <!-- Preloader -->
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -191,17 +179,18 @@
         <!-- Top Header Area -->
         <div class="top-header">
             <div class="container h-100">
-                <div class="row h-100 align-items-center">
+                <div class="row h-110 align-items-center">
                     <!-- Breaking News Area -->
                     <div class="col-12 col-sm-8">
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Fall In Dog </a></li>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">입양안내 및 절차</a></li>
-                                    <li><a href="#">분양중 동물 </a></li>
-                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="aboutUs">Fall In Dog </a></li>
+                                    <li><a href="noticeList">공지사항</a></li>
+                                    <li><a href="adopt_procedure">입양안내 및 절차</a></li>
+                                    <li><a href="dog_list_S">분양중 동물 </a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -214,9 +203,24 @@
                             <a href="joinf" data-toggle="tooltip" data-placement="bottom" title="회원가입"><i class="fa fa-user-plus" style="font-size:30px" aria-hidden="true"></i></a>
                         	</c:if>
                             <c:if test="${!empty loginID}">
-                            <p>${loginID}님  <p>
+                            ${loginNick}님 환영합니다
                             <a href="logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃"><i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i></a>
-                            <a href="mdetail?jCode=U" data-toggle="tooltip" data-placement="bottom" title="마이페이지"><i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i></a>
+			                      <div class="classynav" >
+				                      <ul >
+				                      	<li class="mhover" >
+				                      		<i class="fa fa-cog " style="font-size:30px" aria-hidden="true"></i>
+				                      		<ul class="dropdown mhover-content boradi " >
+				                      			<li style="font-size:1rem;">MyPage</li>
+												<li><a href="info" style="color:white;">회원정보</a></li>
+												<li><a href="info?want=U&id=${loginID}" style="color:white;">내정보변경</a></li>
+												<li><a href="qna" style="color:white;">1:1문의</a></li>
+												<c:if test="${'admin' == loginID }">
+												<li><a href="usearchlist" style="color:white;">회원관리</a></li>
+												</c:if>
+		                                    </ul>
+				                      	</li>
+				                      </ul>
+			                      </div>
                             </c:if>
                         </div>
                     </div>
@@ -229,7 +233,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt=""></a>
+                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt="" style="margin-right: 29px;"></a>
                     </div>
                 </div>
             </div>
@@ -259,79 +263,39 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="home">Home</a></li>
-                                    <li><a href="#">Pages</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="home">Home</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">가나다라마바</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 1</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 2</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 3</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 4</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                        </div>
+                                    <li><a href="#">입양목록 및 신청</a>
+                                        <ul class="dropdown">
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
+                                        </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+                                             <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -352,6 +316,7 @@
     </header>
     <!-- ##### Header Area End ##### -->
 	<hr>
+	<!--회원가입  -->
 	<div class="container">
 		<div class="row container3" >
 			<div class="col-md-8 ">
@@ -359,8 +324,11 @@
 					<span>회원가입</span>
 				</h1>
 				<hr>
+				<!-- 회원가입폼  -->
 				<form action="join" class="form-horizontal" method="post" 
 					name="signup" id="signup" enctype="multipart/form-data" style="margin:auto;">
+					
+					<!-- 아이디  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">아이디<span
 							class="text-danger">*</span></label>
@@ -373,7 +341,8 @@
 							<span id="iMessage" class="eMessage"></span>
 						</div>
 					</div>
-
+					
+					<!-- 비밀번호  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">비밀번호 설정<span
 							class="text-danger">*</span></label>
@@ -384,6 +353,8 @@
 									<span id="pMessage" class="eMessage"></span>
 						</div>
 					</div>
+					
+					<!-- 비밀번호 확인  -->
 					<div class="form-group">
 						<label for="password" class="control-label col-sm-3">비밀번호 확인<span
 							class="text-danger">*</span></label>
@@ -394,6 +365,8 @@
 									<span id="ppMessage" class="eMessage"></span>
 						</div>
 					</div>
+					
+					<!-- 성명  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">성명<span
 							class="text-danger">*</span></label>
@@ -403,6 +376,8 @@
 								<span id="nMessage" class="eMessage"></span>
 						</div>
 					</div>
+					
+					<!-- 별명  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">별명<span
 							class="text-danger">*</span></label>
@@ -415,6 +390,8 @@
 							<span id="nnMessage" class="eMessage"></span>
 						</div>
 					</div>
+					
+					<!-- 생년월일 -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">생년월일 <span
 							class="text-danger">*</span></label>
@@ -467,6 +444,8 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- 성별 -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">성별 <span
 							class="text-danger">*</span></label>
@@ -479,6 +458,8 @@
 							</label>
 						</div>
 					</div>
+					
+					<!-- 이메일  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">이메일<br>
 							<small>(있는 경우)</small></label>
@@ -488,6 +469,8 @@
 								value="">
 						</div>
 					</div>
+					
+					<!-- 연락처 -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">연락처<span
 							class="text-danger">*</span></label>
@@ -497,6 +480,8 @@
 							<span id="phMessage" class="eMessage"></span>
 						</div>
 					</div>
+					
+					<!-- 프로필사진  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">프로필 사진<br>
 							<small>(선택사항)</small></label>
@@ -521,6 +506,8 @@
 				            }); //change
 						</script>
 					</div>
+					
+					<!-- 버튼  -->
 					<div class="form-group">
 						<div class="col-xs-offset-3 col-sm-2 mauto" style="max-width:30%; display:flex; justify-content:space-between;">
 							<input id="submitBtn" onclick="inCheck()"  type="button" value="가입하기"
@@ -529,81 +516,51 @@
 						</div>
 					</div>
 				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!--######################### Footer -->
+			</div> <!-- col-md-8 -->
+		</div><!-- row container3 -->
+	</div> <!-- container  -->
+	<!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                   
                     <!-- Footer Nav Area -->
                     <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
                         <nav class="classy-navbar ">
-
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
                                 <span class="navbarToggler"><span></span><span></span><span></span></span>
                             </div>
-
                             <!-- Menu -->
                             <div class="classy-menu">
-
                                 <!-- close btn -->
                                 <div class="classycloseIcon">
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
-
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="noticeList">공지사항</a></li>
+                                        <li><a href="contact">오시는길</a></li>
+                                        <li><a href="dog_list_S">입양목록</a></li>
+                                        <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="reviewList">입양후기</a></li>
+                                        <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
                             </div>
                         </nav>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
         </div>
-
-   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
-대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
-E-mail : fallindogkorea@gmail.com <br>
-Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+		대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+		E-mail : fallindogkorea@gmail.com <br>
+		Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
     </footer>
 </body>
 </html>

@@ -56,6 +56,9 @@ button{
 	font-size:1.5em;
 	font-weight:bold;
 }
+.bcho span{
+	word-break: keep-all;
+}
 .tablecon{
 	width: 100%;
     margin-left: 33px;

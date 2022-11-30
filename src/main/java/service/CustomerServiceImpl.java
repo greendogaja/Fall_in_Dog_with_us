@@ -46,6 +46,7 @@ public class CustomerServiceImpl implements CustomerService{
 		return mapper.delete(vo);
 	}
 	
+	//** List
 	@Override
 	public List<CustomerVO> csearchList(CustomSearchCriteria cri){
 		return mapper.csearchList(cri);

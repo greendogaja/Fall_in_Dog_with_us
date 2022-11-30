@@ -32,15 +32,10 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/info.css">
-	
-	
-	
-	
 </head>
-
 <body>
 	
-  <!-- Preloader -->
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
@@ -77,11 +72,12 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Fall In Dog </a></li>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">입양안내 및 절차</a></li>
-                                    <li><a href="#">분양중 동물 </a></li>
-                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="aboutUs">Fall In Dog </a></li>
+                                    <li><a href="noticeList">공지사항</a></li>
+                                    <li><a href="adopt_procedure">입양안내 및 절차</a></li>
+                                    <li><a href="dog_list_S">분양중 동물 </a></li>
+                                    <li><a href="review">분양후기 </a></li>
+                                    <li><a href="qna">1:1문의하기</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -124,7 +120,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt=""></a>
+                        <a href="home" class="original-logo"><img src="resources/img/core-img/flogo.png" alt="" style="margin-right: 29px;"></a>
                     </div>
                 </div>
             </div>
@@ -154,47 +150,39 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Guide</a>
+                                    <li><a href="#">폴인독</a>
                                         <ul class="dropdown">
-                                            <li><a href="aboutUs">About Us</a></li>
-                                            <li><a href="contact">Contact</a></li>
-                                            <li><a href="noticeList">Notice</a></li>
+                                            <li><a href="aboutUs">폴인독소개</a></li>
+                                            <li><a href="contact">오시는길</a></li>
+                                            <li><a href="noticeList">공지사항</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <li><a href="#">입양안내 및 절차</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
+                                        	<li><a href="adopt_guide">입양 위탁 소개</a></li>
+                                            <li><a href="adopt_procedure">입양 위탁 절차</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">About Us</a></li>
-                                    <li><a href="#">Community</a>
+                                    <li><a href="#">입양목록 및 신청</a>
                                         <ul class="dropdown">
-                                            <li><a href="review">입양후기</a></li>
-                                            <li><a href="free">자유게시판</a></li>
-                                            <li><a href="share">나눔장터</a></li>
+                                            <li><a href="dog_list_S">보호/입양중 목록</a></li>
+                                            <li><a href="adopt_board">입양 신청</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="home.jsp">Contact</a></li>
+                                    <li><a href="#">커뮤니티</a>
+                                        <ul class="dropdown">
+                                             <li><a href="reviewList">입양후기</a></li>
+                                            <li><a href="freeList">자유게시판</a></li>
+                                            <li><a href="shareList">나눔장터</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">고객센터</a>
+                                        <ul class="dropdown">
+                                            <li><a href="customerhome">자주하는질문</a></li>
+                                            <li><a href="qna">1:1문의</a></li>
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -221,7 +209,7 @@
 				<a href="home"><img src="resources/img/core-img/ficon.ico" width="50" height="50"></a>
 				<h1>폴인독ID</h1>
 			</div>
-			
+			<!-- 프로필 -->
 			<div class="profile_area">
 				<div class="profile_inner">
 					<a href="info?want=U&id=${user.id}" class="photo">
@@ -234,7 +222,7 @@
 						<p class="usemail">${user.id }</p>
 				</div>
 			</div>
-			
+			<!-- 사이드정보창 -->
 			<div class="header_left">
 				<ul class="left_menu" role="menu">
 					<li>
@@ -253,18 +241,21 @@
 			<div class="account_box">
 				<h1 class="title " >내프로필</h1>
 				<ul class="account_row">
+					<!-- 성명 -->
 					<li>
 						<div class="row_item ">
 							<span class="item_text">성명 :</span>
 							<span class="tcenter2">${user.name}</span>
 						</div>
 					</li>
+					<!-- 별명 -->
 					<li>
 						<div class="row_item ">
 							<span class="item_text">별명 :</span>
 							<span class="tcenter2">${user.nname}</span>
 						</div>
 					</li>
+					<!-- 생년월일  -->
 					<li>
 						<div class="row_item ">
 							<span class="item_text">생년월일 :</span>
@@ -277,6 +268,7 @@
 							<span class="tcenter2">${user.gender}</span>
 						</div>
 					</li>
+					<!-- 연락처 -->
 					<li>
 						<div class="row_item ">
 							<span class="item_text">연락처 :</span>
@@ -290,6 +282,7 @@
 						</div>
 							
 					</li>
+					<!-- 이메일  -->
 					<li>
 						<div class="row_item ">
 							<span class="item_text">이메일 :</span>
@@ -307,58 +300,48 @@
 			</div>
 		</div>
 	</div>
-	<!--######################### Footer -->
+   <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center" style="font-size:1rem;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                   
                     <!-- Footer Nav Area -->
                     <div class="classy-nav-container breakpoint-off" >
                         <!-- Classy Menu -->
                         <nav class="classy-navbar ">
-
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
                                 <span class="navbarToggler"><span></span><span></span><span></span></span>
                             </div>
-
                             <!-- Menu -->
                             <div class="classy-menu">
-
                                 <!-- close btn -->
                                 <div class="classycloseIcon">
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
-
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="noticeList">공지사항</a></li>
+                                        <li><a href="contact">오시는길</a></li>
+                                        <li><a href="dog_list_S">입양목록</a></li>
+                                        <li><a href="adopt_board">입양신청</a></li>
+                                        <li><a href="reviewList">입양후기</a></li>
+                                        <li><a href="customerhome">자주묻는질문</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
                             </div>
                         </nav>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
         </div>
-
-   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
-대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
-E-mail : fallindogkorea@gmail.com <br>
-Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		법인명 : (주) 폴인독 <br> 주소:경기도 성남시 분당구 돌마로 46 폴인독 보호소 <br>
+		대표: 남궁진영 &amp; 박민욱 &amp; 박세라 <br> 사업자등록번호 : 2110-12-59281 <br> 통신판매업신고번호: 제 2020-경기도성남-8888호 동물판매업신고번호: 제 219000-928-2020-8888호 <br>
+		E-mail : fallindogkorea@gmail.com <br>
+		Copyright &copy;<script>document.write('fallindog.com');</script> all right reserved 
     </footer>
 </body>
 </html>

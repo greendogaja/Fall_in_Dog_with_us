@@ -10,10 +10,13 @@ import vo.QnaReplyVO;
 
 public interface QnaReplyMapper  {
 	
-	//** List
+	//** Read
 	QnaReplyVO readReply(QnaReplyVO qvo);
+	//** Insert
 	int insert(QnaReplyVO vo);
+	//** Update
 	int update(QnaReplyVO vo);
+	//** Delete
 	int delete(QnaReplyVO vo);
 	
 }//interface
