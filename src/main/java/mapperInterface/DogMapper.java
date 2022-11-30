@@ -4,10 +4,21 @@ import java.util.List;
 
 import dogcontrol.DogSearchCriteria;
 import vo.DogVO;
-
 public interface DogMapper {
 	
 //	게시판
+	List<DogVO> dogCheck_S();
+	List<DogVO> dogCheck_M();
+	List<DogVO> dogCheck_L();
+	
+	List<DogVO> checkList(DogSearchCriteria cri);
+	
+	List<DogVO> checkList(DogVO vo);
+	
+	List<DogVO> dog_list_S();
+	List<DogVO> dog_list_M();
+	List<DogVO> dog_list_L();
+	
 	List<DogVO> dog_list_S(DogSearchCriteria cri);
 	List<DogVO> dog_list_M(DogSearchCriteria cri);
 	List<DogVO> dog_list_L(DogSearchCriteria cri);
