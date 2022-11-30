@@ -44,6 +44,7 @@ public class QnaServiceImpl implements QnaService{
 		return mapper.delete(vo);
 	}
 	
+	//** List
 	@Override
 	public List<QnaVO> searchList(SearchCriteria cri){
 		return mapper.searchList(cri);

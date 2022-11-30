@@ -21,6 +21,7 @@ public interface CustomerService {
 	//** Delete
 	int delete(CustomerVO vo);
 	
+	//** List
 	List<CustomerVO> selectList();
 	List<CustomerVO> csearchList(CustomSearchCriteria cri);
 	int searchCount(CustomSearchCriteria cri);
