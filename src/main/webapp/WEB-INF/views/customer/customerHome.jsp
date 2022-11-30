@@ -306,32 +306,29 @@
 					<c:choose>
 						<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
 							<a href="customerhome${pageMaker.searchQuery(1)}" >처음</a>&nbsp;
-					<a href="customerhome${pageMaker.searchQuery(pageMaker.spageNo-1)}" >&lt;</a>&nbsp;&nbsp; 
-					
-				</c:when>
-						<c:otherwise>
-							<font color="Gray">처음&nbsp;&lt;&nbsp;&nbsp;</font>
-						</c:otherwise>
+						</c:when>
+						<c:when test="${pageMaker.cri.currPage != 1 }">
+							<a href="customerhome${pageMaker.searchQuery(pageMaker.cri.currPage-1)}" >&lt;</a>&nbsp;&nbsp; 
+						</c:when>
 					</c:choose>
 					<!-- Displag PageNo -->
 					<c:forEach var="i" begin="${pageMaker.spageNo}"
 						end="${pageMaker.epageNo}">
 						<c:if test="${i==pageMaker.cri.currPage}">
 							<font size="6" color="Orange">${i}</font>&nbsp;
-				</c:if>
-						<c:if test="${i!=pageMaker.cri.currPage}">
+						</c:if>
+							<c:if test="${i!=pageMaker.cri.currPage}">
 							<a href="customerhome${pageMaker.searchQuery(i)}" >${i}</a>&nbsp;
-				</c:if>
+						</c:if>
 					</c:forEach>
 					<!-- Next, Last -->
 					<c:choose>
 						<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
-							<a href="customerhome${pageMaker.searchQuery(pageMaker.epageNo+1)}"  >&nbsp;&gt;</a>
 							<a href="customerhome${pageMaker.searchQuery(pageMaker.lastPageNo)}" >&nbsp;마지막</a>
 						</c:when>
-						<c:otherwise>
-							<font color="Gray">&nbsp;&gt;&nbsp;마지막</font>
-						</c:otherwise>
+						<c:when test="${pageMaker.cri.currPage < pageMaker.lastPageNo}">
+							<a href="customerhome${pageMaker.searchQuery(pageMaker.cri.currPage+1)}"  >&nbsp;&gt;</a>
+						</c:when>
 					</c:choose>
 				</div> <!-- pagecs -->
 			</div><!-- area  -->
