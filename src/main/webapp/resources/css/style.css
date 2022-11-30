@@ -2258,7 +2258,7 @@ textarea:focus~.highlight {
 .pict{
     position: absolute;
     background-color: black;
-    width: 90%;
+    width: 91%;
     line-height: 40px;
     opacity: 0.7;
     transition: top .7s;
@@ -2266,7 +2266,6 @@ textarea:focus~.highlight {
     bottom: -5%;
     color: white;
     font-size: 21px;
-    left: 14px;
 }
 .howrite{
     position: absolute;
