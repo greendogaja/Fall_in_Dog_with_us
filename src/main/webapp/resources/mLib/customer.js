@@ -18,7 +18,7 @@ $(function() {
      if (pageUrl.indexOf('customerhome') > -1) { 
          $('.left-bar span').eq(4).addClass('clicked');
      } else if (pageUrl.indexOf('roadmove') > -1) { 
-         $('.left-bar span').eq(6).addClass('clicked');
+         $('.left-bar span').eq(2).addClass('clicked');
      } else if (pageUrl.indexOf('qna') > -1) { 
          $('.left-bar span').eq(5).addClass('clicked');
      } else if (pageUrl.indexOf('procedure') > -1) { 
