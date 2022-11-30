@@ -60,6 +60,12 @@ public class FreeServiceImpl implements FreeService{
 		return mapper.delete(vo);
 	}	
 	
+	// ** 글삭제시 포함된 댓글 삭제
+	@Override
+	public int replyDeleteAll(FreeReplyVO rvo) {
+		return mapper.replyDeleteAll(rvo);
+	}
+	
 	@Override 
 	public List<FreeVO> w_searchList(SearchCriteria cri) {
 		return mapper.w_searchList(cri);

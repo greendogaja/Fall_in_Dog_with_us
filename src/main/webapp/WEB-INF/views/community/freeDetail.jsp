@@ -17,14 +17,10 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
 
-	<!-- ajax 댓글리스트 js 
-	<script src="resources/myLib/ax_ncomment.js"></script> -->
-	
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     
-    <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -35,17 +31,11 @@
     <script defer="defer" src="resources/js/active.js"></script>
 	<!-- reply.js -->
     <script defer="defer" src="resources/mLib/notice_reply.js"></script>
-    
-    <script>
-			$(function(){
-				$('#commentData').click(function(){
-       				  if(${loginID == null}){
-            				alert('로그인 후 이용바랍니다.');
-       				  }
-					});
-     		 });//	ready
-      </script>
-      
+    <script defer="defer" src="resources/mLib/community.js"></script>
+    <!-- alert, comfirm -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>  
+        
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -278,7 +268,7 @@
 	</div>
 	<hr>
 	
-	<!-- =========================== comment/댓글 ================================== -->
+	<!-- =========================== comment/댓글 start ================================== -->
 	<div class="CommentBox">
 		<div class="comment_title">댓글</div>
 			<!-- 댓글 리스트 AJAX-->
@@ -303,7 +293,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="freeDelete?frpno=${orange.frpno}&freeno=${orange.freeno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a href="f_replyDelete?frpno=${orange.frpno}&freeno=${orange.freeno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -321,20 +311,19 @@
 									<div class="comment_inbox re_box dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="f_rereplyInsert">
+										<form action="f_rereplyInsert" id="rereplyInsert" class="rereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="freeno" value="${apple.freeno}" id="freeno">
 											<input type="hidden" name="id" value="${loginID}">
 											<div class="mg_b_10">${loginNick}</div>
-											<textarea name="content" id="content"
-												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="button" class="rere_btn" value="등록">
 												<input type="reset" value="취소">
-												<input type="hidden" name="grp" value="${orange.grp}"> 
-												<input type="hidden" name="grps" value="${orange.grps}">
-												<input type="hidden" name="grpl" value="${orange.grpl}">
+												<input type="hidden" name="grp" value="${orange.grp}" class="orange.grp"> 
+												<input type="hidden" name="grps" value="${orange.grps}" class="orange.grps">
+												<input type="hidden" name="grpl" value="${orange.grpl}" class="orange.grpl">
 											</div>
 										</form>
 									</div>
@@ -342,12 +331,12 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="f_replyUpdate">
+										<form action="f_replyUpdate" id="replyUpdate" class="replyUpdate">
 											<div class="mg_b_10">${orange.nname}</div>
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" value="수정"> 
+												<input type="button" class="re_up_btn" value="수정">
 												<input type="reset" value="취소">
 												<input type="hidden" name="freeno" value="${orange.freeno}" >
 												<input type="hidden" name="frpno" value="${orange.frpno}" >
@@ -375,7 +364,7 @@
 										<div class="comment_tool">
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
-												<a class="replyUpdate">수정</a>&nbsp;&nbsp;
+												<a class="re_update">수정</a>&nbsp;&nbsp;
 												<a href="f_replyDelete?freeno=${orange.freeno}&frpno=${orange.frpno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
@@ -391,7 +380,7 @@
 									<div class="comment_inbox rere_box dp_h">
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="f_rereplyInsert">
+										<form action="f_rereplyInsert" id="rerereplyInsert" class="rerereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="freeno" value="${apple.freeno}" id="freeno">
@@ -400,7 +389,7 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="등록"> 
+												<input type="button" class="rerere_btn" value="등록"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -412,7 +401,7 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="f_replyUpdate">
+										<form action="f_replyUpdate" id="rereplyUpdate" class="rereplyUpdate">
 											<input type="hidden" name="freeno" value="${orange.freeno}" >
 											<input type="hidden" name="frpno" value="${orange.frpno}" >
 											<input type="hidden" name="id" value="${orange.id}">
@@ -420,7 +409,7 @@
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="submit" name="commentData" id="commentData" value="수정"> 
+												<input type="button" class="rere_up_btn" value="수정"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -441,7 +430,7 @@
 			
 			<!-- ========================== 댓글입력 ========================== -->
 			<c:if test="${not empty loginID}">
-				<form action="f_replyInsert" method="post">
+				<form action="f_replyInsert" method="post" id="replyInsert" class="replyInsert">
 					<div class="CommentWriter">
 						<div class="comment_inbox">
 							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
@@ -451,7 +440,7 @@
 							<div class="mg_b_10">${loginNick}</div>
 								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<input type="submit" name="commentData" id="commentData" value="등록">
+								<input type="button" class="re_btn" name="commentData" id="commentData" value="등록">
 							</div>
 						</div>
 					</div>

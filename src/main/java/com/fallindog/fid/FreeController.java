@@ -264,10 +264,13 @@ public class FreeController {
 	// ** Delete : 글 삭제
 	@RequestMapping(value="/freeDelete")
 	public ModelAndView freeDelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, FreeVO vo, RedirectAttributes rttr) {
+									ModelAndView mv, FreeVO vo, RedirectAttributes rttr, FreeReplyVO cvo) {
 		String uri = "redirect:freeList";
 		
-		// 2. Service 처리
+		// 글에 포함된 댓글삭제
+		service.replyDeleteAll(cvo);
+		
+		// 글 삭제
 		if ( service.delete(vo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 
 		}else {
@@ -285,27 +288,28 @@ public class FreeController {
 	public ModelAndView rereplyInsert(HttpServletRequest request, 
 			HttpServletResponse response, ModelAndView mv, FreeReplyVO cvo, 
 			RedirectAttributes rttr) {
-	
+
 		int freeno = Integer.parseInt(request.getParameter("freeno"));
 		cvo.setFreeno(freeno); 
+	
+		String content = (String)request.getParameter("content");
+		System.out.println("f_rereplyInsert 컨트롤러 입성 content=> "+content);
+		System.out.println("f_rereplyInsert 컨트롤러 입성 cvo.getContent()=> "+cvo.getContent());
     	
 		// 대댓글의 grpl = 1, 모댓글 = 0(default)
 		cvo.setGrpl(1);
 		
-		System.out.println("대댓vo => "+cvo);
-		
-		String uri = "redirect:freeDetail?freeno="+freeno;
-		
-		if(service.rereplyInsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
+		if(cvo.getContent() == null || cvo.getContent().length()<1) {
+			cvo.setContent(null); 
+			System.out.println("f_rereplyInsert 실패 "+cvo.getContent());
+		} else {
+			System.out.println("f_rereplyInsert 성공 "+cvo.getContent());
+			service.rereplyInsert(cvo);
 		}
 		
-		System.out.println("대댓vo2 => "+cvo);
+		String uri = "redirect:freeDetail?freeno="+freeno;
 		mv.setViewName(uri);
 		return mv;
-		
 	}
 	
 	
@@ -318,18 +322,17 @@ public class FreeController {
 		int freeno = Integer.parseInt(request.getParameter("freeno"));
 		cvo.setFreeno(freeno);  
 		
-		String uri = "redirect:freeDetail?freeno="+freeno;
-		
-		if(service.replyInsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
+		if(cvo.getContent() == null || cvo.getContent().length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_replyInsert content 실패 "+cvo.getContent());
+		} else {
+			service.replyInsert(cvo);
+			System.out.println("r_replyInsert content 성공 "+cvo.getContent());
 		}
 		
-		System.out.println("~ncinsert cvo"+cvo);
+		String uri = "redirect:freeDetail?freeno="+freeno;
 		mv.setViewName(uri);
 		return mv;
-		
 	}	
 	
 	// ncdelete 댓글 삭제
@@ -357,30 +360,24 @@ public class FreeController {
 	public ModelAndView replyUpdate(HttpServletRequest request, HttpServletResponse response,
 								ModelAndView mv, FreeReplyVO cvo) {
 		// 1. 요청분석
-
+		String id = (String)request.getSession().getAttribute("loginID");
+		cvo.setId(id);
 		
 		int freeno = Integer.parseInt(request.getParameter("freeno"));
 		cvo.setFreeno(freeno);  
 		String uri = "redirect:freeDetail?freeno="+freeno;
 		
-		
-		mv.addObject("apple",cvo);
-		// => Update 성공/실패 모두 출력시 필요하므로
-		
-		System.out.println("댓글수정 vo =>"+cvo);
-		
-		
-		// 2. Service 처리
-		if ( service.replyUpdate(cvo) > 0 ) {
-			mv.addObject("message", "~~ 댓글수정 성공 ~~"); 
-		}else {
-			mv.addObject("message", "~~ 댓글수정 실패, 다시 하세요 ~~");
+		String content = request.getParameter("content");
+		if(content == null || content.length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_replyUpdate 실패 "+cvo.getContent());
+		} else {
+			System.out.println("r_replyUpdate 성공 "+cvo.getContent());
+			service.replyUpdate(cvo);
 		}
 		
-		// 3. 결과(ModelAndView) 전달 
+		mv.addObject("apple",cvo);
 		mv.setViewName(uri);
-		System.out.println("댓글수정"+mv);
-		System.out.println("##댓글수정"+cvo);
 		return mv;
 	}
 } //Controller

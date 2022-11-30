@@ -29,6 +29,9 @@ public interface FreeService {
 	// ** Delete
 	int delete(FreeVO vo);
 	
+	// ** 글삭제시 포함된 댓글 삭제
+	int replyDeleteAll(FreeReplyVO rvo);
+	
 	// ** WriterList
 	List<FreeVO> w_searchList(SearchCriteria cri);
 	

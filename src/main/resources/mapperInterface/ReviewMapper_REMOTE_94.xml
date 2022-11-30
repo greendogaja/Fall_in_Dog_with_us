@@ -27,29 +27,11 @@
 </sql>
 
 <select id="searchList" resultType="vo.ReviewVO">
-<<<<<<< HEAD
-	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id
-=======
 	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id 
->>>>>>> 565426222aed086b042063029955189bb6e2d40b
 	from review n, user u
 	where n.id = u.id and ( rvno>0 <include refid="search"></include>  
 	order by rvno desc
 	limit #{sno}, #{rowsPerPage}
-</select>
-
-<sql id="dnoSearch">
-	<if test="keyword!=null">
-		<bind name="keyVal" value="'%'+keyword+'%'"/>
-	</if>
-	dno like #{keyVal}
-</sql>
-
-<select id="adoptSearch" resultType="vo.DogVO">
-	select dno
-	where <include refid="dnoSearch"></include>
-	from dogs
-
 </select>
 
 <select id="w_searchList" resultType="vo.ReviewVO">
@@ -100,12 +82,6 @@
 <delete id="delete">
 	delete from review where rvno=#{rvno}
 </delete>	
-
-<!-- 글삭제시 포함된 댓글 삭제 -->
- <delete id="replyDeleteAll">
-	delete from review_reply
-	where rvno = #{rvno}
-</delete>
 
 <!-- ======================= 댓글 =======================  -->
 

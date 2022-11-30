@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import mapperInterface.ReviewMapper;
 import noticeControl.SearchCriteria;
+import vo.FreeReplyVO;
 import vo.ReviewReplyVO;
 import vo.ReviewVO;
 
@@ -59,6 +60,12 @@ public class ReviewServiceImpl implements ReviewService{
 	public int delete(ReviewVO vo) {
 		return mapper.delete(vo);
 	}	
+	
+	// ** 글삭제시 포함된 댓글 삭제
+	@Override
+	public int replyDeleteAll(ReviewReplyVO rvo) {
+		return mapper.replyDeleteAll(rvo);
+	}
 	
 	@Override 
 	public List<ReviewVO> w_searchList(SearchCriteria cri) {
