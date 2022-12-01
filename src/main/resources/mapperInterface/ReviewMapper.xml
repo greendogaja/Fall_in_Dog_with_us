@@ -27,11 +27,7 @@
 </sql>
 
 <select id="searchList" resultType="vo.ReviewVO">
-<<<<<<< HEAD
-	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id
-=======
-	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id 
->>>>>>> 565426222aed086b042063029955189bb6e2d40b
+	select rvno, subject, title, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, nname, uploadfile, img, n.id , dno
 	from review n, user u
 	where n.id = u.id and ( rvno>0 <include refid="search"></include>  
 	order by rvno desc
@@ -72,7 +68,7 @@
 </select>
 
 <select id="selectOne" resultType="vo.ReviewVO">
-	select title, subject, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, rvno
+	select title, subject, uploadfile, n.id, nname, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt, content, img, rvno, dno
 	from review n, user u
 	where n.id = u.id and rvno=#{rvno}
 </select>
@@ -87,8 +83,8 @@
 	<selectKey keyProperty="rvno" resultType="int" order="BEFORE">
 		select IFNULL(max(rvno),0)+1 from review
 	</selectKey>
-	insert into review(rvno, title, id, content, subject, img) 
-	values(#{rvno}, #{title}, #{id}, #{content}, #{subject}, #{img})
+	insert into review(rvno, title, id, content, subject, img, dno) 
+	values(#{rvno}, #{title}, #{id}, #{content}, #{subject}, #{img}, #{dno})
 </insert>
 
 <update id="update">
@@ -101,11 +97,6 @@
 	delete from review where rvno=#{rvno}
 </delete>	
 
-<!-- 글삭제시 포함된 댓글 삭제 -->
- <delete id="replyDeleteAll">
-	delete from review_reply
-	where rvno = #{rvno}
-</delete>
 
 <!-- ======================= 댓글 =======================  -->
 

@@ -134,7 +134,16 @@ $(".rere_up_btn").click(function() {
 
 
 // 댓글 삭제 alert
-
+$(".re_delete").click(function() {
+		Swal.fire({ 
+		title: '알림',
+		text: "댓글이 삭제되었습니다.",
+		icon: 'success',
+		timer: 1000,
+		showConfirmButton: false
+		});
+});
+/* 삭제 alert 이 빨리 사라짐,, */
 
 // free 글등록 alert
 $(".finsertf").click(function() {

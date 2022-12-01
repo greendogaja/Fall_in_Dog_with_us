@@ -268,9 +268,6 @@ public class ShareController {
 									ModelAndView mv, ShareVO vo, RedirectAttributes rttr, ShareReplyVO cvo) {
 		String uri = "redirect:shareList";
 		
-		// 글에 포함된 댓글삭제
-		sservice.replyDeleteAll(cvo);
-		
 		// 2. Service 처리
 		if ( sservice.delete(vo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 

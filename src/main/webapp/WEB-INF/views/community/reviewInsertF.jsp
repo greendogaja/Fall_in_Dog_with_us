@@ -220,7 +220,14 @@
 			<div class="WritingHeader">
 				<h2>입양후기 글쓰기</h2>
 				<div class="ip">
-					<button type="button"  id="adoptList_call" onclick="window.open('adoptSearch','test','width = 950, height = 600, top = 100, left = 200, location = no')" >입양한 강아지 정보 선택</button>
+					<script type="text/javascript">
+						function getDno(){
+							window.open('adoptSearch','test','width = 950, height = 700, top = 100, left = 200, location = no');
+						}
+					</script>
+					<button type="button"  id="adoptList_call" onclick="getDno()" >입양한 강아지 정보 선택</button>
+					<div>입양한 강아지 공고번호 </div>
+					<input type="text" id="chooseDno" value="${chooseDno}" name="dno" readonly="readonly">
 					<input type="button" value="등록" class="insertf">
 				</div>
 				<!-- user info start -->

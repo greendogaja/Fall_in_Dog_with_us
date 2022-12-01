@@ -293,7 +293,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="f_replyDelete?frpno=${orange.frpno}&freeno=${orange.freeno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a  class="re_delete" href="f_replyDelete?frpno=${orange.frpno}&freeno=${orange.freeno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -365,7 +365,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="f_replyDelete?freeno=${orange.freeno}&frpno=${orange.frpno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="f_replyDelete?freeno=${orange.freeno}&frpno=${orange.frpno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>

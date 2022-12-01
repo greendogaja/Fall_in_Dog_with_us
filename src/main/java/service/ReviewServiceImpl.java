@@ -61,12 +61,6 @@ public class ReviewServiceImpl implements ReviewService{
 		return mapper.delete(vo);
 	}	
 	
-	// ** 글삭제시 포함된 댓글 삭제
-	@Override
-	public int replyDeleteAll(ReviewReplyVO rvo) {
-		return mapper.replyDeleteAll(rvo);
-	}
-	
 	@Override 
 	public List<ReviewVO> w_searchList(SearchCriteria cri) {
 		return mapper.w_searchList(cri);

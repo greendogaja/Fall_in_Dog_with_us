@@ -133,7 +133,6 @@ public class ReviewController {
 		int rvno = Integer.parseInt((String)request.getParameter("rvno"));
 		vo.setRvno(rvno);
 		vo = service.selectOne(vo);
-		System.out.println("#################################"+vo);
 		
 		if ( vo != null ) { 
 			// 2.1) 조회수 증가
@@ -188,6 +187,8 @@ public class ReviewController {
 		System.out.println("새글등록 vo =>"+vo);
 		// 1. 요청분석
 		String uri = "redirect:reviewList";
+		
+		System.out.println("getDno => " + vo.getDno());
 		
 		
 		//image upload
@@ -293,9 +294,6 @@ public class ReviewController {
 	public ModelAndView reviewDelete(HttpServletRequest request, HttpServletResponse response, 
 									ModelAndView mv, ReviewVO vo, RedirectAttributes rttr, ReviewReplyVO cvo) {
 		String uri = "redirect:reviewList";
-		
-		// 글에 포함된 댓글삭제
-		service.replyDeleteAll(cvo);
 	
 		// 2. Service 처리
 		if ( service.delete(vo) > 0 ) {

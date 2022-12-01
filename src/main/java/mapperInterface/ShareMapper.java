@@ -30,9 +30,6 @@ public interface ShareMapper {
 	// ** Delete
 	int delete(ShareVO vo);
 	
-	// ** 글삭제시 포함된 댓글 삭제
-	int replyDeleteAll(ShareReplyVO rvo);
-	
 	// ** WriterList
 	List<ShareVO> w_searchList(SearchCriteria cri);
 	
