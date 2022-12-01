@@ -267,9 +267,6 @@ public class FreeController {
 									ModelAndView mv, FreeVO vo, RedirectAttributes rttr, FreeReplyVO cvo) {
 		String uri = "redirect:freeList";
 		
-		// 글에 포함된 댓글삭제
-		service.replyDeleteAll(cvo);
-		
 		// 글 삭제
 		if ( service.delete(vo) > 0 ) {
 			rttr.addFlashAttribute("message", "~~ 글삭제 성공 ~~"); 

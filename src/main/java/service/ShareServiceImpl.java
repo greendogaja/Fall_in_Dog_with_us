@@ -61,12 +61,6 @@ public class ShareServiceImpl implements ShareService{
 		return mapper.delete(vo);
 	}	
 	
-	// ** 글삭제시 포함된 댓글 삭제
-	@Override
-	public int replyDeleteAll(ShareReplyVO rvo) {
-		return mapper.replyDeleteAll(rvo);
-	}	
-	
 	@Override 
 	public List<ShareVO> w_searchList(SearchCriteria cri) {
 		return mapper.w_searchList(cri);

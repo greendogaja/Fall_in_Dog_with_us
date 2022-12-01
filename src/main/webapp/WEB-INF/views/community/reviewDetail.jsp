@@ -275,7 +275,7 @@
 		$(function(){
 			$.ajax({
 				type : 'Get',
-				url : 'adoptInfo?dno=69',
+				url : 'adoptInfo?dno=${apple.dno}',
 				success : function(resultPage) {
 					$('#review_resultArea').html(resultPage);
 				},
@@ -314,7 +314,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -386,7 +386,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -459,7 +459,7 @@
 							<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
 							<input type="hidden" name="id" value="${loginID}">
 							<div class="mg_b_10">${loginNick}</div>
-								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
 								<input type="button" class="re_btn" name="commentData" id="commentData" value="등록">
 							</div>

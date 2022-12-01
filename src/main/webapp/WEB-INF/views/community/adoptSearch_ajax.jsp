@@ -20,14 +20,14 @@
 	<div>
 		<h4>입양한 강아지 정보 검색</h4>
 		<h5>공고번호 입력</h5>
-		<input type="text" class="ad_search_input" name="dno" id="keyword" 
+		<input type="text" class="ad_search_input" name="dno" id="ip_dno" 
 		value="${Adopt_detail.dno}" placeholder=" 입양한 강아지의 공고번호를 입력하세요." onsubmit="return false;">
 		<button type="button" id="searchBtn" class="search_btn"></button>
 	</div>
 	
 		<script type="text/javascript">
 		
-		$("#keyword").keydown(function(e){
+		$("#ip_dno").keydown(function(e){
 			if (e.keyCode == 13) {
 				$("#searchBtn").click();
 			}
@@ -46,7 +46,18 @@
 			}); //ajax
 		});
 	</script>
-	<div id="review_resultArea" style= "width:100%; height:450px;"></div>
-	
+	<div>
+		<div>
+			<input type="button" id="chooseBtn" class="chooseBtn" value="아래 정보 선택" onclick="choose()">
+			<input type="button" value="창닫기" onclick="window.close()">
+			<script type="text/javascript">
+				function choose(){
+					opener.document.getElementById("chooseDno").value = document.getElementById("ip_dno").value;
+					window.close();
+				}
+			</script>
+		</div>
+		<div id="review_resultArea" style= "width:100%; height:470px;"></div>
+	</div>
 </body>
 </html>

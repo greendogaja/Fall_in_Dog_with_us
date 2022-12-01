@@ -295,7 +295,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -368,7 +368,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -476,7 +476,7 @@ ${message}<br>
 </c:if>
 <hr>
 <div class="list_forward">
-	<a href="noticeList" class="list_a">목록으로</a>
+	<a href="shareList" class="list_a">목록으로</a>
 	<a href="javascript:history.go(-1)" class="forward_a">이전으로</a>
 </div>
 

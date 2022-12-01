@@ -83,12 +83,6 @@
 	delete from free where freeno=#{freeno}
 </delete>	
 
-<!-- 글삭제시 포함된 댓글 삭제 -->
- <delete id="replyDeleteAll">
-	delete from free_reply
-	where freeno = #{freeno}
-</delete>
-
 <!-- ======================= 댓글 =======================  -->
 
 

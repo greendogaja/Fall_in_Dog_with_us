@@ -83,12 +83,6 @@
 	delete from share where shno=#{shno}
 </delete>	
 
-<!-- 글삭제시 포함된 댓글 삭제 -->
-<delete id="replyDeleteAll">
-	delete from share_reply
-	where shno = #{shno}
-</delete>
-
 <!-- ======================= 댓글 =======================  -->
 
 

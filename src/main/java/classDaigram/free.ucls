@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="vo.FreeVO" project="Fall_in_Dog" file="/Fall_in_Dog/src/main/java/vo/FreeVO.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="862" width="208" x="34" y="-310"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="vo.FreeReplyVO" project="Fall_in_Dog" 
-    file="/Fall_in_Dog/src/main/java/vo/FreeReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="754" width="175" x="256" y="-311"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="com.fallindog.fid.FreeController" project="Fall_in_Dog" 
+  <class id="1" language="java" name="com.fallindog.fid.FreeController" project="Fall_in_Dog" 
     file="/Fall_in_Dog/src/main/java/com/fallindog/fid/FreeController.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="322" width="746" x="554" y="-361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,53 +10,61 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="4" language="java" name="mapperInterface.FreeMapper" project="Fall_in_Dog" 
+  <interface id="2" language="java" name="mapperInterface.FreeMapper" project="Fall_in_Dog" 
     file="/Fall_in_Dog/src/main/java/mapperInterface/FreeMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="648" y="185"/>    
+    <position height="-1" width="-1" x="1401" y="157"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="service.FreeServiceImpl" project="Fall_in_Dog" 
+  <class id="3" language="java" name="service.FreeServiceImpl" project="Fall_in_Dog" 
     file="/Fall_in_Dog/src/main/java/service/FreeServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1024" y="191"/>    
+    <position height="-1" width="-1" x="1011" y="167"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="6" language="java" name="service.FreeService" project="Fall_in_Dog" 
+  <interface id="4" language="java" name="service.FreeService" project="Fall_in_Dog" 
     file="/Fall_in_Dog/src/main/java/service/FreeService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1420" y="180"/>    
+    <position height="-1" width="-1" x="614" y="157"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <realization id="7">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <association id="8">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="9" name="mapper"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+  <association id="5">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="6" name="service">        
+        <position height="0" width="0" x="-806" y="-23"/>      
+      </attribute>      
+      <multiplicity id="7" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-806" y="-23"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="11">    
+  <association id="8">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="service"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+      <attribute id="9" name="mapper">        
+        <position height="0" width="0" x="753" y="-28"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="753" y="-28"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="11">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
