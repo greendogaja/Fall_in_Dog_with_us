@@ -247,5 +247,3 @@ function upCheck() {
         });
 	}//else
 }//inCheck
-
-

@@ -26,7 +26,6 @@
     <script defer="defer" src="resources/js/active.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="sweetalert2.min.js"></script>
 	
 	<script src="resources/mLib/inCheck.js"></script>
 	
@@ -38,7 +37,6 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/info.css">
-	<link rel="stylesheet" href="sweetalert2.min.css">
 	
 	<style type="text/css">
 	   	.eMessage{
@@ -463,7 +461,34 @@
 					</ul>
 					<!--버튼  -->
 					<div class="form-group" style="margin-top: 10px;">
-							<a href="userdelete?id=${user.id}" >회원탈퇴 ></a>
+							<input onclick="userDeleteBtn()" class="btn btn-primary"  type="button" value="회원탈퇴">
+							<script>
+							function userDeleteBtn() {
+
+								Swal.fire({
+									title: '회원탈퇴 하시겠습니까?',
+									showDenyButton: true,
+									showCancelButton: true,
+									confirmButtonText: '네',
+									denyButtonText: `아니오`,
+								}).then((result) => {
+									if (result.isConfirmed) {
+										Swal.fire('제출 되었습니다.', '', 'success');
+										Swal.fire({
+											icon: 'success',
+											title: '회원탈퇴 되었습니다.',
+											showConfirmButton: false,
+											timer: 3000
+										});
+										setTimeout(() => location.href='userdelete?id=${user.id}' , 1000);
+										
+									} else if (result.isDenied) {
+										Swal.fire('회원탈퇴 하지 못하였습니다.', '', 'info');
+									}
+								});
+						}//userDelete
+
+							</script>
 							<div style="float:right;">
 							<input  id="submitBtn" onclick="upCheck()"  type="button" value="수정하기"
 								class="btn btn-primary"  >
