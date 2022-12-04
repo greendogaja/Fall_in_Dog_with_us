@@ -17,6 +17,46 @@ public class DogServiceImpl implements DogService{
 
 //	게시판
 	@Override
+	public List<DogVO> checkList(DogSearchCriteria cri) {
+		return mapper.checkList(cri);
+	}
+	
+	@Override
+	public List<DogVO> checkList(DogVO vo) {
+		return mapper.checkList(vo);
+	}
+	
+	@Override
+	public List<DogVO> dogCheck_S() {
+		return mapper.dogCheck_S();
+	}
+	
+	@Override
+	public List<DogVO> dogCheck_M() {
+		return mapper.dogCheck_M();
+	}
+	
+	@Override
+	public List<DogVO> dogCheck_L() {
+		return mapper.dogCheck_L();
+	}
+	
+	@Override
+	public List<DogVO> dog_list_S() {
+		return mapper.dog_list_S();
+	}
+
+	@Override
+	public List<DogVO> dog_list_M() {
+		return mapper.dog_list_M();
+	}
+
+	@Override
+	public List<DogVO> dog_list_L() {
+		return mapper.dog_list_L();
+	}
+	
+	@Override
 	public List<DogVO> dog_list_S(DogSearchCriteria cri) {
 		return mapper.dog_list_S(cri);
 	}

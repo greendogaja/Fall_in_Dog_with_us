@@ -4,22 +4,40 @@
 
 <mapper namespace="mapperInterface.DogMapper">
 
-
 <select id="checkList" resultType="vo.DogVO">
-	select * from dogs
-	
-	where breed in
+	select *
+	from dogs
+	where title in
 	<foreach collection="check" item="it" open="(" close=")" separator=",">
 		#{it}
 	</foreach>
-		
+	order by dno desc
+	limit #{sno}, #{rowsPerPage}
+</select>
+
+<select id="dogCheck_S" resultType="vo.DogVO">
+	select DISTINCT breed
+	from dogs
+	where size = 's'
 	order by dno desc
 </select>
 
+<select id="dogCheck_M" resultType="vo.DogVO">
+	select DISTINCT breed
+	from dogs
+	where size = 'm'
+	order by dno desc
+</select>
 
+<select id="dogCheck_L" resultType="vo.DogVO">
+	select DISTINCT breed
+	from dogs
+	where size = 'l'
+	order by dno desc
+</select>
 
 <select id="dog_list_S" resultType="vo.DogVO">
-	select dno, title, img
+	select *
 	from dogs 
 	where size = 's'
 	order by dno desc

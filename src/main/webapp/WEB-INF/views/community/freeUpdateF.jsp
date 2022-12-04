@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +12,7 @@
     <!-- ##### Footer Area End ##### -->
 
 <meta charset="UTF-8">
+<title>Review Update</title>
 <!-- Style CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
@@ -30,6 +31,11 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    <!-- alert, comfirm -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script defer="defer" src="resources/mLib/community.js"></script>
     
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
@@ -208,47 +214,50 @@
     <!-- ##### Header Area End ##### -->
     
     <!-- 글쓰기 Start -->
-    
     <section class="write_container">
 		<div class="WritingWrap"> 
-			<form action="ninsert" method="post" enctype="multipart/form-data">
+		    <form action="freeUpdate" method="post"  enctype="multipart/form-data" class="freeUpdate">
 			<div class="WritingHeader">
-				<h2>게시판 글쓰기</h2>
+				<h2>자유게시판 글수정</h2>
 				<div class="ip">
-					<label>
-						<input type="checkbox" name="top" value="1">  게시물 상단고정
-					</label>
-					<input type="submit" value="등록" class="rinsert_btn">
+					<input type="button" value="등록" class="fupdate">
 				</div>
+				
 				<!-- user info start -->
 				<div class="WriterInfo" >
-					<div class="profile_image m_b">
-						<img src="${loginImg}" >
+					<div class="profile_image">
+							<img src="${apple.uploadfile}" width=40 height=50>
 					</div>
-					<div class="profile_info" >
-						<input value="${loginNick}" readonly>
-						<input type="hidden" name="id" value="${loginID}">
+					<div class="profile_info">
+						<input name="id" value="${apple.id}" readonly>
+					</div>
+					<div class="article_info_u dp_h">
+						<!-- nno 입력. input 태그로 readonly -->
+						<input name="regdate" value="${apple.regdate}" readonly>
+						<input name="freeno" value="${apple.freeno}" readonly>
+						<input name="cnt" value="${apple.cnt}" readonly>
+						
 					</div>
 				</div>
 			<!-- user info end -->
-			
+		
+		
 			</div>
 			<hr>
 				<div class="WritingContent">
 					<div class="write_row">
 						<div class="column_title">
-							<input name="title" id="title" placeholder="제목을 입력하세요.">
+							<input name="title" value="${apple.title}" class="update_title">
 						</div>
 					
 						<div class="column_category" >
 							<select name="subject" >
-								<option value="[공지]" >[공지]</option>
-								<option value="[입양]" >[입양]</option>
+								<option value="[입양후기]" >[입양후기]</option>
 							</select>
 						</div>
 					</div>
 					<div class="write_content">
-						<textarea  id="content" name="content" placeholder="내용을 입력하세요."></textarea>
+						<textarea id="content" name="content">${apple.content}</textarea>
 						<script
 							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
 						<script
@@ -262,10 +271,12 @@
 					</div>
 				</div>
 					
+					
 				<!-- 사진첨부 -->
 				<div class="n_u_img">
-					<img src="" class="select_img">
-					<input type="file" name="uploadfilef" id="uploadfilef" >
+					<img src="${apple.img}" class="select_img" width="100" height="100">
+					<input type="file" name="uploadfilef" id="uploadfilef">
+					<input type="hidden" name="img" value="${apple.img}">
 					<script>
 						$('#uploadfilef').change(function(){
 							if(this.files && this.files[0]) {
@@ -278,8 +289,11 @@
 			           }); //change
 					</script>
 				</div>
-				
 			</form>
+			<c:if test="${not empty message}">
+				<hr>
+				${message}<br>
+			</c:if>
 		</div>
     	
     
@@ -287,7 +301,7 @@
     
 
 <hr>
-&nbsp;&nbsp;<a href="noticeList">목록으로</a>
+&nbsp;&nbsp;<a href="freeList">목록으로</a>
 &nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
 
    <!-- ##### Footer Area Start ##### -->

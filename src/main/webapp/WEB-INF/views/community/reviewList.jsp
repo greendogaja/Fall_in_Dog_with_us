@@ -250,7 +250,7 @@
 						<option value="nn" ${pageMaker.cri.searchType=='nn' ? 'selected' : ''}>작성자</option>
 					</select> 
 					<input type="text" class="search_input" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요.">
-					<button id="searchBtn" class="search_btn"></button>
+					<button type="button" id="searchBtn" class="search_btn"></button>
 				</div>
 			</div>
 		<div>
@@ -315,7 +315,6 @@
 			<c:when test="${pageMaker.next && pageMaker.epageNo>0}">
 				<a href="reviewList${pageMaker.searchQuery(pageMaker.epageNo+1)}">&nbsp;&gt;</a>     
 				<a href="reviewList${pageMaker.searchQuery(pageMaker.lastPageNo)}">&nbsp;&gt;&gt;</a> 
-				-->
 			</c:when>
 			<c:otherwise>
 				<font color="Gray">&nbsp;&gt;&gt;</font>   

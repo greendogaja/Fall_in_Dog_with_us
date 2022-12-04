@@ -265,7 +265,7 @@ public class ShareController {
 	// ** Delete : 글 삭제
 	@RequestMapping(value="/shareDelete")
 	public ModelAndView shareDelete(HttpServletRequest request, HttpServletResponse response, 
-									ModelAndView mv, ShareVO vo, RedirectAttributes rttr) {
+									ModelAndView mv, ShareVO vo, RedirectAttributes rttr, ShareReplyVO cvo) {
 		String uri = "redirect:shareList";
 		
 		// 2. Service 처리
@@ -282,7 +282,7 @@ public class ShareController {
 	} //bdelete
 
 	// 대댓글입력
-	@RequestMapping(value="/rereplyInsert")
+	@RequestMapping(value="/s_rereplyInsert")
 	public ModelAndView rereplyInsert(HttpServletRequest request, 
 			HttpServletResponse response, ModelAndView mv, ShareReplyVO cvo, 
 			RedirectAttributes rttr) {
@@ -293,25 +293,23 @@ public class ShareController {
 		// 대댓글의 grpl = 1, 모댓글 = 0(default)
 		cvo.setGrpl(1);
 		
+		if(cvo.getContent() == null || cvo.getContent().length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_rereplyInsert 실패 "+cvo.getContent());
+		} else {
+			System.out.println("r_rereplyInsert 성공 "+cvo.getContent());
+			sservice.rereplyInsert(cvo);
+		}
+		
 		System.out.println("대댓vo => "+cvo);
 		
 		String uri = "redirect:shareDetail?shno="+shno;
-		
-		if(sservice.rereplyInsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 대댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 대댓글 등록 실패, 다시 하세요 ~~");
-		}
-		
-		System.out.println("대댓vo2 => "+cvo);
 		mv.setViewName(uri);
 		return mv;
-		
 	}
 	
-	
 	// 댓글입력
-	@RequestMapping(value="/replyInsert")
+	@RequestMapping(value="/s_replyInsert")
 	public ModelAndView replyInsert(HttpServletRequest request, 
 			HttpServletResponse response, ModelAndView mv, ShareReplyVO cvo, 
 			RedirectAttributes rttr) {
@@ -319,22 +317,21 @@ public class ShareController {
 		int shno = Integer.parseInt(request.getParameter("shno"));
 		cvo.setShno(shno);  
 		
-		String uri = "redirect:shareDetail?shno="+shno;
-		
-		if(sservice.replyInsert(cvo)>0) {
-			rttr.addFlashAttribute("message", "~~ 댓글 등록 성공 ~~");
-		}else {
-			mv.addObject("message", "~~ 댓글 등록 실패, 다시 하세요 ~~");
+		if(cvo.getContent() == null || cvo.getContent().length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_replyInsert content 실패 "+cvo.getContent());
+		} else {
+			sservice.replyInsert(cvo);
+			System.out.println("r_replyInsert content 성공 "+cvo.getContent());
 		}
 		
-		System.out.println("~ncinsert cvo"+cvo);
+		String uri = "redirect:shareDetail?shno="+shno;
 		mv.setViewName(uri);
 		return mv;
-		
 	}	
 	
 	// ncdelete 댓글 삭제
-	@RequestMapping(value="/replyDelete")
+	@RequestMapping(value="/s_replyDelete")
 	public ModelAndView replyDelete(HttpServletRequest request, HttpServletResponse response, 
 									ModelAndView mv, ShareReplyVO cvo, RedirectAttributes rttr) {
 
@@ -354,35 +351,28 @@ public class ShareController {
 	
 	
 	// ** 댓글수정
-	@RequestMapping(value="/replyUpdate")
+	@RequestMapping(value="/s_replyUpdate")
 	public ModelAndView replyUpdate(HttpServletRequest request, HttpServletResponse response,
 								ModelAndView mv, ShareReplyVO cvo) {
 		// 1. 요청분석
 
-		
+		String id = (String)request.getSession().getAttribute("loginID");
+		cvo.setId(id);
 		int shno = Integer.parseInt(request.getParameter("shno"));
 		cvo.setShno(shno);  
 		String uri = "redirect:shareDetail?shno="+shno;
 		
-		
-		mv.addObject("apple",cvo);
-		// => Update 성공/실패 모두 출력시 필요하므로
-		
-		System.out.println("댓글수정 vo =>"+cvo);
-		
-		
-		// 2. Service 처리
-		if ( sservice.replyUpdate(cvo) > 0 ) {
-			mv.addObject("message", "~~ 댓글수정 성공 ~~"); 
-		}else {
-			mv.addObject("message", "~~ 댓글수정 실패, 다시 하세요 ~~");
-//			uri = "guide/noticeUpdateF";
+		String content = request.getParameter("content");
+		if(content == null || content.length()<1) {
+			cvo.setContent(null); 
+			System.out.println("r_replyUpdate 실패 "+cvo.getContent());
+		} else {
+			System.out.println("r_replyUpdate 성공 "+cvo.getContent());
+			sservice.replyUpdate(cvo);
 		}
 		
-		// 3. 결과(ModelAndView) 전달 
+		mv.addObject("apple",cvo);
 		mv.setViewName(uri);
-		System.out.println("댓글수정"+mv);
-		System.out.println("##댓글수정"+cvo);
 		return mv;
 	}
-} //NoticeController
+} //Controller
