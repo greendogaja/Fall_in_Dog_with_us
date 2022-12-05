@@ -335,3 +335,9 @@ confirm
 });
 </script>
 */
+
+
+$('.classB').click(function(){
+	console.log($(this).prevAll('.classA').children('.n_comment_area').children('.comment_box').children('.comment_nick').html());
+	
+});

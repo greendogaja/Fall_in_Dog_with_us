@@ -215,9 +215,8 @@
 			<div class="WritingHeader">
 				<h2>게시판 글쓰기</h2>
 				<div class="ip">
-					<label>
-						<input type="checkbox" name="top" value="1">  게시물 상단고정
-					</label>
+					<input type="checkbox" name="top" value="1">  
+					<label for="top">게시물 상단고정</label>
 					<input type="submit" value="등록" class="rinsert_btn">
 				</div>
 				<!-- user info start -->
@@ -243,6 +242,7 @@
 						<div class="column_category" >
 							<select name="subject" >
 								<option value="[공지]" >[공지]</option>
+								<option value="[캠페인]" >[캠페인]</option>
 								<option value="[입양]" >[입양]</option>
 							</select>
 						</div>

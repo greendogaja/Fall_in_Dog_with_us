@@ -231,8 +231,11 @@
 	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<div class="n_l_title">입 양 후 기</div>
-			<!-- 세로 가운데 정렬 필요 -->
+		<div class="n_l_title">입 양 후 기
+		<p>
+		○ 입양된 아이들의 근황을 공유하는 공간입니다.<br><br>
+		</p>
+		</div>
 			<div class="search_write">
 				<div class="n_write">
 					<c:if test="${!empty loginID}">

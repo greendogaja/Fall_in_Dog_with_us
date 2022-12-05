@@ -231,7 +231,11 @@
 	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<div class="n_l_title">N O T I C E</div>
+		<div class="n_l_title">공 지 사 항
+		<p>
+		○ 공지 / 캠페인 / 입양 관련 글을 확인할 수 있습니다.<br><br>
+		</p>
+		</div>
 			<!-- 세로 가운데 정렬 필요 -->
 			<div class="search_write">
 				<div class="n_write">
