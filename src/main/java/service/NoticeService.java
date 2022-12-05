@@ -8,7 +8,7 @@ import vo.NoticeVO;
 public interface NoticeService {
 
 	// ** selectList
-	List<NoticeVO> selectList();
+	List<NoticeVO> main_selectList();
 	
 	List<NoticeVO> searchList(SearchCriteria cri);
 	int searchCount(SearchCriteria cri);

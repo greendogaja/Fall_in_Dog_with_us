@@ -50,7 +50,15 @@
 
 <select id="selectList" resultType="vo.NoticeVO">
 	select nno, subject, title, id, DATE_FORMAT(regdate, '%Y-%m-%d') regdate, cnt
-	from notice order by nno desc
+	from notice 
+	order by nno desc
+</select>
+
+<select id="main_selectList" resultType="vo.NoticeVO">
+	select nno, img, title
+	from notice 
+	where subject = '[캠페인]'
+    order by nno desc
 </select>
 
 <select id="selectOne" resultType="vo.NoticeVO">

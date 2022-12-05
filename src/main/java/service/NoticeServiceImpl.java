@@ -27,7 +27,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}	
 	
 	@Override
-	public List<NoticeVO> selectList(){
+	public List<NoticeVO> main_selectList(){
 		return mapper.selectList();
 	}
 	
