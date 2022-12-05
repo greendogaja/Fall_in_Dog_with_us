@@ -55,7 +55,7 @@
 </select>
 
 <select id="main_selectList" resultType="vo.NoticeVO">
-	select nno, img, title
+	select nno, mainImg, title
 	from notice 
 	where subject = '[캠페인]'
     order by nno desc
@@ -77,8 +77,8 @@
 	<selectKey keyProperty="nno" resultType="int" order="BEFORE">
 		select IFNULL(max(nno),0)+1 from notice
 	</selectKey>
-	insert into notice(nno, title, id, content, subject, img, top) 
-	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img}, #{top})
+	insert into notice(nno, title, id, content, subject, img, top, mainImg) 
+	values(#{nno}, #{title}, #{id}, #{content}, #{subject}, #{img}, #{top}, #{mainImg})
 
 </insert>
 

@@ -132,7 +132,10 @@ public class ShareController {
 		// 댓글리스트
 		List<ShareReplyVO> list = new ArrayList<ShareReplyVO>();
     	list = sservice.replySelectList(rvo);
+    	System.out.println("rvo => "+rvo);
     	
+    	System.out.println("rvo2 => "+sservice.replySelectList(rvo));
+    	System.out.println("rvo3 => "+list);
     	if ( list!=null ) {
     		mv.addObject("orange", list); 
     		System.out.println("댓글리스트 불러오기 성공! TTT");

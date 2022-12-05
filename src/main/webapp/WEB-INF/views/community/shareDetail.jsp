@@ -309,9 +309,8 @@
 												<a class="comment_tool_a"><img
 													src="resources/img/notice/re_more_button.png"></a>
 												<div class="up_del dp_h">
-													<a class="re_update">수정</a>&nbsp;&nbsp; <a
-														class="re_delete"
-														href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+													<a class="re_update">수정</a>&nbsp;&nbsp; 
+													<a class="re_delete" href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 												</div>
 											</div>
 										</c:if>
@@ -348,17 +347,16 @@
 													id="shno"> <input type="hidden" name="id"
 													value="${loginID}">
 												<div class="mg_b_10">${loginNick}</div>
-												<textarea name="content" id="content"
-													placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+												<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 												<div class="comment_attach">
-													<div>
-														<input type="checkbox" name="secret" value="1"> <label
-															for="secret">비밀댓글</label>
+													<div class="f_r">
+														<input type="checkbox" name="secret" id="secret" value="1">
+														<label for="secret">비밀댓글</label> 
+														<input type="button" class="rere_btn" value="등록"> 
+														<input type="reset" value="취소">
 													</div>
-													<input type="button" class="rere_btn" value="등록"> <input
-														type="reset" value="취소"> <input type="hidden"
-														name="grp" value="${orange.grp}"> <input
-														type="hidden" name="grps" value="${orange.grps}">
+													<input type="hidden" name="grp" value="${orange.grp}"> 
+													<input type="hidden" name="grps" value="${orange.grps}">
 													<input type="hidden" name="grpl" value="${orange.grpl}">
 												</div>
 											</form>
@@ -446,9 +444,10 @@
 												<textarea name="content" id="content"
 													placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 												<div class="comment_attach">
-													<div>
-														<input type="checkbox" name="secret" value="1"> <label
-															for="secret">비밀댓글</label>
+													<div class="f_r">
+														<input type="checkbox" name="secret"
+															id="secret" value="1"> <label for="secret">비밀댓글</label>
+														<input type="button" class="re_btn" value="등록">
 													</div>
 													<input type="button" class="rerere_btn" value="등록">
 													<input type="reset" value="취소"> <input
@@ -504,11 +503,11 @@
 							<textarea name="content" id="content" placeholder="댓글을 남겨보세요."
 								class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<div>
-									<input type="checkbox" name="secret" value="1"> <label
-										for="secret">비밀댓글</label>
+								<div class="f_r">
+									<input type="checkbox" name="secret" id="secret" value="1"> 
+									<label for="secret">비밀댓글</label>
+									<input type="button" class="re_btn" value="등록">
 								</div>
-								<input type="button" class="re_btn" value="등록">
 							</div>
 						</div>
 					</div>

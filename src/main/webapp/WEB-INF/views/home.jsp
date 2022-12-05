@@ -211,8 +211,8 @@
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel">
         <c:forEach var="main" items="${mainlist}">
-         	<div class="single-hero-slide bg-img" style="background-image: url(${main.img});">
-                <div class="container h-100">
+         	<div class="single-hero-slide bg-img" style="background-image: url(${main.mainImg});">
+                <div class="container h-40">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="slide-content text-center">

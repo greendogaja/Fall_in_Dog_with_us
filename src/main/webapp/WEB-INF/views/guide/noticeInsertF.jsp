@@ -263,8 +263,9 @@
 				</div>
 					
 				<!-- 사진첨부 -->
-				<div class="n_u_img">
+				<div class="n_u_img filebox">
 					<img src="" class="select_img">
+					<label for="uploadfilef">사진&nbsp;&nbsp;첨부</label> 
 					<input type="file" name="uploadfilef" id="uploadfilef" >
 					<script>
 						$('#uploadfilef').change(function(){
@@ -272,6 +273,23 @@
 								var reader = new FileReader;
 								reader.onload = function(e) {
 									$(".select_img").attr("src", e.target.result).width(100).height(100); 
+								} // onload_function
+								reader.readAsDataURL(this.files[0]);
+							} // if   
+			           }); //change
+					</script>
+				</div>
+				<!-- main_img 첨부 -->
+				<div class="n_u_img filebox">
+					<img src="" class="select_main_img">
+					<label for="mainImgFile">main_img</label> 
+					<input type="file" name="mainImgFile" id="mainImgFile" >
+					<script>
+						$('#mainImgFile').change(function(){
+							if(this.files && this.files[0]) {
+								var reader = new FileReader;
+								reader.onload = function(e) {
+									$(".select_main_img").attr("src", e.target.result).width(100).height(100); 
 								} // onload_function
 								reader.readAsDataURL(this.files[0]);
 							} // if   

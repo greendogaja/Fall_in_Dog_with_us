@@ -107,6 +107,17 @@
 	delete from dogs where dno=#{dno}
 </delete>	
 
+<select id="protectCount" resultType="int"> 
+select count(*) 
+from dogs
+where  protect='보호중'
+</select>
+
+<select id="adoptCount" resultType="int"> 
+select count(*) 
+from dogs
+where  protect='입양중'
+</select>
 
 
 

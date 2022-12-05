@@ -40,4 +40,9 @@ public interface DogService {
 //	글삭제
 	int delete(DogVO vo);
 	
+	// 보호중인 강아지 수
+	int protectCount();
+	// 입양중인 강아지 수
+	int adoptCount();
+	
 }
