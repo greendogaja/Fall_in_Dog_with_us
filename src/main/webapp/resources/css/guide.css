@@ -37,6 +37,13 @@
 	flex-direction: column;
 }
 
+.top{
+	color: orange;
+    font-weight: bold;
+    font-size: 1.1em;
+    background: lightyellow;
+}
+
 .con_box{
 	font-size: 14px;
     color: #333;
@@ -132,7 +139,7 @@ textarea{
 }
 
 .article_viewer img{
-	width:100%;
+	/* width:100%; */
 	margin-bottom:15px;
 	
 }
@@ -422,7 +429,7 @@ a{
 }
 
 .pd_55{
-	padding-left:55px;
+	padding: 0 20px 0px 54px;
 }
 
 .bg_ws{
@@ -523,4 +530,20 @@ a{
 	line-height: 70px;
 }
 
+/* ck-editor */
 
+.ck.ck-editor {
+   	width: 100%;
+}
+.ck-editor__editable {
+    min-height: 400px;
+}
+
+.ad_search_input{
+    width: 300px;
+    height: 40px;
+    padding: 9px;
+    border: 1px solid #ebecef;
+    border-radius: 5px;
+	
+}

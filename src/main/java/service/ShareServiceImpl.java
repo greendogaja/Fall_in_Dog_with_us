@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import mapperInterface.ShareMapper;
 import noticeControl.SearchCriteria;
+import vo.FreeReplyVO;
 import vo.ShareReplyVO;
 import vo.ShareVO;
 

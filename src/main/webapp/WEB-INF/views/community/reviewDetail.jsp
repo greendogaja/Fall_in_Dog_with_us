@@ -17,14 +17,10 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/guide.css">
 
-	<!-- ajax 댓글리스트 js 
-	<script src="resources/myLib/ax_ncomment.js"></script> -->
 	
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     
-    <!-- <script defer="defer" src="resources/js/jquery/jquery-3.2.1.min.js" ></script> -->
     <!-- Popper js -->
     <script defer="defer" src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -224,7 +220,7 @@
 <div class="ArticleContentBox">
 	<div class="article_header">
 		<div class="ArticleTitle">
-			<a href="reviewList">나눔장터</a>
+			<a href="reviewList">입양후기</a>
 			<div class="title_area"><h3>${apple.subject}&nbsp;&nbsp;${apple.title}</h3></div>
 		</div>
 		<div class="WriterInfo" >
@@ -271,6 +267,26 @@
 		</a>
 		</div>
 	</div>
+	
+	<div class="info">
+		<h4>입양 강아지 정보</h4>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				type : 'Get',
+				url : 'adoptInfo?dno=${apple.dno}',
+				success : function(resultPage) {
+					$('#review_resultArea').html(resultPage);
+				},
+				error : function() {
+					$('#review_resultArea').html('~~ Ajax Error ~~');
+				}
+			}); //ajax
+		});
+	</script>
+	<div id="review_resultArea" style= "width:100%; height:450px;"></div>
+	
 	<hr>
 	
 	<!-- =========================== comment/댓글 ================================== -->
@@ -298,7 +314,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -316,14 +332,13 @@
 									<div class="comment_inbox re_box dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_rereplyInsert" id="rereplyInsert">
+										<form action="r_rereplyInsert" id="rereplyInsert" class="rereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
 											<input type="hidden" name="id" value="${loginID}">
 											<div class="mg_b_10">${loginNick}</div>
-											<textarea name="content" id="content"
-												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+											<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
 												<input type="button" class="rere_btn" value="등록">
 												<input type="reset" value="취소">
@@ -337,7 +352,7 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_replyUpdate" id="replyUpdate">
+										<form action="r_replyUpdate" id="replyUpdate" class="replyUpdate">
 											<div class="mg_b_10">${orange.nname}</div>
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
@@ -371,7 +386,7 @@
 											<a class="comment_tool_a"><img src="resources/img/notice/re_more_button.png" ></a>
 											<div class="up_del dp_h">
 												<a class="re_update">수정</a>&nbsp;&nbsp;
-												<a href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+												<a class="re_delete" href="r_replyDelete?rrno=${orange.rrno}&rvno=${orange.rvno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 											</div>
 										</div>
 									</c:if>
@@ -386,7 +401,7 @@
 									<div class="comment_inbox rere_box dp_h">
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_rereplyInsert" id="rereplyInsert">
+										<form action="r_rereplyInsert" id="rerereplyInsert" class="rerereplyInsert">
 											<!-- nno는 현재 noticeController -> ndetail 메서드 ->
 													apple 의 vo 로 담겨있으므로, apple.nno 로 호출해야함 -->
 											<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
@@ -395,7 +410,7 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="button" class="rere_btn" value="등록"> 
+												<input type="button" class="rerere_btn" value="등록"> 
 												<input type="reset" value="취소">
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
@@ -407,7 +422,7 @@
 									<div class="comment_inbox re_box_update dp_h" >
 										<!-- grp 는 현재 noticeController -> ndetail 메서드 ->
 										orange 의 vo 로 담겨져 있음 -->
-										<form action="r_replyUpdate" id="replyUpdate">
+										<form action="r_replyUpdate" id="rereplyUpdate" class="rereplyUpdate">
 											<input type="hidden" name="rvno" value="${orange.rvno}" >
 											<input type="hidden" name="rrno" value="${orange.rrno}" >
 											<input type="hidden" name="id" value="${orange.id}">
@@ -436,7 +451,7 @@
 			
 			<!-- ========================== 댓글입력 ========================== -->
 			<c:if test="${not empty loginID}">
-				<form action="r_replyInsert" method="post" id="replyInsert" >
+				<form action="r_replyInsert" method="post" id="replyInsert" class="replyInsert">
 					<div class="CommentWriter">
 						<div class="comment_inbox">
 							<!-- nno는 현재 noticeController -> ndetail 메서드 ->
@@ -444,7 +459,7 @@
 							<input type="hidden" name="rvno" value="${apple.rvno}" id="rvno">
 							<input type="hidden" name="id" value="${loginID}">
 							<div class="mg_b_10">${loginNick}</div>
-								<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+							<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
 								<input type="button" class="re_btn" name="commentData" id="commentData" value="등록">
 							</div>

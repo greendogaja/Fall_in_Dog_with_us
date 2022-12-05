@@ -31,9 +31,6 @@
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
     
-    <!-- NAVER Smart Editor -->
-    <script type="text/javascript" src="resources/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
-	
     <!-- Title -->
     <title>Fall IN Dog - 폴인독</title>
 
@@ -218,17 +215,14 @@
 			<div class="WritingHeader">
 				<h2>게시판 글쓰기</h2>
 				<div class="ip">
-					<label>
-						<input type="checkbox" name="top" value="1">  게시물 상단고정
-					</label>
+					<input type="checkbox" name="top" value="1">  
+					<label for="top">게시물 상단고정</label>
 					<input type="submit" value="등록" class="rinsert_btn">
 				</div>
 				<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
-							<img src="${loginImg}" >
-							<%-- <input type="hidden" name="loginImg" value="${loginImg}"> --%>
-							
+						<img src="${loginImg}" >
 					</div>
 					<div class="profile_info" >
 						<input value="${loginNick}" readonly>
@@ -248,15 +242,14 @@
 						<div class="column_category" >
 							<select name="subject" >
 								<option value="[공지]" >[공지]</option>
+								<option value="[캠페인]" >[캠페인]</option>
 								<option value="[입양]" >[입양]</option>
 							</select>
 						</div>
 					</div>
 					<div class="write_content">
-						<textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요."></textarea>
-						
-						<!-- CKEditor -->
-						<!-- <script
+						<textarea  id="content" name="content" placeholder="내용을 입력하세요."></textarea>
+						<script
 							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
 						<script
 							src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/translations/ko.js"></script>
@@ -265,79 +258,9 @@
 									.querySelector('#content'), {
 								language : "ko"
 							});
-						</script> -->
-						
-						
-						<!-- NAVER Smart Editor start -->
-						<!-- <textarea class="form-control" name="content" id="content"
-								style="width: 100%; height: 500px;"></textarea>	-->
-					
-						
-						<script>
-						let oEditors = [];
-
-					     smartEditor = function() {
-							
-							nhn.husky.EZCreator.createInIFrame({
-								oAppRef: oEditors,
-								elPlaceHolder: "content", // html editor가 들어갈 textarea id 입니다.
-								sSkinURI: "/resources/smartEditor2/SmartEditor2Skin.html",  // html editor가 skin url 입니다.
-								fCreator: "createSEditor2"
-							});
-							
-					     }
-
-					     $(document).ready(function() {
-					     	//스마트에디터 적용
-					          smartEditor(); 
-					              //값 불러오기
-					           function preview(){
-					            	// 에디터의 내용을 textarea에 적용
-					            	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-					                // textarea 값 불러오기 
-					            	var content = document.getElementById("content").value;
-					            	alert(content);
-					            	return;
-					        }
-					           
-					     });
-						</script> 
-						<!-- <script type="text/javascript">
-						editorLoding : function (title, content){
-							nhn.husky.EZCreator.createInIFrame({
-								 oAppRef: oEditors,
-								 elPlaceHolder: document.getElementById('content'), // html editor가 들어갈 textarea id 입니다.
-								 sSkinURI: "resources/smartEditor2/SmartEditor2Skin.html",  // html editor가 skin url 입니다.
-								 htParams : {
-							          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-							          bUseToolbar : true,             
-							          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-							          bUseVerticalResizer : true,     
-							          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-							          bUseModeChanger : true,         
-							          fOnBeforeUnload : function(){
-							               
-							          }
-								 }, 
-							
-								/**
-								 * 수정 시 에디터에 데이터 저장
-								 */
-							fOnAppLoad: function () {
-							    //수정모드를 구현할 때 사용할 부분입니다. 로딩이 끝난 후 값이 체워지게 하는 구현을 합니다.
-							     oEditors.getById["content"].exec("PASTE_HTML", [content]); //로딩이 끝나면 contents를 txtContent에 넣습니다.
-								 },
-									 
-								 fCreator: "createSEditor2",
-							});
-						}
-						
-						</script> -->
-						
-					<!-- NAVER Smart Editor end -->
+						</script>
 					</div>
 				</div>
-					
 					
 				<!-- 사진첨부 -->
 				<div class="n_u_img">

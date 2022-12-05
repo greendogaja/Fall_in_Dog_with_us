@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import noticeControl.SearchCriteria;
+import vo.FreeReplyVO;
 import vo.ShareReplyVO;
 import vo.ShareVO;
 

@@ -23,3 +23,5 @@ $(".reply_display").click(function() {
 $(".rereply_display").click(function() {
 	$(this).parents(".comment_box").children(".rere_box").toggleClass("dp_h");
 });
+
+// top 상단고정 게시물 style

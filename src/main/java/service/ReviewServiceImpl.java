@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import mapperInterface.ReviewMapper;
 import noticeControl.SearchCriteria;
+import vo.FreeReplyVO;
 import vo.ReviewReplyVO;
 import vo.ReviewVO;
 
