@@ -23,5 +23,6 @@ public interface UserService {
 	//** List
 	List<UserVO> selectList();
 	List<UserVO> searchList(SearchCriteria cri);
+	int userCount();
 	int searchCount(SearchCriteria cri);
 }
