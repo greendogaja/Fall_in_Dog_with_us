@@ -56,7 +56,9 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		//슬라이드
-		
+		List<NoticeVO> main_list = new ArrayList<NoticeVO>();
+		main_list = nservice.main_selectList();
+		if ( main_list!=null && main_list.size()>0 ) model.addAttribute("mainlist",main_list); 
 		
 		//공지사항
 		List<NoticeVO> nlist = new ArrayList<NoticeVO>();
