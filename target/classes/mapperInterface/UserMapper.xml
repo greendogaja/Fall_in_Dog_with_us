@@ -30,11 +30,15 @@
   		select uploadfile,id,name,yy,mm,dd,nname,gender,phone,email from user 
   		where ( id != "admin" <include refid="usearch"></include> ) 
   		limit #{sno}, #{rowsPerPage}
-  		
   	</select>
+  	
   	<select id="searchCount" resultType="int"> 
 	select count(*) from user 
 	where (  id != "admin" <include refid="usearch"></include> )
+	</select>
+
+  	<select id="userCount" resultType="int"> 
+	select count(*) from user 
 	</select>
   	
   
