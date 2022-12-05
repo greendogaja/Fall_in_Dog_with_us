@@ -94,8 +94,8 @@
 		where shno = #{shno}
 	</selectKey>
 	
-	insert into share_reply(srno, shno, grp, grpl, id, content) 
-	values(#{srno}, #{shno}, #{grp}, #{grpl}, #{id}, #{content})
+	insert into share_reply(srno, shno, grp, grpl, id, content, secret) 
+	values(#{srno}, #{shno}, #{grp}, #{grpl}, #{id}, #{content}, #{secret})
 </insert>
 
 <update id="replyUpdate">
@@ -107,10 +107,19 @@
 <!-- 댓글리스트 가져오기 -->
 <select id="replySelectList" resultType="vo.ShareReplyVO">
 	<!-- selectList 에 담겨야 하는 모든 vo 를 select 해야함! -->
-	select shno, srno, content, regdate, nname, uploadfile, grp, grps, grpl
+<!-- 	select shno, srno, content, regdate, nname, uploadfile, grp, grps, grpl, secret, n.id
 	from share_reply n, user u
 	where n.id = u.id and n.shno = #{shno} 
-	order by grp desc, grps asc	
+	order by grp desc, grps asc	 -->
+	
+SELECT a.srno, a. shno, a.grp, a.grps, a.grpl, a.id, a.content, a.regdate, a.secret, b.id reply_writer, c.uploadfile, c.nname
+FROM dog.share_reply as a 
+inner join share_reply as b
+on b.grps = 0  and a.grp = b.grp and b.shno=7
+inner join user as c
+on a.id = c.id
+where a.shno=7
+order by a.grp desc, a.grps asc
 </select>
 
 <!-- 대댓글 입력 -->
@@ -120,8 +129,8 @@
 		from share_reply 
 		where shno = #{shno} and grp = #{grp}
 	</selectKey>
-	insert into share_reply(srno, shno, grp, grps, grpl, id, content)
-	values(#{srno}, #{shno},  #{grp}, #{grps}, #{grpl}, #{id}, #{content})
+	insert into share_reply(srno, shno, grp, grps, grpl, id, content, secret)
+	values(#{srno}, #{shno},  #{grp}, #{grps}, #{grpl}, #{id}, #{content}, #{secret})
 </insert>
 
 <!-- 댓글 삭제 -->

@@ -318,7 +318,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-cool-facts-area text-center mb-100">
                         <h2><span class="counter">16</span></h2>
-                        <p>자유게시판 새글</p>
+                        <p>자유게시판 게시글</p>
                     </div>
                 </div>
             </div>

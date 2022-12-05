@@ -231,8 +231,13 @@
 	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<div class="n_l_title">자 유 게 시 판</div>
-			<!-- 세로 가운데 정렬 필요 -->
+		<div class="n_l_title">자 유 게 시 판		
+		<p>
+		○ 회원님들간의 자유로운 의사소통 공간입니다.<br>
+		○ 댕댕이 자랑 / 정보공유 / 애견동반 여행후기 / 질문 / 자유 글을 게시 및 확인해보세요.<br>
+		○ 타인을 비방하거나 욕설하는 행위는 삼가해주세요.<br><br>
+		</p>
+		</div>
 			<div class="search_write">
 				<div class="n_write">
 					<c:if test="${!empty loginID}">
