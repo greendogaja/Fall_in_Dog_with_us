@@ -53,6 +53,10 @@ public class UserServiceimpl implements UserService{
 		return mapper.searchCount(cri);
 	}
 	@Override
+	public int userCount(){
+		return mapper.userCount();
+	}
+	@Override
 	public List<UserVO> selectList(){
  		return mapper.selectList();
  	}
