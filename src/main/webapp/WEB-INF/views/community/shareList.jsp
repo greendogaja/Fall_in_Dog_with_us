@@ -231,8 +231,11 @@
 	<div class="nlist">
 	<!-- title, Search Form , write -->
 	<div class="title_search_write">
-		<div class="n_l_title">나 눔 장 터</div>
-			<!-- 세로 가운데 정렬 필요 -->
+		<div class="n_l_title">나 눔 장 터
+		<p>
+		○ 강아지 옷, 사료, 간식, 용품 등을 무료나눔 또는 교환 할 수 있는 나눔장터 입니다.<br><br>
+		</p>
+		</div>		
 			<div class="search_write">
 				<div class="n_write">
 					<c:if test="${!empty loginID}">

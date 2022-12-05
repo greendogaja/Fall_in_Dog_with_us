@@ -219,17 +219,9 @@
 			<form action="reviewInsert" method="post" enctype="multipart/form-data" class="reviewInsert">
 			<div class="WritingHeader">
 				<h2>입양후기 글쓰기</h2>
-				<div class="ip">
-					<script type="text/javascript">
-						function getDno(){
-							window.open('adoptSearch','test','width = 950, height = 700, top = 100, left = 200, location = no');
-						}
-					</script>
-					<button type="button"  id="adoptList_call" onclick="getDno()" >입양한 강아지 정보 선택</button>
-					<div>입양한 강아지 공고번호 </div>
-					<input type="text" id="chooseDno" value="${chooseDno}" name="dno" readonly="readonly">
-					<input type="button" value="등록" class="insertf">
-				</div>
+			<div class="ip">
+				<input type="button" value="등록" class="insertf">
+			</div>
 				<!-- user info start -->
 				<div class="WriterInfo" >
 					<div class="profile_image m_b">
@@ -240,6 +232,7 @@
 						<input type="hidden" name="id" value="${loginID}">
 					</div>
 				</div>
+						
 			<!-- user info end -->
 			
 			</div>
@@ -256,6 +249,17 @@
 							</select>
 						</div>
 					</div>
+					<!-- 입양 강아지 정보 선택 -->
+					<div class="write_row">
+						<script type="text/javascript">
+							function getDno(){
+								window.open('adoptSearch','test','width = 950, height = 700, top = 100, left = 200, location = no');
+							}
+						</script>
+						<button type="button"  id="adoptList_call" onclick="getDno()" >입양한 강아지 정보 선택</button>
+							<input type="text" id="chooseDno" value="${chooseDno}" name="dno" readonly="readonly" placeholder="선택된 공고번호">
+					</div>
+					
 					<div class="write_content">
 						<textarea id="content" name="content" placeholder="내용을 입력하세요."></textarea>
 						<script

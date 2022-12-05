@@ -254,6 +254,12 @@
 							</select>
 						</div>
 					</div>
+					<!-- 입양 강아지 정보 선택 -->
+					<div class="write_row">
+						<span>입양한 강아지 정보 </span>
+						<input type="text" readonly="readonly" value="${apple.dno}" >
+					</div>					
+					
 					<div class="write_content">
 						<textarea id="content" name="content">${apple.content}</textarea>
 						<script
