@@ -1,32 +1,24 @@
 package com.fallindog.fid;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mysql.cj.Session;
-
-import net.sf.json.JSONObject;
 import noticeControl.PageMaker;
 import noticeControl.SearchCriteria;
 import service.NoticeService;
+import service.UserService;
 import vo.NoticeVO;
 
 
@@ -36,9 +28,14 @@ public class NoticeController {
   
 	@Autowired 
 	NoticeService service;
+	@Autowired 
+	UserService uservice;
+	
+	
 	 	
 	@RequestMapping(value="/aboutUs")
-	public ModelAndView aboutUs(ModelAndView mv) {
+	public ModelAndView aboutUs(ModelAndView mv ) {
+		
 		mv.setViewName("guide/about-us");
 		return mv;
 	} //aboutUs
@@ -85,15 +82,6 @@ public class NoticeController {
 	@RequestMapping(value="/noticeList")
 	public ModelAndView noticelist(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		/*
-		List<NoticeVO> list = new ArrayList<NoticeVO>();
-	  	list = service.selectList();
-	  	if ( list!=null ) {
-	  		mv.addObject("banana", list);  // request.setAttribute(...) 와 동일효과
-	  	}else {
-	  		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-	  	}
-		*/
 		
 		// Criteria
 		cri.setSnoEno();

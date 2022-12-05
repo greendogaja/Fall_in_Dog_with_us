@@ -327,17 +327,8 @@
 														<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
 													</c:otherwise>
 												</c:choose>
-												<!-- 글작성자 apple / 댓글작성자 orange / 관리자 내용 보이게 -->
-												<%-- <c:if test="${loginID == orange.id || loginID == apple.id || 
-												loginID == 'admin' || loginID == orange.reply_writer}">
-													<div class="comment_text_view w-s_p-w">${orange.content}</div>
-												</c:if>
-												<c:if test="${loginID != orange.id || loginID != apple.id && loginID != 'admin' || 
-												empty loginID || loginID != orange.reply_writer}">
-													<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
-												</c:if> --%>
 											</c:if>
-											<c:if test="${orange.secret == 0}">
+											<c:if test="${orange.secret != 1}">
 												<div class="comment_text_view w-s_p-w">${orange.content}</div>
 											</c:if>
 										</div>
@@ -421,14 +412,17 @@
 										<!-- 댓글내용 비밀여부에 따라 노출 -->
 										<div class="comment_text_box">
 											<c:if test="${orange.secret == 1}">
-												<c:if test="${loginID == orange.id || loginID == apple.id || loginID == 'admin'}">
-													<div class="comment_text_view w-s_p-w">${orange.content}</div>
-												</c:if>
-												<c:if test="${loginID != orange.id && loginID != apple.id && empty loginID && loginID != 'admin'}">
-													<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
-												</c:if>
+												<!-- 글작성자 apple / 댓글작성자 orange / 관리자 / 원댓글작성자 내용 보이게 -->
+												<c:choose>
+													<c:when test="${loginID == orange.id || loginID == apple.id || loginID == 'admin' || loginID == orange.reply_writer}">
+														<div class="comment_text_view w-s_p-w">${orange.content}</div>
+													</c:when>
+													<c:otherwise>
+														<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
+													</c:otherwise>
+												</c:choose>
 											</c:if>
-											<c:if test="${orange.secret == 0}">
+											<c:if test="${orange.secret != 1}">
 												<div class="comment_text_view w-s_p-w">${orange.content}</div>
 											</c:if>
 										</div>
