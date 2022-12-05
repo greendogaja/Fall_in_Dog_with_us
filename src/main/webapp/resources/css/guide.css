@@ -1,9 +1,20 @@
 @charset "UTF-8";
 
+.wb{
+	word-break: keep-all;
+}
+
+.fs{
+	font-size: 1em;
+}
+
 .ArticleTitle a{
 	font-size : 20px;
 }
 
+.align_item_center{
+	align-items: center;
+}
 .n_l_title{
 	text-align:center;
 	font-weight: bold;
@@ -422,7 +433,6 @@ a{
 }
 
 .comment_attach input{
-	float : right;
 	border : none;
 	margin-left : 15px;
 	cursor: pointer;
@@ -546,4 +556,28 @@ a{
     border: 1px solid #ebecef;
     border-radius: 5px;
 	
+}
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.f_r{
+	float : right;
 }

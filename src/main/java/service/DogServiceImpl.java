@@ -107,4 +107,16 @@ public class DogServiceImpl implements DogService{
 		return mapper.delete(vo);
 	}
 	
+	// 보호중인 강아지 수
+	@Override
+	public int protectCount() {
+		return mapper.protectCount();
+	}
+	
+	@Override
+	// 입양중인 강아지 수
+	public int adoptCount() {
+		return mapper.adoptCount();
+	}
+	
 }
