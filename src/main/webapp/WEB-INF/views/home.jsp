@@ -332,7 +332,7 @@
 									<tbody class="tcontens">
 										<c:forEach var="notice" items="${noticelist}">
 											<tr  onClick="location.href='ndetail?nno=${notice.nno}'">
-												<td class="docur">${notice.title} <i class="fa fa-heart" aria-hidden="true"></i></td>
+												<td class="docur">${notice.subject} ${notice.title} <i class="fa fa-heart" aria-hidden="true"></i></td>
 											</tr>
 										</c:forEach>
 									</tbody>
