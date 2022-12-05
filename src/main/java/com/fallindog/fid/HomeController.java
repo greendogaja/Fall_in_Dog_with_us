@@ -55,6 +55,9 @@ public class HomeController {
 		dcri.setRowsPerPage(4);
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
+		//슬라이드
+		
+		
 		//공지사항
 		List<NoticeVO> nlist = new ArrayList<NoticeVO>();
 		nlist = nservice.searchList(cri);
@@ -71,12 +74,12 @@ public class HomeController {
     	dlist = dservice.dog_list_S(dcri);
     	if ( dlist!=null && dlist.size()>0 ) model.addAttribute("adoptlist",dlist); 
 
-    	
+    	//분양후기
     	List<ReviewVO> rlist = new ArrayList<ReviewVO>();
     	rlist = rservice.searchList(cri);
     	if ( rlist!=null && rlist.size()>0 ) model.addAttribute("reviewlist",rlist); 
 
-
+    	
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
 		
