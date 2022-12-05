@@ -13,7 +13,7 @@ public interface NoticeMapper {
 	int searchCount(SearchCriteria cri);	
 	
 	// ** selectList
-	List<NoticeVO> selectList();
+	List<NoticeVO> main_selectList();
 	
 	// ** selectOne
 	NoticeVO selectOne(NoticeVO vo);
