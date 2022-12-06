@@ -309,9 +309,8 @@
 												<a class="comment_tool_a"><img
 													src="resources/img/notice/re_more_button.png"></a>
 												<div class="up_del dp_h">
-													<a class="re_update">수정</a>&nbsp;&nbsp; <a
-														class="re_delete"
-														href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
+													<a class="re_update">수정</a>&nbsp;&nbsp; 
+													<a class="re_delete" href="s_replyDelete?srno=${orange.srno}&shno=${orange.shno}&grp=${orange.grp}&grps=${orange.grps}">삭제</a>
 												</div>
 											</div>
 										</c:if>
@@ -327,17 +326,8 @@
 														<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
 													</c:otherwise>
 												</c:choose>
-												<!-- 글작성자 apple / 댓글작성자 orange / 관리자 내용 보이게 -->
-												<%-- <c:if test="${loginID == orange.id || loginID == apple.id || 
-												loginID == 'admin' || loginID == orange.reply_writer}">
-													<div class="comment_text_view w-s_p-w">${orange.content}</div>
-												</c:if>
-												<c:if test="${loginID != orange.id || loginID != apple.id && loginID != 'admin' || 
-												empty loginID || loginID != orange.reply_writer}">
-													<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
-												</c:if> --%>
 											</c:if>
-											<c:if test="${orange.secret == 0}">
+											<c:if test="${orange.secret != 1}">
 												<div class="comment_text_view w-s_p-w">${orange.content}</div>
 											</c:if>
 										</div>
@@ -357,17 +347,16 @@
 													id="shno"> <input type="hidden" name="id"
 													value="${loginID}">
 												<div class="mg_b_10">${loginNick}</div>
-												<textarea name="content" id="content"
-													placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
+												<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 												<div class="comment_attach">
-													<div>
-														<input type="checkbox" name="secret" value="1"> <label
-															for="secret">비밀댓글</label>
+													<div class="f_r">
+														<input type="checkbox" name="secret" id="secret" value="1">
+														<label for="secret">비밀댓글</label> 
+														<input type="button" class="rere_btn" value="등록"> 
+														<input type="reset" value="취소">
 													</div>
-													<input type="button" class="rere_btn" value="등록"> <input
-														type="reset" value="취소"> <input type="hidden"
-														name="grp" value="${orange.grp}"> <input
-														type="hidden" name="grps" value="${orange.grps}">
+													<input type="hidden" name="grp" value="${orange.grp}"> 
+													<input type="hidden" name="grps" value="${orange.grps}">
 													<input type="hidden" name="grpl" value="${orange.grpl}">
 												</div>
 											</form>
@@ -421,14 +410,17 @@
 										<!-- 댓글내용 비밀여부에 따라 노출 -->
 										<div class="comment_text_box">
 											<c:if test="${orange.secret == 1}">
-												<c:if test="${loginID == orange.id || loginID == apple.id || loginID == 'admin'}">
-													<div class="comment_text_view w-s_p-w">${orange.content}</div>
-												</c:if>
-												<c:if test="${loginID != orange.id && loginID != apple.id && empty loginID && loginID != 'admin'}">
-													<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
-												</c:if>
+												<!-- 글작성자 apple / 댓글작성자 orange / 관리자 / 원댓글작성자 내용 보이게 -->
+												<c:choose>
+													<c:when test="${loginID == orange.id || loginID == apple.id || loginID == 'admin' || loginID == orange.reply_writer}">
+														<div class="comment_text_view w-s_p-w">${orange.content}</div>
+													</c:when>
+													<c:otherwise>
+														<div class="comment_text_view w-s_p-w">비밀 댓글입니다.</div>
+													</c:otherwise>
+												</c:choose>
 											</c:if>
-											<c:if test="${orange.secret == 0}">
+											<c:if test="${orange.secret != 1}">
 												<div class="comment_text_view w-s_p-w">${orange.content}</div>
 											</c:if>
 										</div>
@@ -452,9 +444,10 @@
 												<textarea name="content" id="content"
 													placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 												<div class="comment_attach">
-													<div>
-														<input type="checkbox" name="secret" value="1"> <label
-															for="secret">비밀댓글</label>
+													<div class="f_r">
+														<input type="checkbox" name="secret"
+															id="secret" value="1"> <label for="secret">비밀댓글</label>
+														<input type="button" class="re_btn" value="등록">
 													</div>
 													<input type="button" class="rerere_btn" value="등록">
 													<input type="reset" value="취소"> <input
@@ -510,11 +503,11 @@
 							<textarea name="content" id="content" placeholder="댓글을 남겨보세요."
 								class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<div>
-									<input type="checkbox" name="secret" value="1"> <label
-										for="secret">비밀댓글</label>
+								<div class="f_r">
+									<input type="checkbox" name="secret" id="secret" value="1"> 
+									<label for="secret">비밀댓글</label>
+									<input type="button" class="re_btn" value="등록">
 								</div>
-								<input type="button" class="re_btn" value="등록">
 							</div>
 						</div>
 					</div>

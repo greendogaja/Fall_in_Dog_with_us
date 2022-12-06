@@ -250,8 +250,10 @@
 					
 						<div class="column_category" >
 							<select name="subject" >
-								<option value="[공지]" >[공지]</option>
-								<option value="[입양]" >[입양]</option>
+								<option value="[나눔]" >[나눔]</option>
+								<option value="[교환]" >[교환]</option>
+								<option value="[나눔완료]" >[나눔완료]</option>
+								<option value="[교환완료]" >[나눔완료]</option>
 							</select>
 						</div>
 					</div>

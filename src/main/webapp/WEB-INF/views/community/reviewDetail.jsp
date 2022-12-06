@@ -340,8 +340,10 @@
 											<div class="mg_b_10">${loginNick}</div>
 											<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="button" class="rere_btn" value="등록">
-												<input type="reset" value="취소">
+												<div class="f_r">
+													<input type="button" class="rere_btn" value="등록"> 
+													<input type="reset" value="취소">
+												</div>											
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
 												<input type="hidden" name="grpl" value="${orange.grpl}">
@@ -357,8 +359,10 @@
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="button" class="re_up_btn" value="수정">
-												<input type="reset" value="취소">
+												<div class="f_r">
+													<input type="button" class="re_up_btn" value="수정"> 
+													<input type="reset" value="취소">
+												</div>											
 												<input type="hidden" name="rvno" value="${orange.rvno}" >
 												<input type="hidden" name="rrno" value="${orange.rrno}" >
 												<input type="hidden" name="nname" value="${orange.nname}">
@@ -410,8 +414,10 @@
 											<textarea name="content" id="content"
 												placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 											<div class="comment_attach">
-												<input type="button" class="rerere_btn" value="등록"> 
-												<input type="reset" value="취소">
+												<div class="f_r">
+													<input type="button" class="rerere_btn" value="등록"> 
+													<input type="reset" value="취소">
+												</div>												
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
 												<input type="hidden" name="grpl" value="${orange.grpl}">
@@ -430,8 +436,10 @@
 											<textarea name="content" id="content"
 												 class="comment_textarea">${orange.content}</textarea>
 											<div class="comment_attach">
-												<input type="button" class="rere_up_btn" value="수정"> 
-												<input type="reset" value="취소">
+												<div class="f_r">
+													<input type="button" class="rere_up_btn" value="수정"> 
+													<input type="reset" value="취소">
+												</div>												
 												<input type="hidden" name="grp" value="${orange.grp}"> 
 												<input type="hidden" name="grps" value="${orange.grps}">
 												<input type="hidden" name="grpl" value="${orange.grpl}">
@@ -461,7 +469,7 @@
 							<div class="mg_b_10">${loginNick}</div>
 							<textarea name="content" id="content" placeholder="댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<input type="button" class="re_btn" name="commentData" id="commentData" value="등록">
+								<input type="button" class="re_btn f_r" name="commentData" id="commentData" value="등록">
 							</div>
 						</div>
 					</div>
@@ -475,7 +483,7 @@
 						<div class="comment_inbox">
 								<textarea name="content" id="content" placeholder="로그인 후 댓글을 남겨보세요." class="comment_textarea"></textarea>
 							<div class="comment_attach">
-								<input type="submit" name="commentData" id="commentData" value="등록">
+								<input type="submit" class="f_r" name="commentData" id="commentData" value="등록">
 							</div>
 						</div>
 					</div>
