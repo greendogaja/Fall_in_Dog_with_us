@@ -339,32 +339,32 @@
 							</c:forEach>
 						</tbody>
 					</table><!-- 회원명단끝 -->
+					<!-- 회원탈퇴시키기 -->
 					<script>
 						$('.deleteUser').click(function (e) {
 							e.preventDefault();
 							var usde = this.id;
-							console.log(this.id)
+							Swal.fire({
+							title: '회원삭제를 하시겠습니까?',
+								showDenyButton: true,
+								showCancelButton: true,
+								confirmButtonText: '네',
+								denyButtonText: `아니오`,
+							}).then((result) => {
+								if (result.isConfirmed) {
 									Swal.fire({
-									title: '회원삭제를 하시겠습니까?',
-										showDenyButton: true,
-										showCancelButton: true,
-										confirmButtonText: '네',
-										denyButtonText: `아니오`,
-									}).then((result) => {
-										if (result.isConfirmed) {
-											Swal.fire({
-												icon: 'success',
-												title: '삭제 되었습니다.',
-												showConfirmButton: false,
-												timer: 3000
-										});
-											 setTimeout(() =>location.href="userdelete?"+usde , 1000); 
-										
-										} else if (result.isDenied) {
-											Swal.fire('삭제하지 못하였습니다.', '', 'info');
-										}
-									});//comfirm
-						});
+										icon: 'success',
+										title: '삭제 되었습니다.',
+										showConfirmButton: false,
+										timer: 3000
+								});
+									 setTimeout(() =>location.href="userdelete?"+usde , 1000); 
+								
+								} else if (result.isDenied) {
+									Swal.fire('삭제하지 못하였습니다.', '', 'info');
+								}
+							});//comfirm
+						});//deleteUserClick
 					</script>
 				
 				<!--검색결과  -->		
