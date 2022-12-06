@@ -309,7 +309,7 @@
 						
 						<!-- 회원목록 -->
 						<tbody id="find">
-							<c:forEach var="user" items="${userlist}">
+							<c:forEach var="user" items="${userlist}" varStatus="userno">
 								<tr id="info?id=${user.id}">
 									<td class="userDetail"><img src="${user.uploadfile}"></td>
 									<td class="userDetail" style="dalseomedium"><a href="info?id=${user.id}">${user.id}</a></td>
@@ -318,7 +318,7 @@
 									<td class="userDetail">${user.nname}</td>
 									<td class="userDetail">${user.gender}</td>
 									<td class="userDetail" >
-									<span class="tcenter2 userDetail" id="${user.id}">${user.phone}
+									<span class="tcenter2 userDetail" >${user.phone}
 									</span>
 									<script>
 										 var num = "${user.phone}";
@@ -327,34 +327,8 @@
 									</script>
 									</td>
 									<td class="userDetail">${user.email}</td>
-									<td class="deleteUser" id="userdelete?id=${user.id}" ><span>Delete</span>
-										<script>
-											$('.deleteUser').click(function (e) {
-												e.preventDefault();
-												function deleteUser() {
-													Swal.fire({
-														title: '회원삭제를 하시겠습니까?',
-														showDenyButton: true,
-														showCancelButton: true,
-														confirmButtonText: '네',
-														denyButtonText: `아니오`,
-													}).then((result) => {
-														if (result.isConfirmed) {
-															Swal.fire({
-																icon: 'success',
-																title: '삭제 되었습니다.',
-																showConfirmButton: false,
-																timer: 3000
-															});
-															setTimeout(() =>location.href="userdelete?id=${user.id}" , 1000);			
-														} else if (result.isDenied) {
-															Swal.fire('삭제하지 못하였습니다.', '', 'info');
-														}
-													});//comfirm
-												}//userDelete
-												deleteUser();
-											});
-										</script>
+									<td class="deleteUser" id="id=${user.id}" ><span>Delete</span>
+										
 									</td>
 								</tr>
 								<script>
@@ -365,6 +339,33 @@
 							</c:forEach>
 						</tbody>
 					</table><!-- 회원명단끝 -->
+					<script>
+						$('.deleteUser').click(function (e) {
+							e.preventDefault();
+							var usde = this.id;
+							console.log(this.id)
+									Swal.fire({
+									title: '회원삭제를 하시겠습니까?',
+										showDenyButton: true,
+										showCancelButton: true,
+										confirmButtonText: '네',
+										denyButtonText: `아니오`,
+									}).then((result) => {
+										if (result.isConfirmed) {
+											Swal.fire({
+												icon: 'success',
+												title: '삭제 되었습니다.',
+												showConfirmButton: false,
+												timer: 3000
+										});
+											 setTimeout(() =>location.href="userdelete?"+usde , 1000); 
+										
+										} else if (result.isDenied) {
+											Swal.fire('삭제하지 못하였습니다.', '', 'info');
+										}
+									});//comfirm
+						});
+					</script>
 				
 				<!--검색결과  -->		
 				<div class="form-group searchresult" >
