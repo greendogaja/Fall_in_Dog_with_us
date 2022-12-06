@@ -1,32 +1,26 @@
 package com.fallindog.fid;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mysql.cj.Session;
-
-import net.sf.json.JSONObject;
 import noticeControl.PageMaker;
 import noticeControl.SearchCriteria;
+import service.DogService;
+import service.FreeService;
 import service.NoticeService;
+import service.UserService;
 import vo.NoticeVO;
 
 
@@ -36,9 +30,23 @@ public class NoticeController {
   
 	@Autowired 
 	NoticeService service;
+	@Autowired 
+	UserService uservice;
+	@Autowired 
+	FreeService fservice;
+	@Autowired 
+	DogService dservice;
+	
+	
 	 	
 	@RequestMapping(value="/aboutUs")
-	public ModelAndView aboutUs(ModelAndView mv) {
+	public ModelAndView aboutUs(ModelAndView mv, SearchCriteria cri ) {
+		
+		mv.addObject("userCount", uservice.userCount());
+		mv.addObject("freeCount", fservice.searchCount(cri));
+		mv.addObject("protectCount", dservice.protectCount());
+		mv.addObject("adoptCount", dservice.adoptCount());
+		
 		mv.setViewName("guide/about-us");
 		return mv;
 	} //aboutUs
@@ -85,15 +93,6 @@ public class NoticeController {
 	@RequestMapping(value="/noticeList")
 	public ModelAndView noticelist(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		/*
-		List<NoticeVO> list = new ArrayList<NoticeVO>();
-	  	list = service.selectList();
-	  	if ( list!=null ) {
-	  		mv.addObject("banana", list);  // request.setAttribute(...) 와 동일효과
-	  	}else {
-	  		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-	  	}
-		*/
 		
 		// Criteria
 		cri.setSnoEno();
@@ -110,16 +109,6 @@ public class NoticeController {
 	@RequestMapping(value="/nwriterList")
 	public ModelAndView nwriterList(HttpServletRequest request, HttpServletResponse response,
 						ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		/*
-		List<NoticeVO> list = new ArrayList<NoticeVO>();
-	  	list = service.selectList();
-	  	if ( list!=null ) {
-	  		mv.addObject("nwriterList", list);  // request.setAttribute(...) 와 동일효과
-	  	}else {
-	  		mv.addObject("message", "~~ 출력 자료가 없습니다 ~~");
-	  	}
-		*/
-	  	
 		// Criteria
 		cri.setSnoEno();
 		mv.addObject("nwriterList", service.w_searchList(cri));
@@ -196,7 +185,7 @@ public class NoticeController {
 		File f1 = new File(realPath);
 		if ( !f1.exists() ) f1.mkdir();
 		
-		String file1 = null;
+		String file1, file2 = null;
 		
 		MultipartFile uploadfilef = vo.getUploadfilef(); // file 의 내용 및 화일명 등 전송된 정보들이 들어있음
 		if ( uploadfilef !=null && !uploadfilef.isEmpty() ) {
@@ -208,8 +197,15 @@ public class NoticeController {
 			vo.setImg(file1);
 		}
 		
+		MultipartFile mainImgFile = vo.getMainImgFile(); // file 의 내용 및 화일명 등 전송된 정보들이 들어있음
+		if ( mainImgFile !=null && !mainImgFile.isEmpty() ) {
+			file2 = realPath + mainImgFile.getOriginalFilename(); // 경로완성
+			mainImgFile.transferTo(new File(file2)); // Image저장
+			
+			file2="resources/img/uploadImage/notice/"+mainImgFile.getOriginalFilename();
+			vo.setMainImg(file2);
+		}		
 		
-		System.out.println("새글등록 vo img 담겻는지 => "+vo);
 		
 		
 		// 2. Service 처리

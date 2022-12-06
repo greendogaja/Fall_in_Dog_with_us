@@ -210,8 +210,24 @@
     <div class="hero-area">
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel">
+        <c:forEach var="main" items="${mainlist}">
+         	<div class="single-hero-slide bg-img" style="background-image: url(${main.mainImg});">
+                <div class="container h-40">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="slide-content text-center">
+                                <div class="post-tag">
+                                    <a href="#" data-animation="fadeInUp" style="background-color:rgba(0, 0, 0, 0.3);">Fall in Dog</a>
+                                </div>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="ndetail?nno=${main.nno}" style="background-color:rgba(0, 0, 0, 0.3);">${main.title }</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</c:forEach>
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/first.jpg);">
+      <!--  <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/first.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -225,7 +241,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Single Slide -->
+            Single Slide
             <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/second.png);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
@@ -240,7 +256,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Single Slide -->
+            Single Slide
             <div class="single-hero-slide bg-img" style="background-image: url(resources/img/bg-img/third.png);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
@@ -254,7 +270,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- ##### Hero Area End ##### -->
@@ -316,7 +332,7 @@
 									<tbody class="tcontens">
 										<c:forEach var="notice" items="${noticelist}">
 											<tr  onClick="location.href='ndetail?nno=${notice.nno}'">
-												<td class="docur">${notice.title} <i class="fa fa-heart" aria-hidden="true"></i></td>
+												<td class="docur">${notice.subject} ${notice.title} <i class="fa fa-heart" aria-hidden="true"></i></td>
 											</tr>
 										</c:forEach>
 									</tbody>

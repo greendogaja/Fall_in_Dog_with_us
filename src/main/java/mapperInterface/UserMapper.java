@@ -27,5 +27,6 @@ public interface UserMapper {
 	//** List
 	List<UserVO> searchList(SearchCriteria cri);
 	int searchCount(SearchCriteria cri);
+	int userCount();
 	List<UserVO> selectList();
 }//interface

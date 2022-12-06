@@ -31,6 +31,8 @@
     <script defer="defer" src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script defer="defer" src="resources/js/active.js"></script>
+    
+    <script defer="defer" src="resources/mLib/notice_reply.js"></script>
 	
 	<script>
 	$(function() {
@@ -268,13 +270,21 @@
 		</tr>
 		<c:if test="${not empty banana}">
 				<c:forEach var="notice" items="${banana}">
-					<tr class="ntable_tr">
+					<c:choose>
+						<c:when test="${notice.top == 1 }">
+							<tr class="ntable_tr top" onClick="location.href='ndetail?nno=${notice.nno}'" style="cursor:pointer;">
+						</c:when>
+						<c:otherwise>
+							<tr class="ntable_tr" onClick="location.href='ndetail?nno=${notice.nno}'" style="cursor:pointer;">
+						</c:otherwise>
+					</c:choose>
 						<td>${notice.nno}</td>
 						<td>${notice.subject}</td>
-						<td><a href="ndetail?nno=${notice.nno}">${notice.title}</a></td>
+						<td ><span >${notice.title}</span></td>
 						<td>${notice.nname}</td>
 						<td>${notice.regdate}</td>
 						<td>${notice.cnt}</td>
+						<td class="notice_top"  style="display:none;">${notice.top}</td>
 					</tr>
 				</c:forEach>
 			</c:if>

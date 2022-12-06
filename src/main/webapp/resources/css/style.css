@@ -2271,7 +2271,7 @@ textarea:focus~.highlight {
     position: absolute;
     background-color: black;
     width: 90%;
-    line-height: 50px;
+    line-height: 65px;
     height:100%;
     opacity: 0.7;
     padding:15px;
@@ -2287,6 +2287,9 @@ textarea:focus~.highlight {
 	opacity: 0;
 }
 
+.h-40{
+	height:40%!important;
+}
 
 
 

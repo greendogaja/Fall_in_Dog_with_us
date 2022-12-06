@@ -115,10 +115,10 @@
 SELECT a.srno, a. shno, a.grp, a.grps, a.grpl, a.id, a.content, a.regdate, a.secret, b.id reply_writer, c.uploadfile, c.nname
 FROM dog.share_reply as a 
 inner join share_reply as b
-on b.grps = 0  and a.grp = b.grp and b.shno=7
+on b.grps = 0  and a.grp = b.grp and b.shno=#{shno}
 inner join user as c
 on a.id = c.id
-where a.shno=7
+where a.shno=#{shno}
 order by a.grp desc, a.grps asc
 </select>
 
