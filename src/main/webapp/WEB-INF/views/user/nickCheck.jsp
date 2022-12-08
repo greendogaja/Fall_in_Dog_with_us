@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/joinf.css">
 
+
 	<script>
 		function niOK(){
 			opener.$('#nname').val('${newNick}');
