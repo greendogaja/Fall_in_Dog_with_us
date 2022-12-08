@@ -247,9 +247,9 @@ public class UserController {
 		if(session != null && session.getAttribute("loginID") != null) {
 			id =(String)session.getAttribute("loginID");
 			if(!"admin".equals(id)) vo.setId(id);
+			System.out.println(vo.getId());
 			if(service.delete(vo)>0) {
-				rttr.addFlashAttribute("message","ㅇㅅㅇ 회원탈퇴 성공 ");
-				
+				System.out.println("회원탈퇴성공");
 				if(!"admin".equals(id)) {
 					session.invalidate();
 					System.out.println("회원이 삭제");
